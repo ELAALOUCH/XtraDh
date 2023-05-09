@@ -25,6 +25,8 @@ class CreateInterventionsTable extends Migration
             $table->date('Date_debut');
             $table->date('Date_fin');
             $table->integer('Nbr_heures');
+            $table->integer('visa_etb')->default(0);
+            $table->integer('visa_uae')->default(0);
             $table->timestamps();
         });
     }
