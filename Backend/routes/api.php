@@ -57,17 +57,17 @@ Route::apiResource('User',userController::class);
 
 //public routes
 Route::get('/Products/search/{name}',[ProductController::class,'search']);
-  Route::get('/Products',[ProductController::class,'index']);
-  Route::get('/Products/{id}',[ProductController::class,'show']);
-  Route::post('/register',[AuthController::class,'register']);
-  Route::post('/login',[AuthController::class,'login']);
+//   Route::get('/Products',[ProductController::class,'index']);
+//   Route::get('/Products/{id}',[ProductController::class,'show']);
+//   Route::post('/register',[AuthController::class,'register']);
+//   Route::post('/login',[AuthController::class,'login']);
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
     //securité des routes
-    Route::post('/Products',[ProductController::class,'store']);
-    Route::put('/Products/{id}',[ProductController::class,'update']);
-    Route::post('/logout',[AuthController::class,'logout']);
-    Route::delete('/Products/{id}',[ProductController::class,'destroy']);
+    // Route::post('/Products',[ProductController::class,'store']);
+    // Route::put('/Products/{id}',[ProductController::class,'update']);
+    // Route::post('/logout',[AuthController::class,'logout']);
+    // Route::delete('/Products/{id}',[ProductController::class,'destroy']);
 });
 
 
