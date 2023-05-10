@@ -26,9 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 /* Etablissement Routes */
-Route::apiResource('Etablissement',EtablissementController::class); 
+Route::apiResource('Etablissement',EtablissementController::class);
 
-/*Grade Routes */ 
+/*Grade Routes */
 Route::apiResource('Grade',GradeController::class);
 
 /* Enseignant routes */
@@ -44,8 +44,63 @@ Route::apiResource('Intervention',InterventionController::class);
 
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
- 
+
 /* Uusers Routes */
 Route::apiResource('User',userController::class);
+
+
+
+
+//
+
+//
+
+//public routes
+Route::get('/Products/search/{name}',[ProductController::class,'search']);
+  Route::get('/Products',[ProductController::class,'index']);
+  Route::get('/Products/{id}',[ProductController::class,'show']);
+  Route::post('/register',[AuthController::class,'register']);
+  Route::post('/login',[AuthController::class,'login']);
+//protected routes
+Route::group(['middleware'=>['auth:sanctum']], function () {
+    //securité des routes
+    Route::post('/Products',[ProductController::class,'store']);
+    Route::put('/Products/{id}',[ProductController::class,'update']);
+    Route::post('/logout',[AuthController::class,'logout']);
+    Route::delete('/Products/{id}',[ProductController::class,'destroy']);
+});
+
+
+
+/*
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});*/
+
+Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
+    $user = $request->user();
+    // Use $user to retrieve user information or perform actions
+    return response()->json($user);
+});
+
+Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
+    //protected for admin univ
+});
+
+Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
+    //protected for admin etb
+});
+
+Route::middleware(['auth:sanctum','role:directeur'])->group( function () {
+    //protected for directeur
+});
+
+Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
+    //protected for président
+});
+
+Route::middleware(['auth:sanctum','role:prof'])->group( function () {
+    //protected for prof
+});
 
 
