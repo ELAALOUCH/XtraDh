@@ -18,9 +18,9 @@ class CreateAdministrateursTable extends Migration
             $table->string('PPR');
             $table->string('Nom');
             $table->string('prenom');
-            $table->bigInteger('Etablissement');
+            $table->unsignedInteger('Etablissement');
             $table->foreign('Etablissement')->references('id')->on('Etablissement');
-            $table->bigInteger('id_user');
+            $table->unsignedInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('Users');
             $table->timestamps();
         });
