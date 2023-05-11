@@ -54,7 +54,7 @@ Route::apiResource('User',userController::class);
 //
 
 //
-
+/*
 //public routes
 Route::get('/Products/search/{name}',[ProductController::class,'search']);
 
@@ -65,10 +65,9 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 
 
-/*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});*/
+});
 
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
     $user = $request->user();
@@ -95,5 +94,5 @@ Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
 Route::middleware(['auth:sanctum','role:prof'])->group( function () {
     //protected for prof
 });
-
+*/
 

@@ -33,7 +33,7 @@ class enseignant extends Model
         
     }
     public function  intervention(){
-        return $this->hasMany('intervention');
+        return $this->belongsToMany(etablissement::class,intervention::class,'id_intervenant','id_etab');
         
     }
     public function user(){

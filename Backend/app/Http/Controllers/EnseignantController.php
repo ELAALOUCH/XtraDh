@@ -14,7 +14,8 @@ class EnseignantController extends Controller
      */
     public function index()
     {
-        //
+        $ens_intv = enseignant::all();
+        return "hello";
     }
 
     /**
