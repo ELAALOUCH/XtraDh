@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\etablissement;
+use App\Models\grade;
+use App\Models\paiement;
+use App\Models\intervention;
+use App\Models\user;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
