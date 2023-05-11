@@ -16,6 +16,9 @@ class grade extends Model
     public function enseignant(){
         return $this->hasMany('enseignant');
     }
+    public function administrateurs(){
+        return $this->hasMany('administrateur');
+    }
 
  
 }

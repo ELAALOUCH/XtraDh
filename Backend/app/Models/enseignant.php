@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\etablissement;
+use App\Models\grade;
+use App\Models\paiement;
+use App\Models\intervention;
+use App\Models\user;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,15 +22,22 @@ class enseignant extends Model
     ];
 
     public function etab_permanant(){
-        return $this->hasOne('etablissement');
+        return $this->belongsTo('etablissement');
     }
     public function grade()
     {
-        return $this->hasOne('grade');
+        return $this->belongsTo('grade');
     }
     public function  paiement(){
         return $this->hasMany('paiement');
         
+    }
+    public function  intervention(){
+        return $this->hasMany('intervention');
+        
+    }
+    public function user(){
+        return $this->hasOne('user');
     }
 
 }
