@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Administrateur extends Model
+class administrateur extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -14,4 +14,8 @@ class Administrateur extends Model
         'prenom',
         'Etablissement',
     ];
+    
+    public function user(){
+        return $this->hasOne('user');
+    }
 }
