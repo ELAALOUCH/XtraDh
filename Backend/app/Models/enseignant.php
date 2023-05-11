@@ -9,7 +9,7 @@ use App\Models\user;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class enseignant extends Model
+class Enseignant extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -33,11 +33,12 @@ class enseignant extends Model
         
     }
     public function  intervention(){
-        return $this->belongsToMany(etablissement::class,intervention::class,'id_intervenant','id_etab');
+        return $this->belongsToMany(etablissement::class,intervention::class,'id_Intervenant','id_Etab');
         
     }
     public function user(){
         return $this->hasOne('user');
     }
+
 
 }

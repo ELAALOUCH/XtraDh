@@ -13,7 +13,7 @@ class CreateGradesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Grade', function (Blueprint $table) {
+        Schema::create('grades', function (Blueprint $table) {
             $table->id('id_Grade');
             $table->string('designation');
             $table->integer('charge_statutaire');

@@ -13,15 +13,15 @@ class CreateAdministrateursTable extends Migration
      */
     public function up()
     {
-        Schema::create('Administrateur', function (Blueprint $table) {
+        Schema::create('administrateurs', function (Blueprint $table) {
             $table->id();
             $table->string('PPR');
             $table->string('Nom');
             $table->string('prenom');
             $table->unsignedInteger('Etablissement');
-            $table->foreign('Etablissement')->references('id')->on('Etablissement');
+            $table->foreign('Etablissement')->references('id')->on('etablissements');
             $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id_user')->on('Users');
+            $table->foreign('id_user')->references('id_user')->on('users');
             $table->timestamps();
         });
     }

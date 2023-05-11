@@ -14,7 +14,7 @@ class CreateEtablissementsTable extends Migration
     
     public function up()
     {
-        Schema::create('Etablissement', function (Blueprint $table) {
+        Schema::create('etablissements', function (Blueprint $table) {
             $table->id();
             $table->string('code');
             $table->string('Nom');

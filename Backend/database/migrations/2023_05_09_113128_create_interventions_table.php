@@ -13,12 +13,12 @@ class CreateInterventionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Intervention', function (Blueprint $table) {
+        Schema::create('interventions', function (Blueprint $table) {
             $table->id('id_intervention');
             $table->unsignedInteger('id_Intervenant');
-            $table->foreign('id_Intervenant')->references('id')->on('Enseignant');
+            $table->foreign('id_Intervenant')->references('id')->on('enseignants');
             $table->unsignedInteger('id_Etab');
-            $table->foreign('id_Etab')->references('id')->on('Etablissement');
+            $table->foreign('id_Etab')->references('id')->on('etablissements');
             $table->string('Intitule_Intervention');
             $table->string('Annee_univ',10);
             $table->string('Semestre');

@@ -21,4 +21,6 @@ class etablissement extends Model
     {
         return $this->hasMany('enseignant');
     }
+    protected $hidden = ['pivot'];
+
 }

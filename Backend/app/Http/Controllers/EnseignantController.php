@@ -14,8 +14,9 @@ class EnseignantController extends Controller
      */
     public function index()
     {
-        $ens_intv = enseignant::all();
-        return "hello";
+        //$ens_intv = enseignant::all();
+        $ens = enseignant::with(['intervention:Nom,ville'])->find(1);
+        return $ens;
     }
 
     /**
