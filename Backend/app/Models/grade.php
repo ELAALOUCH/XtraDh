@@ -17,7 +17,7 @@ class grade extends Model
         return $this->hasMany(enseignant::class,'id_Grade','id_Grade','grades');
     }
     public function administrateurs(){
-        return $this->hasMany('administrateur');
+        return $this->hasMany(administrateur::class,'id_Grade','id_Grade','grades');
     }
 
  

@@ -24,10 +24,18 @@ class EnseignantController extends Controller
       // $grade = grade::with(['enseignant'])->get();
        // $paie = enseignant::find(1)->paiement;
       // return $paie;
+       $enseignant = enseignant::where('id',1)->first();
+      $enseignant=enseignant::with(['grade'])
+                                ->with(['etab_permanant'])
+                                ->with(['paiement'])
+                                ->with(['user'])
+                                ->select('id','Nom')
+                                ->get();
+          //$enseignant = enseignant::with(['etab_permanant'])->get();                      
+        return $enseignant  ;                      
 
 
 
-      
     }
 
     /**
