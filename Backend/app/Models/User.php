@@ -37,7 +37,7 @@ class user extends Authenticatable
         return $this->hasOne(Enseignant::class,'id_user','id_user');
     }
     public function administrateur(){
-        return $this->hasOne(administrateur::class,'id_user','id_user');
+        return $this->hasOne(administrateur::class,'id_user','id_user','users');
     }
     
 }
