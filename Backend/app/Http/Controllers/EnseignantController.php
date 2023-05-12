@@ -16,24 +16,13 @@ class EnseignantController extends Controller
      */
     public function index()
     {
-        //$ens_intv = enseignant::all();
-        //$ens = enseignant::find(1);
-       // $grade = 
-       // $grades = DB::table('grades')->where('id_Grade',1)->first();
-       // return $grade->enseignant;
-      // $grade = grade::with(['enseignant'])->get();
-       // $paie = enseignant::find(1)->paiement;
-      // return $paie;
-       $enseignant = enseignant::where('id',1)->first();
-      $enseignant=enseignant::with(['grade'])
-                                ->with(['etab_permanant'])
-                                ->with(['paiement'])
+        $enseignant = enseignant::with(['etab_permanant'])
+                                ->with(['grade'])
+                                ->with(['intervention'])
                                 ->with(['user'])
-                                ->select('id','Nom')
-                                ->get();
-          //$enseignant = enseignant::with(['etab_permanant'])->get();                      
-        return $enseignant  ;                      
-
+                                ->with(['paiement'])
+                                ->get();                     
+        return response()->json($enseignant);
 
 
     }
@@ -46,7 +35,16 @@ class EnseignantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_fields = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required|max:30',
+            'prenom'=>'required|max:30',
+            'Date_Naissance'=>'date|required'
+        ]);
+        $form_fields['Etablissement'] = $request->Etablissement;
+        $form_fields['id_Grade'] = $request->id_Grade;
+        $form_fields['id_user'] = $request->id_user;
+        return enseignant::create($form_fields);
     }
 
     /**
