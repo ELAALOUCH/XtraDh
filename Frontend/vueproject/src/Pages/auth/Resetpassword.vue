@@ -50,6 +50,7 @@
         this.email = '';
         this.password = '';
         this.confirmPassword = '';
+        this.$router.push('/');
       },
     },
   };
