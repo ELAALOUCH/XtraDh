@@ -26,10 +26,10 @@ class Enseignant extends Model
     }
     public function grade()
     {
-        return $this->belongsTo(grade::class);
+        return $this->belongsTo(grade::class,'id','id_Grade','enseignant');
     }
     public function  paiement(){
-        return $this->hasMany(paiement::class,'id_Intervenant');
+        return $this->hasMany(paiement::class,'id_Intervenant','id','enseignant');
         
     }
     public function  intervention(){

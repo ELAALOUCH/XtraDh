@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\enseignant;
+use App\Models\grade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnseignantController extends Controller
 {
@@ -15,9 +17,17 @@ class EnseignantController extends Controller
     public function index()
     {
         //$ens_intv = enseignant::all();
-        $ens = enseignant::find(1);
+        //$ens = enseignant::find(1);
+       // $grade = 
+       // $grades = DB::table('grades')->where('id_Grade',1)->first();
+       // return $grade->enseignant;
+      // $grade = grade::with(['enseignant'])->get();
+       // $paie = enseignant::find(1)->paiement;
+      // return $paie;
 
-        return $ens->grade;
+
+
+      
     }
 
     /**
