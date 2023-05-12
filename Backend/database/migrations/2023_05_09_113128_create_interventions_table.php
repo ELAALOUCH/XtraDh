@@ -38,6 +38,6 @@ class CreateInterventionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Intervention');
+        Schema::dropIfExists('interventions');
     }
 }
