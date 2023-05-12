@@ -14,7 +14,7 @@ class userController extends Controller
      */
     public function index()
     {
-        return response()->json(User::all());
+        return user::with('administrateur')->get();
     }
 
     /**
@@ -26,7 +26,7 @@ class userController extends Controller
     public function store(Request $request)
     {
     
-        User::create($request->only());
+       // User::create($request->only());
     }
 
     /**

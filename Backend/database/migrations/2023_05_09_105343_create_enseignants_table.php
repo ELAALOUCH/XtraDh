@@ -13,18 +13,18 @@ class CreateEnseignantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Enseignant', function (Blueprint $table) {
+        Schema::create('enseignants', function (Blueprint $table) {
             $table->id();
             $table->string('PPR');
             $table->string('Nom');
             $table->string('prenom');
             $table->date('Date_Naissance');
             $table->unsignedInteger('Etablissement');
-            $table->foreign('Etablissement')->references('id')->on('Etablissement');
+            $table->foreign('Etablissement')->references('id')->on('etablissements');
             $table->unsignedInteger('id_Grade');
-            $table->foreign('id_Grade')->references('id_Grade')->on('Grade');
+            $table->foreign('id_Grade')->references('id_Grade')->on('grades');
             $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id_user')->on('Users');
+            $table->foreign('id_user')->references('id_user')->on('users');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateEnseignantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Enseignant');
+        Schema::dropIfExists('enseignants');
     }
 }

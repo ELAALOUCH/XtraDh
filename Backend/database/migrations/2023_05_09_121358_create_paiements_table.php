@@ -13,12 +13,12 @@ class CreatePaiementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Paiement', function (Blueprint $table) {
+        Schema::create('paiements', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('id_Intervenant');
-            $table->foreign('id_Intervenant')->references('id')->on('Enseignant');
+            $table->foreign('id_Intervenant')->references('id')->on('enseignants');
             $table->unsignedInteger('id_Etab');
-            $table->foreign('id_Etab')->references('id')->on('Etablissement');
+            $table->foreign('id_Etab')->references('id')->on('etablissements');
             $table->float('VH');
             $table->float('Taux_H');
             $table->float('Brut');

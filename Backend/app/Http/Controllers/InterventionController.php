@@ -14,7 +14,8 @@ class InterventionController extends Controller
      */
     public function index()
     {
-        //
+        $ens = Intervention::with(['etablissement'])->get();
+        return $ens;
     }
 
     /**

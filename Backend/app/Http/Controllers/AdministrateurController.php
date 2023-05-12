@@ -14,7 +14,12 @@ class AdministrateurController extends Controller
      */
     public function index()
     {
-        //
+       /*$adm = administrateur::with('etablissement')->get();
+        return $adm;*/
+        $adm = administrateur::with('user')
+                              ->with('Etablissement')
+                              ->get();
+        return $adm;
     }
 
     /**

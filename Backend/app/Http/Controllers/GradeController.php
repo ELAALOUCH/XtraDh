@@ -14,7 +14,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        //
+        return  $ens = grade::with([''])->get();
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\etablissement;
 use Illuminate\Http\Request;
+use App\Models\etablissement;
+use Illuminate\Support\Facades\DB;
 
 class EtablissementController extends Controller
 {
@@ -14,7 +15,8 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        //
+        $etb = etablissement::with(['paiement'])->get();
+        return $etb;
     }
 
     /**
@@ -25,7 +27,7 @@ class EtablissementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //  
     }
 
     /**
@@ -34,9 +36,9 @@ class EtablissementController extends Controller
      * @param  \App\Models\etablissement  $etablissement
      * @return \Illuminate\Http\Response
      */
-    public function show(etablissement $etablissement)
+    public function show( $etablissement)
     {
-        //
+        return DB::table('etablissement')->where('id',$etablissement)->get();
     }
 
     /**

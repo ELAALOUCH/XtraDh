@@ -14,7 +14,7 @@ class PaiementController extends Controller
      */
     public function index()
     {
-        //
+        return $ens = paiement::with(['enseignant'])->get();
     }
 
     /**
