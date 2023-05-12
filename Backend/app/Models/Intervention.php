@@ -20,7 +20,12 @@ class intervention extends Model
         'Nbr_heures'
     ];
 
-    
+    public function enseignant(){
+        return $this->belongsTo(enseignant::class,'id_Intervenant','id');
+    }
+    public function etablissement(){
+        return $this->belongsTo(etablissement::class,'id_Etab','id');
+    }
 
 
 }

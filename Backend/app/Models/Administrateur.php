@@ -16,6 +16,10 @@ class administrateur extends Model
     ];
     
     public function user(){
-        return $this->hasOne('user');
+       // return $this->belongsTo(user::class,'id','id_user','administrateurs');
+       return $this->belongsTo(user::class,'id_user','id_user');
+    }
+    public function etablissement(){
+        return $this->belongsTo(etablissement::class,'Etablissement','id');
     }
 }

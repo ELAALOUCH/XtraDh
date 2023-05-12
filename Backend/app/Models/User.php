@@ -33,5 +33,11 @@ class user extends Authenticatable
         'remember_token',
     ];
 
+    public function enseignant(){
+        return $this->hasOne(Enseignant::class,'id_user','id_user');
+    }
+    public function administrateur(){
+        return $this->hasOne(administrateur::class,'id_user','id_user','users');
+    }
     
 }

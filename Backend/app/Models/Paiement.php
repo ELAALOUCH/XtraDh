@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class paiement extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_Intervenant',
+        'id_Etab',
+        'VH',
+        'taux_H',
+        'Brut',
+        'IR',
+        'Annee_univ',
+        'Semestre',
+        
+    ];
+    
+    public function enseignant(){
+        return $this->belongsTo(enseignant::class,'id_Intervenant','id');
+    }
+
 }

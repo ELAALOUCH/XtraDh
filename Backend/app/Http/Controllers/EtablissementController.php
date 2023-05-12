@@ -15,7 +15,8 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        return DB::table('etablissement')->select('*')->get();
+        $etb = etablissement::with(['paiement'])->get();
+        return $etb;
     }
 
     /**
