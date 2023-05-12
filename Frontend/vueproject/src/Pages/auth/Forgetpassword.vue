@@ -9,7 +9,7 @@
             <input v-model="email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2">
           </div> 
           <div class="flex justify-between items-center">
-            <button type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Email Me a link</button>
+            <button @click="startRedirect" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Email Me a link</button>
           </div>
         </form>
       </div>
@@ -30,8 +30,14 @@ import Footer from '@/components/Login/Footer.vue'
     methods: {
       submitForm() {
         console.log('Email:', this.email);
-        this.email = '';
       },
+      startRedirect() {
+      const redirectTime = 5000; // Redirect after 5 seconds (5000 milliseconds)
+      setTimeout(() => {
+        this.$router.push('/Wait'); // Replace with your desired route path
+      }, redirectTime);
+    }
+      
     },
 }
 </script>
