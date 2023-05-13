@@ -1,27 +1,6 @@
 <template>
     <div>
       <h3 class="text-2xl font-bold text-left py-2">Listes des profs</h3>
-      <div class="flex justify-center items-end space-x-3">
-        <div>
-            <h1>Nom</h1>
-            <input type="text" class="border  border-gray-500 px-3 py-2" v-model="name">
-        </div>
-        <div>
-            <h1>Prénom</h1>
-            <input type="text" class="border  border-gray-500 px-3 py-2" v-model="color">
-        </div>
-        <div>
-            <h1>Ecole</h1>
-            <input type="text" class="border  border-gray-500 px-3 py-2 " v-model="category">
-        </div>
-        <div>
-            <h1>nombres d'heures</h1>
-            <input type="text" class="border  border-gray-500 px-3 py-2" v-model="price">
-        </div>
-        <div class="">
-           <button class="bg-gray-600 text-white px-3 py-2 hoover:bg-gray-500" @click="saved(haveid)">Save</button>
-        </div>
-      </div>
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -73,14 +52,6 @@
                 {{ data.price }}
               </td>
               <td class="py-4 px-6 text-right">
-                <div class="inline-flex">
-                 <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="getdata(data.id)">
-                   Edit
-                 </button>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="delet(data.id)">
-                   Delete
-                 </button>                 
-                </div>
               </td>
             </tr>
           </tbody>
@@ -110,40 +81,8 @@
     }
   },
   methods:{
-       delet(id){
-        var index=this.productyObj.findIndex((data)=>data.id==id)
-        this.productyObj.splice(index,1)
-       },
-       getdata(id){
-        var dataObj=this.productyObj.filter((data)=>(data.id==id))
-        //assign to input
-        this.name=dataObj[0].name
-        this.color=dataObj[0].color
-        this.category=dataObj[0].category
-        this.price=dataObj[0].price       
-    },
-       saved(haveid){
-        //update
-        if(haveid){
-        var dataObj=this.productyObj.filter((data)=>(data.id==id))
-        dataObj[0].name=this.name
-        dataObj[0].color=this.color
-        dataObj[0].category=this.category
-        dataObj[0].price=this.price
-        }else{
-            //add data
-        const id=this.productyObj.length+1
-        const data={
-            id:id,
-            name:this.name,
-            color:this.color,
-            category:this.category,
-            price:this.price,
-        }
-        this.productyObj.push(data); 
-        }
-    }
-       }
+    
+  }
 
   }
 
