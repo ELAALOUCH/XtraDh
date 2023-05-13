@@ -4,6 +4,7 @@ import NotFound from '@/views/NotFound.vue'
 import Forgetpassword from '@/Pages/auth/Forgetpassword.vue'
 import Resetpassword from '@/Pages/auth/Resetpassword.vue'
 import Wait from '@/Pages/auth/Wait.vue'
+import Dash_au from '@/Interfaces/Admin_Univ/Dash_au.vue'
 const routes = [
   {
     path: '/',
@@ -24,6 +25,11 @@ const routes = [
     path:'/Resetpassword',
     name:'Resetpassword',
     component:Resetpassword
+  },
+  {
+    path:'/Dash_au',
+    name:'Dash_au',
+    component:Dash_au
   },
    {
     path:'/:catchAll(.*)',
