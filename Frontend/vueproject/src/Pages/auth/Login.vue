@@ -21,7 +21,7 @@
               Login
             </button>
           </div>
-        <router-link to="/Forgetpassword" class="text-sm text-blue-500 hover:text-blue-700 mt-4">
+        <router-link to="/Dash_au" class="text-sm text-blue-500 hover:text-blue-700 mt-4">
             Forgot Password?
         </router-link>
         </form>
