@@ -24,4 +24,5 @@ class paiement extends Model
         return $this->belongsTo(enseignant::class,'id_Intervenant','id');
     }
 
+    
 }

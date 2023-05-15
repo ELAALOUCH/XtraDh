@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class grade extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_Grade';
+
     protected $fillable = [
         'designation',
         'charge_statutaire',

@@ -67,7 +67,7 @@ class EnseignantController extends Controller
      */
     public function update(Request $request, enseignant $enseignant)
     {
-        //
+        @dd($request);
     }
 
     /**

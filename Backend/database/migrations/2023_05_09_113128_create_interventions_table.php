@@ -14,7 +14,7 @@ class CreateInterventionsTable extends Migration
     public function up()
     {
         Schema::create('interventions', function (Blueprint $table) {
-            $table->id('id_intervention');
+            $table->id('id_Intervention');
             $table->unsignedInteger('id_Intervenant');
             $table->foreign('id_Intervenant')->references('id')->on('enseignants');
             $table->unsignedInteger('id_Etab');
