@@ -34,18 +34,23 @@ export default{
             console.log('Failed')
          }
        },
-       async attempt( {commit},token){
+       async attempt( {commit,state},token){
          try {
-            const response = await axios.get('/* user profile */' ,{
-               headers:{'Authorization':`Bearer ${token}` }
-            })
+          if(token){
+           commit('setToken',token)
+          }
+          if(!state.token){
+             return;
+          }
+            const response = await axios.get('/* user profile  url*/')
 
-            commit('setToken',token)
             commit('setUser',response.data)
             console.log('success')
          } catch (error) { 
-             console.log('error 2')
-         }
+          commit('setUser',null)
+          commit('setToken',null)
+
+        }
        } 
    }, 
 }
