@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-indigo-200 py-4 px-8 text-center fixed bottom-0 w-full">
+    <footer class="bg-blue-500 py-4 px-8 text-center fixed bottom-0 w-full">
       <p class="text-gray-600 text-sm">
         &copy; {{ currentYear }} XtraDh. All rights reserved.
       </p>

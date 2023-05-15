@@ -84,6 +84,7 @@
   
   <script>
   import Create from '@/components/Dashboard/Prof/Create.vue'
+ 
   export default {
     components: {Create},
   data(){
@@ -91,7 +92,7 @@
         name:'',
         color:'',
         category:'',
-        price:null,  
+        price:null,   
         productyObj:[
         {
             id:1,
@@ -108,8 +109,7 @@
   methods:{
     togglemodal(){
     this.showmodal=!this.showmodal
-  },
-       }
+  },},
 
   }
 

@@ -1,6 +1,5 @@
 <template>
     <div class="flex justify-center items-center h-screen bg-gray-100">
-      <Header />
       <div class="w-96 bg-white rounded-lg shadow-lg p-8">
         <h1 class="text-3xl font-bold mb-6 text-center">Reset Password</h1>
         <form @submit.prevent="submitForm" class="space-y-6">
@@ -22,7 +21,6 @@
           </div>
         </form>
       </div>
-      <Footer />
     </div>
   </template>
   
