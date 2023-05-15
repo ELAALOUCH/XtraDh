@@ -19,6 +19,7 @@ import Profileau from '@/Interfaces/Admin_Univ/Profileau.vue'
 import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
 import Profilepu from '@/Interfaces/President_Univ/Profilepu.vue'
 import Profileu from '@/Interfaces/Users/Profileu.vue'
+import store from '@/store';
 const routes = [
   {
     path: '/',
@@ -44,6 +45,15 @@ const routes = [
     path:'/Dash_au',
     name:'Dash_au',
     component:Dash_au,
+    /*beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Signin' })
+      }
+
+      next()
+
+    },*/
     children :[
       {
       path: '/Homeau',
@@ -58,6 +68,15 @@ const routes = [
     path:'/Dash_ae',
     name:'Dash_ae',
     component:Dash_ae,
+    /*beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Signin' })
+      }
+
+      next()
+
+    },*/
     children :[
       {
         path: '/Homeae',
@@ -72,6 +91,15 @@ const routes = [
     path:'/Dash_de',
     name:'Dash_de',
     component:Dash_de,
+    /*beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Signin' })
+      }
+
+      next()
+
+    },*/
     children :[
       {
         path: '/Homede',
@@ -86,6 +114,15 @@ const routes = [
     path:'/Dash_pu',
     name:'Dash_pu',
     component:Dash_pu,
+    /*beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Signin' })
+      }
+
+      next()
+
+    },*/
     children :[
       {
         path: '/Homepu',
@@ -100,6 +137,15 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
+    /*beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Signin' })
+      }
+
+      next()
+
+    },*/
     children :[
       {
         path: '/Homeu',

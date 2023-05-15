@@ -51,6 +51,12 @@ export default{
           commit('setToken',null)
 
         }
-       } 
-   }, 
+       } ,
+       logout({ commit }) {
+        return axios.post('auth/logout').then(() => {
+            commit('setUser', null)
+            commit('setToken', null)
+        })
+    }
+   } 
 }
