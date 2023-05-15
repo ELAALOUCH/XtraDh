@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class userController extends Controller
      */
     public function index()
     {
-        return user::with('administrateur')->get();
+        return user::with(['administrateur'])
+                    ->with(['enseignant'])
+                    ->get();
     }
 
     /**
@@ -26,7 +29,22 @@ class userController extends Controller
     public function store(Request $request)
     {
     
-       // User::create($request->only());
+        $fields = $request->validate([
+            'email' =>'required|email|unique:users,email',
+            'password' =>'string|confirmed|required',
+            'type'=>'required'
+        ]);
+        $user = User::create([
+            'type' =>$fields['type'],
+            'email' => $fields['email'],
+            'password'=>bcrypt($fields['password'])
+        ]);
+        $token = $user->createToken('MyAppToken')->plainTextToken;
+        $response= [
+            'user'=>$user,
+            'token' =>$token
+        ];
+        return response($response,202);
     }
 
     /**
@@ -37,7 +55,12 @@ class userController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(
+            user::find($id)
+                ->with(['administrateur'])
+                ->with(['enseignant'])
+                ->get()    
+        );
     }
 
     /**
@@ -49,7 +72,23 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $fields = $request->validate([
+            'email' =>'required|email',
+            'password' =>'string|confirmed|required',
+            'type'=>'required'
+        ]);
+
+
+        $user = user::find($id);
+        $user->update($fields);
+        //$token = $user->createToken('MyAppToken')->plainTextToken;
+        $response= [
+            'user'=>$user,
+            'token' =>Auth::user()->currentAccessToken()
+        ];
+        return response($response,202);
+
     }
 
     /**
@@ -60,6 +99,7 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return user::find($id)->delete();
+
     }
 }
