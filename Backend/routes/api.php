@@ -10,7 +10,8 @@ use App\Http\Controllers\InterventionController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ForgotController;
+use App\Http\Controllers\ForgetController;
+
 
 /* Etablissement Routes */
 Route::apiResource('Etablissement',EtablissementController::class);
@@ -38,8 +39,8 @@ Route::apiResource('User',userController::class);
 
 /** AUTH ROUTE */
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/Forgot',[ForgotController::class,'forgot']);
-Route::post('/reset',[ForgotController::class,'reset']);
+Route::post('/Forgot',[ForgetController::class,'forgot']);
+Route::post('/reset',[ForgetController::class,'reset']);
 
 
 

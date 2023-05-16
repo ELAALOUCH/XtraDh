@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ForgotPasswordRequest;
 
-class ForgotController extends Controller
+class ForgetController extends Controller
 {
     public function forgot(ForgotPasswordRequest $request){
         $email = $request->input('email');
@@ -21,7 +21,7 @@ class ForgotController extends Controller
                 'message'=>'User doesn\'t exists'
             ],400);
         }
-        $token = Str::random(10);
+        $token = Str::random(30);
         DB::table('password_resets')->insert([
             'email'=>$email,
             'token'=>$token
