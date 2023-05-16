@@ -15,6 +15,12 @@
                <Profile2 />
               Gestion des profs
             </router-link>
+
+            <router-link to="/GestiondI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+               <intervention/>
+              Gestion des Interventions
+            </router-link>
+
                      
           </div>
 

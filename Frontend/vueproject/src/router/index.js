@@ -25,6 +25,8 @@ import GestionpI from '@/Interfaces/President_Univ/GestionpI.vue'
 import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
 
 import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'
+import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
+
 
 import HomeP from '@/Interfaces/Users/HomeP.vue'
 
@@ -63,6 +65,7 @@ const routes = [
       next()
 
     },*/
+    redirect:'Gestionae',
     children :[
       {
       path: '/Gestionae',
@@ -95,6 +98,7 @@ const routes = [
       next()
 
     },*/
+    redirect:'Gestionp',
     children :[
       {
         path: '/Gestionp',
@@ -115,11 +119,16 @@ const routes = [
       next()
 
     },*/
+    redirect:'Gestiondp',
     children :[
       {
         path: '/Gestiondp',
         component: Gestiondp
       },
+      {
+        path:'/GestiondI',
+        component:GestiondI
+      }
 ]
   },
   {
@@ -135,6 +144,7 @@ const routes = [
       next()
 
     },*/
+    redirect:'Gestionpae',
     children :[
       {
         path: '/Gestionpae',
@@ -147,7 +157,8 @@ const routes = [
       {
         path:'/GestionpI',
         component:GestionpI
-      }
+      },
+ 
     ]
   },
   {
@@ -163,6 +174,7 @@ const routes = [
       next()
 
     },*/
+    redirect:'/HomeP',
     children :[
       {
         path: '/HomeP',
