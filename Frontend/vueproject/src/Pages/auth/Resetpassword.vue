@@ -4,10 +4,6 @@
         <h1 class="text-3xl font-bold mb-6 text-center">Reset Password</h1>
         <form @submit.prevent="submitForm" class="space-y-6">
           <div>
-            <label for="email" class="block text-gray-700">Email</label>
-            <input v-model="email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2">
-          </div>
-          <div>
             <label for="password" class="block text-gray-700">New Password</label>
             <input v-model="password" id="password" type="password" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2">
           </div>
