@@ -13,6 +13,8 @@ class administrateur extends Model
         'Nom',
         'prenom',
         'Etablissement',
+        'id_user',
+
     ];
     
     public function user(){

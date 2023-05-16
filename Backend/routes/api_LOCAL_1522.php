@@ -9,9 +9,22 @@ use App\Http\Controllers\AdministrateurController;
 use App\Http\Controllers\InterventionController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\userController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ForgetController;
-use Doctrine\Instantiator\InstantiatorInterface;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});*/
+Route::apiResource('/user',userController::class);
 
 /* Etablissement Routes */
 Route::apiResource('Etablissement',EtablissementController::class);
@@ -29,10 +42,6 @@ Route::apiResource('Administrateur',AdministrateurController::class);
 
 /* Intervention Routes */
 Route::apiResource('Intervention',InterventionController::class);
-Route::get('/valideruae',[InterventionController::class,'valideruae']);
-Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
-Route::get('/valideretb',[InterventionController::class,'valideretb']);
-Route::get('/invalideretb',[InterventionController::class,'invalideretb']);
 
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
@@ -41,20 +50,14 @@ Route::apiResource('Paiement',PaiementController::class);
 Route::apiResource('User',userController::class);
 
 
-/** AUTH ROUTE */
-Route::post('/login',[AuthController::class,'login']);
-Route::post('/Forgot',[ForgetController::class,'forgot']);
-Route::post('/reset',[ForgetController::class,'reset']);
-
-/** GENERATE PDF */
-Route::get('postfix', [PaiementController::class, 'postfix']);
-Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
 
 
+//
 
+//
 
-/*
-
+//public routes
+Route::get('/Products/search/{name}',[ProductController::class,'search']);
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
@@ -89,15 +92,5 @@ Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
 Route::middleware(['auth:sanctum','role:prof'])->group( function () {
     //protected for prof
 });
-
-
-
-
-
-*/
-
-
-
-
 
 

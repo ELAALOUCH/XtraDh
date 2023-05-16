@@ -14,8 +14,10 @@ class InterventionController extends Controller
      */
     public function index()
     {
-        $ens = Intervention::with(['etablissement'])->get();
-        return $ens;
+        $interventions = Intervention::with(['etablissement:id,Nom'])
+                            ->with(['enseignant:id,PPR,Nom,prenom'])
+                            ->get();
+        return response()->json($interventions);
     }
 
     /**
@@ -26,7 +28,19 @@ class InterventionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //  @dd($request);
+        $fields = $request->validate([
+           'id_Intervenant'=>'required|exists:enseignants,id',
+           'id_Etab'=>'required|exists:etablissements,id',
+           'Intitule_Intervention'=>'required',
+            'Annee_univ'=>'required',
+            'Semestre'=>'required',
+            'Date_debut'=>'required',
+            'Date_fin'=>'required',
+            'Nbr_heures'=>'required' 
+        ]);
+        $intervention = new Intervention($fields);
+        return $intervention->save();
     }
 
     /**
@@ -37,7 +51,11 @@ class InterventionController extends Controller
      */
     public function show(Intervention $intervention)
     {
-        //
+        return response()->json(
+            $intervention->with(['etablissement:id,Nom'])
+            ->with(['enseignant:id,PPR,Nom,prenom'])
+            ->get()
+    );
     }
 
     /**
@@ -47,9 +65,23 @@ class InterventionController extends Controller
      * @param  \App\Models\Intervention  $intervention
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Intervention $intervention)
+    public function update(Request $request,  $id)
     {
-        //
+        $intervention = Intervention::find($id);
+        //@dd($request);
+        $fields = $request->validate([
+            'id_Intervenant'=>'required|exists:enseignants,id',
+            'id_Etab'=>'required|exists:etablissements,id',
+            'Intitule_Intervention'=>'required',
+             'Annee_univ'=>'required',
+             'Semestre'=>'required',
+             'Date_debut'=>'required',
+             'Date_fin'=>'required',
+             'Nbr_heures'=>'required' 
+         ]);
+         $intervention->update($fields);
+          return response()->json($intervention);
+
     }
 
     /**
@@ -58,8 +90,37 @@ class InterventionController extends Controller
      * @param  \App\Models\Intervention  $intervention
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Intervention $intervention)
+    public function destroy($id)
     {
-        //
+       $intervention =Intervention::find($id);
+       $intervention->delete();
+       return $intervention;  
+    }
+
+
+    public function valideruae($id)
+    {
+        $intervention =Intervention::find($id);
+        $intervention->visa_uae = 1 ; 
+        return $intervention ; 
+    }
+    public function valideretb($id)
+    {
+        $intervention =Intervention::find($id);
+        $intervention->visa_etb = 1 ; 
+        return $intervention ; 
+    }
+
+    public function invalideruae($id)
+    {
+        $intervention =Intervention::find($id);
+        $intervention->visa_uae = 0 ; 
+        return $intervention ; 
+    }
+    public function invalideretb($id)
+    { 
+        $intervention =Intervention::find($id);
+        $intervention->visa_etb = 0 ; 
+        return $intervention ; 
     }
 }

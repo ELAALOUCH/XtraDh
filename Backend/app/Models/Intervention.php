@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class intervention extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_Intervention';
 
     protected $fillable = [
+        
         'id_Intervenant',
         'id_Etab',
         'Intitule_Intervention',

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
@@ -51,6 +49,11 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
     }
 
 
+
+
+
+
+
     public function logout(Request $request){
         auth()->user()->tokens()->delete();
         return [
@@ -58,6 +61,9 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
         ];
     }
 
+
+
+    
 
 }
 
