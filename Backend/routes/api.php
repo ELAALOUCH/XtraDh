@@ -44,15 +44,10 @@ Route::post('/reset',[ForgetController::class,'reset']);
 
 
 
-<<<<<<< HEAD
 //
 
 //public routes
 Route::get('/Products/search/{name}',[ProductController::class,'search']);
-=======
-/*
-
->>>>>>> feature/controllers-developement
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
