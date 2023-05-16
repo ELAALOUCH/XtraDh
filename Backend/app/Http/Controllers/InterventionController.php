@@ -96,4 +96,31 @@ class InterventionController extends Controller
        $intervention->delete();
        return $intervention;  
     }
+
+
+    public function valideruae($id)
+    {
+        $intervention =Intervention::find($id);
+        $intervention->visa_uae = 1 ; 
+        return $intervention ; 
+    }
+    public function valideretb($id)
+    {
+        $intervention =Intervention::find($id);
+        $intervention->visa_etb = 1 ; 
+        return $intervention ; 
+    }
+
+    public function invalideruae($id)
+    {
+        $intervention =Intervention::find($id);
+        $intervention->visa_uae = 0 ; 
+        return $intervention ; 
+    }
+    public function invalideretb($id)
+    { 
+        $intervention =Intervention::find($id);
+        $intervention->visa_etb = 0 ; 
+        return $intervention ; 
+    }
 }

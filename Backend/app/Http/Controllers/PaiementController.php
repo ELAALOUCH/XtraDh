@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enseignant;
+use App\Models\intervention;
 use App\Models\Paiement;
 use Illuminate\Http\Request;
+use PDF;
 
 class PaiementController extends Controller
 {
@@ -53,10 +56,10 @@ class PaiementController extends Controller
      */
     public function show( $id)
     {
-        $paiement = Paiement::find($id)
+        $paiement = Paiement::where('id',$id)
                             ->with(['enseignant:id,Nom,prenom'])
                             ->with(['etablissement:id,Nom'])  
-                            ->get();
+                            ->first();
         return response()->json($paiement);    
     }
 
@@ -97,4 +100,51 @@ class PaiementController extends Controller
     {
         return $paiement = Paiement::find($id)->delete();
     }
+
+    public function postfix(){    
+        $postfix = [];   
+        $paiements = Paiement::select('id','id_Intervenant')->where('Annee_univ',date("Y"))->get('id');
+        //@dd($paiements);
+        foreach($paiements as $paie){
+            $email = enseignant::where('id',$paie->id_Intervenant)
+                                ->with(['user:id_user,email'])
+                                ->first()
+                                ->user
+                                ->email;
+            //echo $email."<br>";   
+            $url = '/api/generate-pdf/'.$paie->id;
+           $user = ['email'=>$email,'url'=>$url];
+           array_push($postfix,$user); 
+        }
+return response()->json($postfix);
+
+
+
+    }
+
+    public function generatePDFprof($id){
+        
+        $paiement = Paiement::where('id',$id)
+                                ->with(['enseignant:id,Nom,prenom'])
+                                ->with(['etablissement:id,Nom'])  
+                                ->first();
+        //@dd($paiement->enseignant->Nom);
+        $intervention = $paiement->enseignant->id ; 
+       
+        $intervention = intervention::where('id_Intervenant',$intervention)
+                                    ->with(['etablissement:id,Nom']) 
+                                    ->get()
+                                    ;
+       // @dd($intervention);
+        $data = [
+            'paiement'=>$paiement,
+            'intervention'=>$intervention
+            ];
+
+            $pdf = PDF::loadView('PDF.pdf', $data);
+            return $pdf->download('itsolutionstuff.pdf');
+    }
+
+
+
 }
