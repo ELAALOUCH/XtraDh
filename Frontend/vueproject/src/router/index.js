@@ -4,21 +4,30 @@ import NotFound from '@/views/NotFound.vue'
 import Forgetpassword from '@/Pages/auth/Forgetpassword.vue'
 import Resetpassword from '@/Pages/auth/Resetpassword.vue'
 import Wait from '@/Pages/auth/Wait.vue'
+
 import Dash_au from '@/Interfaces/Admin_Univ/Master/Dash_au.vue'
 import Dash_ae from '@/Interfaces/Admin_Etab/Master/Dash_ae.vue'
 import Dash_de from '@/Interfaces/Directeur_Etab/Master/Dash_de.vue'
 import Dash_pu from '@/Interfaces/President_Univ/Master/Dash_pu.vue'
 import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
-import Homeae from '@/Interfaces/Admin_Etab/Homeae.vue'
-import Homeau from '@/Interfaces/Admin_Univ/Homeau.vue'
-import Homede from '@/Interfaces/Directeur_Etab/Homede.vue'
-import Homepu from '@/Interfaces/President_Univ/Homepu.vue'
-import Homeu from '@/Interfaces/Users/Homeu.vue'
-import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
-import Profileau from '@/Interfaces/Admin_Univ/Profileau.vue'
-import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
-import Profilepu from '@/Interfaces/President_Univ/Profilepu.vue'
-import Profileu from '@/Interfaces/Users/Profileu.vue'
+
+import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
+import GestionG from '@/Interfaces/Admin_Univ/GestionG.vue'
+import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
+import GestionI from '@/Interfaces/Admin_Univ/GestionI.vue'
+
+
+import Gestionpae from '@/Interfaces/President_Univ/Gestionpae.vue'
+import Gestionpde from '@/Interfaces/President_Univ/Gestionpde.vue'
+import GestionpI from '@/Interfaces/President_Univ/GestionpI.vue'
+
+  
+import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
+
+import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'
+
+import HomeP from '@/Interfaces/Users/HomeP.vue'
+
 import store from '@/store';
 const routes = [
   {
@@ -56,13 +65,22 @@ const routes = [
     },*/
     children :[
       {
-      path: '/Homeau',
-      component: Homeau
+      path: '/Gestionae',
+      component: Gestionae
       },
       {
-        path: '/Profileau',
-        component:Profileau
-      }]
+        path: '/GestionG',
+        component:GestionG
+      },
+      {
+        path:'/Gestionde',
+        component:Gestionde
+      },
+      {
+      path:'/GestionI',
+      component:GestionI
+      } 
+    ]
   },
   {
     path:'/Dash_ae',
@@ -79,13 +97,10 @@ const routes = [
     },*/
     children :[
       {
-        path: '/Homeae',
-        component: Homeae
+        path: '/Gestionp',
+        component: Gestionp
       },
-      {
-        path: '/Profileae',
-        component:Profileae
-      }]
+]
   },
   {
     path:'/Dash_de',
@@ -102,13 +117,10 @@ const routes = [
     },*/
     children :[
       {
-        path: '/Homede',
-        component: Homede
+        path: '/Gestiondp',
+        component: Gestiondp
       },
-      {
-        path: '/Profilede',
-        component:Profilede
-      }]
+]
   },
   {
     path:'/Dash_pu',
@@ -125,13 +137,18 @@ const routes = [
     },*/
     children :[
       {
-        path: '/Homepu',
-        component: Homepu
+        path: '/Gestionpae',
+        component: Gestionpae
       },
       {
-        path: '/Profilepu',
-        component:Profilepu
-      }]
+        path: '/Gestionpde',
+        component:Gestionpde
+      },
+      {
+        path:'/GestionpI',
+        component:GestionpI
+      }
+    ]
   },
   {
     path:'/Dash_users',
@@ -148,13 +165,11 @@ const routes = [
     },*/
     children :[
       {
-        path: '/Homeu',
-        component: Homeu
+        path: '/HomeP',
+        component: HomeP
       },
-      {
-        path: '/Profileu',
-        component:Profileu
-      }]
+
+    ]
   },
    {
     path:'/:catchAll(.*)',

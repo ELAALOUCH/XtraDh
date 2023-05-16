@@ -22,7 +22,7 @@
             Login
           </button>
         </div>
-      <router-link to="/Forgetpassword" class="text-sm text-blue-500 hover:text-green-900 mt-4">
+      <router-link to="/Forgetpassword" class="text-sm text-dark-500 hover:text-green-900 mt-4">
           Forgot Password?
       </router-link>
       </form>
