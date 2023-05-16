@@ -44,15 +44,8 @@ Route::post('/reset',[ForgetController::class,'reset']);
 
 
 
-<<<<<<< HEAD
-//
-
-//public routes
-Route::get('/Products/search/{name}',[ProductController::class,'search']);
-=======
 /*
 
->>>>>>> feature/controllers-developement
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
@@ -61,6 +54,9 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 
 
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
     $user = $request->user();
@@ -87,7 +83,7 @@ Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
 Route::middleware(['auth:sanctum','role:prof'])->group( function () {
     //protected for prof
 });
-
+*/
 
 
 

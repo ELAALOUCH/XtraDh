@@ -18,7 +18,8 @@ class Enseignant extends Model
         'prenom',
         'Date_Naissance',
         'Etablissement',
-        'id_Grade'
+        'id_Grade',
+        'id_user'
     ];
 
     public function etab_permanant(){

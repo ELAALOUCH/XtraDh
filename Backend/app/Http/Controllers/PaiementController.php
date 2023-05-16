@@ -14,7 +14,10 @@ class PaiementController extends Controller
      */
     public function index()
     {
-        return $ens = paiement::with(['enseignant'])->get();
+        $paiements = paiement::with(['enseignant:id,Nom,prenom'])
+                              ->with(['etablissement:id,Nom'])  
+                              ->get();
+        return response()->json($paiements);                      
     }
 
     /**
@@ -25,7 +28,21 @@ class PaiementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $fields =  $request->validate([
+            'id_Intervenant'=>'required|exists:enseignants,id',
+            'id_Etab'=>'required|exists:etablissements,id',
+             'VH'=>'required',
+             'Taux_H'=>'required', 
+             'Annee_univ'=>'required',
+             'Semestre'=>'required',
+             'Brut'=>'required',
+             'IR'=>'required',
+          
+        ]);
+         $paiement = new Paiement();
+         $paiement->fill($fields);
+         $paiement->Taux_H = $fields["Taux_H"];
+         return $paiement->save();
     }
 
     /**
@@ -34,9 +51,13 @@ class PaiementController extends Controller
      * @param  \App\Models\Paiement  $paiement
      * @return \Illuminate\Http\Response
      */
-    public function show(Paiement $paiement)
+    public function show( $id)
     {
-        //
+        $paiement = Paiement::find($id)
+                            ->with(['enseignant:id,Nom,prenom'])
+                            ->with(['etablissement:id,Nom'])  
+                            ->get();
+        return response()->json($paiement);    
     }
 
     /**
@@ -46,9 +67,24 @@ class PaiementController extends Controller
      * @param  \App\Models\Paiement  $paiement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paiement $paiement)
+    public function update(Request $request,  $id)
     {
-        //
+        $fields =  $request->validate([
+            'id_Intervenant'=>'required|exists:enseignants,id',
+            'id_Etab'=>'required|exists:etablissements,id',
+             'VH'=>'required',
+             'Taux_H'=>'required', 
+             'Annee_univ'=>'required',
+             'Semestre'=>'required',
+             'Brut'=>'required',
+             'IR'=>'required',
+          
+        ]);
+        $paiement = Paiement::find($id);
+        $paiement->Taux_H = $fields["Taux_H"];
+
+        return $paiement->update($fields);
+
     }
 
     /**
@@ -57,8 +93,8 @@ class PaiementController extends Controller
      * @param  \App\Models\Paiement  $paiement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paiement $paiement)
+    public function destroy( $id)
     {
-        //
+        return $paiement = Paiement::find($id)->delete();
     }
 }
