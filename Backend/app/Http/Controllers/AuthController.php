@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
+use Illuminate\Support\Str;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ResetRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\ForgotPasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +56,11 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
     }
 
 
+
+
+
+
+
     public function logout(Request $request){
         auth()->user()->tokens()->delete();
         return [
@@ -58,6 +68,9 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
         ];
     }
 
+
+
+    
 
 }
 
