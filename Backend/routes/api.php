@@ -54,8 +54,6 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 //
 /*
-//public routes
-Route::get('/Products/search/{name}',[ProductController::class,'search']);
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
