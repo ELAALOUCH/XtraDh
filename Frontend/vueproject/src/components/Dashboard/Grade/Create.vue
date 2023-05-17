@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Add Etablissement
+      Ajouter Grade
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -9,16 +9,21 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Add Etablissement</h2>
+        <h2 class="text-2xl font-bold mb-4">Ajouter Grade</h2>
 
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
-          <input type="text" id="name" v-model="formData.name" required class="border rounded w-full py-2 px-3">
+          <label for="name" class="block text-gray-700 font-bold mb-2">Designation:</label>
+          <input type="text" id="Designation" v-model="formData.Designation" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+          <label for="CHARGE_STATUTAIRE" class="block text-gray-700 font-bold mb-2">CHARGE_STATUTAIRE:</label>
+          <input type="CHARGE_STATUTAIRE" id="CHARGE_STATUTAIRE" v-model="formData.CHARGE_STATUTAIRE" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="TAUX_HORAIRE_VACATION" class="block text-gray-700 font-bold mb-2">TAUX_HORAIRE_VACATION:</label>
+          <input type="TAUX_HORAIRE_VACATION" id="TAUX_HORAIRE_VACATION" v-model="formData.TAUX_HORAIRE_VACATION" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="flex justify-end">
@@ -42,7 +47,7 @@ export default {
     return {
       showModal: false,
       formData: {
-        name: '',
+        Designation: '',
         email: ''
       }
     };

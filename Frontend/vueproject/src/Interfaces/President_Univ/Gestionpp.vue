@@ -58,9 +58,7 @@
               </td>
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
-                 <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Edit
-                 </button>
+                 <Edit/>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                    Delete
                  </button>                  
@@ -77,9 +75,10 @@
   
   <script>
   import Create from '@/components/Dashboard/Prof/Create.vue'
- 
+  import Edit from '@/components/Dashboard/Prof/Edit.vue'
+
   export default {
-    components: {Create},
+    components: {Create,Edit},
   data(){
     return {
         name:'',

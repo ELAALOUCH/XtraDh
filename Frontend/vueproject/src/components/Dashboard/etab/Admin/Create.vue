@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Add Etablissement
+      Ajouter admin_etab
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -12,13 +12,23 @@
         <h2 class="text-2xl font-bold mb-4">Add Etablissement</h2>
 
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
-          <input type="text" id="name" v-model="formData.name" required class="border rounded w-full py-2 px-3">
+          <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
+          <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+          <label for="Nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="Nom" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
+          <input type="Prenom" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
+          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="flex justify-end">
@@ -42,8 +52,8 @@ export default {
     return {
       showModal: false,
       formData: {
-        name: '',
-        email: ''
+        PPR: '',
+        Etablissement: ''
       }
     };
   },

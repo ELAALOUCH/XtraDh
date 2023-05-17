@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Add Etablissement
+      Ajouter Etablissement
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -12,15 +12,34 @@
         <h2 class="text-2xl font-bold mb-4">Add Etablissement</h2>
 
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
-          <input type="text" id="name" v-model="formData.name" required class="border rounded w-full py-2 px-3">
+          <label for="CODE" class="block text-gray-700 font-bold mb-2">CODE:</label>
+          <input type="text" id="CODE" v-model="formData.CODE" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+          <label for="Nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="Nom" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
         </div>
 
+        <div class="mb-4">
+          <label for="FAX" class="block text-gray-700 font-bold mb-2">FAX:</label>
+          <input type="FAX" id="FAX" v-model="formData.FAX" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="VILLE" class="block text-gray-700 font-bold mb-2">VILLE:</label>
+          <input type="VILLE" id="VILLE" v-model="formData.VILLE" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="NBR_ENSEIGNANTS" class="block text-gray-700 font-bold mb-2">NBR_ENSEIGNANTS:</label>
+          <input type="NBR_ENSEIGNANTS" id="NBR_ENSEIGNANTS" v-model="formData.NBR_ENSEIGNANTS" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
+          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+        </div>
         <div class="flex justify-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             @click="submitForm">
