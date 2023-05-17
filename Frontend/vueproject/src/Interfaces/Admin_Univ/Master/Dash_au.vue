@@ -20,13 +20,11 @@
              <Profile/> Gestion des directeurs d'établissements 
             </router-link> 
             
-            <router-link to="/GestionG" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <Grade/> Gestion de Grade
+            
+            <router-link to="/Gestionpau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+             <Profile/> Gestion des Profs 
             </router-link> 
 
-            <router-link to="/GestionI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <intervention/> Gestion des interventions
-            </router-link> 
 
           </div>
 

@@ -15,6 +15,11 @@
             <profile2 />
             Gestion des profs
             </router-link>
+
+            <router-link to="/GestionaI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+             <intervention/>
+             Gestion des Interventions
+            </router-link>    
                      
           </div>
           
@@ -70,8 +75,9 @@
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue';
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
   import Footer from '@/components/Login/Footer.vue'
+  import intervention from '@/components/Dashboard/Icons/intervention.vue';
  export default {
-  components:{Footer,Decconexion,Profile2}, 
+  components:{Footer,Decconexion,Profile2,intervention}, 
   data() {
      return {
        showDropDown: false,

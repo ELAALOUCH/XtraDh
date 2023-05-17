@@ -11,11 +11,17 @@
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
             
-              <router-link to="/HomeP" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+              <router-link to="/Profhome" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <Profile2/>
               Home
             </router-link>
-                     
+
+            <router-link to="/Profln" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+               <Bilan/>
+              bilan
+            </router-link>
+                
+
           </div>
          
           <div class="h-[50px]">
@@ -59,7 +65,7 @@
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
         <div class="border border-blue-300 rounded-md p-[20px] h-full">
-          <router-view v-if="$route.path=== '/HomeP' "/>
+          <router-view />
         </div>
       </div>
     </div>
@@ -67,10 +73,11 @@
   </div>
 </template>
  <script>
+ import Bilan from '@/components/Dashboard/Icons/Bilan.vue'
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue'
 import Profile2 from '@/components/Dashboard/Icons/Profile2.vue'
  export default {
-   components:{ Profile2, Decconexion } ,
+   components:{ Profile2, Decconexion,Bilan } ,
   data() {
      return {
        showDropDown: false,

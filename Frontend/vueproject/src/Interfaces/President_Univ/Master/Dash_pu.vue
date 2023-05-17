@@ -13,19 +13,35 @@
             
               <router-link to="/Gestionpae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
               <Profile/>
-              Listes des admins d'etablissements
+              Gestion des admins d'etablissements
             </router-link>
             
             <router-link to="/Gestionpde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <Profile2/>
-             Listes des directeurs d'établissement
+             Gestion des directeurs d'établissement
+            </router-link>
+
+
+            <router-link to="/Gestionpp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+              <Profile/>
+              Gestion des profs
             </router-link>
 
             <router-link to="/GestionpI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <intervention/>
              Gestion des Interventions
             </router-link>           
-          </div>
+          
+
+          <router-link to="/GestionpG" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+            <Grade/> Gestion de Grade
+            </router-link> 
+
+            <router-link to="/GestionE" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+            <Shcool/> Gestion des établissement
+            </router-link> 
+
+         </div>
 
 
           
@@ -83,10 +99,12 @@
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
 import intervention from '@/components/Dashboard/Icons/intervention.vue';
-
+import Grade from '@/components/Dashboard/Icons/Grade.vue';
+import Shcool from '@/components//Dashboard/Icons/Shcool.vue'
   import Footer from '@/components/Login/Footer.vue'
+
  export default {
-  components:{Footer,Decconexion,Profile,Profile2,intervention},
+  components:{Footer,Decconexion,Profile,Profile2,intervention,Grade,Shcool},
   data() {
      return {
        showDropDown: false,

@@ -14,24 +14,32 @@ import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
 import GestionG from '@/Interfaces/Admin_Univ/GestionG.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
-import GestionI from '@/Interfaces/Admin_Univ/GestionI.vue'
+import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
 
 
 import Gestionpae from '@/Interfaces/President_Univ/Gestionpae.vue'
 import Gestionpde from '@/Interfaces/President_Univ/Gestionpde.vue'
 import GestionpI from '@/Interfaces/President_Univ/GestionpI.vue'
+import GestionpG from '@/Interfaces/President_Univ/GestionpG.vue'
+import GestionE from '@/Interfaces/President_Univ/GestionE.vue'
+import Gestionpp from '@/Interfaces/President_Univ/Gestionpp.vue'
+
 
   
 import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
+import GestionaI from '@/Interfaces/Admin_Etab/Gestionp.vue'
+
 
 import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'
 import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
 
+import Profhome from '@/Interfaces/Users/Profhome.vue' 
+import Profln from '@/Interfaces/Users/Profln.vue' 
 
-import HomeP from '@/Interfaces/Users/HomeP.vue'
 
 import store from '@/store';
 const routes = [
+
   {
     path: '/',
     name: 'Login',
@@ -52,6 +60,9 @@ const routes = [
     name:'Resetpassword',
     component:Resetpassword
   },
+
+
+
   {
     path:'/Dash_au',
     name:'Dash_au',
@@ -80,11 +91,14 @@ const routes = [
         component:Gestionde
       },
       {
-      path:'/GestionI',
-      component:GestionI
-      } 
+        path:'/Gestionpau',
+        component:Gestionpau
+      }
     ]
   },
+
+
+
   {
     path:'/Dash_ae',
     name:'Dash_ae',
@@ -104,8 +118,14 @@ const routes = [
         path: '/Gestionp',
         component: Gestionp
       },
+      {
+        path:'/GestionaI',
+        component:GestionaI
+      }
 ]
   },
+
+
   {
     path:'/Dash_de',
     name:'Dash_de',
@@ -131,6 +151,9 @@ const routes = [
       }
 ]
   },
+
+
+
   {
     path:'/Dash_pu',
     name:'Dash_pu',
@@ -158,9 +181,23 @@ const routes = [
         path:'/GestionpI',
         component:GestionpI
       },
+      {
+        path:'/GestionpG',
+        component:GestionpG
+      },
+      {
+        path:'/GestionE',
+        component:GestionE
+      },
+      {
+        path:'/Gestionpp',
+        component:Gestionpp       
+      }
  
     ]
   },
+
+
   {
     path:'/Dash_users',
     name:'Dash_users',
@@ -174,20 +211,25 @@ const routes = [
       next()
 
     },*/
-    redirect:'/HomeP',
+    redirect:'Profhome',
     children :[
       {
-        path: '/HomeP',
-        component: HomeP
+        path:'/Profhome',
+        component:Profhome,
       },
-
+      {
+       path:'/Profln',
+       component:Profln,
+      }
     ]
   },
+
    {
     path:'/:catchAll(.*)',
     name:'NotFound',
     component: NotFound
    }
+
   
 ]
 
