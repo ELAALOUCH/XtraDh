@@ -55,7 +55,7 @@ Route::apiResource('User',userController::class);
 //
 
 //
-
+/*
 //public routes
 Route::get('/Products/search/{name}',[ProductController::class,'search']);
 
