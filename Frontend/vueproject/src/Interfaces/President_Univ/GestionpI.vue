@@ -7,30 +7,30 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                Product name
+               Intitule_intervention
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Color
+                  Annee_univ
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Category             
+                  Semestre             
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Price
+                  Date_debut
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Grade
+                  Date_fin
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
-                  Salary
+                  Nbr_heures
               </th>
               <th scope="col" class="py-3 px-6">
              </th>             
@@ -102,9 +102,9 @@
     }
   },
   methods:{
-    togglemodal(){
-    this.showmodal=!this.showmodal
-  },},
+
+
+  },
 
   }
 

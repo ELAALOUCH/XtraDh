@@ -12,7 +12,6 @@ import Dash_pu from '@/Interfaces/President_Univ/Master/Dash_pu.vue'
 import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 
 import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
-import GestionG from '@/Interfaces/Admin_Univ/GestionG.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
 import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
 
@@ -82,10 +81,6 @@ const routes = [
       {
       path: '/Gestionae',
       component: Gestionae
-      },
-      {
-        path: '/GestionG',
-        component:GestionG
       },
       {
         path:'/Gestionde',

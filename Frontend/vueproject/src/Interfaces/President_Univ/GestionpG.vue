@@ -7,33 +7,19 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                Product name
+                Designation
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Color
+                  charge_statutaire
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Category             
+                  Taux_horaire_vacation            
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Price
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Grade
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                  Salary
-              </th>
-              <th scope="col" class="py-3 px-6">
-
                 <div class="flex justify-end" >
                   <create/>
                 </div>  
@@ -53,15 +39,6 @@
               </td>
               <td class="py-4 px-6">
                 {{ data.category }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
               </td>
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
