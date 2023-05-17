@@ -23,6 +23,7 @@ class CreatePaiementsTable extends Migration
             $table->float('Taux_H');
             $table->float('Brut');
             $table->float('IR');
+            $table->float('NET');
             $table->string('Annee_univ',10);
             $table->string('Semestre');
             $table->timestamps();
