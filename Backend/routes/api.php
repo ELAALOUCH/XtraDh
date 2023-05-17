@@ -11,7 +11,7 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
-
+use Doctrine\Instantiator\InstantiatorInterface;
 
 /* Etablissement Routes */
 Route::apiResource('Etablissement',EtablissementController::class);
@@ -29,6 +29,10 @@ Route::apiResource('Administrateur',AdministrateurController::class);
 
 /* Intervention Routes */
 Route::apiResource('Intervention',InterventionController::class);
+Route::get('/valideruae',[InterventionController::class,'valideruae']);
+Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
+Route::get('/valideretb',[InterventionController::class,'valideretb']);
+Route::get('/invalideretb',[InterventionController::class,'invalideretb']);
 
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
@@ -42,10 +46,14 @@ Route::post('/login',[AuthController::class,'login']);
 Route::post('/Forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
 
+/** GENERATE PDF */
+Route::get('postfix', [PaiementController::class, 'postfix']);
+Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
+
 
 
 //
-
+/*
 //public routes
 Route::get('/Products/search/{name}',[ProductController::class,'search']);
 
@@ -87,7 +95,7 @@ Route::middleware(['auth:sanctum','role:prof'])->group( function () {
 
 
 
-
+*/
 
 
 
