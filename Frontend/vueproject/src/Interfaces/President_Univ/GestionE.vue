@@ -35,7 +35,7 @@
               <th scope="col" class="py-3 px-6">
 
                 <div class="flex items-center">
-                  <Create />
+                  <create/>
                 </div> 
              </th>             
               <th scope="col" class="py-3 px-6">
@@ -66,7 +66,7 @@
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                  <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Edit
+                   
                  </button>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                    Delete
@@ -83,10 +83,10 @@
   </template>
   
   <script>
-  import Create from '@/components/Dashboard/Prof/Create.vue'
+  import create from '@/components/Dashboard/Etablissement/create.vue'
  
   export default {
-    components: {Create},
+    components: {create},
   data(){
     return {
         name:'',

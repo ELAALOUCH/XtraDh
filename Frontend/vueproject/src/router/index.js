@@ -23,6 +23,7 @@ import GestionpI from '@/Interfaces/President_Univ/GestionpI.vue'
 import GestionpG from '@/Interfaces/President_Univ/GestionpG.vue'
 import GestionE from '@/Interfaces/President_Univ/GestionE.vue'
 import Gestionpp from '@/Interfaces/President_Univ/Gestionpp.vue'
+import Gestionpuau from '@/Interfaces/President_Univ/Gestionpuau.vue'
 
 
   
@@ -192,6 +193,10 @@ const routes = [
       {
         path:'/Gestionpp',
         component:Gestionpp       
+      },
+      {
+        path:'/Gestionpuau',
+        component:Gestionpuau       
       }
  
     ]

@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import Create from '@/components/Dashboard/Prof/Create.vue'
+import Create from '@/components/Dashboard/etab/Admin/Create.vue'
 export default {
   components: {Create},
 data(){

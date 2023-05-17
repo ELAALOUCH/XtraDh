@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Gestion des Interventions</h3>
+      <h3 class="text-2xl font-bold text-left py-2">Gestion des Admin universitaires</h3>
       
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -33,6 +33,10 @@
                   Salary
               </th>
               <th scope="col" class="py-3 px-6">
+
+                <div class="flex items-center">
+                  <Create />
+                </div> 
              </th>             
               <th scope="col" class="py-3 px-6">
                 <span class="sr-only">Edit</span>
@@ -79,9 +83,10 @@
   </template>
   
   <script>
+  import Create from '@/components/Dashboard/Univ/Create.vue'
  
   export default {
-    components: {},
+    components: {Create},
   data(){
     return {
         name:'',

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Open Modal
+    <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Editer prof
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
       <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-      <div class="modal-content bg-white rounded-lg p-6">
+      <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
         <h2 class="text-2xl font-bold mb-4">Modal Title</h2>
         
@@ -94,5 +94,9 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 14px;
+}
+
+.modal-content {
+  max-height: 80vh;
 }
 </style>

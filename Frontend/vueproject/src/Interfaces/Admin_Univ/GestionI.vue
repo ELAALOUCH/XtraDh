@@ -83,7 +83,7 @@
   </template>
   
   <script>
-  import Create from '@/components/Dashboard/Prof/Create.vue'
+  import Create from '@/components/Dashboard/Intervention/Create.vue'
  
   export default {
     components: {Create},
