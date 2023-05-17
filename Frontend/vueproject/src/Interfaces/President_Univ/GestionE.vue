@@ -7,70 +7,54 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                Product name
+                Code
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Color
+                  Nom            
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Category             
+                  Fax
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Price
+                  ville
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Grade
-                </div>
+                  Nbr_enseignants
               </th>
               <th scope="col" class="py-3 px-6">
-                  Salary
-              </th>
-              <th scope="col" class="py-3 px-6">
-
-                <div class="flex items-center">
+                <div class="flex justify-end" >
                   <create/>
                 </div> 
              </th>             
-              <th scope="col" class="py-3 px-6">
-                <span class="sr-only">Edit</span>
-              </th>
             </tr>
           </thead>
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
+               {{ data.Code }}
               </th>
               <td class="py-4 px-6">
-                {{ data.color }}
+                {{ data.Nom }}
               </td>
               <td class="py-4 px-6">
-                {{ data.category }}
+                {{ data.Fax }}
               </td>
               <td class="py-4 px-6">
-                {{ data.price }}
+                {{ data.ville }}
               </td>
               <td class="py-4 px-6">
-                {{ data.price }}
+                {{ data.Nbr_enseignants}}
               </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
+
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
-                 <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   
-                 </button>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Delete
-                 </button>                  
+                <Edit/>                 
                 </div>
               </td>
             </tr>
@@ -84,28 +68,29 @@
   
   <script>
   import create from '@/components/Dashboard/Etablissement/create.vue'
- 
+  import Edit from '@/components/Dashboard/Etablissement/Edit.vue'
+
   export default {
-    components: {create},
+    components: {create,Edit},
   data(){
     return {
-        name:'',
+      name:'',
         color:'',
         category:'',
         price:null,   
         productyObj:[
         {
             id:1,
-            name:'Azus',
-            color:'Gold',
-            category:' Ipad ',
-            price:5000
+            Code:'Azus',
+            Nom:'Gold',
+            Fax:' Ipad ',
+            ville:5000,
+            Nbr_enseignants:1500,
         },
         
     ],
-
-    }
-  },
+  }
+},
   methods:{
     togglemodal(){
     this.showmodal=!this.showmodal

@@ -1,7 +1,7 @@
 <template>
     <div>
-      <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Ajouter  d'etablissement
+      <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Editer
       </button>
   
       <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">

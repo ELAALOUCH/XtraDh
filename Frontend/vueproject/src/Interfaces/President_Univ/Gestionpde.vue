@@ -33,9 +33,8 @@
                   Salary
               </th>
               <th scope="col" class="py-3 px-6">
-
-                <div class="flex items-center">
-                  <Create />
+                <div class="flex justify-end" >
+                  <create/>
                 </div> 
              </th>             
               <th scope="col" class="py-3 px-6">
