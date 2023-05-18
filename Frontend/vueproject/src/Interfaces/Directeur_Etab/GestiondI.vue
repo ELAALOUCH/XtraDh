@@ -33,6 +33,12 @@
                 Nbr_heures
             </th>
             <th scope="col" class="py-3 px-6">
+                Visa_etb
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Visa_uae
+            </th>
+            <th scope="col" class="py-3 px-6">
            </th>             
             <th scope="col" class="py-3 px-6">
               <span class="sr-only">Edit</span>
@@ -49,6 +55,12 @@
             </td>
             <td class="py-4 px-6">
               {{ data.category }}
+            </td>
+            <td class="py-4 px-6">
+              {{ data.price }}
+            </td>
+            <td class="py-4 px-6">
+              {{ data.price }}
             </td>
             <td class="py-4 px-6">
               {{ data.price }}
@@ -77,6 +89,14 @@
   
               
 </template>
+
+
+
+
+
+
+
+
 
 <script>
 

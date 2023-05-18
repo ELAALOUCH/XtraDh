@@ -28,8 +28,8 @@ export default{
             const response = await axios.post('http://127.0.0.1:8000/api/login', credentials)
             
          //console.log(response.data) ;
-         return dispatch('attempt',response.data.access_token)
-         console.log(response.data)
+         return dispatch('attempt',response.data.token)//access_token
+         //console.log(response.data)
          }
          catch(error){
             console.log('Failed')

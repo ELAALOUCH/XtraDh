@@ -35,6 +35,18 @@
           <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
         </div>
 
+        <div class="mb-4">
+          <label for="Grade" class="block text-gray-700 font-bold mb-2">Grade:</label>
+          <select v-model="grade">
+                <option :value="grad.id_Grade"  v-for="grad  in grads" :key="grad">{{grad.designation}}</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="Email" id="Email" v-model="formData.Email" required class="border rounded w-full py-2 px-3">
+        </div>
+
         <div class="flex justify-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             @click="submitForm">

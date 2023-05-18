@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="max-w-screen max-h-screen flex">
     <!-- Side bar -->
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
@@ -62,7 +62,7 @@
             <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
               <img class="w-10 h-10 rounded-full border-2 border-blue-50" src="@/assets/images/download.jpg">
               <div class="font-semibold dark:text-white text-left">
-                <div>Madona ,Dev OP</div>
+                <div> </div>
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
             </div>

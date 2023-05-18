@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center items-center h-screen bg-gray-100">
+    <div class="flex justify-center items-center h-screen bg-blue-300">
       <div class="w-96 bg-white rounded-lg shadow-lg p-8">
         <h1 class="text-4xl font-bold mb-8 text-center">Forgot Password</h1>
         <form @submit.prevent="submitForm()" class="space-y-8">
@@ -11,8 +11,11 @@
             <button @click="startRedirect" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Email Me a link</button>
           </div>
         </form>
+        <div v-if="isLoading" class="fixed top-0 left-30 right-0 bottom-30 flex items-center justify-center z-20">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
       </div>
     </div>
+  </div>
   </template>
   
 <script>
@@ -23,6 +26,7 @@ import Footer from '@/components/Login/Footer.vue'
     data() {
       return {
         email: '',
+        isLoading:''
       };
     },
     methods: {
@@ -30,10 +34,11 @@ import Footer from '@/components/Login/Footer.vue'
         console.log('Email:', this.email);
       },
       startRedirect() {
-      const redirectTime = 5000; // Redirect after 5 seconds (5000 milliseconds)
+      const redirectTime = 6000; // Redirect after 5 seconds (5000 milliseconds)
       setTimeout(() => {
         this.$router.push('/Wait'); // Replace with your desired route path
       }, redirectTime);
+       if(this.email!=="")this.isLoading=!this.isLoading;
     }
       
     },
