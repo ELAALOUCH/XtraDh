@@ -68,9 +68,13 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'projet_integration'),
+            'database' => env('DB_DATABASE', 'test'),
             'username' => env('DB_USERNAME', 'postgres'),
-            'password' => env('DB_PASSWORD', 'Ysne2468'),
+<<<<<<< HEAD
+            'password' => env('DB_PASSWORD', 'amine'),
+=======
+            'password' => env('DB_PASSWORD', '20021027'),
+>>>>>>> 476a2b6d148ca177ec0fecbe9a5c0decb9be2054
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

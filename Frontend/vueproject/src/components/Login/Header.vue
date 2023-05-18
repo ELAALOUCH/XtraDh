@@ -1,6 +1,6 @@
 <template>
-    <header class="bg-blue-200 py-4 px-8 fixed top-0 left-0 w-full flex justify-center">
-      <p style="font-size: 20px; font-size: 36px;  color: black;">XtraDh</p>
+    <header class="bg-blue-500 py-4 px-8 fixed top-0 left-0 w-full flex justify-center">
+      <p class="text-2xl md:text-5xl text-black">Welcome to your home</p>
       </header>
   </template>
   
