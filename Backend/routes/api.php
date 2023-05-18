@@ -53,11 +53,6 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 //
-<<<<<<< HEAD
-=======
-
-//
->>>>>>> feature/secure-auth
 /*
 
 //protected routes
