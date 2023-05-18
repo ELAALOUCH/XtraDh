@@ -92,7 +92,6 @@
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
         <div class="border border-blue-300 rounded-md p-[20px] h-full">
           <router-view/>
-           <Footer/>
         </div>
       </div>
     </div>

@@ -87,8 +87,7 @@ data(){
           color:'Gold',
           category:' Ipad ',
           price:5000
-      },
-      
+      },     
   ],
 
   }
