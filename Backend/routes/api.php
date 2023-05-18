@@ -53,6 +53,11 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 //
+<<<<<<< HEAD
+=======
+
+//
+>>>>>>> feature/secure-auth
 /*
 //public routes
 Route::get('/Products/search/{name}',[ProductController::class,'search']);
