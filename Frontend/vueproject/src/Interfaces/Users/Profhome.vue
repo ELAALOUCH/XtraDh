@@ -1,42 +1,35 @@
 <template>
     <div>
       <h3 class="text-2xl font-bold text-left py-2">Bonjour {{  }} , voila vous données</h3>
-      
+ 
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                Product name
+                PPR
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Color
+                  Nom
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Category             
+                  Prenom             
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Price
+                  Date_naissance
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Grade
+                  Etablissement
                 </div>
               </th>
-              <th scope="col" class="py-3 px-6">
-                  Salary
-              </th>
-              <th scope="col" class="py-3 px-6">
-             </th>             
-              <th scope="col" class="py-3 px-6">
-                <span class="sr-only">Edit</span>
-              </th>
+              <th scope="col" class="py-3 px-6"></th>             
             </tr>
           </thead>
           <tbody>
@@ -49,9 +42,6 @@
               </td>
               <td class="py-4 px-6">
                 {{ data.category }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
               </td>
               <td class="py-4 px-6">
                 {{ data.price }}

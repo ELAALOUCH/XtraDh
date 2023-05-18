@@ -1,7 +1,9 @@
 <template>
     <div>
       <h3 class="text-2xl font-bold text-left py-2">Gestion des Interventions</h3>
-      
+      <div>
+    <input type="text" v-model="searchQuery" placeholder="Search" />
+      </div>
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -62,10 +64,10 @@
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                  <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Accepter uae
+                   Accepter 
                  </button>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Refuser uae
+                 <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="refuser">
+                   Refuser 
                  </button>                  
                 </div>
               </td>
@@ -102,7 +104,9 @@
     }
   },
   methods:{
-
+   refuser(){
+    alert('youll delete')
+   }
 
   },
 

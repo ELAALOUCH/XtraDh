@@ -27,7 +27,7 @@ import Gestionpuau from '@/Interfaces/President_Univ/Gestionpuau.vue'
 
   
 import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
-import GestionaI from '@/Interfaces/Admin_Etab/Gestionp.vue'
+import GestionaI from '@/Interfaces/Admin_Etab/GestionaI.vue'
 
 
 import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'

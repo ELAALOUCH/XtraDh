@@ -1,42 +1,40 @@
 <template>
   <div>
-    <h3 class="text-2xl font-bold text-left py-2">Listes des Interventions</h3>
-    
+    <h3 class="text-2xl font-bold text-left py-2">Listes des profs</h3>
+    <div>
+    <input type="text" v-model="searchQuery" placeholder="Search" />
+      </div>
     <div class="overflow-x-auto relative  sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" class="py-3 px-6">
-              Product name
+              PPR
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Color
+                Nom
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Category             
+                Prenom             
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Price
+                Date_naissance
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Grade
+                Etablissement
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
-                Salary
-            </th>
-            <th scope="col" class="py-3 px-6">
-
               <div class="flex justify-end" >
-                  <create/>
-                </div> 
+                <create/>
+              </div> 
            </th>             
             <th scope="col" class="py-3 px-6">
               <span class="sr-only">Edit</span>
@@ -60,14 +58,9 @@
             <td class="py-4 px-6">
               {{ data.price }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-               <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                 Edit
-               </button>
+               <Edit/>
                <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                  Delete
                </button>                  
@@ -84,14 +77,16 @@
 
 <script>
 import Create from '@/components/Dashboard/Prof/Create.vue'
+import Edit from '@/components/Dashboard/Prof/Edit.vue'
+
 export default {
-  components: {Create},
+  components: {Create,Edit},
 data(){
   return {
       name:'',
       color:'',
       category:'',
-      price:null,  
+      price:null,   
       productyObj:[
       {
           id:1,
@@ -108,8 +103,7 @@ data(){
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-},
-     }
+},},
 
 }
 
