@@ -1,9 +1,7 @@
 <template>
     <div >
       <h3 class="text-2xl font-bold text-left py-2">Gestion des Admin universitaires</h3>
-      <div>
-    <input type="text" v-model="searchQuery" placeholder="Search" />
-      </div>
+ 
       <div class="overflow-x-auto relative  sm:rounded-lg ">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

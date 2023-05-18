@@ -45,7 +45,7 @@ export default{
           if(!state.token){
              return;
           }
-            const response = await axios.get('http://127.0.0.1:8000/api/login')
+            const response = await axios.get('http://127.0.0.1:8000/user-profile')
 
             commit('setUser',response.data)
             console.log('success')

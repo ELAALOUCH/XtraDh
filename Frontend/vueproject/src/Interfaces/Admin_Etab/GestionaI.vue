@@ -1,109 +1,66 @@
 <template>
   <div>
-    <h3 class="text-2xl font-bold text-left py-2">Gestion des Interventions</h3>
-    <div>
-    <input type="text" v-model="searchQuery" placeholder="Search" />
+    <form @submit.prevent="handleSubmit" class="max-w-md mx-auto p-4 bg-white rounded shadow">
+      <div class="mb-4">
+        <label for="Intitule_Intervention" class="block text-gray-700 font-bold mb-2">Intitule_Intervention:</label>
+        <input type="text" id="Intitule_Intervention" v-model="formData.Intitule_Intervention" required class="w-full border border-gray-300 rounded px-3 py-2">
       </div>
-    <div class="overflow-x-auto relative  sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="py-3 px-6">
-              PPR
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Nom
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Prenom             
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Date_naissance
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Etablissement
-              </div>
-            </th>          
-            <th scope="col" class="py-3 px-6">
-              <span class="sr-only">Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.name }}
-            </th>
-            <td class="py-4 px-6">
-              {{ data.color }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.category }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6 text-right">
-              <div class="flex justify-end">
-             <Create/>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      
+      <div class="mb-4">
+        <label for="Annee_univ" class="block text-gray-700 font-bold mb-2">Annee_univ:</label>
+        <input type="Annee_univ" id="Annee_univ" v-model="formData.Annee_univ" required class="w-full border border-gray-300 rounded px-3 py-2">
+      </div>
+      
+      <div class="mb-4">
+        <label for="Semestre" class="block text-gray-700 font-bold mb-2">Semestre:</label>
+        <input type="Semestre" id="Semestre" v-model="formData.Semestre" required class="w-full border border-gray-300 rounded px-3 py-2">
+      </div>
+
+      <div class="mb-4">
+        <label for="Date_debut" class="block text-gray-700 font-bold mb-2">Date_debut:</label>
+        <input type="Date_Debut" id="Date_Debut" v-model="formData.Date_Debut" required class="w-full border border-gray-300 rounded px-3 py-2">
+      </div>
+
+      <div class="mb-4">
+        <label for="Date_fin" class="block text-gray-700 font-bold mb-2">Date_fin:</label>
+        <input type="Date_fin" id="Date_fin" v-model="formData.Date_fin" required class="w-full border border-gray-300 rounded px-3 py-2">
+      </div>
+
+      <div class="mb-4">
+        <label for="Nbr_heures" class="block text-gray-700 font-bold mb-2">Nbr_heures:</label>
+        <input type="Nbr_heures" id="Nbr_heures" v-model="formData.Nbr_heures" required class="w-full border border-gray-300 rounded px-3 py-2">
+      </div>
+      
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Submit</button>
+      <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">cancel</button>
+
+    </form>
   </div>
-  
-              
 </template>
 
 <script>
-import Create from  '@/components/Dashboard/Intervention/Create.vue'
 export default {
-  components: {Create},
-data(){
-  return {
-      name:'',
-      color:'',
-      category:'',
-      price:null,   
-      productyObj:[
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        Semestre: ''
+      }
+    };
+  },
+  methods: {
+    handleSubmit() {
+      // Here you can perform any desired actions with the form data
+      console.log(this.formData);
       
-  ],
-
+      // Reset the form after submission
+      this.formData = {
+        name: '',
+        email: '',
+        message: ''
+      };
+    }
   }
-},
-methods:{
- refuser(){
-  alert('youll delete')
- }
-
-},
-
-}
-
+};
 </script>
-
-<style>
-
-</style>
