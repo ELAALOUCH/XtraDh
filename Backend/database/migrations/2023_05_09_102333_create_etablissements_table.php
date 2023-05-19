@@ -21,7 +21,7 @@ class CreateEtablissementsTable extends Migration
             $table->string('Telephone');
             $table->string('Faxe');
             $table->string('ville');
-            $table->integer('Nbr_enseignants');
+            $table->integer('Nbr_enseignants')->default(0);
             $table->timestamps();
         });
     }

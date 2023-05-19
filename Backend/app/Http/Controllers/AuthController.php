@@ -14,7 +14,7 @@ class AuthController extends Controller
         ]);
         $user = User::create([
             'name' =>$fields['name'],
-            'email' => $fields['email'],
+            'email' =>  $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
         $token = $user->createToken('MyAppToken')->plainTextToken;
@@ -63,7 +63,7 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
 
 
 
-    
+
 
 }
 

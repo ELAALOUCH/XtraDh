@@ -15,8 +15,8 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        $etb = etablissement::with(['paiement'])->get();
-        return $etb;
+        $etab = etablissement::all();
+        return response()->json($etab);
     }
 
     /**
@@ -27,7 +27,26 @@ class EtablissementController extends Controller
      */
     public function store(Request $request)
     {
-      //  
+         $champs = $request->validate([
+            'code'=>'required',
+            'Nom'=>'required',
+            'Telephone'=>'required',
+            'Faxe'=>'required',
+            'ville'=>'required',
+            'Nbr_enseignants'=>'required',
+         ]);
+         $etab = Etablissement::Create($champs);
+         return response()->json($etab);
+         
+         /* $etab = new Etablissement();
+         $etab->code = $request->code;
+         $etab->Nom = $request->Nom;
+         $etab->Telephone = $request->Telephone;
+         $etab->Faxe = $request->Faxe;
+         $etab->ville = $request->ville;
+         $etab->Nbr_enseignants = $request->Nbr_enseignants;
+         $etab->save();
+         return response()->json($etab); */
     }
 
     /**
@@ -36,9 +55,10 @@ class EtablissementController extends Controller
      * @param  \App\Models\etablissement  $etablissement
      * @return \Illuminate\Http\Response
      */
-    public function show( $etablissement)
+    public function show($idetab)
     {
-        return DB::table('etablissement')->where('id',$etablissement)->get();
+        $etab = Etablissement::find($idetab);
+        return response()->json($etab);
     }
 
     /**
@@ -48,9 +68,29 @@ class EtablissementController extends Controller
      * @param  \App\Models\etablissement  $etablissement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, etablissement $etablissement)
+    public function update(Request $request, $idetab)
     {
-        //
+         $etab = Etablissement::find($idetab);
+        $champs = $request->validate([
+            'code'=>'required',
+            'Nom'=>'required',
+            'Telephone'=>'required',
+            'Faxe'=>'required',
+            'ville'=>'required',
+            'Nbr_enseignants'=>'required',
+         ]);
+         $etab->update($champs);
+          return response()->json($etab); 
+          /* $etab = Etablissement::find($idetab);
+          $etab->code = $request->code;
+          $etab->Nom = $request->Nom;
+          $etab->Telephone = $request->Telephone;
+          $etab->Faxe = $request->Faxe;
+          $etab->ville = $request->ville;
+          $etab->Nbr_enseignants = $request->Nbr_enseignants;
+          $etab->save();
+          return response()->json($etab); */
+
     }
 
     /**
@@ -59,8 +99,10 @@ class EtablissementController extends Controller
      * @param  \App\Models\etablissement  $etablissement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(etablissement $etablissement)
-    {
-        //
-    }
+    public function destroy($idetab)
+{
+    $etab = Etablissement::find($idetab);
+    $etab->delete();
+    return response()->json($etab);
+}
 }

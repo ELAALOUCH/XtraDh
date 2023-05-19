@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\grade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GradeController extends Controller
 {
@@ -14,7 +15,8 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return  $ens = grade::with([''])->get();
+        $grade = grade::all();
+        return response()->json($grade);
     }
 
     /**
@@ -25,7 +27,19 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $champs = $request->validate([
+            'designation'=>'required',
+            'charge_statutaire'=>'required',
+            'Taux_horaire_Vocation'=>'required',
+         ]);
+         $grade = grade::Create($champs);
+         return response()->json($grade); 
+         /* $grade= new Grade();
+         $grade->designation = $request->designation;
+         $grade->charge_statutaire = $request->charge_statutaire;
+         $grade->Taux_horaire_Vocation = $request->Taux_horaire_Vocation;
+         $grade->save();
+         return response()->json($grade); */
     }
 
     /**
@@ -34,9 +48,10 @@ class GradeController extends Controller
      * @param  \App\Models\grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function show(grade $grade)
+    public function show($idgrade)
     {
-        //
+        $grade = grade::find($idgrade);
+        return response()->json($grade);
     }
 
     /**
@@ -46,9 +61,22 @@ class GradeController extends Controller
      * @param  \App\Models\grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, grade $grade)
+    public function update(Request $request, $idgrade)
     {
-        //
+         $grade = grade::find($idgrade);
+        $champs = $request->validate([
+            'designation'=>'required',
+            'charge_statutaire'=>'required',
+            'Taux_horaire_Vocation'=>'required',
+         ]);
+         $grade->update($champs);
+          return response()->json($grade); 
+          /* $grade = grade::find($idgrade);
+          $grade->designation = $request->designation;
+          $grade->charge_statutaire = $request->charge_statutaire;
+          $grade->Taux_horaire_Vocation = $request->Taux_horaire_Vocation;
+          $grade->save();
+          return response()->json($grade); */
     }
 
     /**
@@ -57,8 +85,10 @@ class GradeController extends Controller
      * @param  \App\Models\grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(grade $grade)
+    public function destroy($idgrade)
     {
-        //
+        $grade = grade::find($idgrade);
+        $grade->delete();
+        return response()->json($grade);
     }
 }
