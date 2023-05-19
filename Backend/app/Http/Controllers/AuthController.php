@@ -49,7 +49,9 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
     }
 
 
-
+public function userProfile(){
+    return response()->json(auth()->user);
+}
 
 
 

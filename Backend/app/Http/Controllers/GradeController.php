@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\grade;
 use Illuminate\Http\Request;
-use App\Models\etablissement;
 use Illuminate\Support\Facades\DB;
 
-class EtablissementController extends Controller
+class GradeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        $etab = etablissement::all();
-        return response()->json($etab);
+        $grade = grade::all();
+        return response()->json($grade);
     }
 
     /**
@@ -28,81 +28,67 @@ class EtablissementController extends Controller
     public function store(Request $request)
     {
          $champs = $request->validate([
-            'code'=>'required',
-            'Nom'=>'required',
-            'Telephone'=>'required',
-            'Faxe'=>'required',
-            'ville'=>'required',
-            'Nbr_enseignants'=>'required',
+            'designation'=>'required',
+            'charge_statutaire'=>'required',
+            'Taux_horaire_Vocation'=>'required',
          ]);
-         $etab = Etablissement::Create($champs);
-         return response()->json($etab);
-         
-         /* $etab = new Etablissement();
-         $etab->code = $request->code;
-         $etab->Nom = $request->Nom;
-         $etab->Telephone = $request->Telephone;
-         $etab->Faxe = $request->Faxe;
-         $etab->ville = $request->ville;
-         $etab->Nbr_enseignants = $request->Nbr_enseignants;
-         $etab->save();
-         return response()->json($etab); */
+         $grade = grade::Create($champs);
+         return response()->json($grade); 
+         /* $grade= new Grade();
+         $grade->designation = $request->designation;
+         $grade->charge_statutaire = $request->charge_statutaire;
+         $grade->Taux_horaire_Vocation = $request->Taux_horaire_Vocation;
+         $grade->save();
+         return response()->json($grade); */
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\etablissement  $etablissement
+     * @param  \App\Models\grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function show($idetab)
+    public function show($idgrade)
     {
-        $etab = Etablissement::find($idetab);
-        return response()->json($etab);
+        $grade = grade::find($idgrade);
+        return response()->json($grade);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\etablissement  $etablissement
+     * @param  \App\Models\grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $idetab)
+    public function update(Request $request, $idgrade)
     {
-         $etab = Etablissement::find($idetab);
+         $grade = grade::find($idgrade);
         $champs = $request->validate([
-            'code'=>'required',
-            'Nom'=>'required',
-            'Telephone'=>'required',
-            'Faxe'=>'required',
-            'ville'=>'required',
-            'Nbr_enseignants'=>'required',
+            'designation'=>'required',
+            'charge_statutaire'=>'required',
+            'Taux_horaire_Vocation'=>'required',
          ]);
-         $etab->update($champs);
-          return response()->json($etab); 
-          /* $etab = Etablissement::find($idetab);
-          $etab->code = $request->code;
-          $etab->Nom = $request->Nom;
-          $etab->Telephone = $request->Telephone;
-          $etab->Faxe = $request->Faxe;
-          $etab->ville = $request->ville;
-          $etab->Nbr_enseignants = $request->Nbr_enseignants;
-          $etab->save();
-          return response()->json($etab); */
-
+         $grade->update($champs);
+          return response()->json($grade); 
+          /* $grade = grade::find($idgrade);
+          $grade->designation = $request->designation;
+          $grade->charge_statutaire = $request->charge_statutaire;
+          $grade->Taux_horaire_Vocation = $request->Taux_horaire_Vocation;
+          $grade->save();
+          return response()->json($grade); */
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\etablissement  $etablissement
+     * @param  \App\Models\grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idetab)
-{
-    $etab = Etablissement::find($idetab);
-    $etab->delete();
-    return response()->json($etab);
-}
+    public function destroy($idgrade)
+    {
+        $grade = grade::find($idgrade);
+        $grade->delete();
+        return response()->json($grade);
+    }
 }
