@@ -154,7 +154,7 @@ const routes = [
     path:'/Dash_pu',
     name:'Dash_pu',
     component:Dash_pu,
-    beforeEnter: (to, from, next) => {
+    /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
@@ -162,7 +162,7 @@ const routes = [
 
       next()
 
-    },
+    },*/
     redirect:'Gestionpae',
     children :[
       {
