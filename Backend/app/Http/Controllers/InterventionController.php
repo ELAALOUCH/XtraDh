@@ -49,13 +49,16 @@ class InterventionController extends Controller
      * @param  \App\Models\Intervention  $intervention
      * @return \Illuminate\Http\Response
      */
-    public function show(Intervention $intervention)
+    public function show( $id)
     {
+        $intervention = intervention::where('id_intervention',$id);
         return response()->json(
             $intervention->with(['etablissement:id,Nom'])
             ->with(['enseignant:id,PPR,Nom,prenom'])
             ->get()
+            
     );
+      
     }
 
     /**
@@ -67,7 +70,7 @@ class InterventionController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $intervention = Intervention::find($id);
+        $intervention = intervention::where('id_intervention',$id)->first();
         //@dd($request);
         $fields = $request->validate([
             'id_Intervenant'=>'required|exists:enseignants,id',
@@ -92,7 +95,7 @@ class InterventionController extends Controller
      */
     public function destroy($id)
     {
-       $intervention =Intervention::find($id);
+        $intervention = intervention::where('id_intervention',$id)->first();
        $intervention->delete();
        return $intervention;  
     }
@@ -100,13 +103,13 @@ class InterventionController extends Controller
 
     public function valideruae($id)
     {
-        $intervention =Intervention::find($id);
+        $intervention = intervention::where('id_intervention',$id)->first();
         $intervention->visa_uae = 1 ; 
         return $intervention ; 
     }
     public function valideretb($id)
     {
-        $intervention =Intervention::find($id);
+        $intervention = intervention::where('id_intervention',$id)->first();
         $intervention->visa_etb = 1 ;
         $intervention->update(); 
         return $intervention ; 
@@ -114,14 +117,16 @@ class InterventionController extends Controller
 
     public function invalideruae($id)
     {
-        $intervention =Intervention::find($id);
+        $intervention = intervention::where('id_intervention',$id)->first();
         $intervention->visa_uae = 0 ; 
         $intervention->update(); 
         return $intervention ; 
     }
     public function invalideretb($id)
     { 
-        $intervention =Intervention::find($id);
+        
+       // @dd($id);
+        $intervention = intervention::where('id_intervention',$id)->first();
         $intervention->visa_etb = 0 ; 
         $intervention->update(); 
         return $intervention ; 
