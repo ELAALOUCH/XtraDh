@@ -43,16 +43,7 @@ Route::apiResource('User',userController::class);
 
 /** AUTH ROUTE */
 Route::post('/login',[AuthController::class,'login']);
-<<<<<<< HEAD
-Route::get('/user-profile',[AuthController::class,'userProfile']);
-
 Route::post('/logout',[AuthController::class,'logout']);
-
-
-
-=======
-Route::post('/logout',[AuthController::class,'logout']);
->>>>>>> c8116af27f105e461a2c1b492aa4ed6e048db4f3
 Route::post('/Forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
 Route::post('/reset',[ForgetController::class,'regout']);

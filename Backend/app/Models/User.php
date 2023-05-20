@@ -16,10 +16,7 @@ class user extends Authenticatable
      * @var array<int, string>
      */
 
-<<<<<<< HEAD
-=======
     protected $table = 'users';
->>>>>>> origin
     protected $primaryKey = 'id_user';
 
      protected $fillable = [
