@@ -14,7 +14,7 @@ class AuthController extends Controller
         ]);
         $user = User::create([
             'name' =>$fields['name'],
-            'email' => encrypt( $fields['email']),
+            'email' =>  $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
         $token = $user->createToken('MyAppToken')->plainTextToken;
@@ -27,7 +27,7 @@ class AuthController extends Controller
 
     public function login(Request $request){
         $fields = $request->validate([
-            decrypt('email') =>'required|email',
+            'email' =>'required|email',
             'password' =>'string|required'
         ]);
 //check email
