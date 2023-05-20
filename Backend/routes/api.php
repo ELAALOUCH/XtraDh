@@ -53,14 +53,14 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 //
-/*
+
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
-
+    Route::post('/logout',[AuthController::class,'logout']);
 });
 
-
+/*
 
 
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
