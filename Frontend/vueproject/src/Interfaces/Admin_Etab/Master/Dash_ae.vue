@@ -25,7 +25,7 @@
           
           <div class="h-[50px]">
             <div>             
-              <div to="/logout" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
+              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
                  <Decconexion/>
                 Déconnexion
               </div>              
@@ -76,29 +76,31 @@
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
   import Footer from '@/components/Login/Footer.vue'
   import intervention from '@/components/Dashboard/Icons/intervention.vue';
-  import { mapGetters } from 'vuex' 
+  import { mapGetters ,mapActions} from 'vuex' 
 
  export default {
   components:{Footer,Decconexion,Profile2,intervention}, 
   data() {
-     return {
-       showDropDown: false,
-       showSide: true
-     }
-   },
-   methods: {
-     // hide show side bar
-     toggleSideBar() {
-       this.showSide = !this.showSide
- 
-     },
-   },
-   computed: {
-        ...mapGetters({
-            'authenticated': 'auth/authenticated',
-            'user': 'auth/user',
-        })
-    },
- 
+  return {
+    showSide: true
+  }
+},
+computed: {
+     ...mapGetters({
+         'authenticated': 'auth/authenticated',
+         'user': 'auth/user',
+     })
+ },
+methods: {
+  toggleSideBar() {
+    this.showSide = !this.showSide    
+  },
+  ...mapActions({
+     'logout':'auth/logout'
+  }),
+  signout(){
+     this.logout().then(()=>this.$router.push('/'))
+  }
+},
  }
 </script>

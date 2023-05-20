@@ -16,8 +16,8 @@
         </div>
         <div class="flex-grow"></div>
         <div>
-          <p class="text-red-500" v-show="error">{{ error }}</p>
-        </div>
+         <p class="text-red-500" v-show="error">{{ error }}</p>
+         </div>
         <div class="flex justify-between items-center">
           <button type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">
             Login
@@ -44,16 +44,19 @@ export default {
         return {
             user: {
                 email: '',
-                password: '',               
-            }
+                password: '',  
+                            
+            },
+            error: ''
         }
     },
     methods: {
         ...mapActions({
             'submit': 'auth/submit'
         }),
+
         submitlogin() {
-           this.submit(this.user).then(()=> this.$router.push('/Dash_users'))
+           this.submit(this.user).then(()=>{this.$router.push('/Dash_ae') ;} )
        }
       
     },

@@ -5,7 +5,7 @@
         <form @submit.prevent="submitForm()" class="space-y-8">
           <div>
             <label for="email" class="block text-gray-700">Email</label>
-            <input v-model="email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2">
+            <input v-model="email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2" required>
           </div> 
           <div class="flex justify-between items-center">
             <button @click="startRedirect" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Email Me a link</button>
@@ -19,6 +19,7 @@
   </template>
   
 <script>
+import axios from 'axios';
 import Header from '@/components/Login/Header.vue'
 import Footer from '@/components/Login/Footer.vue'
   export default{
@@ -30,9 +31,12 @@ import Footer from '@/components/Login/Footer.vue'
       };
     },
     methods: {
-      submitForm() {
-        console.log('Email:', this.email);
-      },
+     /* async submitForm() {
+         const response= await axios.post('/Forgot',{
+          email:this.email
+         })
+         console.log(response)
+      },*/
       startRedirect() {
       const redirectTime = 6000; // Redirect after 5 seconds (5000 milliseconds)
       setTimeout(() => {

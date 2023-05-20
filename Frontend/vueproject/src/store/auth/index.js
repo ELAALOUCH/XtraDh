@@ -4,7 +4,8 @@ export default {
     namespaced: true,
     state: {
         token: null,
-        user: null
+        user: null,
+
     },
     mutations: {
         setToken(state, token) {
@@ -26,12 +27,14 @@ export default {
         async submit({dispatch},credentials){
            try {
             const response = await axios.post('/login',credentials)
-             return dispatch('attempt',response.data.token)
+             dispatch('attempt',response.data.token)
+             return response.data
+
         } catch (error) {
-            console.log(error)         
-           } 
-           },
-        async attempt({commit,state}, token) {         
+            console.log('failed abroo')
+        }}
+        ,     
+           async attempt({commit,state}, token) {         
             try {          
                 if(token){
                     commit('setToken',token )
@@ -39,17 +42,19 @@ export default {
                 if(!state.token){
                       return;
                 }
-                const response = await axios.get('/user-profile')
-                
+                const response = await axios.get('/user-profile') 
+                //console.log(response)         
                 commit('setUser', response.data)
-                console.log('success')  
+
+                console.log('success')
+                
             } catch (error) {              
-                commit('setuser',null )
-                commit('setToken',null )       
+                commit('setUser',null )
+                commit('setToken',null )    
             }
         },
-        logout({commit}){
-            return axios.post('/logout').then(()=>{
+         logout({commit}){
+            return  axios.post('/logout').then(()=>{
                 commit('setUser',null)
                 commit('setToken',null)
             })
