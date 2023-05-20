@@ -104,8 +104,12 @@ class PaiementController extends Controller
 
     public function postfix(){    
         $postfix = [];   
-        $paiements = Paiement::select('id','id_Intervenant')->where('Annee_univ',date("Y"))->get('id');
-        //@dd($paiements);
+        $avant = date("Y")-1;
+        $apres = date("Y");
+        $date = $avant.'/'.$apres ;
+        //@dd($date);
+        $paiements = Paiement::select('id','id_Intervenant')->where('Annee_univ',$date)->get('id');
+        //@dd($paiements = Paiement::select('id','id_Intervenant'));
         foreach($paiements as $paie){
             $enseingant = enseignant::where('id',$paie->id_Intervenant)
                                 ->with(['user:id_user,email'])
