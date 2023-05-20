@@ -76,6 +76,8 @@
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
   import Footer from '@/components/Login/Footer.vue'
   import intervention from '@/components/Dashboard/Icons/intervention.vue';
+  import { mapGetters } from 'vuex' 
+
  export default {
   components:{Footer,Decconexion,Profile2,intervention}, 
   data() {
@@ -90,12 +92,13 @@
        this.showSide = !this.showSide
  
      },
-     // toggle user 
-     toggleDrop() {
-       this.showDropDown = !this.showDropDown
- 
-     }
-   }
+   },
+   computed: {
+        ...mapGetters({
+            'authenticated': 'auth/authenticated',
+            'user': 'auth/user',
+        })
+    },
  
  }
 </script>

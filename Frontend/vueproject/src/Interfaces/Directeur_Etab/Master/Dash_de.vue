@@ -82,6 +82,7 @@
   import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue';
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
  import intervention from '@/components/Dashboard/Icons/intervention.vue';
+ import { mapGetters } from 'vuex' 
 
  export default {
   components:{Decconexion,Profile2,intervention}, 
@@ -97,12 +98,13 @@
        this.showSide = !this.showSide
  
      },
-     // toggle user 
-     toggleDrop() {
-       this.showDropDown = !this.showDropDown
- 
-     }
-   }
+   },
+   computed:{
+    ...mapGetters({
+       'authenticated': 'auth/authenticated',
+       'user': 'auth/user'
+    })
+  }
  
  }
 </script>

@@ -31,17 +31,28 @@ export default {
             console.log(error)         
            } 
            },
-        async attempt({commit}, token) {         
+        async attempt({commit,state}, token) {         
             try {          
-                const response = await axios.get('/user-profile',{
-                    headers:{'Authorization': ` Bearer ${token}`}
-                })
+                if(token){
+                    commit('setToken',token )
+                }
+                if(!state.token){
+                      return;
+                }
+                const response = await axios.get('/user-profile')
+                
                 commit('setUser', response.data)
-                commit('setToken',token )
-                console.log('success')
-            } catch (error) {
-               console.error('failed2')             
+                console.log('success')  
+            } catch (error) {              
+                commit('setuser',null )
+                commit('setToken',null )       
             }
+        },
+        logout({commit}){
+            return axios.post('/logout').then(()=>{
+                commit('setUser',null)
+                commit('setToken',null)
+            })
         }
 
     }

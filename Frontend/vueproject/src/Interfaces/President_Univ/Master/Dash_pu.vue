@@ -106,6 +106,7 @@ import intervention from '@/components/Dashboard/Icons/intervention.vue';
 import Grade from '@/components/Dashboard/Icons/Grade.vue';
 import Shcool from '@/components//Dashboard/Icons/Shcool.vue'
   import Footer from '@/components/Login/Footer.vue'
+  import { mapGetters } from 'vuex' 
 
  export default {
   components:{Footer,Decconexion,Profile,Profile2,intervention,Grade,Shcool},
@@ -121,12 +122,13 @@ import Shcool from '@/components//Dashboard/Icons/Shcool.vue'
        this.showSide = !this.showSide
  
      },
-     // toggle user 
-     toggleDrop() {
-       this.showDropDown = !this.showDropDown
- 
-     }
-   }
+   },
+   computed: {
+        ...mapGetters({
+            'authenticated': 'auth/authenticated',
+            'user': 'auth/user',
+        })
+    },
  
  }
 </script>

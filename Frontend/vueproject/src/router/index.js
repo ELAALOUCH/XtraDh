@@ -70,7 +70,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -102,7 +102,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -129,7 +129,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -157,7 +157,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -205,7 +205,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()

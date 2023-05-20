@@ -112,19 +112,12 @@ import intervention from '@/components/Dashboard/Icons/intervention.vue';
        this.showDropDown = !this.showDropDown
  
      },
-     ...mapActions({
-      'logout': 'auth/logout'
-     }),
-     //signout() {
-     //       this.logout().then(() => this.$router.push('/'))
-     //   }
-   },
-
    computed:{
     ...mapGetters({
        'authenticated': 'auth/authenticated',
        'user': 'auth/user'
     })
   }
+}
  }
 </script>
