@@ -43,7 +43,7 @@ export default {
                       return;
                 }
                 const response = await axios.get('/user-profile') 
-                //console.log(response)         
+                console.log(response)         
                 commit('setUser', response.data)
 
                 console.log('success')

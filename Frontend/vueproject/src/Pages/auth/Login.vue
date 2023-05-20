@@ -83,7 +83,7 @@ export default {
         }),
 
         submitlogin() {
-           this.submit(this.user).then(()=>{this.$router.push('/Dash_ae') ;} )
+           this.submit(this.user).then(()=>{this.$router.push('/Dash_users') ;} )
        }
       
     },
