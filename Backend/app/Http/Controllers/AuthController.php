@@ -50,22 +50,13 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
 
 
 public function userProfile(){
-    return response()->json(auth()->user);
+    return response()->json(auth()->user());
 }
 
-
-
-
     public function logout(Request $request){
-        auth()->user()->tokens()->delete();
+        auth()->logout();
         return [
             'message' =>'Logged out'
         ];
-    }
-
-
-
-
-
-}
+}}
 
