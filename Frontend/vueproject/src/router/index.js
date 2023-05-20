@@ -67,7 +67,7 @@ const routes = [
     path:'/Dash_au',
     name:'Dash_au',
     component:Dash_au,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Signin' })
@@ -75,7 +75,7 @@ const routes = [
 
       next()
 
-    },*/
+    },
     redirect:'Gestionae',
     children :[
       {
@@ -99,7 +99,7 @@ const routes = [
     path:'/Dash_ae',
     name:'Dash_ae',
     component:Dash_ae,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Signin' })
@@ -107,7 +107,7 @@ const routes = [
 
       next()
 
-    },*/
+    },
     redirect:'Gestionp',
     children :[
       {
@@ -126,7 +126,7 @@ const routes = [
     path:'/Dash_de',
     name:'Dash_de',
     component:Dash_de,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Signin' })
@@ -134,7 +134,7 @@ const routes = [
 
       next()
 
-    },*/
+    },
     redirect:'Gestiondp',
     children :[
       {
@@ -154,7 +154,7 @@ const routes = [
     path:'/Dash_pu',
     name:'Dash_pu',
     component:Dash_pu,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Signin' })
@@ -162,7 +162,7 @@ const routes = [
 
       next()
 
-    },*/
+    },
     redirect:'Gestionpae',
     children :[
       {
@@ -202,15 +202,14 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Signin' })
       }
 
       next()
-
-    },*/
+    },
     redirect:'Profhome',
     children :[
       {

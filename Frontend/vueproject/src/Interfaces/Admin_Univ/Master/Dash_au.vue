@@ -64,9 +64,7 @@
               <div class="font-semibold dark:text-white text-left">
 
 
-                <div v-if="authenticated">                
-                <div>{{ person.name }}</div>
-                </div>
+ 
 
                 
                 
