@@ -55,9 +55,11 @@ class AuthController extends Controller
 
 
 
-<<<<<<< .merge_file_AESl4b
     }
 
+    public function userProfile(){
+        return response()->json(auth()->user());
+    }
 
     public function logout(Request $request)
 {
@@ -68,25 +70,10 @@ class AuthController extends Controller
         return [
             'message' => 'Logged out'
         ];
-=======
->>>>>>> .merge_file_JGsfAX
     }
 
 
-<<<<<<< .merge_file_AESl4b
 }
 
 
 }
-=======
-public function userProfile(){
-    return response()->json(auth()->user());
-}
-
-    public function logout(Request $request){
-        auth()->logout();
-        return [
-            'message' =>'Logged out'];
-}}
-
->>>>>>> .merge_file_JGsfAX
