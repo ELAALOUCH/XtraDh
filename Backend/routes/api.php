@@ -46,7 +46,8 @@ Route::post('/login',[AuthController::class,'login']);
 Route::post('/logout',[AuthController::class,'logout']);
 Route::post('/Forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
-Route::post('/reset',[ForgetController::class,'regout']);
+Route::get('/user-profile',[AuthController::class,'userProfile']);
+
 
 /** GENERATE PDF */
 Route::get('postfix', [PaiementController::class, 'postfix']);

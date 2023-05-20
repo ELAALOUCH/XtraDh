@@ -47,9 +47,7 @@ class userController extends Controller
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
             $message->subject('Voici le mot de pass de votre compte hsup');
-
         });
-
         $token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
@@ -97,7 +95,7 @@ class userController extends Controller
         //$token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
-            'token' =>Auth::user()->currentAccessToken()
+            'token' =>Auth::user()->tokens()
         ];
         return response($response,202);
 
