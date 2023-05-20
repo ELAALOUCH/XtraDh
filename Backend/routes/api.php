@@ -31,8 +31,8 @@ Route::apiResource('Administrateur',AdministrateurController::class);
 Route::apiResource('Intervention',InterventionController::class);
 Route::get('/valideruae',[InterventionController::class,'valideruae']);
 Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
-Route::get('/valideretb',[InterventionController::class,'valideretb']);
-Route::get('/invalideretb',[InterventionController::class,'invalideretb']);
+Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
+Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
@@ -43,7 +43,16 @@ Route::apiResource('User',userController::class);
 
 /** AUTH ROUTE */
 Route::post('/login',[AuthController::class,'login']);
+<<<<<<< HEAD
+Route::get('/user-profile',[AuthController::class,'userProfile']);
+
 Route::post('/logout',[AuthController::class,'logout']);
+
+
+
+=======
+Route::post('/logout',[AuthController::class,'logout']);
+>>>>>>> c8116af27f105e461a2c1b492aa4ed6e048db4f3
 Route::post('/Forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
 Route::post('/reset',[ForgetController::class,'regout']);

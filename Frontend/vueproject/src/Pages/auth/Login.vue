@@ -4,19 +4,20 @@
     <img class="image" src="@/assets/images/AF1QipPd4KGT1xMp13QlE4z_5-CuAMb52cNEd-AmuNrcw1600-h1000-k-no.jpeg" >
     <div class="w-96 bg-indigo-400 rounded-lg shadow-lg p-8">
       <h1 class="text-3xl font-bold mb-8 text-center">Login</h1>
-      <form @submit.prevent="submit()" class="space-y-6 flex flex-col h-full">
+
+      <form @submit.prevent="submitlogin()" class="space-y-6 flex flex-col h-full">
         <div>
           <label for="email" class="block text-gray-700">Email</label>
-          <input v-model="person.email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2">
+          <input v-model="user.email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2" required>
         </div>
         <div>
           <label for="password" class="block text-gray-700">Password</label>
-          <input v-model="person.password" id="password" type="password" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2">
+          <input v-model="user.password" id="password" type="password" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2" required>
         </div>
         <div class="flex-grow"></div>
         <div>
-          <p class="text-red-500" v-show="error">{{ error }}</p>
-        </div>
+         <p class="text-red-500" v-show="error">{{ error }}</p>
+         </div>
         <div class="flex justify-between items-center">
           <button type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">
             Login
@@ -28,55 +29,39 @@
       </form>
 
     </div>
-    
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex' 
+import axios from 'axios';
 import Header from '@/components/Login/Header.vue';
 import Footer from '@/components/Login/Footer.vue';
 
 export default {
-  components: { Footer, Header },
+
   data() {
-    return {
-      person: {
-        email: '',
-        password: ''
-      },
-      error: ''
-    };
-  },
-  methods: {
-    ...mapActions({ 'login': 'auth/login' }),
-    submit() {
-      this.login(this.person).then(() => {
-        const userType = this.person.type;
-        switch (userType) {
-          case 'admin':
-            this.$router.push({ name: 'Dash_au' });
-            break;
-          case 'admin_etab':
-            this.$router.push({ name: 'Dash_ae' });
-            break;
-          case 'prof':
-            this.$router.push({ name: 'Dash_users' });
-            break;
-            case 'president_univ':
-            this.$router.push({ name: 'Dash_pu' });
-            break;
-            case 'directeur_etab':
-            this.$router.push({ name: 'Dash_de' });
-            break;
-          default:
-            this.$router.push({ name: '/' });
-            break;
+        return {
+            user: {
+                email: '',
+                password: '',  
+                            
+            },
+            error: ''
         }
-      });
-    }
+    },
+    methods: {
+        ...mapActions({
+            'submit': 'auth/submit'
+        }),
+
+        submitlogin() {
+           this.submit(this.user).then(()=>{this.$router.push('/Dash_ae') ;} )
+       }
+      
+    },
   }
-};
+   
 </script>
 
 

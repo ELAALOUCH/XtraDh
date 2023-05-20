@@ -107,7 +107,8 @@ class InterventionController extends Controller
     public function valideretb($id)
     {
         $intervention =Intervention::find($id);
-        $intervention->visa_etb = 1 ; 
+        $intervention->visa_etb = 1 ;
+        $intervention->update(); 
         return $intervention ; 
     }
 
@@ -115,12 +116,14 @@ class InterventionController extends Controller
     {
         $intervention =Intervention::find($id);
         $intervention->visa_uae = 0 ; 
+        $intervention->update(); 
         return $intervention ; 
     }
     public function invalideretb($id)
     { 
         $intervention =Intervention::find($id);
         $intervention->visa_etb = 0 ; 
+        $intervention->update(); 
         return $intervention ; 
     }
 }

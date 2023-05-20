@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class userController extends Controller
 {
@@ -31,14 +34,22 @@ class userController extends Controller
     
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
-            'password' =>'string|confirmed|required',
+           // 'password' =>'string|confirmed|required',
             'type'=>'required'
         ]);
+        $fields['password']=Str::random(15);
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
+        $email = $fields['email'];
+        Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
+            $message->to($email);
+            $message->subject('Voici le mot de pass de votre compte hsup');
+
+        });
+
         $token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
@@ -46,6 +57,7 @@ class userController extends Controller
         ];
         return response($response,202);
     }
+
 
     /**
      * Display the specified resource.

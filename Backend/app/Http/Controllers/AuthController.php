@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use Laravel\Sanctum\HasApiTokens;
-=======
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Auth;
->>>>>>> origin
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -61,6 +57,10 @@ class AuthController extends Controller
     }
 
 
+<<<<<<< HEAD
+public function userProfile(){
+    return response()->json(auth()->user());
+=======
     public function logout(Request $request)
 {
     $user = auth()->user();
@@ -89,5 +89,12 @@ class AuthController extends Controller
 }
 
 
+>>>>>>> c8116af27f105e461a2c1b492aa4ed6e048db4f3
 }
+
+    public function logout(Request $request){
+        auth()->logout();
+        return [
+            'message' =>'Logged out'];
+}}
 
