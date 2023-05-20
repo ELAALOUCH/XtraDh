@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Laravel\Sanctum\HasApiTokens;
-=======
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Auth;
->>>>>>> origin
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -37,7 +34,7 @@ class AuthController extends Controller
             'email' =>'required|email',
             'password' =>'string|required'
         ]);
-                
+
         //check email
             $user = User::where('email',$fields['email'])->first();
         //check password
@@ -56,8 +53,8 @@ class AuthController extends Controller
                 return response($response,202);
 
 
-       
-        
+
+
     }
 
 
@@ -65,18 +62,8 @@ class AuthController extends Controller
 {
     $user = auth()->user();
 
-<<<<<<< HEAD
     if ($user) {
         $user->tokens()->delete();
-=======
-
-
-
-
-    public function logout(Request $request){
-
-        auth()->logout();        
->>>>>>> origin
         return [
             'message' => 'Logged out'
         ];
