@@ -34,10 +34,11 @@ class userController extends Controller
     
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
-           // 'password' =>'string|confirmed|required',
+            'password' =>'string|confirmed|required',
             'type'=>'required'
         ]);
-        $fields['password']=Str::random(15);
+       // $fields['password']=Str::random(15);
+
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
