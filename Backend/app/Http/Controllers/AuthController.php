@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\Sanctum;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 class AuthController extends Controller
 {
     public function register(Request $request){
@@ -30,22 +33,27 @@ class AuthController extends Controller
             'email' =>'required|email',
             'password' =>'string|required'
         ]);
-//check email
-    $user = User::where('email',$fields['email'])->first();
-//check password
-if(!$user || !Hash::check($fields['password'],$user->password)){
-    return response([
-        'message' => 'Email or Password are incorrect'
-    ],404);
-}
+                
+        //check email
+            $user = User::where('email',$fields['email'])->first();
+        //check password
+        if(!$user || !Hash::check($fields['password'],$user->password)){
+            return response([
+                'message' => 'Email or Password are incorrect'
+            ],404);
+        }
 
 
-        $token = $user->createToken('MyAppToken')->plainTextToken;
-        $response= [
-            'user'=>$user,
-            'token' =>$token
-        ];
-        return response($response,202);
+                $token = $user->createToken('MyAppToken')->plainTextToken;
+                $response= [
+                    'user'=>$user,
+                    'token' =>$token
+                ];
+                return response($response,202);
+
+
+       
+        
     }
 
 
@@ -55,7 +63,8 @@ if(!$user || !Hash::check($fields['password'],$user->password)){
 
 
     public function logout(Request $request){
-        auth()->user()->tokens()->delete();
+
+        auth()->logout();        
         return [
             'message' =>'Logged out'
         ];
