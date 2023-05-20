@@ -31,12 +31,8 @@
             </th>
             <th scope="col" class="py-3 px-6">
                 Salary
-            </th>
-            <th scope="col" class="py-3 px-6">
-           </th>             
-            <th scope="col" class="py-3 px-6">
-              <span class="sr-only">Edit</span>
-            </th>
+            </th>           
+           <th scope="col" class="py-3 px-6"></th>             
           </tr>
         </thead>
         <tbody>
