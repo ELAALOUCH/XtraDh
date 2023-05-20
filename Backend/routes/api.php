@@ -43,10 +43,8 @@ Route::apiResource('User',userController::class);
 
 /** AUTH ROUTE */
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/logout',[AuthController::class,'logout']);
 Route::post('/Forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
-Route::get('/user-profile',[AuthController::class,'userProfile']);
 
 
 /** GENERATE PDF */
@@ -61,6 +59,7 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::get('/user-profile',[AuthController::class,'userProfile']);
 });
 
 /*
