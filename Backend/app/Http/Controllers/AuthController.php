@@ -56,7 +56,6 @@ public function userProfile(){
     public function logout(Request $request){
         auth()->logout();
         return [
-            'message' =>'Logged out'
-        ];
+            'message' =>'Logged out'];
 }}
 
