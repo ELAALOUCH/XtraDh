@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -54,6 +55,7 @@ class AuthController extends Controller
 
 
 
+<<<<<<< .merge_file_AESl4b
     }
 
 
@@ -66,13 +68,25 @@ class AuthController extends Controller
         return [
             'message' => 'Logged out'
         ];
+=======
+>>>>>>> .merge_file_JGsfAX
     }
-    return [
-        'message' => 'user not logged'
-    ];
 
 
+<<<<<<< .merge_file_AESl4b
 }
 
 
 }
+=======
+public function userProfile(){
+    return response()->json(auth()->user());
+}
+
+    public function logout(Request $request){
+        auth()->logout();
+        return [
+            'message' =>'Logged out'];
+}}
+
+>>>>>>> .merge_file_JGsfAX
