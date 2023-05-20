@@ -16,10 +16,6 @@ class user extends Authenticatable
      * @var array<int, string>
      */
 
-<<<<<<< HEAD
-=======
-    protected $table = 'users';
->>>>>>> origin
     protected $primaryKey = 'id_user';
 
      protected $fillable = [
@@ -27,7 +23,7 @@ class user extends Authenticatable
         'email',
         'password',
         'type',
-        
+
     ];
     /**
      * The attributes that should be hidden for serialization.
