@@ -33,7 +33,7 @@ class AuthController extends Controller
             'email' =>'required|email',
             'password' =>'string|required'
         ]);
-                
+
         //check email
             $user = User::where('email',$fields['email'])->first();
         //check password
@@ -52,31 +52,17 @@ class AuthController extends Controller
                 return response($response,202);
 
 
-       
-        
+
+
     }
 
 
-<<<<<<< HEAD
-public function userProfile(){
-    return response()->json(auth()->user());
-=======
     public function logout(Request $request)
 {
     $user = auth()->user();
 
-<<<<<<< HEAD
     if ($user) {
         $user->tokens()->delete();
-=======
-
-
-
-
-    public function logout(Request $request){
-
-        auth()->logout();        
->>>>>>> origin
         return [
             'message' => 'Logged out'
         ];
@@ -89,12 +75,4 @@ public function userProfile(){
 }
 
 
->>>>>>> c8116af27f105e461a2c1b492aa4ed6e048db4f3
 }
-
-    public function logout(Request $request){
-        auth()->logout();
-        return [
-            'message' =>'Logged out'];
-}}
-
