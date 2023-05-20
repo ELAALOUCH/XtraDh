@@ -9,24 +9,24 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
-        $fields = $request->validate([
-            'name' => 'string|required',
-            'email' =>'required|email|unique:users,email',
-            'password' =>'string|confirmed|required'
-        ]);
-        $user = User::create([
-            'name' =>$fields['name'],
-            'email' =>  $fields['email'],
-            'password'=>bcrypt($fields['password'])
-        ]);
-        $token = $user->createToken('MyAppToken')->plainTextToken;
-        $response= [
-            'user'=>$user,
-            'token' =>$token
-        ];
-        return response($response,202);
-    }
+    // public function register(Request $request){
+    //     $fields = $request->validate([
+    //         'name' => 'string|required',
+    //         'email' =>'required|email|unique:users,email',
+    //         'password' =>'string|confirmed|required'
+    //     ]);
+    //     $user = User::create([
+    //         'name' =>$fields['name'],
+    //         'email' =>  $fields['email'],
+    //         'password'=>bcrypt($fields['password'])
+    //     ]);
+    //     $token = $user->createToken('MyAppToken')->plainTextToken;
+    //     $response= [
+    //         'user'=>$user,
+    //         'token' =>$token
+    //     ];
+    //     return response($response,202);
+    // }
 
     public function login(Request $request){
         $fields = $request->validate([
@@ -58,21 +58,25 @@ class AuthController extends Controller
 
 
 
+public function userProfile(){
+    return response()->json(auth()->user());
+}
+    public function logout(Request $request)
+{
+    $user = auth()->user();
 
-
-
-
-    public function logout(Request $request){
-
-        auth()->logout();        
+    if ($user) {
+        $user->tokens()->delete();
         return [
-            'message' =>'Logged out'
+            'message' => 'Logged out'
         ];
     }
+    return [
+        'message' => 'user not logged'
+    ];
 
 
-
-
+}
 
 }
 

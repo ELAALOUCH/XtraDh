@@ -52,7 +52,7 @@
           
           <div class="h-[50px]">
             <div>             
-              <div @click="signout"  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
+              <div @click=signout()  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
                 <Decconexion/>
                 Déconnexion
               </div>              
@@ -82,7 +82,7 @@
             <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
               <img class="w-10 h-10 rounded-full border-2 border-blue-50" src="@/assets/images/download.jpg">
               <div class="font-semibold dark:text-white text-left">
-                <div>Madona ,Dev OP</div>
+                <div> </div>
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
             </div>
@@ -92,7 +92,6 @@
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
         <div class="border border-blue-300 rounded-md p-[20px] h-full">
           <router-view/>
-           <Footer/>
         </div>
       </div>
     </div>
@@ -107,27 +106,33 @@ import intervention from '@/components/Dashboard/Icons/intervention.vue';
 import Grade from '@/components/Dashboard/Icons/Grade.vue';
 import Shcool from '@/components//Dashboard/Icons/Shcool.vue'
   import Footer from '@/components/Login/Footer.vue'
+  import { mapGetters ,mapActions} from 'vuex' 
 
  export default {
   components:{Footer,Decconexion,Profile,Profile2,intervention,Grade,Shcool},
   data() {
-     return {
-       showDropDown: false,
-       showSide: true
-     }
-   },
-   methods: {
-     // hide show side bar
-     toggleSideBar() {
-       this.showSide = !this.showSide
- 
-     },
-     // toggle user 
-     toggleDrop() {
-       this.showDropDown = !this.showDropDown
- 
-     }
-   }
+  return {
+    showSide: true
+  }
+},
+computed: {
+     ...mapGetters({
+         'authenticated': 'auth/authenticated',
+         'user': 'auth/user',
+     })
+ },
+methods: {
+  toggleSideBar() {
+    this.showSide = !this.showSide    
+  },
+  ...mapActions({
+     'logout':'auth/logout'
+  }),
+  signout(){
+     this.logout().then(()=>this.$router.push('/'))
+  }
+},
  
  }
 </script>
+

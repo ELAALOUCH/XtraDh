@@ -1,36 +1,42 @@
 <template>
     <div>
       <h3 class="text-2xl font-bold text-left py-2">Gestion des Interventions</h3>
-      
+
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                Product name
+               Intitule_intervention
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Color
+                  Annee_univ
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Category             
+                  Semestre             
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Price
+                  Date_debut
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Grade
+                  Date_fin
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
-                  Salary
+                  Nbr_heures
+              </th>
+              <th scope="col" class="py-3 px-6">
+                  Visa_uae
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Visa_etb
               </th>
               <th scope="col" class="py-3 px-6">
              </th>             
@@ -59,13 +65,19 @@
               <td class="py-4 px-6">
                 {{ data.price }}
               </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                  <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Edit
+                   Accepter 
                  </button>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Delete
+                 <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="refuser">
+                   Refuser 
                  </button>                  
                 </div>
               </td>
@@ -102,9 +114,11 @@
     }
   },
   methods:{
-    togglemodal(){
-    this.showmodal=!this.showmodal
-  },},
+   refuser(){
+    alert('youll delete')
+   }
+
+  },
 
   }
 

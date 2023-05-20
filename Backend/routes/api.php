@@ -31,8 +31,8 @@ Route::apiResource('Administrateur',AdministrateurController::class);
 Route::apiResource('Intervention',InterventionController::class);
 Route::get('/valideruae',[InterventionController::class,'valideruae']);
 Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
-Route::get('/valideretb',[InterventionController::class,'valideretb']);
-Route::get('/invalideretb',[InterventionController::class,'invalideretb']);
+Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
+Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
@@ -55,14 +55,14 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 //
-/*
+
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
-
+    Route::post('/logout',[AuthController::class,'logout']);
 });
 
-
+/*
 
 
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {

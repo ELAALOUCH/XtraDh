@@ -34,7 +34,7 @@ class userController extends Controller
     
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
-            'password' =>'string|confirmed|required',
+           // 'password' =>'string|confirmed|required',
             'type'=>'required'
         ]);
         $fields['password']=Str::random(15);
@@ -55,6 +55,7 @@ class userController extends Controller
         ];
         return response($response,202);
     }
+
 
     /**
      * Display the specified resource.
@@ -94,7 +95,7 @@ class userController extends Controller
         //$token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
-            'token' =>Auth::user()->currentAccessToken()
+            'token' =>Auth::user()->tokens()
         ];
         return response($response,202);
 

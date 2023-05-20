@@ -12,7 +12,6 @@ import Dash_pu from '@/Interfaces/President_Univ/Master/Dash_pu.vue'
 import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 
 import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
-import GestionG from '@/Interfaces/Admin_Univ/GestionG.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
 import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
 
@@ -28,7 +27,7 @@ import Gestionpuau from '@/Interfaces/President_Univ/Gestionpuau.vue'
 
   
 import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
-import GestionaI from '@/Interfaces/Admin_Etab/Gestionp.vue'
+import GestionaI from '@/Interfaces/Admin_Etab/GestionaI.vue'
 
 
 import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'
@@ -71,7 +70,7 @@ const routes = [
     /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -82,10 +81,6 @@ const routes = [
       {
       path: '/Gestionae',
       component: Gestionae
-      },
-      {
-        path: '/GestionG',
-        component:GestionG
       },
       {
         path:'/Gestionde',
@@ -107,7 +102,7 @@ const routes = [
     /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -134,7 +129,7 @@ const routes = [
     /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
@@ -159,15 +154,15 @@ const routes = [
     path:'/Dash_pu',
     name:'Dash_pu',
     component:Dash_pu,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
 
-    },*/
+    },
     redirect:'Gestionpae',
     children :[
       {
@@ -210,11 +205,10 @@ const routes = [
     /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Signin' })
+        return next({ name: 'Login' })
       }
 
       next()
-
     },*/
     redirect:'Profhome',
     children :[
@@ -233,9 +227,7 @@ const routes = [
     path:'/:catchAll(.*)',
     name:'NotFound',
     component: NotFound
-   }
-
-  
+   }  
 ]
 
 const router = createRouter({
