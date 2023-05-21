@@ -202,14 +202,14 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
 
       next()
-    },*/
+    },
     redirect:'Profhome',
     children :[
       {
