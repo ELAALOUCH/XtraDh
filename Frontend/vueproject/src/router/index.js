@@ -14,6 +14,8 @@ import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
 import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
+import Profileau from '@/Interfaces/Admin_Univ/Profileau.vue'
+
 
 
 import Gestionpae from '@/Interfaces/President_Univ/Gestionpae.vue'
@@ -89,7 +91,12 @@ const routes = [
       {
         path:'/Gestionpau',
         component:Gestionpau
+      },
+      {
+        path:'/Profileau',
+        component:Profileau
       }
+
     ]
   },
 
@@ -202,14 +209,14 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
-    beforeEnter: (to, from, next) => {
+    /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
 
       next()
-    },
+    },*/
     redirect:'Profhome',
     children :[
       {

@@ -26,6 +26,11 @@
             </router-link> 
 
 
+            <router-link to="/Profileau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+             <Profile/> Profile 
+            </router-link> 
+
+
           </div>
 
 
