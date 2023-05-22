@@ -28,7 +28,6 @@ export default {
            try {
             const response = await axios.post('/login',credentials)
              return dispatch('attempt',response.data.token)
-  
         } catch (error) {
             console.log('failed')
         }

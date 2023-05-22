@@ -70,18 +70,33 @@ export default {
         ...mapActions({
             'submit': 'auth/submit'
         }),
+        ...mapGetters({
+          'authenticated':'auth/authenticated', 
+          'user':'auth/authenticated'
+        }),
         async submitlogin() {
   try {
     this.error = ''; // Clear the error message
-    await this.$store.dispatch('auth/submit', this.user); // Dispatch the 'submit' action
+    await this.$store.dispatch('auth/submit', this.user);
     if (this.$store.getters['auth/authenticated']) {
-      this.$router.push('/Dash_users'); // Redirect to the dashboard if authenticated
+      const userType = this.$store.getters['auth/user'].type; 
+      if (userType === 'Prof') {
+        this.$router.push('Dash_users'); 
+      } else if (userType === 'Admin_univ') {
+        this.$router.push('Dash_au'); 
+      } else if (userType === 'président_univ') {
+        this.$router.push('Dash_pu'); 
+      } else if (userType === 'Admin_etab') {
+        this.$router.push('Dash_ae'); 
+      } else {
+        this.$router.push('dash_de');
+      }
     } else {
-      this.error = 'Invalid username or password'; // Set error message for incorrect credentials
+      this.error = 'Invalid username or password';
     }
   } catch (error) {
     console.log('failed', error);
-    this.error = 'An error occurred during login'; // Set error message for login failure
+    this.error = 'An error occurred during login';
   }
 }
   }
