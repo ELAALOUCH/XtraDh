@@ -83,8 +83,8 @@ class AdministrateurController extends Controller
      * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administrateur $administrateur)
+    public function destroy($idAdm)
     {
-        //
+        return administrateur::find($idAdm)->delete();
     }
 }
