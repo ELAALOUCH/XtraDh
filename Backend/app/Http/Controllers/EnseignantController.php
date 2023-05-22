@@ -69,19 +69,28 @@ class EnseignantController extends Controller
      * @param  \App\Models\enseignant  $enseignant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, enseignant $enseignant)
+    public function update(Request $request, $idAdm)
     {
-        @dd($request);
+        $adm = administrateur::find($idAdm);
+        $attributs = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required',
+            'prenom'=>'required',
+            'Etablissement'=>'required',
+            'id_user'=>'required'
+        ]);
+        $adm->update($attributs);
+        return response()->json($adm);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\enseignant  $enseignant
+     * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(enseignant $enseignant)
+    public function destroy($idAdm)
     {
-        //
+        return administrateur::find($idAdm)->delete();
     }
 }
