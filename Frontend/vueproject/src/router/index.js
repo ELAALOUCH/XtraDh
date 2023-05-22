@@ -11,10 +11,12 @@ import Dash_de from '@/Interfaces/Directeur_Etab/Master/Dash_de.vue'
 import Dash_pu from '@/Interfaces/President_Univ/Master/Dash_pu.vue'
 import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 
-import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
+//import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
-import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
+//import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
 import Profileau from '@/Interfaces/Admin_Univ/Profileau.vue'
+import Gestionpu from '@/Interfaces/Admin_Univ/Gestionpu.vue'
+
 
 
 
@@ -84,13 +86,17 @@ const routes = [
       path: '/Gestionae',
       component: Gestionae
       },
-      {
+      /*{
         path:'/Gestionde',
         component:Gestionde
       },
       {
         path:'/Gestionpau',
         component:Gestionpau
+      },*/
+      {
+        path:'/Gestionpu',
+        component:Gestionpu
       },
       {
         path:'/Profileau',
@@ -209,14 +215,14 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
 
       next()
-    },*/
+    },
     redirect:'Profhome',
     children :[
       {

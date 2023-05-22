@@ -11,19 +11,26 @@
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
 
           <div class=" flex flex-col justify-between space-y-[10px]">
+           
             
-            <router-link to="/Gestionae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-                <Profile2/> Gestion d'admins d'établissements           
+            <router-link to="/Gestionpu" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+                <Profile2/> Gestion de président universitaire         
             </router-link>
 
-            <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+            <router-link to="/Gestionae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+                <Profile2/> Gestion d'admins d'établissements           
+            </router-link> 
+
+            <!--
+               <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <Profile/> Gestion des directeurs d'établissements 
             </router-link> 
+           
             
             
             <router-link to="/Gestionpau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <Profile/> Gestion des Profs 
-            </router-link> 
+            </router-link>  --> 
 
 
             <router-link to="/Profileau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
@@ -69,11 +76,7 @@
               <div class="font-semibold dark:text-white text-left">
 
 
- 
-
-                
-                
-                
+                              
                 
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
