@@ -30,7 +30,15 @@ class AdministrateurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributs = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required',
+            'prenom'=>'required',
+            'Etablissement'=>'required',
+            'id_user'=>'required'
+        ]);
+        $adm = administrateur::Create($attributs);
+        return response()->json($adm);
     }
 
     /**
