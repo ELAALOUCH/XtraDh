@@ -14,7 +14,7 @@ use App\Http\Controllers\ForgetController;
 use Doctrine\Instantiator\InstantiatorInterface;
 
 /* Etablissement Routes */
-Route::apiResource('Etablissement',EtablissementController::class);
+
 
 /*Grade Routes */
 Route::apiResource('Grade',GradeController::class);
@@ -62,15 +62,16 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::get('/user-profile',[AuthController::class,'userProfile']);
 });
 
+
+
 /*
-
-
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
     $user = $request->user();
     // Use $user to retrieve user information or perform actions
     return response()->json($user);
 });
-
+*/
+/*
 Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
 });
