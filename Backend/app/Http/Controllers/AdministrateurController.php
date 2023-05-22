@@ -63,9 +63,18 @@ class AdministrateurController extends Controller
      * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrateur $administrateur)
+    public function update(Request $request, $idAdm)
     {
-        //
+        $adm = administrateur::find($idAdm);
+        $attributs = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required',
+            'prenom'=>'required',
+            'Etablissement'=>'required',
+            'id_user'=>'required'
+        ]);
+        $adm->update($attributs);
+        return response()->json($adm);
     }
 
     /**
