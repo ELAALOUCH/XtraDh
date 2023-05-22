@@ -21,7 +21,7 @@ class EnseignantController extends Controller
                                 ->with(['intervention'])
                                 ->with(['user'])
                                 ->with(['paiement'])
-                                ->get();                     
+                                ->get();
         return response()->json($enseignant);
 
 
@@ -53,9 +53,13 @@ class EnseignantController extends Controller
      * @param  \App\Models\enseignant  $enseignant
      * @return \Illuminate\Http\Response
      */
-    public function show(enseignant $enseignant)
+    public function show($idAdm)
     {
-        //
+        $adm = administrateur::find($idAdm)
+            ->with(['user'])
+            ->with(['Etablissement'])
+            ->get();
+        return response()->json($adm);
     }
 
     /**
