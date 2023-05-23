@@ -25,6 +25,16 @@
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  email
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  password
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
              </th>             
 
             </tr>
@@ -42,6 +52,12 @@
               </td>
               <td class="py-4 px-6">
                 {{ data.etablissement }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.email }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.password }}
               </td>       
 
               <td class="py-4 px-6 text-right">
@@ -68,13 +84,17 @@
         ppr:'',
         nom:'',
         prenom:'',
-        etablissement:'',   
+        etablissement:'', 
+        email:'',
+        password:'',  
         productyObj:[
         {
         ppr:'12',
         nom:'azerr',
         prenom:'ytn',
-        etablissement:'aertbsf', 
+        etablissement:'aertbsf',
+        email:'10@10.com',
+        password:'120' 
         },
         
     ],

@@ -39,7 +39,7 @@ import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
 
 import Profhome from '@/Interfaces/Users/Profhome.vue' 
 import Profln from '@/Interfaces/Users/Profln.vue' 
-
+import Profileprof from '@/Interfaces/Users/Profileprof'
 
 import store from '@/store';
 const routes = [
@@ -229,14 +229,14 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
-    beforeEnter: (to, from, next) => {
+    /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
 
       next()
-    },
+    },*/
     redirect:'Profhome',
     children :[
       {
@@ -246,6 +246,10 @@ const routes = [
       {
        path:'/Profln',
        component:Profln,
+      },
+      {
+        path:'/Profileprof',
+        component:Profileprof
       }
     ]
   },
