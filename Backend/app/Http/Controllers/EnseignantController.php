@@ -21,7 +21,7 @@ class EnseignantController extends Controller
                                 ->with(['intervention'])
                                 ->with(['user'])
                                 ->with(['paiement'])
-                                ->get();                     
+                                ->get();
         return response()->json($enseignant);
 
 
@@ -53,9 +53,13 @@ class EnseignantController extends Controller
      * @param  \App\Models\enseignant  $enseignant
      * @return \Illuminate\Http\Response
      */
-    public function show(enseignant $enseignant)
+    public function show($idens)
     {
-        //
+        $ens = enseignant::find($idens)
+            ->with(['user'])
+            ->with(['grade'])
+            ->get();
+        return response()->json($ens);
     }
 
     /**
@@ -65,19 +69,30 @@ class EnseignantController extends Controller
      * @param  \App\Models\enseignant  $enseignant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, enseignant $enseignant)
+    public function update(Request $request, $id)
     {
-        @dd($request);
+        $ens = enseignant::find($id);
+        $attributs = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required',
+            'prenom'=>'required',
+            'Date_Naissance' =>'required',
+            'Etablissement'=>'required',
+            'id_Grade' => 'required', 
+            'id_user'=>'required'
+        ]);
+        $ens->update($attributs);
+        return response()->json($ens);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\enseignant  $enseignant
+     * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(enseignant $enseignant)
+    public function destroy($id)
     {
-        //
+        return enseignant::find($id)->delete();
     }
 }

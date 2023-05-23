@@ -30,7 +30,15 @@ class AdministrateurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributs = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required',
+            'prenom'=>'required',
+            'Etablissement'=>'required',
+            'id_user'=>'required'
+        ]);
+        $adm = administrateur::Create($attributs);
+        return response()->json($adm);
     }
 
     /**
@@ -39,9 +47,12 @@ class AdministrateurController extends Controller
      * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function show(Administrateur $administrateur)
+    public function show($idAdm)
     {
-        //
+        $adm = administrateur::with(['user'])
+            ->with(['Etablissement'])
+            ->find($idAdm);
+        return response()->json($adm);
     }
 
     /**
@@ -51,9 +62,18 @@ class AdministrateurController extends Controller
      * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrateur $administrateur)
+    public function update(Request $request, $idAdm)
     {
-        //
+        $adm = administrateur::find($idAdm);
+        $attributs = $request->validate([
+            'PPR'=>'required',
+            'Nom'=>'required',
+            'prenom'=>'required',
+            'Etablissement'=>'required',
+            'id_user'=>'required'
+        ]);
+        $adm->update($attributs);
+        return response()->json($adm);
     }
 
     /**
@@ -62,8 +82,8 @@ class AdministrateurController extends Controller
      * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administrateur $administrateur)
+    public function destroy($idAdm)
     {
-        //
+        return administrateur::find($idAdm)->delete();
     }
 }

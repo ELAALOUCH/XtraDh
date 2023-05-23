@@ -16,6 +16,12 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+    $this->middleware('auth:sanctum')->except(['store']);
+    }
+
     public function index()
     {
         return user::with(['administrateur'])
@@ -85,9 +91,9 @@ class userController extends Controller
     {
 
         $fields = $request->validate([
-            'email' =>'required|email',
-            'password' =>'string|confirmed|required',
-            'type'=>'required'
+            'email' =>'email',
+            'password' =>'string',
+            'type'=>'string'
         ]);
 
 
