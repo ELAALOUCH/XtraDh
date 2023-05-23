@@ -24,11 +24,11 @@ public function testCreateUsers()
 //     $users = User::factory()->count(10)->create();
 //     echo $users[0]['email'];
     $users = etablissement::factory()->count(10)->create();
-    $users = grade::factory()->count(5)->create();
-    $users = Intervention::factory()->count(10)->create();
-    $users = Paiement::factory()->count(10)->create();
-    $users = Administrateur::factory()->count(10)->create();
-    $users = Enseignant::factory()->count(10)->create();
+//     $users = grade::factory()->count(5)->create();
+//     $users = Intervention::factory()->count(10)->create();
+//     $users = Paiement::factory()->count(10)->create();
+//     $users = Administrateur::factory()->count(10)->create();
+//     $users = Enseignant::factory()->count(10)->create();
     
     }
     public function tearDown(): void
