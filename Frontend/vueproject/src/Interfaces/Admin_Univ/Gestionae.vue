@@ -2,7 +2,7 @@
   <div>
     <h3 class="text-2xl font-bold text-left py-2">Listes des admins d'etablissements</h3>
 
-    <div class="overflow-x-auto relative  sm:rounded-lg">
+    <div class="overflow-x-auto">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -41,8 +41,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <tr v-for="data in productyObj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
              {{ data.name }}
             </th>
             <td class="py-4 px-6">
@@ -75,10 +75,9 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
-  </div>
-  
-              
+                
 </template>
 
 <script>
@@ -101,6 +100,67 @@ data(){
           category:' Ipad ',
           price:5000
       },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
+      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },      {
+          id:1,
+          name:'Azus',
+          color:'Gold',
+          category:' Ipad ',
+          price:5000
+      },
       
   ],
 
@@ -117,5 +177,8 @@ methods:{
 </script>
 
 <style>
-
+.scrollable {
+  max-width: 100%;
+  overflow-x: scroll;
+}
 </style>
