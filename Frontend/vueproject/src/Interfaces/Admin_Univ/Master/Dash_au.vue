@@ -1,6 +1,6 @@
 <template>
   <div class="w-screen h-screen flex">
-    <!-- Side bar -->
+
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
