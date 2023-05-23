@@ -1,42 +1,43 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Listes des profs</h3>
+      <h3 class="text-2xl font-bold text-left py-2">Consultation des interventions</h3>
 
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                PPR
+               Intitule_intervention
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Nom
+                  Annee_univ
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Prenom             
+                  Semestre             
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Date_naissance
+                  Date_debut
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Etablissement
+                  Date_fin
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
-                <div class="flex justify-end" >
-                  <create/>
-                </div> 
-             </th>             
-              <th scope="col" class="py-3 px-6">
-                <span class="sr-only">Edit</span>
+                  Nbr_heures
               </th>
+              <th scope="col" class="py-3 px-6">
+                  Visa_uae
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Visa_etb
+              </th>            
             </tr>
           </thead>
           <tbody>
@@ -56,14 +57,16 @@
               <td class="py-4 px-6">
                 {{ data.price }}
               </td>
-              <td class="py-4 px-6 text-right">
-                <div class="inline-flex">
-                 <Edit/>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Delete
-                 </button>                  
-                </div>
+              <td class="py-4 px-6">
+                {{ data.price }}
               </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
+
             </tr>
           </tbody>
         </table>
@@ -74,11 +77,9 @@
   </template>
   
   <script>
-  import Create from '@/components/Dashboard/Prof/Create.vue'
-  import Edit from '@/components/Dashboard/Prof/Edit.vue'
-
+ 
   export default {
-    components: {Create,Edit},
+    components: {},
   data(){
     return {
         name:'',
@@ -99,9 +100,11 @@
     }
   },
   methods:{
-    togglemodal(){
-    this.showmodal=!this.showmodal
-  },},
+   refuser(){
+    alert('youll delete')
+   }
+
+  },
 
   }
 

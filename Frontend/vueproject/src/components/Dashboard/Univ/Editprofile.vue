@@ -11,27 +11,28 @@
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
         <h2 class="text-2xl font-bold mb-4">Edit</h2>
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-bold mb-2">DESIGNATION:</label>
-          <input type="text" id="DESIGNATION" v-model="formData.DESIGNATION" required class="border rounded w-full py-2 px-3">
+          <label for="name" class="block text-gray-700 font-bold mb-2">PPR:</label>
+          <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="CHARGE_STATUTAIRE" class="block text-gray-700 font-bold mb-2">CHARGE_STATUTAIRE:</label>
-          <input type="CHARGE_STATUTAIRE" id="CHARGE_STATUTAIRE" v-model="formData.CHARGE_STATUTAIRE" required class="border rounded w-full py-2 px-3">
+          <label for="email" class="block text-gray-700 font-bold mb-2">Name:</label>
+          <input type="Name" id="Name" v-model="formData.Name" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="TAUX_HORAIRE_VACATION" class="block text-gray-700 font-bold mb-2">TAUX_HORAIRE_VACATION:</label>
-          <input type="TAUX_HORAIRE_VACATION" id="TAUX_HORAIRE_VACATION" v-model="formData.TAUX_HORAIRE_VACATION" required class="border rounded w-full py-2 px-3">
+          <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
+          <input type="Prenom" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
+        <div class="mb-4">
+          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
+          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+        </div>
 
         <div class="flex justify-end">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
             Update
-          </button>
-          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2" @click="closeModal">
-            Cancel
           </button>
         </div>
       </div>
@@ -45,7 +46,7 @@ export default {
     return {
       showModal: false,
       formData: {
-        CHARGE_STATUTAIRE: '',
+        Name: '',
         email: ''
       }
     };

@@ -11,6 +11,11 @@
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
       
+            <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <profile2 />
+            Gestion des directeurs d'Etablissement
+            </router-link>
+
             <router-link to="/Gestionp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <profile2 />
             Gestion des profs
@@ -19,7 +24,12 @@
             <router-link to="/GestionaI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <intervention/>
              Gestion des Interventions
-            </router-link>    
+            </router-link>
+            
+            <router-link to="/Profileae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+             <Profile2/>
+             profile
+            </router-link>
                      
           </div>
           
@@ -54,7 +64,7 @@
             <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
               <img class="w-10 h-10 rounded-full border-2 border-blue-50" src="@/assets/images/download.jpg">
               <div class="font-semibold dark:text-white text-left">
-                <div>    </div>
+                <div v-if="authenticated">{{ user.name }}</div>
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
             </div>
@@ -64,7 +74,6 @@
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
         <div class="border border-blue-300 rounded-md p-[20px] h-full">
           <router-view/>
-          <Footer/>
         </div>
       </div>
     </div>

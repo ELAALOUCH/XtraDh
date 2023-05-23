@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Ajouter directeur 
+      Ajouter Président_univ
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -9,7 +9,7 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Ajouter directeur</h2>
+        <h2 class="text-2xl font-bold mb-4">Ajouter Président_univ</h2>
 
         <div class="mb-4">
           <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
@@ -53,15 +53,12 @@
           <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
         </div>
 
-
         <div class="flex justify-end">
-          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            @click="submitForm">
-            Add
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
+            Ajouter
           </button>
-          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
-            @click="closeModal">
-            Cancel
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2" @click="closeModal">
+            Annuler
           </button>
         </div>
       </div>
@@ -75,8 +72,13 @@ export default {
     return {
       showModal: false,
       formData: {
+        email: '',
+        password: '',
+        type: '',
+        PPR: '',
+        Etablissement: '',
         Nom: '',
-        Etablissement: ''
+        Prénom: ''
       }
     };
   },
@@ -85,12 +87,18 @@ export default {
       this.showModal = false;
     },
     submitForm() {
-      // Perform CRUD logic here, such as adding the etablissement
+      // Effectuez ici votre logique CRUD, comme l'ajout de l'établissement
       console.log(this.formData);
 
-      // Reset the form data and close the modal
-      this.formData.name = '';
+      // Réinitialisez les données du formulaire et fermez la fenêtre modale
       this.formData.email = '';
+      this.formData.password = '';
+      this.formData.type = '';
+      this.formData.PPR = '';
+      this.formData.Etablissement = '';
+      this.formData.Nom = '';
+      this.formData.Prénom = '';
+
       this.closeModal();
     }
   }

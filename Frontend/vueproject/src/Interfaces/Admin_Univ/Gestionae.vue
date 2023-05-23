@@ -7,6 +7,15 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" class="py-3 px-6">
+              email
+            </th>
+            <th scope="col" class="py-3 px-6">
+              password
+            </th>
+            <th scope="col" class="py-3 px-6">
+              type
+            </th>
+            <th scope="col" class="py-3 px-6">
               PPR
             </th>
             <th scope="col" class="py-3 px-6">
@@ -29,9 +38,6 @@
                   <create/>
                 </div>  
            </th>             
-            <th scope="col" class="py-3 px-6">
-              <span class="sr-only">Edit</span>
-            </th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +50,15 @@
             </td>
             <td class="py-4 px-6">
               {{ data.category }}
+            </td>
+            <td class="py-4 px-6">
+              {{ data.price }}
+            </td>
+            <td class="py-4 px-6">
+              {{ data.price }}
+            </td>
+            <td class="py-4 px-6">
+              {{ data.price }}
             </td>
             <td class="py-4 px-6">
               {{ data.price }}
