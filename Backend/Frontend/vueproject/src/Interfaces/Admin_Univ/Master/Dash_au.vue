@@ -77,7 +77,7 @@
 
 
                               
-                
+                <div v-if="authenticated">{{ user.email }}</div>
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
             </div>
