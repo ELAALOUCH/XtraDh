@@ -11,31 +11,31 @@ import Dash_de from '@/Interfaces/Directeur_Etab/Master/Dash_de.vue'
 import Dash_pu from '@/Interfaces/President_Univ/Master/Dash_pu.vue'
 import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 
-//import Gestionde from '@/Interfaces/Admin_Univ/Gestionde.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
-//import Gestionpau from '@/Interfaces/Admin_Univ/Gestionpau.vue'
 import Profileau from '@/Interfaces/Admin_Univ/Profileau.vue'
 import Gestionpu from '@/Interfaces/Admin_Univ/Gestionpu.vue'
 
 
 
 
-import Gestionpae from '@/Interfaces/President_Univ/Gestionpae.vue'
-import Gestionpde from '@/Interfaces/President_Univ/Gestionpde.vue'
 import GestionpI from '@/Interfaces/President_Univ/GestionpI.vue'
-import GestionpG from '@/Interfaces/President_Univ/GestionpG.vue'
-import GestionE from '@/Interfaces/President_Univ/GestionE.vue'
-import Gestionpp from '@/Interfaces/President_Univ/Gestionpp.vue'
-import Gestionpuau from '@/Interfaces/President_Univ/Gestionpuau.vue'
+import ConsultationP from '@/Interfaces/President_Univ/ConsultationP.vue'
+import ConsoI from '@/Interfaces/President_Univ/ConsoI.vue'
+import Profilepu from '@/Interfaces/President_Univ/Profilepu.vue'
 
 
   
 import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
 import GestionaI from '@/Interfaces/Admin_Etab/GestionaI.vue'
+import Gestionde from '@/Interfaces/Admin_Etab/Gestionde.vue'
+import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
 
 
 import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'
 import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
+import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
+
+
 
 import Profhome from '@/Interfaces/Users/Profhome.vue' 
 import Profln from '@/Interfaces/Users/Profln.vue' 
@@ -86,14 +86,7 @@ const routes = [
       path: '/Gestionae',
       component: Gestionae
       },
-      /*{
-        path:'/Gestionde',
-        component:Gestionde
-      },
-      {
-        path:'/Gestionpau',
-        component:Gestionpau
-      },*/
+
       {
         path:'/Gestionpu',
         component:Gestionpu
@@ -130,6 +123,14 @@ const routes = [
       {
         path:'/GestionaI',
         component:GestionaI
+      },
+      {
+        path: '/Gestionde',
+        component:Gestionde
+      },
+      {
+        path: '/Profileae',
+        component:Profileae
       }
 ]
   },
@@ -157,7 +158,12 @@ const routes = [
       {
         path:'/GestiondI',
         component:GestiondI
-      }
+      },
+      {
+        path:'/Profilede',
+        component:Profilede
+      },
+
 ]
   },
 
@@ -176,35 +182,43 @@ const routes = [
       next()
 
     },*/
-    redirect:'Gestionpae',
+    redirect:'Profilepu',
     children :[
-      {
+      /*{
         path: '/Gestionpae',
         component: Gestionpae
       },
       {
         path: '/Gestionpde',
         component:Gestionpde
-      },
+      },*/
       {
         path:'/GestionpI',
         component:GestionpI
       },
-      {
+      /*{
         path:'/GestionpG',
         component:GestionpG
+      },*/
+      {
+        path:'/ConsultationP',
+        component:ConsultationP
       },
       {
-        path:'/GestionE',
-        component:GestionE
-      },
-      {
+        path:'/ConsoI',
+        component:ConsoI
+      }, 
+      /*{
         path:'/Gestionpp',
         component:Gestionpp       
       },
       {
         path:'/Gestionpuau',
         component:Gestionpuau       
+      },*/
+      {
+        path:'/Profilepu',
+        component:Profilepu   
       }
  
     ]

@@ -26,25 +26,24 @@
               </th>
               <th scope="col" class="py-3 px-6">
              </th>             
-              <th scope="col" class="py-3 px-6">
-                <span class="sr-only">Edit</span>
-              </th>
+
             </tr>
           </thead>
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
+               {{ data.ppr }}
               </th>
               <td class="py-4 px-6">
-                {{ data.color }}
+                {{ data.nom }}
               </td>
               <td class="py-4 px-6">
-                {{ data.category }}
+                {{ data.prenom }}
               </td>
               <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
+                {{ data.etablissement }}
+              </td>       
+
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                    <Editprofile/>                 
@@ -66,17 +65,16 @@
     components: {Editprofile},
   data(){
     return {
-        name:'',
-        color:'',
-        category:'',
-        price:null,   
+        ppr:'',
+        nom:'',
+        prenom:'',
+        etablissement:'',   
         productyObj:[
         {
-            id:1,
-            name:'Azus',
-            color:'Gold',
-            category:' Ipad ',
-            price:5000
+        ppr:'12',
+        nom:'azerr',
+        prenom:'ytn',
+        etablissement:'aertbsf', 
         },
         
     ],

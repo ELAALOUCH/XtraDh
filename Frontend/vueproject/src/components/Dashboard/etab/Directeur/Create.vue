@@ -12,24 +12,47 @@
         <h2 class="text-2xl font-bold mb-4">Ajouter directeur</h2>
 
         <div class="mb-4">
-          <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
-          <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
+          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="Nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
-          <input type="Nom" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+          <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe:</label>
+          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
-          <input type="Prenom" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+          <label for="type" class="block text-gray-700 font-bold mb-2">Type:</label>
+          <select id="type" v-model="formData.type" required class="border rounded w-full py-2 px-3">
+            <option value="">Sélectionnez un type</option>
+            <option value="admin_uae">Admin UAE</option>
+            <option value="admin_etb">Admin ETB</option>
+            <option value="enseignant">Enseignant</option>
+            <option value="directeur_etb">Directeur ETB</option>
+            <option value="president_uae">Président UAE</option>
+          </select>
         </div>
 
         <div class="mb-4">
-          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
-          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+          <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
+          <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
         </div>
+
+        <div class="mb-4">
+          <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
+          <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+          <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
+        </div>
+
 
         <div class="flex justify-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

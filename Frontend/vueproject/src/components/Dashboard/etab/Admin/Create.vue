@@ -12,6 +12,21 @@
         <h2 class="text-2xl font-bold mb-4">Ajouter admin_etab</h2>
 
         <div class="mb-4">
+          <label for="email" class="block text-gray-700 font-bold mb-2">email:</label>
+          <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 font-bold mb-2">password:</label>
+          <input type="text" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="type" class="block text-gray-700 font-bold mb-2">type:</label>
+          <input type="text" id="type" v-model="formData.type" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
           <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
         </div>

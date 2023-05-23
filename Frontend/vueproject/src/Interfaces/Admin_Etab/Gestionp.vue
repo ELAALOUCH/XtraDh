@@ -34,9 +34,6 @@
                 <create/>
               </div> 
            </th>             
-            <th scope="col" class="py-3 px-6">
-              <span class="sr-only">Edit</span>
-            </th>
           </tr>
         </thead>
         <tbody>
