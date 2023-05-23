@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class userController extends Controller
@@ -37,7 +38,7 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'password' =>'string|confirmed|required',
@@ -47,10 +48,10 @@ class userController extends Controller
 
         $user = User::create([
             'type' =>$fields['type'],
-            'email' => $fields['email'],
+            'email' => Crypt::encrypt($fields['email']),
             'password'=>bcrypt($fields['password'])
         ]);
-        $email = $fields['email'];
+        $email = Crypt::decrypt($fields['email']);
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
             $message->subject('Voici le mot de pass de votre compte hsup');
@@ -76,7 +77,9 @@ class userController extends Controller
             user::find($id)
                 ->with(['administrateur'])
                 ->with(['enseignant'])
-                ->get()    
+                ->Crypt::decrypt(['email'])
+                ->get()
+
         );
     }
 
