@@ -15,6 +15,7 @@ use Doctrine\Instantiator\InstantiatorInterface;
 
 /* Etablissement Routes */
 
+Route::apiResource('Etablissement',EtablissementController::class);
 
 /*Grade Routes */
 Route::apiResource('Grade',GradeController::class);
@@ -61,8 +62,6 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('/logout',[AuthController::class,'logout']);
     Route::get('/user-profile',[AuthController::class,'userProfile']);
 });
-
-
 
 /*
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
