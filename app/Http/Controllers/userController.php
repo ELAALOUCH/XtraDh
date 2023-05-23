@@ -54,10 +54,10 @@ class userController extends Controller
        // 'email' => Crypt::encrypt($fields['email']),
      //   $email = Crypt::decrypt($fields['email']);
      $email = $fields['email'];
-        // Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
-        //     $message->to($email);
-        //     $message->subject('Voici le mot de pass de votre compte hsup');
-        // });
+        Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
+            $message->to($email);
+            $message->subject('Voici le mot de pass de votre compte hsup');
+        });
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
