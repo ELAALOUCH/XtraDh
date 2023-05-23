@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\enseignant;
 use App\Models\grade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 class EnseignantController extends Controller
@@ -33,19 +35,53 @@ class EnseignantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $form_fields = $request->validate([
+    //         'PPR'=>'required',
+    //         'Nom'=>'required|max:30',
+    //         'prenom'=>'required|max:30',
+    //         'Date_Naissance'=>'date|required'
+    //     ]);
+    //     $form_fields['Etablissement'] = $request->Etablissement;
+    //     $form_fields['id_Grade'] = $request->id_Grade;
+    //     $form_fields['id_user'] = $request->id_user;
+    //     $form_fields['PPR'] = Crypt::encrypt($request->PPR);
+    //     return enseignant::create($form_fields);
+    // }
     public function store(Request $request)
-    {
-        $form_fields = $request->validate([
-            'PPR'=>'required',
-            'Nom'=>'required|max:30',
-            'prenom'=>'required|max:30',
-            'Date_Naissance'=>'date|required'
-        ]);
-        $form_fields['Etablissement'] = $request->Etablissement;
-        $form_fields['id_Grade'] = $request->id_Grade;
-        $form_fields['id_user'] = $request->id_user;
-        return enseignant::create($form_fields);
+{
+    // Validation des champs
+    $validator = Validator::make($request->all(), [
+        'PPR' => 'required',
+        'Nom' => 'required|max:30',
+        'prenom' => 'required|max:30',
+        'Date_Naissance' => 'date|required',
+        'Etablissement' => 'required',
+        'id_Grade' => 'required',
+        'id_user' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 400);
     }
+
+    // Cryptage du champ PPR
+    $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+
+    // Création de l'enseignant
+    $enseignant = enseignant::create([
+        'PPR' => $encryptedPPR,
+        'Nom' => $request->input('Nom'),
+        'prenom' => $request->input('prenom'),
+        'Date_Naissance' => $request->input('Date_Naissance'),
+        'Etablissement' => $request->input('Etablissement'),
+        'id_Grade' => $request->input('id_Grade'),
+        'id_user' => $request->input('id_user'),
+    ]);
+    return $enseignant;
+    //return response()->json(['message' => 'Enseignant créé avec succès'], 201);
+}
 
     /**
      * Display the specified resource.
@@ -55,10 +91,10 @@ class EnseignantController extends Controller
      */
     public function show($idens)
     {
-        $ens = enseignant::find($idens)
-            ->with(['user'])
+        $ens = enseignant::with(['user'])
             ->with(['grade'])
-            ->get();
+            ->find($idens);
+            $ens->PPR=Crypt::decrypt($ens->PPR);
         return response()->json($ens);
     }
 
@@ -78,9 +114,10 @@ class EnseignantController extends Controller
             'prenom'=>'required',
             'Date_Naissance' =>'required',
             'Etablissement'=>'required',
-            'id_Grade' => 'required', 
+            'id_Grade' => 'required',
             'id_user'=>'required'
         ]);
+        $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $ens->update($attributs);
         return response()->json($ens);
     }
