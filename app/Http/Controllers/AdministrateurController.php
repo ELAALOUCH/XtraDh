@@ -19,7 +19,7 @@ class AdministrateurController extends Controller
         $adm = administrateur::with('user')
                               ->with('Etablissement')
                               ->get();
-                              
+
         return $adm;
     }
 
@@ -38,7 +38,7 @@ class AdministrateurController extends Controller
             'Etablissement'=>'required',
             'id_user'=>'required'
         ]);
-        $attributs['PPR']=Crypt::encrypt($attributs->PPR);
+    //    $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm = administrateur::Create($attributs);
         return response()->json($adm);
     }
@@ -54,7 +54,7 @@ class AdministrateurController extends Controller
         $adm = administrateur::with(['user'])
             ->with(['Etablissement'])
             ->find($idAdm);
-        $adm->PPR=Crypt::decrypt($adm->PPR);
+     //   $adm->PPR=Crypt::decrypt($adm->PPR);
         return response()->json($adm);
     }
 
@@ -75,7 +75,7 @@ class AdministrateurController extends Controller
             'Etablissement'=>'required',
             'id_user'=>'required'
         ]);
-        $attributs['PPR']=Crypt::encrypt($attributs->PPR);
+ //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
         return response()->json($adm);
     }

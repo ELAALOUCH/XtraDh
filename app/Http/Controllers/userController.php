@@ -48,15 +48,17 @@ class userController extends Controller
 
         $user = User::create([
             'type' =>$fields['type'],
-            'email' => Crypt::encrypt($fields['email']),
+            'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
-        $email = Crypt::decrypt($fields['email']);
-        Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
-            $message->to($email);
-            $message->subject('Voici le mot de pass de votre compte hsup');
-        });
-        $token = $user->createToken('MyAppToken')->plainTextToken;
+       // 'email' => Crypt::encrypt($fields['email']),
+     //   $email = Crypt::decrypt($fields['email']);
+     $email = $fields['email'];
+        // Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
+        //     $message->to($email);
+        //     $message->subject('Voici le mot de pass de votre compte hsup');
+        // });
+         $token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
             'token' =>$token
@@ -77,7 +79,6 @@ class userController extends Controller
             user::find($id)
                 ->with(['administrateur'])
                 ->with(['enseignant'])
-                ->Crypt::decrypt(['email'])
                 ->get()
 
         );

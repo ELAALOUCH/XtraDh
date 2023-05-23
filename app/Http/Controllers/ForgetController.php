@@ -58,7 +58,7 @@ class ForgetController extends Controller
             ],404);
         }
 
-        $user->password = Hash::make($request->input('password'));
+        $user->password = bcrypt($request->input('password'));
         $user->save();
         return response([
             'message'=>'success'

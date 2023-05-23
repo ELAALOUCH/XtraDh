@@ -67,11 +67,11 @@ class EnseignantController extends Controller
     }
 
     // Cryptage du champ PPR
-    $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+   // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
 
     // Création de l'enseignant
     $enseignant = enseignant::create([
-        'PPR' => $encryptedPPR,
+        'PPR' => $request->input('PPR'),
         'Nom' => $request->input('Nom'),
         'prenom' => $request->input('prenom'),
         'Date_Naissance' => $request->input('Date_Naissance'),
@@ -94,7 +94,7 @@ class EnseignantController extends Controller
         $ens = enseignant::with(['user'])
             ->with(['grade'])
             ->find($idens);
-            $ens->PPR=Crypt::decrypt($ens->PPR);
+        //    $ens->PPR=Crypt::decrypt($ens->PPR);
         return response()->json($ens);
     }
 
@@ -117,7 +117,7 @@ class EnseignantController extends Controller
             'id_Grade' => 'required',
             'id_user'=>'required'
         ]);
-        $attributs['PPR']=Crypt::encrypt($attributs->PPR);
+   //     $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $ens->update($attributs);
         return response()->json($ens);
     }

@@ -18,7 +18,7 @@ class InterventionController extends Controller
         $interventions = Intervention::with(['etablissement:id,Nom'])
                             ->with(['enseignant:id,PPR,Nom,prenom'])
                             ->get();
-        $interventions['PPR']=Crypt::decrypt($interventions->PPR);
+  //      $interventions['PPR']=Crypt::decrypt($interventions->PPR);
         return response()->json($interventions);
     }
 
