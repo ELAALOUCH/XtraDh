@@ -38,8 +38,7 @@ Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
 
-/* Uusers Routes */
-Route::apiResource('User',userController::class);
+
 
 
 /** AUTH ROUTE */
@@ -61,6 +60,8 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('/logout',[AuthController::class,'logout']);
     Route::get('/user-profile',[AuthController::class,'userProfile']);
+    /* Uusers Routes */
+Route::apiResource('User',userController::class);
 });
 
 /*
