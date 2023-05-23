@@ -34,7 +34,6 @@ class AuthController extends Controller
             'email' =>'required|email',
             'password' =>'string|required'
         ]);
-
         //check email
             $user = User::where('email',$fields['email'])->first();
         //check password
@@ -43,16 +42,12 @@ class AuthController extends Controller
                 'message' => 'Email or Password are incorrect'
             ],404);
         }
-
-
                 $token = $user->createToken('MyAppToken')->plainTextToken;
                 $response= [
                     'user'=>$user,
                     'token' =>$token
                 ];
                 return response($response,202);
-
-
     }
 
     public function userProfile(){
