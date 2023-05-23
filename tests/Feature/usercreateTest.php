@@ -21,8 +21,8 @@ class testons extends TestCase
 public function testCreateUsers()
 
 { 
-    $users = User::factory()->count(10)->create();
-    echo $users[0]['email'];
+//     $users = User::factory()->count(10)->create();
+//     echo $users[0]['email'];
     $users = etablissement::factory()->count(10)->create();
     $users = grade::factory()->count(5)->create();
     $users = Intervention::factory()->count(10)->create();
