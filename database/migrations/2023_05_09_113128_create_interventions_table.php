@@ -15,9 +15,9 @@ class CreateInterventionsTable extends Migration
     {
         Schema::create('interventions', function (Blueprint $table) {
             $table->id('id_intervention');
-            $table->unsignedInteger('id_Intervenant');
+            $table->unsignedBigInteger('id_Intervenant');
             $table->foreign('id_Intervenant')->references('id')->on('enseignants');
-            $table->unsignedInteger('id_Etab');
+            $table->unsignedBigInteger('id_Etab');
             $table->foreign('id_Etab')->references('id')->on('etablissements');
             $table->string('Intitule_Intervention');
             $table->string('Annee_univ',10);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class InterventionController extends Controller
 {
@@ -17,6 +18,7 @@ class InterventionController extends Controller
         $interventions = Intervention::with(['etablissement:id,Nom'])
                             ->with(['enseignant:id,PPR,Nom,prenom'])
                             ->get();
+        $interventions['PPR']=Crypt::decrypt($interventions->PPR);
         return response()->json($interventions);
     }
 
@@ -37,7 +39,7 @@ class InterventionController extends Controller
             'Semestre'=>'required',
             'Date_debut'=>'required',
             'Date_fin'=>'required',
-            'Nbr_heures'=>'required' 
+            'Nbr_heures'=>'required'
         ]);
         $intervention = new Intervention($fields);
         return $intervention->save();
@@ -56,9 +58,9 @@ class InterventionController extends Controller
             $intervention->with(['etablissement:id,Nom'])
             ->with(['enseignant:id,PPR,Nom,prenom'])
             ->get()
-            
+
     );
-      
+
     }
 
     /**
@@ -80,7 +82,7 @@ class InterventionController extends Controller
              'Semestre'=>'required',
              'Date_debut'=>'required',
              'Date_fin'=>'required',
-             'Nbr_heures'=>'required' 
+             'Nbr_heures'=>'required'
          ]);
          $intervention->update($fields);
           return response()->json($intervention);
@@ -97,38 +99,38 @@ class InterventionController extends Controller
     {
         $intervention = intervention::where('id_intervention',$id)->first();
        $intervention->delete();
-       return $intervention;  
+       return $intervention;
     }
 
 
     public function valideruae($id)
     {
         $intervention = intervention::where('id_intervention',$id)->first();
-        $intervention->visa_uae = 1 ; 
-        return $intervention ; 
+        $intervention->visa_uae = 1 ;
+        return $intervention ;
     }
     public function valideretb($id)
     {
         $intervention = intervention::where('id_intervention',$id)->first();
         $intervention->visa_etb = 1 ;
-        $intervention->update(); 
-        return $intervention ; 
+        $intervention->update();
+        return $intervention ;
     }
 
     public function invalideruae($id)
     {
         $intervention = intervention::where('id_intervention',$id)->first();
-        $intervention->visa_uae = 0 ; 
-        $intervention->update(); 
-        return $intervention ; 
+        $intervention->visa_uae = 0 ;
+        $intervention->update();
+        return $intervention ;
     }
     public function invalideretb($id)
-    { 
-        
+    {
+
        // @dd($id);
         $intervention = intervention::where('id_intervention',$id)->first();
-        $intervention->visa_etb = 0 ; 
-        $intervention->update(); 
-        return $intervention ; 
+        $intervention->visa_etb = 0 ;
+        $intervention->update();
+        return $intervention ;
     }
 }

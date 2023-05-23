@@ -19,7 +19,7 @@ class CreateAdministrateursTable extends Migration
             $table->string('Nom');
             $table->string('prenom');
             $table->foreignId('Etablissement')->constrained('etablissements','id');
-            $table->unsignedInteger('id_user');
+            $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users');
             $table->timestamps();
         });

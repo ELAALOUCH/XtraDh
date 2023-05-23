@@ -19,11 +19,11 @@ class CreateEnseignantsTable extends Migration
             $table->string('Nom');
             $table->string('prenom');
             $table->date('Date_Naissance');
-            $table->unsignedInteger('Etablissement');
+            $table->unsignedBigInteger('Etablissement');
             $table->foreign('Etablissement')->references('id')->on('etablissements');
-            $table->unsignedInteger('id_Grade');
+            $table->unsignedBigInteger('id_Grade');
             $table->foreign('id_Grade')->references('id_Grade')->on('grades');
-            $table->unsignedInteger('id_user');
+            $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users');
             $table->timestamps();
         });
