@@ -15,28 +15,12 @@ use Doctrine\Instantiator\InstantiatorInterface;
 
 /* Etablissement Routes */
 
-Route::apiResource('Etablissement',EtablissementController::class);
 
-/*Grade Routes */
-Route::apiResource('Grade',GradeController::class);
 
-/* Enseignant routes */
-
-Route::apiResource('Enseignant',EnseignantController::class);
-
-/* Administrateur routes */
-
-Route::apiResource('Administrateur',AdministrateurController::class);
-
-/* Intervention Routes */
-Route::apiResource('Intervention',InterventionController::class);
-Route::get('/valideruae',[InterventionController::class,'valideruae']);
-Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
-Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
-Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
+
 
 
 
@@ -71,32 +55,56 @@ Route::middleware('auth:sanctum')->get('/api/profile', function (Request $reques
     return response()->json($user);
 });
 */
-/*
+
 Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
+    Route::apiResource('Etablissement',EtablissementController::class);
+    /*Grade Routes */
+Route::apiResource('Grade',GradeController::class);
+/* Enseignant routes */
+
+Route::apiResource('Enseignant',EnseignantController::class);
+/* Administrateur routes */
+
+Route::apiResource('Administrateur',AdministrateurController::class);
+/* Intervention Routes */
+Route::apiResource('Intervention',InterventionController::class);
+
 });
 
 Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
     //protected for admin etb
+    /* Enseignant routes */
+
+Route::apiResource('Enseignant',EnseignantController::class);
+/* Intervention Routes */
+Route::apiResource('Intervention',InterventionController::class);
+// /* Paiement Routes */
+// Route::apiResource('Paiement',PaiementController::class);
 });
 
 Route::middleware(['auth:sanctum','role:directeur'])->group( function () {
     //protected for directeur
+    Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
+Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 });
 
 Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
     //protected for président
+    Route::get('/valideruae',[InterventionController::class,'valideruae']);
+Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
 });
 
 Route::middleware(['auth:sanctum','role:prof'])->group( function () {
     //protected for prof
+    Route::apiResource('Enseignant',EnseignantController::class);
 });
 
 
 
 
 
-*/
+
 
 
 
