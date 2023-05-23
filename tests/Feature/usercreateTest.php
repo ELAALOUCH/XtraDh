@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class testons extends TestCase
 {
-    public function setUp()
+    public function setUp(): void 
     {
         parent::setUp();
         $this->artisan('migrate');
