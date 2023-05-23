@@ -87,10 +87,10 @@ export default {
       } else if (userType === 'président_univ') {
         this.$router.push('Dash_pu'); 
       } else if (userType === 'Admin_etab') {
-        this.$router.push('Dash_ae'); 
+        this.$router.push('Dash_ae' ); 
       } else {
         this.$router.push('dash_de');
-      }
+      }e
     } else {
       this.error = 'Invalid username or password';
     }

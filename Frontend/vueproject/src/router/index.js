@@ -60,7 +60,7 @@ const routes = [
     component:Wait
   },
   {
-    path:'/Resetpassword',
+    path:'/Resetpassword/:token',
     name:'Resetpassword',
     component:Resetpassword
   },

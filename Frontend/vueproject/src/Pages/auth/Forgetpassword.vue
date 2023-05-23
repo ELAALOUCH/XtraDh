@@ -31,12 +31,15 @@ import Footer from '@/components/Login/Footer.vue'
       };
     },
     methods: {
-     /* async submitForm() {
+      async submitForm() {
          const response= await axios.post('/Forgot',{
           email:this.email
          })
          console.log(response)
-      },*/
+         if (response.data.message==="check your email"){
+          
+         }
+      },
       startRedirect() {
       const redirectTime = 6000; // Redirect after 5 seconds (5000 milliseconds)
       setTimeout(() => {
