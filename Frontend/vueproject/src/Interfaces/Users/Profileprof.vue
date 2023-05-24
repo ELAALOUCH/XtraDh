@@ -7,9 +7,6 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                PPR
-              </th>
-              <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
                   Nom
                 </div>
@@ -41,9 +38,6 @@
           </thead>
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.ppr }}
-              </th>
               <td class="py-4 px-6">
                 {{ data.nom }}
               </td>
