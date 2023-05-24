@@ -23,12 +23,12 @@
 
         <div class="mb-4">
           <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
-          <input type="Prenom" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
           <label for="DATE_NAISSANCE" class="block text-gray-700 font-bold mb-2">DATE_NAISSANCE:</label>
-          <input type="DATE_NAISSANCE" id="DATE_NAISSANCE" v-model="formData.DATE_NAISSANCE" required class="border rounded w-full py-2 px-3">
+          <input type="date" id="DATE_NAISSANCE" v-model="formData.Date_Naissance" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
@@ -47,7 +47,7 @@
 
         <div class="mb-4">
           <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="Email" id="Email" v-model="formData.Email" required class="border rounded w-full py-2 px-3">
+          <input type="Email" id="Email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
 
 
@@ -80,42 +80,47 @@
 
 <script>
 import axios from 'axios'
-export default {
-  data() {
-    return {
-      showModal: false,
-      formData: {
-        PPR:'',
-        Nom: '',
-        Prenom: '',
-        DATE_NAISSANCE: '',
-        Etablissement: '',
-        Grade: '',
-        Email: '',
-        type: ''
-      }
-    };
-  },
-  async created(){
-            const etabs = await axios.get('/Etablissement');
-            this.etabs = etabs.data
+export default{
+        data(){       
+            return {
+               showModal: false,
+               formData:{
+                PPR: '',
+                Nom : '',
+                Prenom : '',
+                Date_Naissance: '',
+                grade : '',
+                email : '',
+                type : '',
+              }
+            }
+        },
+        async created(){
+         
             const grads = await axios.get('/Grade');
            this.grads = grads.data ; 
-  },
-  methods: {
-    closeModal() {
+        },
+        methods:{
+            async submitForm(){
+                 const response =  await axios.post('/storeProfEtb',{
+                    PPR:this.formData.PPR,
+                    Nom:this.formData.Nom,
+                    prenom:this.formData.Prenom,
+                    Date_Naissance:this.formData.Date_Naissance,
+                    grade:this.formData.grade,
+                    email:this.formData.email,
+                    type : this.formData.type,
+                    
+                 })
+                 
+                 console.log(response)
+
+            },
+      closeModal() {
       this.showModal = false;
     },
-   async submitForm() {
-    const response =  await axios.post('/storeEtb');
-    this.id_user = response.data.user.id_user ;
-    console.log(this.id_user);
-                
-      
-      this.closeModal();
+        }
     }
-  }
-};
 </script>
 
 <style>

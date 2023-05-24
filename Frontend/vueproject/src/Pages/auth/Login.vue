@@ -105,7 +105,7 @@ export default {
     case 'prof':
       this.$router.push('Dash_users');
       break;
-    case 'admin_uae':
+    case 'admin_univ':
       this.$router.push('Dash_au');
       break;
     case 'président_univ':

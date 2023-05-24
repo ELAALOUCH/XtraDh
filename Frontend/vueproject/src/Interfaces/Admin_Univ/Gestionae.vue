@@ -10,9 +10,6 @@
               email
             </th>
             <th scope="col" class="py-3 px-6">
-              password
-            </th>
-            <th scope="col" class="py-3 px-6">
               type
             </th>
             <th scope="col" class="py-3 px-6">
@@ -60,9 +57,6 @@
             <td class="py-4 px-6">
               {{ data.price }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
 
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
@@ -92,46 +86,39 @@ data(){
       color:'',
       category:'',
       price:null,  
-      productyObj:[
+      Obj:
       {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },     
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      
-  ],
+        Email:'',
+        Type:'',
+        PPR:'',
+        
 
+      }
   }
 },
+async mounted() {
+      try {
+        //console.log('aze')
+        await axios.get('/Enseignant').then(res => {
+          console.log(res)
+          this.profs=res.data
+        })
+        //
+
+        /*
+          ppr: this.name,
+          nom: this.nom,
+          prenom: this.prenom,
+          date_naissance: this.date_naissance,
+          etablissement: this.etablissement,
+          grade: this.grade,
+          email: this.email,
+          type: this.type*/
+        
+        this.showModal = false;
+      } catch (error) {
+        console.error(error);
+      }},
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
