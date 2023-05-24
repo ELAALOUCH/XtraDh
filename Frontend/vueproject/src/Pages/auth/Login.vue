@@ -1,20 +1,20 @@
 <template>
   <div class="flex flex-col md:flex-row h-screen items-center">
- 
+
  <div class="bg-blue-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
    <img src="@/assets/images/AF1QipPd4KGT1xMp13QlE4z_5-CuAMb52cNEd-AmuNrcw1600-h1000-k-no.jpeg" alt="" class="w-full h-full object-cover">
  </div>
- 
+
  <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
    <div class="w-full h-100 ">
      <h1 class="text-sky-600  text-6xl  text-center  ">XtraDh</h1>
- 
+
      <form  @submit.prevent="submitlogin()" class="mt-6" >
        <div>
          <label for="email" class="block text-gray-700">Email Address</label>
          <input v-model="user.email" type="email"  id="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
        </div>
- 
+
        <div class="mt-4">
     <label for="password" class="block text-gray-700">Password</label>
     <div class="relative">
@@ -28,7 +28,7 @@
       </div>
     </div>
   </div>
- 
+
        <div class="flex p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert"  v-show="error" >
             <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd">
@@ -53,13 +53,13 @@
      <hr class="my-6 border-gray-300 w-full">
      <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - All Rights Reserved.</p>
    </div>
- 
+
  </div>
  </div>
  </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex' 
+import { mapGetters, mapActions } from 'vuex'
 import axios from 'axios';
 import Header from '@/components/Login/Header.vue';
 import Footer from '@/components/Login/Footer.vue';
@@ -70,7 +70,7 @@ export default {
         return {
             user: {
                 email:'',
-                password:'',                             
+                password:'',
             },
             error:'',
             showPassword: false,
@@ -86,7 +86,7 @@ export default {
             'submit': 'auth/submit'
         }),
         ...mapGetters({
-          'authenticated':'auth/authenticated', 
+          'authenticated':'auth/authenticated',
           'user':'auth/authenticated'
         }),
             togglePasswordVisibility() {
@@ -123,22 +123,51 @@ export default {
     this.error = 'An error occurred during login';
   }
 }
+, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+    }
+
   }
 
-}
-   
+
+
+
 </script>
 
 
 <style>
   .image {
-    max-width: 800px; 
+    max-width: 800px;
     height: 450px;
     border-radius: 10px;
   }
-  
+
   .w-96 {
-    margin-bottom: 3px; 
+    margin-bottom: 3px;
   }
 
 </style>
