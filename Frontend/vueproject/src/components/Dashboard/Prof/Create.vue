@@ -10,6 +10,7 @@
       <div class="modal-content bg-white rounded-lg p-6 max-w-3xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
         <h2 class="text-2xl font-bold mb-4">Ajouter Prof</h2>
+
         <div class="mb-4">
           <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
@@ -32,12 +33,14 @@
 
         <div class="mb-4">
           <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
-          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+          <select v-model="Etablissement">
+                <option :value="etab.id"  v-for="etab  in etabs" :key="etab">{{etab.Nom}}</option>
+            </select>
         </div>
 
         <div class="mb-4">
           <label for="Grade" class="block text-gray-700 font-bold mb-2">Grade:</label>
-          <select v-model="grade">
+          <select v-model="formData.grade">
                 <option :value="grad.id_Grade"  v-for="grad  in grads" :key="grad">{{grad.designation}}</option>
             </select>
         </div>
@@ -47,18 +50,21 @@
           <input type="Email" id="Email" v-model="formData.Email" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4">
-          <label for="password" class="block text-gray-700 font-bold mb-2">password:</label>
-          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
-        </div>
+
 
         <div class="mb-4">
           <label for="type" class="block text-gray-700 font-bold mb-2">type:</label>
-          <input type="type" id="type" v-model="formData.type" required class="border rounded w-full py-2 px-3">
-        </div>
+          <select v-model="formData.type" required class="border rounded w-full py-2 px-3">
+                <option value="1">Enseignant</option>
+                <option value="2">Admin etablissement</option>
+                <option value="3">Directeur etablissement</option>
+                <option value="4">President université</option>
+                <option value="5">Admin université</option>
+            </select>       
+           </div>
 
         <div class="flex justify-end">
-          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             @click="submitForm">
             Add
           </button>
@@ -73,41 +79,38 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       showModal: false,
       formData: {
-        PPR: '',
+        PPR:'',
         Nom: '',
         Prenom: '',
         DATE_NAISSANCE: '',
         Etablissement: '',
         Grade: '',
         Email: '',
-        password: '',
         type: ''
       }
     };
+  },
+  async created(){
+            const etabs = await axios.get('/Etablissement');
+            this.etabs = etabs.data
+            const grads = await axios.get('/Grade');
+           this.grads = grads.data ; 
   },
   methods: {
     closeModal() {
       this.showModal = false;
     },
-    submitForm() {
-      // Perform CRUD logic here, such as adding the etablissement
-      console.log(this.formData);
-
-      // Reset the form data and close the modal
-      this.formData.PPR = '';
-      this.formData.Nom = '';
-      this.formData.Prenom = '';
-      this.formData.DATE_NAISSANCE = '';
-      this.formData.Etablissement = '';
-      this.formData.Grade = '';
-      this.formData.Email = '';
-      this.formData.password = '';
-      this.formData.type = '';
+   async submitForm() {
+    const response =  await axios.post('/storeEtb');
+    this.id_user = response.data.user.id_user ;
+    console.log(this.id_user);
+                
       
       this.closeModal();
     }
