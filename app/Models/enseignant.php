@@ -34,8 +34,10 @@ class Enseignant extends Model
         
     }
     public function  intervention(){
-        return $this->belongsToMany(etablissement::class,intervention::class,'id_Intervenant','id_Etab');
-        
+        return $this->belongsTo(intervention::class,'id','id_Intervenant');   
+    }
+    public function interventionEtab(){
+        return $this->belongsTo(etablissement::class,intervention::class,'id_Intervenant','id_Etab');
     }
     public function user(){
         return $this->belongsTo(user::class,'id','id_user','enseignants');
