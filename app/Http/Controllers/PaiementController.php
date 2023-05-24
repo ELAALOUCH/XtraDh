@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enseignant;
+use App\Models\grade;
 use App\Models\intervention;
 use App\Models\Paiement;
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class PaiementController extends Controller
     public function index()
     {
         $paiements = paiement::with(['enseignant:id,Nom,prenom'])
-                              ->with(['etablissement:id,Nom'])  
-                              ->get();
-        return response()->json($paiements);                      
+            ->with(['etablissement:id,Nom'])
+            ->get();
+        return response()->json($paiements);
     }
 
     /**
@@ -31,21 +32,21 @@ class PaiementController extends Controller
      */
     public function store(Request $request)
     {
-       $fields =  $request->validate([
+        $fields =  $request->validate([
             'id_Intervenant'=>'required|exists:enseignants,id',
             'id_Etab'=>'required|exists:etablissements,id',
-             'VH'=>'required',
-             'Taux_H'=>'required', 
-             'Annee_univ'=>'required',
-             'Semestre'=>'required',
-             'Brut'=>'required',
-             'IR'=>'required',
-          
+            'VH'=>'required',
+            'Taux_H'=>'required',
+            'Annee_univ'=>'required',
+            'Semestre'=>'required',
+            'Brut'=>'required',
+            'IR'=>'required',
+
         ]);
-         $paiement = new Paiement();
-         $paiement->fill($fields);
-         $paiement->Taux_H = $fields["Taux_H"];
-         return $paiement->save();
+        $paiement = new Paiement();
+        $paiement->fill($fields);
+        $paiement->Taux_H = $fields["Taux_H"];
+        return $paiement->save();
     }
 
     /**
@@ -57,10 +58,10 @@ class PaiementController extends Controller
     public function show( $id)
     {
         $paiement = Paiement::where('id',$id)
-                            ->with(['enseignant:id,Nom,prenom'])
-                            ->with(['etablissement:id,Nom'])  
-                            ->first();
-        return response()->json($paiement);    
+            ->with(['enseignant:id,Nom,prenom'])
+            ->with(['etablissement:id,Nom'])
+            ->first();
+        return response()->json($paiement);
     }
 
     /**
@@ -75,13 +76,13 @@ class PaiementController extends Controller
         $fields =  $request->validate([
             'id_Intervenant'=>'required|exists:enseignants,id',
             'id_Etab'=>'required|exists:etablissements,id',
-             'VH'=>'required',
-             'Taux_H'=>'required', 
-             'Annee_univ'=>'required',
-             'Semestre'=>'required',
-             'Brut'=>'required',
-             'IR'=>'required',
-          
+            'VH'=>'required',
+            'Taux_H'=>'required',
+            'Annee_univ'=>'required',
+            'Semestre'=>'required',
+            'Brut'=>'required',
+            'IR'=>'required',
+
         ]);
         $paiement = Paiement::find($id);
         $paiement->Taux_H = $fields["Taux_H"];
@@ -102,8 +103,9 @@ class PaiementController extends Controller
     }
 
 
-    public function postfix(){    
-        $postfix = [];   
+    public function postfix(){
+        //cette methode pour envoye la liste des paiement au developpeur POSTFIX LINUX
+        $postfix = [];
         $avant = date("Y")-1;
         $apres = date("Y");
         $date = $avant.'/'.$apres ;
@@ -112,44 +114,52 @@ class PaiementController extends Controller
         //@dd($paiements = Paiement::select('id','id_Intervenant'));
         foreach($paiements as $paie){
             $enseingant = enseignant::where('id',$paie->id_Intervenant)
-                                ->with(['user:id_user,email'])
-                                ->first();
+                ->with(['user:id_user,email'])
+                ->first();
             $email = $enseingant->user->email;
-            //echo $email."<br>";   
+            //echo $email."<br>";
             $url = '/api/generate-pdf/'.$paie->id;
             $nom = $enseingant->Nom;
-            $prenom = $enseingant->prenom;  
-           $user = ['nom'=>$nom,'prenom'=>$prenom,'email'=>$email,'url'=>$url];
-           array_push($postfix,$user); 
+            $prenom = $enseingant->prenom;
+            $user = ['nom'=>$nom,'prenom'=>$prenom,'email'=>$email,'url'=>$url];
+            array_push($postfix,$user);
         }
-return response()->json($postfix);
+        return response()->json($postfix);
 
 
 
     }
 
-    public function generatePDFprof($id){
-        
-        $paiement = Paiement::where('id',$id)
-                                ->with(['enseignant:id,Nom,prenom'])
-                                ->with(['etablissement:id,Nom'])  
-                                ->first();
+    public function generatePDFprof($id_paiement){
+        //cette methode pour la generation des pdf des paiement
+        $message = '';
+        $paiement = Paiement::where('id',$id_paiement)
+            ->with(['enseignant:id,Nom,prenom,id_Grade'])
+            ->with(['etablissement:id,Nom'])
+            ->first();
+
+        $grade = grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
         //@dd($paiement->enseignant->Nom);
-        $intervention = $paiement->enseignant->id ; 
-       
+        $intervention = $paiement->enseignant->id ;
+
         $intervention = intervention::where('id_Intervenant',$intervention)
-                                    ->with(['etablissement:id,Nom']) 
-                                    ->get()
-                                    ;
-       // @dd($intervention);
+            ->where('visa_uae',1)
+            ->where('visa_etb',1)
+            ->with(['etablissement:id,Nom'])
+            ->get()
+        ;
+
+        // @ddreturn $intervention;($intervention);
+        //return $intervention ;
         $data = [
             'paiement'=>$paiement,
-            'intervention'=>$intervention
-            ];
-
-            $pdf = PDF::loadView('PDF.pdf', $data);
-            return $pdf->download('itsolutionstuff.pdf');
+            'intervention'=>$intervention,
+            'grade'=>$grade
+        ];
+        $pdf = PDF::loadView('PDF.pdf', $data);
+        return  $pdf->download('itsolutionstuff.pdf');
     }
+
 
 
 
