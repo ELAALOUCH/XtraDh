@@ -43,6 +43,7 @@
 <body>
 
     {{$paiement}}
+    {{$message}}
       <div class="container">
         <table class="styled-table">
             <tr>          

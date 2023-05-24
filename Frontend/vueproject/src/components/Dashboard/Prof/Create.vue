@@ -47,6 +47,16 @@
           <input type="Email" id="Email" v-model="formData.Email" required class="border rounded w-full py-2 px-3">
         </div>
 
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 font-bold mb-2">password:</label>
+          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="type" class="block text-gray-700 font-bold mb-2">type:</label>
+          <input type="type" id="type" v-model="formData.type" required class="border rounded w-full py-2 px-3">
+        </div>
+
         <div class="flex justify-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             @click="submitForm">
@@ -68,8 +78,15 @@ export default {
     return {
       showModal: false,
       formData: {
-        name: '',
-        email: ''
+        PPR: '',
+        Nom: '',
+        Prenom: '',
+        DATE_NAISSANCE: '',
+        Etablissement: '',
+        Grade: '',
+        Email: '',
+        password: '',
+        type: ''
       }
     };
   },
@@ -82,8 +99,16 @@ export default {
       console.log(this.formData);
 
       // Reset the form data and close the modal
-      this.formData.name = '';
-      this.formData.email = '';
+      this.formData.PPR = '';
+      this.formData.Nom = '';
+      this.formData.Prenom = '';
+      this.formData.DATE_NAISSANCE = '';
+      this.formData.Etablissement = '';
+      this.formData.Grade = '';
+      this.formData.Email = '';
+      this.formData.password = '';
+      this.formData.type = '';
+      
       this.closeModal();
     }
   }

@@ -17,7 +17,6 @@ use Doctrine\Instantiator\InstantiatorInterface;
 
 
 
-
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
 
@@ -37,16 +36,17 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 
-//
-
+/**  Users Routes */
+Route::apiResource('User',userController::class);
+Route::post('/storeEtb',[userController::class,'storeEtb'])->middleware("auth:sanctum");
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('/logout',[AuthController::class,'logout']);
     Route::get('/user-profile',[AuthController::class,'userProfile']);
-    /* Uusers Routes */
-Route::apiResource('User',userController::class);
+
 });
+
 
 /*
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
