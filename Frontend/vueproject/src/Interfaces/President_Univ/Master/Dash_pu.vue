@@ -54,13 +54,13 @@
             </router-link>
 
             <router-link to="/GestionpI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <intervention/>
+             <interges/>
              Gestion des Interventions
             </router-link>           
           
 
             <router-link to="/ConsultationP" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-            <Grade/> Consultation de paiments
+            <eye/> Consultation de paiments
             </router-link>
 
 
@@ -125,13 +125,13 @@
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
 import intervention from '@/components/Dashboard/Icons/intervention.vue';
-import Grade from '@/components/Dashboard/Icons/Grade.vue';
-import Shcool from '@/components//Dashboard/Icons/Shcool.vue'
-  import Footer from '@/components/Login/Footer.vue'
+import eye from '@/components/Dashboard/Icons/eye.vue';
+import interges from '@/components/Dashboard/Icons/interges.vue';
+
   import { mapGetters ,mapActions} from 'vuex' 
 
  export default {
-  components:{Footer,Decconexion,Profile,Profile2,intervention,Grade,Shcool},
+  components:{Decconexion,Profile,Profile2,intervention,eye,interges},
   data() {
   return {
     showSide: true

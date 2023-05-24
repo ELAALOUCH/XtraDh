@@ -13,7 +13,7 @@
             
 
             <router-link to="/paimep" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <Bilan/>
+               <paiement/>
               Paiment
             </router-link>
  
@@ -83,6 +83,7 @@
   </div>
 </template>
  <script>
+  import paiement from '@/components/Dashboard/Icons/paiement.vue'
  import Bilan from '@/components/Dashboard/Icons/Bilan.vue'
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue'
 import Profile2 from '@/components/Dashboard/Icons/Profile2.vue'
@@ -90,7 +91,7 @@ import { mapGetters ,mapActions} from 'vuex'
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
 
  export default {
-   components:{ Profile2, Decconexion,Bilan,Profile} ,
+   components:{ Profile2, Decconexion,Bilan,Profile,paiement} ,
   data() {
      return {
        showSide: true
