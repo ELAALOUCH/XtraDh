@@ -40,6 +40,7 @@
         <tbody>
           <tr v-for="data in Obj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="py-4 px-6" >
+              {{ data.user }}
             </td>
             <td class="py-4 px-6" >
             </td>            
@@ -83,6 +84,7 @@ async mounted() {
       try {
         console.log('aze')
         await axios.get('/Administrateur').then(res => {
+         // console.log(res)
           console.log(res.data[0].user)
           console.log(res.data[0].prenom)
           console.log(res.data[0].etablissement.Nom)
