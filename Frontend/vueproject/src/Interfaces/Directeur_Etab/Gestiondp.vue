@@ -39,22 +39,25 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
+        <tbody >
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="item in profs " :key="item">
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.name }}
+             {{ item.PPR }}
             </th>
             <td class="py-4 px-6">
-              {{ data.color }}
+              {{ item.Nom }}
             </td>
             <td class="py-4 px-6">
-              {{ data.category }}
+              {{ item.prenom }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ item.Date_Naissance }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
+            <td class="py-4 px-6" >
+              <div v-if="item.etab_permanant">
+                {{ item.etab_permanant.Nom}}
+              </div>
+              
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
@@ -76,27 +79,20 @@
 <script>
 import Create from '@/components/Dashboard/Prof/Create.vue'
 import Edit from '@/components/Dashboard/Prof/Edit.vue'
-
+import axios from 'axios'
 export default {
   components: {Create,Edit},
 data(){
   return {
-      name:'',
-      color:'',
-      category:'',
-      price:null,   
-      productyObj:[
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      
-  ],
+      profs:null,
 
   }
+},
+async created(){
+  const response = await axios.get('/Enseignant');
+  console.log(response.data)
+  this.profs = response.data
+  console.log(this.profs[0].etab_permanant.Nom)
 },
 methods:{
   togglemodal(){
