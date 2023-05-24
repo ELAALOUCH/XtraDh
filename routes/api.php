@@ -38,7 +38,10 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 /**  Users Routes */
 Route::apiResource('User',userController::class);
-Route::post('/storeEtb',[userController::class,'storeEtb'])->middleware("auth:sanctum");
+Route::post('/storeProfEtb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
+Route::post('/storeAdmEtb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
+Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middleware("auth:sanctum");
+
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {

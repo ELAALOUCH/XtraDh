@@ -17,9 +17,9 @@ class paiement extends Model
         'IR',
         'Annee_univ',
         'Semestre',
-        
+
     ];
-    
+
     public function enseignant(){
         return $this->belongsTo(enseignant::class,'id_Intervenant','id');
     }
@@ -27,5 +27,7 @@ class paiement extends Model
     public function etablissement(){
         return $this->belongsTo(etablissement::class,'id_Etab','id');
     }
-
+    public function grade(){
+        return $this->belongsTo(grade::class,'id_Grade','id');
+    }
 }
