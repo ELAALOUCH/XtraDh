@@ -11,42 +11,7 @@
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
             
-            <!--
-             <router-link to="/Gestionpuau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-              <Profile/>
-              Gestion des admins d'universités
-            </router-link> 
-            
-              <router-link to="/Gestionpae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-              <Profile/>
-              Gestion des admins d'etablissements
-            </router-link>
-            
 
-            <router-link to="/Gestionpde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <Profile2/>
-             Gestion des directeurs d'établissement
-            </router-link>
-
-            <router-link to="/GestionE" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-            <Shcool/> Gestion des établissement
-            </router-link> 
-          
-         
-
-
-            <router-link to="/Gestionpp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-              <Profile/>
-              Gestion des profs
-            </router-link>
-
-            <router-link to="/GestionpG" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-            <Grade/> Gestion de Grade
-            </router-link>       
-          
-          
-          
-          -->
         
           <router-link to="/ConsoI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <intervention/>

@@ -112,7 +112,7 @@ export default {
       this.$router.push('Dash_ae');
       break;
    case 'direct_etb':
-      this.$router.push('dash_de');
+      this.$router.push('Dash_de');
       break;
   }
 } else {
