@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enseignant;
+use App\Models\grade;
 use App\Models\intervention;
 use App\Models\Paiement;
 use Illuminate\Http\Request;
@@ -129,16 +130,17 @@ return response()->json($postfix);
 
     }
 
-    public function generatePDFprof($id){
+    public function generatePDFprof($id_paiement){
         //cette methode pour la generation des pdf des paiement 
         $message = '';
-        $paiement = Paiement::where('id',$id)
-                                ->with(['enseignant:id,Nom,prenom'])
+        $paiement = Paiement::where('id',$id_paiement)
+                                ->with(['enseignant:id,Nom,prenom,id_Grade'])
                                 ->with(['etablissement:id,Nom'])  
                                 ->first();
         if($paiement->VH>=200){
             $message = "Vous Avez atteind le plafond de 200H Heures";
-        }                        
+        } 
+        $grade = grade::where('id_Grade',$paiement->enseignant->id_Grade)->get();
         //@dd($paiement->enseignant->Nom);
         $intervention = $paiement->enseignant->id ; 
        
@@ -153,13 +155,13 @@ return response()->json($postfix);
        $data = [
             'paiement'=>$paiement,
             'intervention'=>$intervention,
-            'message'=>$message
+            'message'=>$message,
+            'grade'=>$grade
             ];
-
+            
             $pdf = PDF::loadView('PDF.pdf', $data);
-            return $pdf->download('itsolutionstuff.pdf');
+           return  $pdf->download('itsolutionstuff.pdf');
     }
 
-
-
+    
 }
