@@ -113,42 +113,8 @@ data(){
           color:'Gold',
           category:' Ipad ',
           price:5000
-      },
+      },     
       {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },      {
           id:1,
           name:'Azus',
           color:'Gold',

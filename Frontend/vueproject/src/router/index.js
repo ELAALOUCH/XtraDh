@@ -31,15 +31,20 @@ import Gestionde from '@/Interfaces/Admin_Etab/Gestionde.vue'
 import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
 
 
-import Gestiondp from '@/Interfaces/Directeur_Etab/Gestiondp.vue'
 import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
 import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
+import ConsodI from '@/Interfaces/Directeur_Etab/ConsodI.vue'
+import Consodp from '@/Interfaces/Directeur_Etab/Consodp.vue'
 
 
 
 import Profhome from '@/Interfaces/Users/Profhome.vue' 
-import Profln from '@/Interfaces/Users/Profln.vue' 
-import Profileprof from '@/Interfaces/Users/Profileprof'
+import Profileprof from '@/Interfaces/Users/Profileprof.vue'
+import interp from '@/Interfaces/Users/interp.vue'
+import paimep from '@/Interfaces/Users/paimep.vue'
+
+
+
 
 import store from '@/store';
 const routes = [
@@ -151,10 +156,7 @@ const routes = [
     },*/
     redirect:'Gestiondp',
     children :[
-      {
-        path: '/Gestiondp',
-        component: Gestiondp
-      },
+
       {
         path:'/GestiondI',
         component:GestiondI
@@ -163,6 +165,14 @@ const routes = [
         path:'/Profilede',
         component:Profilede
       },
+      {
+        path:'/ConsodI',
+        component:ConsodI
+      },
+      {
+        path:'/Consodp',
+        component:Consodp
+      }
 
 ]
   },
@@ -184,22 +194,10 @@ const routes = [
     },*/
     redirect:'Profilepu',
     children :[
-      /*{
-        path: '/Gestionpae',
-        component: Gestionpae
-      },
-      {
-        path: '/Gestionpde',
-        component:Gestionpde
-      },*/
       {
         path:'/GestionpI',
         component:GestionpI
       },
-      /*{
-        path:'/GestionpG',
-        component:GestionpG
-      },*/
       {
         path:'/ConsultationP',
         component:ConsultationP
@@ -208,14 +206,6 @@ const routes = [
         path:'/ConsoI',
         component:ConsoI
       }, 
-      /*{
-        path:'/Gestionpp',
-        component:Gestionpp       
-      },
-      {
-        path:'/Gestionpuau',
-        component:Gestionpuau       
-      },*/
       {
         path:'/Profilepu',
         component:Profilepu   
@@ -237,20 +227,21 @@ const routes = [
 
       next()
     },*/
-    redirect:'Profhome',
+    redirect:'Profileprof',
     children :[
-      {
-        path:'/Profhome',
-        component:Profhome,
-      },
-      {
-       path:'/Profln',
-       component:Profln,
-      },
       {
         path:'/Profileprof',
         component:Profileprof
-      }
+      },
+      {
+        path:'/interp',
+        component:interp
+      },
+      {
+        path:'/paimep',
+        component:paimep
+      },
+
     ]
   },
 

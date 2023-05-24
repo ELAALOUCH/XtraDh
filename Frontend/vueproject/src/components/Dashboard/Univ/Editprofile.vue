@@ -30,6 +30,8 @@
           <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
         </div>
 
+        
+
         <div class="flex justify-end">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
             Update

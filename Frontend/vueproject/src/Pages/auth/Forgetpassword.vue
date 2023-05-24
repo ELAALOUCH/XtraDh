@@ -8,12 +8,13 @@
             <input v-model="email" id="email" type="email" class="w-full border border-gray-300 focus:ring focus:ring-blue-200 rounded-md px-4 py-2" required>
           </div> 
           <div class="flex justify-between items-center">
-            <button @click="startRedirect" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Email Me a link</button>
+            <button @click="" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Email Me a link</button>
           </div>
         </form>
         <div v-if="isLoading" class="fixed top-0 left-30 right-0 bottom-30 flex items-center justify-center z-20">
       <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
       </div>
+      <span class="block sm:inline" >{{error}}</span>
     </div>
   </div>
   </template>
@@ -27,27 +28,31 @@ import Footer from '@/components/Login/Footer.vue'
     data() {
       return {
         email: '',
-        isLoading:''
+        isLoading:'',
+        error:''
       };
     },
     methods: {
       async submitForm() {
-         const response= await axios.post('/Forgot',{
+        try{
+          const response= await axios.post('/Forgot',{
           email:this.email
          })
-         console.log(response)
-         if (response.data.message==="check your email"){
-          
+         this.$router.push('/Wait'); // Replace with your desired route path
+        }catch(error){
+          this.error =  error.response.data.message
+          console.log(error.response.data.message)
          }
-      },
-      startRedirect() {
+      } }}
+    
+       /* startRedirect() {
       const redirectTime = 6000; // Redirect after 5 seconds (5000 milliseconds)
       setTimeout(() => {
         this.$router.push('/Wait'); // Replace with your desired route path
       }, redirectTime);
        if(this.email!=="")this.isLoading=!this.isLoading;
-    }
+    }}
+         }*/
       
-    },
-}
+      
 </script>
