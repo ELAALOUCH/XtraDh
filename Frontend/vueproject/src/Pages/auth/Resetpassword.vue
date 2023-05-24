@@ -57,12 +57,8 @@ import { createLogger } from 'vuex';
           //  console.log(error.response.data.errors.password_confirm[0])
           this.error =  error.response.data.errors.password_confirm[0]
         }
-        /*
-        this.$router.push('/')
-        if (this.password !== this.confirmPassword) {
-          alert('Passwords do not match!');
         
-        }  */    
+            
       },
     },
   };

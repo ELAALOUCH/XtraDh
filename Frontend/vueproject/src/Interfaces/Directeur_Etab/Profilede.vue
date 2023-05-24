@@ -8,9 +8,6 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                PPR
-              </th>
-              <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
                   Nom
                 </div>
@@ -26,15 +23,22 @@
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  email
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  password
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
              </th>             
 
             </tr>
           </thead>
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.ppr }}
-              </th>
               <td class="py-4 px-6">
                 {{ data.nom }}
               </td>
@@ -43,7 +47,13 @@
               </td>
               <td class="py-4 px-6">
                 {{ data.etablissement }}
-              </td>       
+              </td>
+              <td class="py-4 px-6">
+                {{ data.email }}
+              </td>        
+              <td class="py-4 px-6">
+                {{ data.password }}
+              </td> 
 
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
@@ -69,13 +79,17 @@
         ppr:'',
         nom:'',
         prenom:'',
-        etablissement:'',   
+        etablissement:'',
+        email:'44',
+        password:'gf'   ,
         productyObj:[
         {
         ppr:'12',
         nom:'azerr',
         prenom:'ytn',
-        etablissement:'aertbsf', 
+        etablissement:'aertbsf',
+        email:'4fsd',
+        password:'gfsf' 
         },
         
     ],

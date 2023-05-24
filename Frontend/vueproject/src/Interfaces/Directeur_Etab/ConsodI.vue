@@ -1,64 +1,72 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Changez Votre Profile</h3>
-  
+      <h3 class="text-2xl font-bold text-left py-2">Consultation des interventions</h3>
+
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
+               Intitule_intervention
+              </th>
+              <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Nom
+                  Annee_univ
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Prenom             
+                  Semestre             
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Etablissement
+                  Date_debut
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  email
+                  Date_fin
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  password
-                </div>
+                  Nbr_heures
               </th>
               <th scope="col" class="py-3 px-6">
-             </th>             
-
+                  Visa_uae
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Visa_etb
+              </th>            
             </tr>
           </thead>
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
+              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+               {{ data.name }}
+              </th>
               <td class="py-4 px-6">
-                {{ data.nom }}
+                {{ data.color }}
               </td>
               <td class="py-4 px-6">
-                {{ data.prenom }}
+                {{ data.category }}
               </td>
               <td class="py-4 px-6">
-                {{ data.etablissement }}
-              </td>  
-              <td class="py-4 px-6">
-                {{ data.email }}
+                {{ data.price }}
               </td>
               <td class="py-4 px-6">
-                {{ data.password }}
-              </td>       
+                {{ data.price }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
+              <td class="py-4 px-6">
+                {{ data.price }}
+              </td>
 
-              <td class="py-4 px-6 text-right">
-                <div class="inline-flex">
-                   <Editprofile/>                 
-                </div>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -69,38 +77,36 @@
   </template>
   
   <script>
-  import Editprofile from '@/components/Dashboard/Univ/Editprofile.vue'
-  
+ 
   export default {
-    components: {Editprofile},
+    components: {},
   data(){
     return {
-        ppr:'',
-        nom:'',
-        prenom:'',
-        etablissement:'',
-        email:'',
-        password:'',   
+        name:'',
+        color:'',
+        category:'',
+        price:null,   
         productyObj:[
         {
-        ppr:'12',
-        nom:'azerr',
-        prenom:'ytn',
-        etablissement:'aertbsf',
-        email:'so@gkdf',
-        password:'100',   
+            id:1,
+            name:'Azus',
+            color:'Gold',
+            category:' Ipad ',
+            price:5000
         },
         
     ],
-  
+
     }
   },
   methods:{
-    togglemodal(){
-    this.showmodal=!this.showmodal
-  },},
-  
+   refuser(){
+    alert('youll delete')
+   }
+
+  },
+
   }
-  
+
   </script>
   

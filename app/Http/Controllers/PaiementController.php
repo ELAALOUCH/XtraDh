@@ -103,6 +103,7 @@ class PaiementController extends Controller
 
 
     public function postfix(){    
+        //cette methode pour envoye la liste des paiement au developpeur POSTFIX LINUX
         $postfix = [];   
         $avant = date("Y")-1;
         $apres = date("Y");
@@ -129,22 +130,30 @@ return response()->json($postfix);
     }
 
     public function generatePDFprof($id){
-        
+        //cette methode pour la generation des pdf des paiement 
+        $message = '';
         $paiement = Paiement::where('id',$id)
                                 ->with(['enseignant:id,Nom,prenom'])
                                 ->with(['etablissement:id,Nom'])  
                                 ->first();
+        if($paiement->VH>=200){
+            $message = "Vous Avez atteind le plafond de 200H Heures";
+        }                        
         //@dd($paiement->enseignant->Nom);
         $intervention = $paiement->enseignant->id ; 
        
         $intervention = intervention::where('id_Intervenant',$intervention)
+                                    ->where('visa_uae',1)
+                                    ->where('visa_etb',1)
                                     ->with(['etablissement:id,Nom']) 
                                     ->get()
                                     ;
        // @dd($intervention);
-        $data = [
+       //return $intervention ;  
+       $data = [
             'paiement'=>$paiement,
-            'intervention'=>$intervention
+            'intervention'=>$intervention,
+            'message'=>$message
             ];
 
             $pdf = PDF::loadView('PDF.pdf', $data);
