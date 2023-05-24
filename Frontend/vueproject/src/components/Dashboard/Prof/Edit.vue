@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -92,12 +94,14 @@ export default {
     closeModal() {
       this.showModal = false;
     },
-    submitForm() {
-      // Perform update logic here
-      console.log(this.formData);
-
-      // Close the modal
-      this.closeModal();
+    async submitForm() {
+      try {
+        const response = await axios.put(`/api/Enseignant/${this.formData.PPR}`, this.formData);
+        console.log(response.data); 
+        this.closeModal();
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 };

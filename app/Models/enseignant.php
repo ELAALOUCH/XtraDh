@@ -23,7 +23,7 @@ class Enseignant extends Model
     ];
 
     public function etab_permanant(){
-        return $this->belongsTo(etablissement::class,'id','id','enseignant');
+        return $this->belongsTo(etablissement::class,'Etablissement','id');
     }
     public function grade()
     {

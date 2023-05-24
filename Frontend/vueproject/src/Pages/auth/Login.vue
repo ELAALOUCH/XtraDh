@@ -7,8 +7,11 @@
 
  <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
    <div class="w-full h-100 ">
-     <h1 class="text-sky-600  text-6xl  text-center  ">XtraDh</h1>
 
+     <div class=" ">
+      <img src="@/assets/images/Image1.png" alt="image">
+     </div>
+ 
      <form  @submit.prevent="submitlogin()" class="mt-6" >
        <div>
          <label for="email" class="block text-gray-700">Email Address</label>
@@ -102,7 +105,7 @@ export default {
     case 'prof':
       this.$router.push('Dash_users');
       break;
-    case 'admin_uae':
+    case 'admin_univ':
       this.$router.push('Dash_au');
       break;
     case 'président_univ':
@@ -111,9 +114,11 @@ export default {
     case 'admin_etb':
       this.$router.push('Dash_ae');
       break;
-   case 'direct_etb':
+   case 'directeur_etb':
       this.$router.push('Dash_de');
       break;
+    default :
+      this.$router.push('/')
   }
 } else {
   this.error = 'Invalid username or password';
