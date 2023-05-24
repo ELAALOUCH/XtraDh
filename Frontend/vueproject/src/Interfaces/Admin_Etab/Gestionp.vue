@@ -56,7 +56,7 @@
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
              {{ data.PPR }}
             </th>
-            <td class="py-4 px-6">
+            <td class="py-4 px-6" >
               {{ data.Nom }}
             </td>
             <td class="py-4 px-6">
@@ -65,16 +65,16 @@
             <td class="py-4 px-6">
               {{ data.Date_Naissance }}
             </td>
-            <td class="py-4 px-6" v-if ="data.etab_permanant">
+            <td class="py-4 px-6" >
               {{ data.etab_permanant.Nom }}
             </td>
-            <td class="py-4 px-6" v-if ="data.grade">
+            <td class="py-4 px-6" >
               {{ data.grade.designation }}
             </td>
-            <td class="py-4 px-6" v-if ="data.user">
+            <td class="py-4 px-6" >
               {{ data.user.email }}
             </td>
-            <td class="py-4 px-6" v-if ="data.user">
+            <td class="py-4 px-6">
               {{ data.user.type }}
             </td>
             <td class="py-4 px-6 text-right">
