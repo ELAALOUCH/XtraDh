@@ -103,9 +103,9 @@ class PaiementController extends Controller
     }
 
 
-    public function postfix(){
+    public function postfix(){    
         //cette methode pour envoye la liste des paiement au developpeur POSTFIX LINUX
-        $postfix = [];
+        $postfix = [];   
         $avant = date("Y")-1;
         $apres = date("Y");
         $date = $avant.'/'.$apres ;
@@ -132,7 +132,7 @@ class PaiementController extends Controller
 
     public function generatePDFprof($id_paiement){
         //cette methode pour la generation des pdf des paiement
-        $message = '';
+        
         $paiement = Paiement::where('id',$id_paiement)
             ->with(['enseignant:id,Nom,prenom,id_Grade'])
             ->with(['etablissement:id,Nom'])
@@ -143,24 +143,22 @@ class PaiementController extends Controller
         $intervention = $paiement->enseignant->id ;
 
         $intervention = intervention::where('id_Intervenant',$intervention)
-            ->where('visa_uae',1)
-            ->where('visa_etb',1)
-            ->with(['etablissement:id,Nom'])
-            ->get()
-        ;
-
-        // @ddreturn $intervention;($intervention);
-        //return $intervention ;
-        $data = [
+                                    ->where('visa_uae',1)
+                                    ->where('visa_etb',1)
+                                    ->with(['etablissement:id,Nom']) 
+                                    ->get()
+                                    ;
+       // @dd($intervention);
+       //return $intervention ;  
+       $data = [
             'paiement'=>$paiement,
             'intervention'=>$intervention,
             'grade'=>$grade
-        ];
-        $pdf = PDF::loadView('PDF.pdf', $data);
-        return  $pdf->download('itsolutionstuff.pdf');
+            ];
+            
+            $pdf = PDF::loadView('PDF.pdf', $data);
+           return  $pdf->download('itsolutionstuff.pdf');
     }
 
-
-
-
+    
 }

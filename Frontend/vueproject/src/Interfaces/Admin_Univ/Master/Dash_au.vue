@@ -14,23 +14,12 @@
            
             
             <router-link to="/Gestionpu" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-                <Profile2/> Gestion de président universitaire         
+                <president/> Gestion de président universitaire         
             </router-link>
 
             <router-link to="/Gestionae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-                <Profile2/> Gestion d'admins d'établissements           
+                <interventions/> Gestion d'admins d'établissements           
             </router-link> 
-
-            <!--
-               <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <Profile/> Gestion des directeurs d'établissements 
-            </router-link> 
-           
-            
-            
-            <router-link to="/Gestionpau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <Profile/> Gestion des Profs 
-            </router-link>  --> 
 
 
             <router-link to="/Profileau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
@@ -94,15 +83,14 @@
   </div>
 </template>
  <script>
-  import Grade from '@/components/Dashboard/Icons/Grade.vue';
+  import president from '@/components/Dashboard/Icons/president.vue';
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue';
- import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
-import intervention from '@/components/Dashboard/Icons/intervention.vue';
+import interventions from '@/components/Dashboard/Icons/interventions.vue';
  import {mapGetters, mapActions} from 'vuex';
 
  export default {
-  components:{Decconexion,Profile,Profile2,Grade,intervention},
+  components:{Decconexion,Profile,president,interventions,president},
   data() {
   return {
     showSide: true

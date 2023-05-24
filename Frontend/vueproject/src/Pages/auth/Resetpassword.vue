@@ -15,14 +15,24 @@
           <div class="flex justify-between items-center">
             <button type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Reset Password</button>
           </div>
+        
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert" v-show="error">
+        <span class="block sm:inline" >{{error}}</span>
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+         
+  </span>
+</div>
         </form>
       </div>
     </div>
   </template>
   
   <script>
+  
+  import axios from 'axios';
     import Header from '@/components/Login/Header.vue'
     import Footer from '@/components/Login/Footer.vue'
+import { createLogger } from 'vuex';
   export default {
     components:{Footer,Header},
   
@@ -31,20 +41,24 @@
         email: '',
         password: '',
         confirmPassword: '',
+        error:''
       };
     },
     methods: {
-      submitForm() {
-        if (this.password !== this.confirmPassword) {
-          alert('Passwords do not match!');
-          return;
-        }      
-        console.log('Email:', this.email);
-        console.log('New Password:', this.password);
-        this.email = '';
-        this.password = '';
-        this.confirmPassword = '';
-        this.$router.push('/');
+      async submitForm() {
+          try{
+      let response =  await axios.post('/reset',{
+          password : this.password,
+          password_confirm : this.confirmPassword,
+          token: this.$route.params.token,
+        });
+        this.$router.push('/')
+          }catch(error){
+          //  console.log(error.response.data.errors.password_confirm[0])
+          this.error =  error.response.data.errors.password_confirm[0]
+        }
+        
+            
       },
     },
   };

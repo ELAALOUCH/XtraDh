@@ -16,9 +16,18 @@
        </div>
  
        <div class="mt-4">
-         <label for="password" class="block text-gray-700">Password</label>
-         <input v-model="user.password" id="password" type="password"  placeholder="Enter Password"  required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" >
-       </div> 
+    <label for="password" class="block text-gray-700">Password</label>
+    <div class="relative">
+      <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Enter Password" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+      <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+        <svg class="h-8 w-8 text-dark cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" @click="togglePasswordVisibility">
+          <circle cx="12" cy="12" r="2" />
+          <path v-if="!showPassword" d="M3 12l2.5 2.5a6.5 6.5 0 0 0 10.95 -3.5a6.5 6.5 0 0 0 -10.95 -3.5l-2.5 2.5" />
+          <path v-if="showPassword" d="M2 12l4 4l6 -6" />
+        </svg>
+      </div>
+    </div>
+  </div>
  
        <div class="flex p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert"  v-show="error" >
             <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -63,8 +72,14 @@ export default {
                 email:'',
                 password:'',                             
             },
-            error:''
+            error:'',
+            showPassword: false,
        }
+    },
+    computed:{
+      passwordFieldType() {
+      return this.showPassword ? 'text' : 'password';
+    },
     },
     methods: {
         ...mapActions({
@@ -74,26 +89,35 @@ export default {
           'authenticated':'auth/authenticated', 
           'user':'auth/authenticated'
         }),
-        async submitlogin() {
+            togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    },
+    async submitlogin() {
   try {
     this.error = ''; // Clear the error message
     await this.$store.dispatch('auth/submit', this.user);
     if (this.$store.getters['auth/authenticated']) {
-      const userType = this.$store.getters['auth/user'].type; 
-      if (userType === 'Prof') {
-        this.$router.push('Dash_users'); 
-      } else if (userType === 'Admin_univ') {
-        this.$router.push('Dash_au'); 
-      } else if (userType === 'président_univ') {
-        this.$router.push('Dash_pu'); 
-      } else if (userType === 'Admin_etab') {
-        this.$router.push('Dash_ae'); 
-      } else {
-        this.$router.push('dash_de');
-      }
-    } else {
-      this.error = 'Invalid username or password';
-    }
+  const userType = this.$store.getters['auth/user'].type;
+  switch (userType) {
+    case 'prof':
+      this.$router.push('Dash_users');
+      break;
+    case 'admin_uae':
+      this.$router.push('Dash_au');
+      break;
+    case 'président_univ':
+      this.$router.push('Dash_pu');
+      break;
+    case 'admin_etb':
+      this.$router.push('Dash_ae');
+      break;
+   case 'direct_etb':
+      this.$router.push('Dash_de');
+      break;
+  }
+} else {
+  this.error = 'Invalid username or password';
+}
   } catch (error) {
     console.log('failed', error);
     this.error = 'An error occurred during login';

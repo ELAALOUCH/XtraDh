@@ -7,7 +7,19 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                PPR
+                <div class="flex items-center">
+                  Email
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  password
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                 Type
+                </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
@@ -42,7 +54,13 @@
               </td>
               <td class="py-4 px-6">
                 {{ data.etablissement }}
+              </td>  
+              <td class="py-4 px-6">
+                {{ data.email }}
               </td>       
+              <td class="py-4 px-6">
+                {{ data.password }}
+              </td>  
 
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
@@ -59,7 +77,7 @@
   </template>
   
   <script>
-  import Editprofile from '@/components/Dashboard/Univ/Editprofile.vue'
+  import Editprofile from '@/components/Dashboard/Président/Editprofile.vue'
   
   export default {
     components: {Editprofile},
@@ -68,13 +86,17 @@
         ppr:'',
         nom:'',
         prenom:'',
-        etablissement:'',   
+        etablissement:'',
+        email:'',    
+        password:'', 
         productyObj:[
         {
         ppr:'12',
         nom:'azerr',
         prenom:'ytn',
-        etablissement:'aertbsf', 
+        etablissement:'aertbsf',
+        email:'dssdf',
+        password:'dqdsf' 
         },
         
     ],
