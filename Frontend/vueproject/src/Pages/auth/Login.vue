@@ -117,6 +117,8 @@ export default {
    case 'directeur_etb':
       this.$router.push('Dash_de');
       break;
+    default :
+      this.$router.push('/')
   }
 } else {
   this.error = 'Invalid username or password';

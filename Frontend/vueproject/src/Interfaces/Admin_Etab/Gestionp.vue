@@ -52,30 +52,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in profs " :key="data.id">
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.ppr }}
+             {{ data.PPR }}
             </th>
             <td class="py-4 px-6">
-              {{ data.nom }}
+              {{ data.Nom }}
             </td>
             <td class="py-4 px-6">
               {{ data.prenom }}
             </td>
             <td class="py-4 px-6">
-              {{ data.date_naissance }}
+              {{ data.Date_Naissance }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.etablissement }}
+            <td class="py-4 px-6" v-if ="data.etab_permanant">
+              {{ data.etab_permanant.Nom }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.grade }}
+            <td class="py-4 px-6" v-if ="data.grade">
+              {{ data.grade.designation }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.email }}
+            <td class="py-4 px-6" v-if ="data.user">
+              {{ data.user.email }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.type }}
+            <td class="py-4 px-6" v-if ="data.user">
+              {{ data.user.type }}
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
@@ -103,50 +103,39 @@ export default {
   components: { Create, Edit },
   data() {
     return {
-      productyObj: [
-        {
-          ppr: '123456',
-          nom: 'John Doe',
-          prenom: 'Jane Doe',
-          date_naissance: '1990-01-01',
-          etablissement: 'Example University',
-          grade: 'Professor',
-          email: 'johndoe@example.com',
-          type: 'Enseignant'
-        }
-      ],
+      profs: '',
       showModal: false
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
-    },
-    async addEnseignant() {
+    }},
+  async mounted() {
       try {
-        const response = await axios.post('/api/enseignants', {
+        //console.log('aze')
+        await axios.get('/Enseignant').then(res => {
+          console.log(res)
+          this.profs=res.data
+        })
+        //
+
+        /*
           ppr: this.name,
-          nom: this.color,
-          prenom: this.category,
-          date_naissance: this.price,
-          etablissement: 'Example University',
-          grade: 'Professor',
-          email: 'johndoe@example.com',
-          type: 'Enseignant'
-        });
-        const newEnseignant = response.data;
-        this.productyObj.push(newEnseignant);
-        this.name = '';
-        this.color = '';
-        this.category = '';
-        this.price = null;
+          nom: this.nom,
+          prenom: this.prenom,
+          date_naissance: this.date_naissance,
+          etablissement: this.etablissement,
+          grade: this.grade,
+          email: this.email,
+          type: this.type*/
+        
         this.showModal = false;
       } catch (error) {
         console.error(error);
       }
     }
   }
-};
 </script>
 
 <style>
