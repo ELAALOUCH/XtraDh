@@ -12,7 +12,6 @@
   </template>
   
 <script>
-import { mapGetters } from 'vuex' 
 import Header from '@/components/Login/Header.vue'
 import Footer from '@/components/Login/Footer.vue'
   export default{
@@ -24,11 +23,6 @@ import Footer from '@/components/Login/Footer.vue'
       };
     },
     methods:{
-      ...mapGetters({
-          'authenticated':'auth/authenticated', 
-          'user':'auth/authenticated'
-        }),
-
       startRedirect() {
       const redirectTime = 2000; // Redirect after 5 seconds (5000 milliseconds)
       setTimeout(() => {

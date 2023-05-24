@@ -13,8 +13,11 @@
         </form>
         <div v-if="isLoading" class="fixed top-0 left-30 right-0 bottom-30 flex items-center justify-center z-20">
       <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+       </div>
+      
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert" v-show="error">
+        <span class="block sm:inline" >{{error}}</span>
       </div>
-      <span class="block sm:inline" >{{error}}</span>
     </div>
   </div>
   </template>
@@ -34,25 +37,22 @@ import Footer from '@/components/Login/Footer.vue'
     },
     methods: {
       async submitForm() {
-        try{
-          const response= await axios.post('/Forgot',{
-          email:this.email
-         })
-         this.$router.push('/Wait'); // Replace with your desired route path
-        }catch(error){
-          this.error =  error.response.data.message
-          console.log(error.response.data.message)
-         }
-      } }}
-    
-       /* startRedirect() {
-      const redirectTime = 6000; // Redirect after 5 seconds (5000 milliseconds)
-      setTimeout(() => {
-        this.$router.push('/Wait'); // Replace with your desired route path
-      }, redirectTime);
-       if(this.email!=="")this.isLoading=!this.isLoading;
-    }}
-         }*/
-      
-      
+  try {
+    const response = await axios.post('/Forgot', {
+      email: this.email
+    });
+    const redirectTime = 5000; // Redirect after 5 seconds (5000 milliseconds)
+    setTimeout(() => {
+      this.$router.push('/Wait'); // Replace with your desired route path
+    }, redirectTime);
+    if (this.email !== '') {
+      this.isLoading = true;
+    }
+  } catch (error) {
+    this.error = error.response.data.message;
+    console.log(error.response.data.message);
+  }
+} },
+    }
+  
 </script>

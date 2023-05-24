@@ -23,7 +23,7 @@ Route::apiResource('Grade',GradeController::class);
 /* Enseignant routes */
 
 Route::apiResource('Enseignant',EnseignantController::class);
-
+Route::get('/indexETB',[EnseignantController::class,'indexETB'])->middleware('auth:sanctum');
 /* Administrateur routes */
 
 Route::apiResource('Administrateur',AdministrateurController::class);
@@ -34,7 +34,7 @@ Route::get('/valideruae',[InterventionController::class,'valideruae']);
 Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
 Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
 Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
-
+Route::post('/storePPR',[InterventionController::class,'storePPR']);
 /* Paiement Routes */
 Route::apiResource('Paiement',PaiementController::class);
 
@@ -53,16 +53,17 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 
-//
-
+/**  Users Routes */
+Route::apiResource('User',userController::class);
+Route::post('/storeEtb',[userController::class,'storeEtb'])->middleware("auth:sanctum");
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('/logout',[AuthController::class,'logout']);
     Route::get('/user-profile',[AuthController::class,'userProfile']);
-    /* Uusers Routes */
-Route::apiResource('User',userController::class);
+    
 });
+
 
 /*
 Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {

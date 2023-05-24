@@ -99,19 +99,19 @@ export default {
     if (this.$store.getters['auth/authenticated']) {
   const userType = this.$store.getters['auth/user'].type;
   switch (userType) {
-    case 'Prof':
+    case 'prof':
       this.$router.push('Dash_users');
       break;
-    case 'Admin_univ':
+    case 'admin_uae':
       this.$router.push('Dash_au');
       break;
     case 'président_univ':
       this.$router.push('Dash_pu');
       break;
-    case 'Admin_etab':
+    case 'admin_etb':
       this.$router.push('Dash_ae');
       break;
-   case 'Directeur_etab':
+   case 'direct_etb':
       this.$router.push('dash_de');
       break;
   }
