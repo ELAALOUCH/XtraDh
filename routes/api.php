@@ -13,6 +13,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
 use Doctrine\Instantiator\InstantiatorInterface;
 
+Route::get('/api/get-nonce', function () {
+    $nonce = app(NonceGenerator::class)->generate();
+
+    return response()->json([
+        'nonce' => $nonce,
+    ]);
+});
 /* Etablissement Routes */
 
 
@@ -52,14 +59,14 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 
 /*
-Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
+//Route::middleware('auth:sanctum')->get('/api/profile', function (Request $request) {
     $user = $request->user();
     // Use $user to retrieve user information or perform actions
     return response()->json($user);
-});
+//});
 */
 
-Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
+//Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
     Route::apiResource('Etablissement',EtablissementController::class);
     /*Grade Routes */
@@ -73,9 +80,9 @@ Route::apiResource('Administrateur',AdministrateurController::class);
 /* Intervention Routes */
 Route::apiResource('Intervention',InterventionController::class);
 
-});
+//});
 
-Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
+//Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
     //protected for admin etb
     /* Enseignant routes */
 
@@ -84,24 +91,24 @@ Route::apiResource('Enseignant',EnseignantController::class);
 Route::apiResource('Intervention',InterventionController::class);
 // /* Paiement Routes */
 // Route::apiResource('Paiement',PaiementController::class);
-});
+//});
 
-Route::middleware(['auth:sanctum','role:directeur'])->group( function () {
+//Route::middleware(['auth:sanctum','role:directeur'])->group( function () {
     //protected for directeur
     Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
 Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
-});
+//});
 
-Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
+//Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
     //protected for président
     Route::get('/valideruae',[InterventionController::class,'valideruae']);
 Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
-});
+//});
 
-Route::middleware(['auth:sanctum','role:prof'])->group( function () {
+//Route::middleware(['auth:sanctum','role:prof'])->group( function () {
     //protected for prof
     Route::apiResource('Enseignant',EnseignantController::class);
-});
+//});
 
 
 
