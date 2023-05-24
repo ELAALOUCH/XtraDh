@@ -153,15 +153,16 @@ public function storeETB(Request $request)
      */
     public function update(Request $request, $id)
     {
-        $ens = enseignant::find($id);
+
+        $ens = enseignant::where('id',$id)->first();
         $attributs = $request->validate([
-            'PPR'=>'required',
-            'Nom'=>'required',
-            'prenom'=>'required',
-            'Date_Naissance' =>'required',
-            'Etablissement'=>'required',
-            'id_Grade' => 'required',
-            'id_user'=>'required'
+            'PPR'=>'',
+            'Nom'=>'',
+            'prenom'=>'',
+            'Date_Naissance' =>'',
+            'Etablissement'=>'',
+            'id_Grade' => '',
+            'id_user'=>''
         ]);
    //     $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $ens->update($attributs);
