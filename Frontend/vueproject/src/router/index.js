@@ -154,7 +154,7 @@ const routes = [
       next()
 
     },*/
-    redirect:'Gestiondp',
+    redirect:'Profilede',
     children :[
 
       {

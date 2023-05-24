@@ -1,17 +1,15 @@
 <template>
   <div>
-    <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm">
       Edit
     </button>
 
-    
-    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
-      <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+    <div class="modal fixed inset-0 flex items-center justify-center" v-if="showModal">
+      <div class="modal-overlay absolute inset-0 bg-gray-900 opacity-50"></div>
 
-      <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
+      <div class="modal-content bg-white rounded-lg p-4 max-w-xs">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Editer</h2>
-
+        <h2 class="text-lg font-bold mb-4">Editer</h2>
         <div class="mb-4">
           <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
@@ -24,7 +22,7 @@
 
         <div class="mb-4">
           <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
-          <input type="Prenom" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
@@ -39,16 +37,27 @@
 
         <div class="mb-4">
           <label for="Grade" class="block text-gray-700 font-bold mb-2">Grade:</label>
-          <select v-model="grade">
-                <option :value="grad.id_Grade"  v-for="grad  in grads" :key="grad">{{grad.designation}}</option>
-            </select>
+          <select v-model="formData.Grade">
+            <option :value="grad.id_Grade"  v-for="grad  in grads" :key="grad">{{grad.designation}}</option>
+          </select>
         </div>
 
         <div class="mb-4">
           <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
           <input type="Email" id="Email" v-model="formData.Email" required class="border rounded w-full py-2 px-3">
         </div>
-        <div class="flex justify-end">
+
+        <div class="mb-4">
+          <label for="Password" class="block text-gray-700 font-bold mb-2">Password:</label>
+          <input type="password" id="Password" v-model="formData.Password" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="Type" class="block text-gray-700 font-bold mb-2">Type:</label>
+          <input type="text" id="Type" v-model="formData.Type" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="flex justify-end mt-4">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
             Update
           </button>
@@ -67,8 +76,15 @@ export default {
     return {
       showModal: false,
       formData: {
-        Name: '',
-        email: ''
+        PPR: '',
+        Nom: '',
+        Prenom: '',
+        DATE_NAISSANCE: '',
+        Etablissement: '',
+        Grade: '',
+        Email: '',
+        Password: '',
+        Type: ''
       }
     };
   },

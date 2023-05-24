@@ -10,6 +10,7 @@
       <div class="modal-content bg-white rounded-lg p-6 w-11/12 max-w-6xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
         <h2 class="text-2xl font-bold mb-4">Edit</h2>
+
         <div class="mb-4">
           <label for="name" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
@@ -30,6 +31,16 @@
           <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
         </div>
 
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 font-bold mb-2">email:</label>
+          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 font-bold mb-2">password:</label>
+          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
+        </div>
+
         
 
         <div class="flex justify-end">
@@ -48,8 +59,12 @@ export default {
     return {
       showModal: false,
       formData: {
+        PPR: '',
         Name: '',
-        email: ''
+        Prenom: '',
+        Etablissement: '',
+        email: '',
+        password: ''
       }
     };
   },
