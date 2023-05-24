@@ -20,7 +20,7 @@ class userController extends Controller
 
     public function __construct()
     {
-    $this->middleware('auth:sanctum')->except(['store']);
+    //$this->middleware('auth:sanctum')->except(['store']);
     }
 
     public function index()
@@ -53,11 +53,11 @@ class userController extends Controller
         ]);
        // 'email' => Crypt::encrypt($fields['email']),
      //   $email = Crypt::decrypt($fields['email']);
-     $email = $fields['email'];
-        // Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
-        //     $message->to($email);
-        //     $message->subject('Voici le mot de pass de votre compte hsup');
-        // });
+        $email = $fields['email'];
+         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
+            $message->to($email);
+             $message->subject('Voici le mot de pass de votre compte hsup');
+        });
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
