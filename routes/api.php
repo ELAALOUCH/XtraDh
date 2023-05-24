@@ -11,10 +11,21 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
+use Spatie\Csp\Nonce\NonceGenerator;
 use Doctrine\Instantiator\InstantiatorInterface;
 
 /* Etablissement Routes */
 
+/*get nonce */
+
+
+Route::get('/api/get-nonce', function () {
+    $nonce = app(NonceGenerator::class)->generate();
+
+    return response()->json([
+        'nonce' => $nonce,
+    ]);
+});
 
 
 /* Paiement Routes */
