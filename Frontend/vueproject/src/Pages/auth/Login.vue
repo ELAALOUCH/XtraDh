@@ -49,29 +49,31 @@
 
           </form>
 
-          <hr class="my-6 border-gray-300 w-full">
-          <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - All Rights Reserved.</p>
-        </div>
-      </div>
-    </div>
-  </template>
+     <hr class="my-6 border-gray-300 w-full">
+     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - All Rights Reserved.</p>
+   </div>
 
-  <script>
-  import { mapGetters, mapActions } from 'vuex'
-  import axios from 'axios';
-  import Header from '@/components/Login/Header.vue';
-  import Footer from '@/components/Login/Footer.vue';
+ </div>
+ </div>
+ </template>
 
-  export default {
-    data() {
-      return {
-        user: {
-          email:'',
-          password:'',
-        },
-        error:'',
-        showPassword: false,
-      }
+<script>
+import { mapGetters, mapActions } from 'vuex'
+import axios from 'axios';
+import Header from '@/components/Login/Header.vue';
+import Footer from '@/components/Login/Footer.vue';
+
+export default {
+
+  data() {
+        return {
+            user: {
+                email:'',
+                password:'',
+            },
+            error:'',
+            showPassword: false,
+       }
     },
     computed: {
       passwordFieldType() {
@@ -83,44 +85,48 @@
       }),
     },
     methods: {
-      ...mapActions({
-        'submit': 'auth/submit'
-      }),
-      togglePasswordVisibility() {
-        this.showPassword = !this.showPassword;
-      },
-      async submitlogin() {
-        try {
-          this.error = ''; // Clear the error message
-          await this.$store.dispatch('auth/submit', this.user);
-          if (this.$store.getters['auth/authenticated']) {
-            const userType = this.$store.getters['auth/user'].type;
-            switch (userType) {
-              case 'prof':
-                this.$router.push('Dash_users');
-                break;
-              case 'admin_uae':
-                this.$router.push('Dash_au');
-                break;
-              case 'président_univ':
-                this.$router.push('Dash_pu');
-                break;
-              case 'admin_etb':
-                this.$router.push('Dash_ae');
-                break;
-              case 'direct_etb':
-                this.$router.push('Dash_de');
-                break;
-            }
-          } else {
-            this.error = 'Invalid username or password';
-          }
-        } catch (error) {
-          console.log('failed', error);
-          this.error = 'An error occurred during login';
-        }
-      },
-      getNonce() {
+        ...mapActions({
+            'submit': 'auth/submit'
+        }),
+        ...mapGetters({
+          'authenticated':'auth/authenticated',
+          'user':'auth/authenticated'
+        }),
+            togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    },
+    async submitlogin() {
+  try {
+    this.error = ''; // Clear the error message
+    await this.$store.dispatch('auth/submit', this.user);
+    if (this.$store.getters['auth/authenticated']) {
+  const userType = this.$store.getters['auth/user'].type;
+  switch (userType) {
+    case 'prof':
+      this.$router.push('Dash_users');
+      break;
+    case 'admin_uae':
+      this.$router.push('Dash_au');
+      break;
+    case 'président_univ':
+      this.$router.push('Dash_pu');
+      break;
+    case 'admin_etb':
+      this.$router.push('Dash_ae');
+      break;
+   case 'direct_etb':
+      this.$router.push('Dash_de');
+      break;
+  }
+} else {
+  this.error = 'Invalid username or password';
+}
+  } catch (error) {
+    console.log('failed', error);
+    this.error = 'An error occurred during login';
+  }
+}
+, getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -147,6 +153,7 @@
     created() {
       this.getNonce();
     }
+
   }
   </script>
 

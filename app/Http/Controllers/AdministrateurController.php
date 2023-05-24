@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrateur;
+use App\Models\enseignant;
 use Illuminate\Http\Request;
+use App\Models\Administrateur;
+use Illuminate\Support\Facades\Validator;
 
 class AdministrateurController extends Controller
 {
@@ -49,6 +51,37 @@ class AdministrateurController extends Controller
      * @param  \App\Models\Administrateur  $administrateur
      * @return \Illuminate\Http\Response
      */
+
+    public function storeETB(Request $request)
+    {
+        //cette methode pour storer des enseignant dans etablissement de admin (automatiquement)
+        // Validation des champs
+        $validator = Validator::make($request->all(), [
+            'PPR' => 'required',
+            'Nom' => 'required|max:30',
+            'prenom' => 'required|max:30',
+            'Etablissement' => 'required',
+            'id_user' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+    
+        // Cryptage du champ PPR
+       // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+    
+        // Création de l'enseignant
+        $administrateur = Administrateur::create([
+            'PPR' => $request->input('PPR'),
+            'Nom' => $request->input('Nom'),
+            'prenom' => $request->input('prenom'),
+            'Etablissement' => $request["Etablissement"],
+            'id_user' => $request["id_user"],
+        ]);
+        return $administrateur;
+        //return response()->json(['message' => 'Enseignant créé avec succès'], 201);
+    }
     public function show($idAdm)
     {
         $adm = administrateur::with(['user'])
