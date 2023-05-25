@@ -16,7 +16,7 @@
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  Semestre             
+                  Semestre
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
@@ -39,7 +39,7 @@
                 Visa_etb
               </th>
               <th scope="col" class="py-3 px-6">
-             </th>             
+             </th>
               <th scope="col" class="py-3 px-6">
                 <span class="sr-only">Edit</span>
               </th>
@@ -74,11 +74,11 @@
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                  <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                   Accepter 
+                   Accepter
                  </button>
                  <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="refuser">
-                   Refuser 
-                 </button>                  
+                   Refuser
+                 </button>
                 </div>
               </td>
             </tr>
@@ -86,12 +86,12 @@
         </table>
       </div>
     </div>
-    
-                
+
+
   </template>
-  
+
   <script>
- 
+import axios from 'axios';
   export default {
     components: {},
   data(){
@@ -99,7 +99,7 @@
         name:'',
         color:'',
         category:'',
-        price:null,   
+        price:null,
         productyObj:[
         {
             id:1,
@@ -108,7 +108,7 @@
             category:' Ipad ',
             price:5000
         },
-        
+
     ],
 
     }
@@ -116,14 +116,40 @@
   methods:{
    refuser(){
     alert('youll delete')
-   }
+   }, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+
 
   },
 
   }
 
   </script>
-  
+
   <style>
-  
+
   </style>
