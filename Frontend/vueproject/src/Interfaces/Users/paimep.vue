@@ -52,8 +52,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in productyObj" :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr class="bg-white border-b " v-for="data in productyObj" :key="data.id">
+              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
                 {{ data.id_intervenant }}
               </th>
               <td class="py-4 px-6">
