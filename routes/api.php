@@ -53,6 +53,7 @@ Route::apiResource('User',userController::class);
 Route::post('/storeProfEtb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
 Route::post('/storeAdmEtb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
 Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middleware("auth:sanctum");
+Route::patch('/updateAdm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
 
 
 //protected routes
