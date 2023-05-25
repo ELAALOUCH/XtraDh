@@ -192,7 +192,14 @@ class userController extends Controller
         $ensctrl =  new EnseignantController();
         return $ensctrl = $ensctrl->update($request,$id->id);   
     }
+    public function updateAdm(Request $req,$id){
+        $adm = user::where('id_user',$id)->first();
+            $adm->update($req->only(['email','password','type']));
 
+            $id=administrateur::where('id_user',$adm->id_user)->first();
+            $adm_cntrol = new AdministrateurController();
+            return $adm_cntrol->update($req,$id->id);
+    }
     /**
      * Remove the specified resource from storage.
      *

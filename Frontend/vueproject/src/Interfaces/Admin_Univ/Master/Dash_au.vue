@@ -11,32 +11,32 @@
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
 
           <div class=" flex flex-col justify-between space-y-[10px]">
-           
-            
+
+
             <router-link to="/Gestionpu" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-                <president/> Gestion de président universitaire         
+                <president/> Gestion de président universitaire
             </router-link>
 
             <router-link to="/Gestionae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-                <interventions/> Gestion d'admins d'établissements           
-            </router-link> 
+                <interventions/> Gestion d'admins d'établissements
+            </router-link>
 
 
             <router-link to="/Profileau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <Profile/> Profile 
-            </router-link> 
+             <Profile/> Profile
+            </router-link>
 
 
           </div>
 
 
-          
+
           <div class="h-[50px]">
-  <div>             
+  <div>
     <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out">
          <decconexion/>
         Déconnexion
-    </div>              
+    </div>
   </div>
 
 </div>
@@ -56,7 +56,7 @@
 
         <div class="w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center ">
-            <!-- Search bar -->    
+            <!-- Search bar -->
           </div>
           <!-- User login -->
           <div class="w-[200px] ">
@@ -65,7 +65,7 @@
               <div class="font-semibold dark:text-white text-left">
 
 
-                              
+
                 <div v-if="authenticated">{{ user.email }}</div>
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
@@ -88,7 +88,7 @@
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
 import interventions from '@/components/Dashboard/Icons/interventions.vue';
  import {mapGetters, mapActions} from 'vuex';
-
+ import axios from 'axios';
  export default {
   components:{Decconexion,Profile,president,interventions,president},
   data() {
@@ -104,14 +104,39 @@ computed: {
  },
 methods: {
   toggleSideBar() {
-    this.showSide = !this.showSide    
+    this.showSide = !this.showSide
   },
   ...mapActions({
      'logout':'auth/logout'
   }),
   signout(){
      this.logout().then(()=>this.$router.push('/'))
-  }
-},
- }
+  }, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+    }
+}
 </script>

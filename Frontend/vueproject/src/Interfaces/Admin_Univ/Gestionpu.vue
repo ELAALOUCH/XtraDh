@@ -16,7 +16,7 @@
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Type            
+                Type
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
@@ -29,7 +29,7 @@
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Prénom            
+                Prénom
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
@@ -41,7 +41,7 @@
               <div class="flex justify-end">
                 <create/>
               </div>
-            </th>             
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -57,23 +57,23 @@
             </td>
             <td class="py-4 px-6">
               {{ data.ppr }}
-            </td>              
+            </td>
             <td class="py-4 px-6">
               {{ data.nom }}
-            </td>              
+            </td>
             <td class="py-4 px-6">
               {{ data.prenom }}
             </td>
             <td class="py-4 px-6">
               {{ data.etablissement }}
             </td>
-  
+
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <Edit/>
                 <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                   Supprimer
-                </button>                  
+                </button>
               </div>
             </td>
           </tr>
@@ -86,7 +86,7 @@
 <script>
 import create from '@/components/Dashboard/Président/create.vue'
 import Edit from '@/components/Dashboard/Président/Edit.vue'
-
+import axios from 'axios';
 export default {
   components: {
     create,
@@ -97,7 +97,7 @@ export default {
       email: '',
       password: '',
       type: '',
-      ppr: null,  
+      ppr: null,
       nom: '',
       prenom: '',
       etablissement: '',
@@ -118,9 +118,35 @@ export default {
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
+    }, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
     },
+    created() {
+      this.getNonce();
+    }
   }
-}
+
 </script>
 
 <style>

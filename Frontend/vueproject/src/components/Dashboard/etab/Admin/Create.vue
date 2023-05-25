@@ -46,13 +46,18 @@
 
         <div class="mb-4">
           <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
-          <input type="Prenom" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+          <input type="Prenom" id="Prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
-          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
-          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
+        <div class="mb-4">
+          <label for="date Naissance" class="block text-gray-700 font-bold mb-2">Date Naissance:</label>
+          <input type="date" id="date_Naissance" v-model="formData.Date_Naissance" required class="border rounded w-full py-2 px-3">
+        </div>
+
 
         <div class="flex justify-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -76,10 +81,21 @@ export default {
       showModal: false,
       formData: {
         PPR: '',
-        Etablissement: ''
+        email : '',
+        type : '',
+        Nom : '',
+        prenom : '',
+        grade:  '',
+        grads : '',
+        Date_Naissance:'' 
       }
     };
-  },
+  }, 
+  async created(){
+            const grads = await axios.get('http://127.0.0.1:8000/api/Grade');
+           console.log(grads.data)
+           this.grads = grads.data ; 
+        },
   methods: {
     closeModal() {
       this.showModal = false;
