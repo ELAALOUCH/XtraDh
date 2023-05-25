@@ -42,30 +42,30 @@
           </thead>
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in cons " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-      {{ data.intervention ? data.intervention.Intitule_Intervention : '' }}
-    </th>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.Annee_univ : '' }}
-    </td>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.Semestre : '' }}
-    </td>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.Date_debut : '' }}
-    </td>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.Date_fin : '' }}
-    </td>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.Nbr_heures : '' }}
-    </td>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.visa_etb : '' }}
-    </td>
-    <td class="py-4 px-6">
-      {{ data.intervention ? data.intervention.visa_uae : '' }}
-    </td>              
+             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                {{ data.intervention ? data.intervention.Intitule_Intervention : '' }}
+             </th>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.Annee_univ : '' }}
+              </td>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.Semestre : '' }}
+              </td>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.Date_debut : '' }}
+              </td>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.Date_fin : '' }}
+              </td>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.Nbr_heures : '' }}
+              </td>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.visa_etb : '' }}
+              </td>
+             <td class="py-4 px-6">
+                 {{ data.intervention ? data.intervention.visa_uae : '' }}
+              </td>              
           </tr>
           </tbody>
         </table>
@@ -90,35 +90,5 @@ import axios from 'axios';
    console.log(response.data)
 
   },}
-   /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-
-
-  },*/
-
 
   </script>

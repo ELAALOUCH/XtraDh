@@ -118,7 +118,7 @@ export default {
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
-    }, getNonce() {
+    }, /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -144,8 +144,8 @@ export default {
     },
     created() {
       this.getNonce();
-    }
-  }
+    }*/
+  }}
 
 </script>
 

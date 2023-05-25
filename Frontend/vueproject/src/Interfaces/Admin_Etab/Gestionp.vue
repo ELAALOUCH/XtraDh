@@ -111,6 +111,7 @@ export default {
     }},
   async mounted() {
       try {
+        
         await axios.get('/Enseignant').then(res => {
           console.log(res)
           this.profs=res.data
