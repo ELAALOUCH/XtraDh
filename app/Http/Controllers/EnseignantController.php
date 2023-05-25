@@ -98,11 +98,11 @@ public function storeETB(Request $request)
 {
     //cette methode pour storer des enseignant dans etablissement de admin (automatiquement)
     // Validation des champs
+    return $request;
     $validator = Validator::make($request->all(), [
         'PPR' => 'required',
         'Nom' => 'required|max:30',
         'prenom' => 'required|max:30',
-        'Date_Naissance' => 'date|required',
         'Etablissement' => 'required',
         'id_Grade' => 'required',
         'id_user' => 'required',

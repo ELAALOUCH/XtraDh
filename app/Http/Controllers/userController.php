@@ -43,10 +43,9 @@ class userController extends Controller
 
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
-            'password' =>'string|confirmed|required',
             'type'=>'required'
         ]);
-       // $fields['password']=Str::random(15);
+        $fields['password']=Str::random(15);
 
         $user = User::create([
             'type' =>$fields['type'],
@@ -69,18 +68,20 @@ class userController extends Controller
     }
     public function storeProfEtb(Request $request)
     {
+        //return $request;
         //cette methode pour storer des enseignant dans etablissement de administrateur (automatiquement)
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
         $fields['password']=Str::random(15);
-
+       // return $fields;
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
+       // return $user;
        // 'email' => Crypt::encrypt($fields['email']),
      //   $email = Crypt::decrypt($fields['email']);
        $email = $fields['email'];
@@ -105,6 +106,7 @@ class userController extends Controller
     public function storeAdmEtb(Request $request)
     {
         //cette methode pour storer des enseignant dans etablissement de administrateur (automatiquement)
+        return $request;
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
@@ -116,17 +118,19 @@ class userController extends Controller
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
+        return $user;
        // 'email' => Crypt::encrypt($fields['email']),
      //   $email = Crypt::decrypt($fields['email']);
-       $email = $fields['email'];
+      /* $email = $fields['email'];
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
             $message->subject('Voici le mot de pass de votre compte hsup');
-        });
+        });*/
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $request['id_user'] = $user->id_user;
         $request['Etablissement'] = administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         //create enseignant
+        return $request;
          $ensctrl =  new AdministrateurController();
         $ensctrl = $ensctrl->storeETB($request);
         $response= [

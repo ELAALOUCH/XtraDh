@@ -10,9 +10,6 @@
               email
             </th>
             <th scope="col" class="py-3 px-6">
-              password
-            </th>
-            <th scope="col" class="py-3 px-6">
               type
             </th>
             <th scope="col" class="py-3 px-6">
@@ -41,29 +38,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="data in productyObj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.name }}
-            </th>
-            <td class="py-4 px-6">
-              {{ data.color }}
+          <tr v-for="data in Obj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="py-4 px-6" >
+              {{ data.user }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.category }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-
+            <td class="py-4 px-6" >
+            </td>            
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                <Edit/>
@@ -83,55 +63,51 @@
 <script>
 import Create from '@/components/Dashboard/etab/Admin/Create.vue'
 import Edit from '@/components/Dashboard/etab/Admin/Edit.vue'
-
+import axios from 'axios'
 export default {
   components: {Create,Edit},
 data(){
-  return {
-      name:'',
-      color:'',
-      category:'',
-      price:null,  
-      productyObj:[
+  return {  
+      Obj:
       {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },     
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
-      
-  ],
+        Email:'',
+        Type:'',
+        PPR:'',
+        Nom:'',
+        PRENOM:'',
+        ETABLISSEMENT:''
 
+      }
   }
 },
+async mounted() {
+      try {
+        console.log('aze')
+        await axios.get('/Administrateur').then(res => {
+         // console.log(res)
+          console.log(res.data[0].user)
+          console.log(res.data[0].prenom)
+          console.log(res.data[0].etablissement.Nom)
+
+
+          this.obj=res.data
+        })
+        //
+
+        /*
+          ppr: this.name,
+          nom: this.nom,
+          prenom: this.prenom,
+          date_naissance: this.date_naissance,
+          etablissement: this.etablissement,
+          grade: this.grade,
+          email: this.email,
+          type: this.type*/
+        
+        this.showModal = false;
+      } catch (error) {
+        console.error(error);
+      }},
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal

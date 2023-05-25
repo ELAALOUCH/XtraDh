@@ -105,7 +105,7 @@ export default {
     case 'prof':
       this.$router.push('Dash_users');
       break;
-    case 'admin_uae':
+    case 'admin_univ':
       this.$router.push('Dash_au');
       break;
     case 'président_univ':
@@ -114,9 +114,11 @@ export default {
     case 'admin_etb':
       this.$router.push('Dash_ae');
       break;
-   case 'direct_etb':
+   case 'directeur_etb':
       this.$router.push('Dash_de');
       break;
+    default :
+      this.$router.push('/')
   }
 } else {
   this.error = 'Invalid username or password';
