@@ -19,3 +19,6 @@ echo
 
 echo "Nouvel état du dépôt Git :"
 git status
+
+
+# xtradh
