@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="w-screen overflow-y-hidden h-screen flex">
     <!-- Side bar -->
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
@@ -10,7 +10,7 @@
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
-      
+
             <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <interventions />
             Gestion des directeurs d'Etablissement
@@ -25,20 +25,20 @@
              <intervention/>
              Gestion des Interventions
             </router-link>
-            
+
             <router-link to="/Profileae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <Profile2/>
              profile
             </router-link>
-                     
+
           </div>
-          
+
           <div class="h-[50px]">
-            <div>             
+            <div>
               <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
                  <Decconexion/>
                 Déconnexion
-              </div>              
+              </div>
           </div>
           </div>
         </div>
@@ -52,13 +52,13 @@
             <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
           </svg>
         </div>
- 
+
         <!-- Search bar -->
         <div class="w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center ">
-            <!-- Search bar -->    
+            <!-- Search bar -->
           </div>
-          
+
           <!-- User login -->
           <div class="w-[200px] ">
             <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
@@ -86,11 +86,11 @@
   import Footer from '@/components/Login/Footer.vue'
   import interventions from '@/components/Dashboard/Icons/interventions.vue';
   import intervention from '@/components/Dashboard/Icons/intervention.vue';
-
-  import { mapGetters ,mapActions} from 'vuex' 
+  import axios from 'axios';
+  import { mapGetters ,mapActions} from 'vuex'
 
  export default {
-  components:{Footer,Decconexion,Profile2,interventions,intervention}, 
+  components:{Footer,Decconexion,Profile2,interventions,intervention},
   data() {
   return {
     showSide: true
@@ -104,14 +104,39 @@ computed: {
  },
 methods: {
   toggleSideBar() {
-    this.showSide = !this.showSide    
+    this.showSide = !this.showSide
   },
   ...mapActions({
      'logout':'auth/logout'
   }),
   signout(){
      this.logout().then(()=>this.$router.push('/'))
-  }
-},
- }
+  }, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+    }
+}
 </script>

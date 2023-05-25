@@ -10,13 +10,13 @@
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
-            
+
 
             <router-link to="/GestiondI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <interventions/>
               Gestion des Interventions
             </router-link>
-            
+
             <router-link to="/ConsodI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <interventions/>
               Consultation des Interventions
@@ -31,17 +31,17 @@
                <Profile2/>
              Profile
             </router-link>
-                     
+
           </div>
 
 
-          
+
           <div class="h-[50px]">
-            <div>             
+            <div>
               <div @click=signout()  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
                 <Decconexion />
                 Déconnexion
-              </div>              
+              </div>
           </div>
           </div>
 
@@ -63,7 +63,7 @@
         <!-- Search bar -->
         <div class=" w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center ">
-            <!-- Search bar -->    
+            <!-- Search bar -->
           </div>
           <!-- User login -->
           <div class="  w-[200px] ">
@@ -92,11 +92,11 @@
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
  import interventions from '@/components/Dashboard/Icons/interventions.vue';
  import paiement from '@/components/Dashboard/Icons/paiement.vue';
-
- import { mapGetters ,mapActions} from 'vuex' 
+ import axios from 'axios';
+ import { mapGetters ,mapActions} from 'vuex'
 
  export default {
-  components:{Decconexion,Profile2,interventions,paiement}, 
+  components:{Decconexion,Profile2,interventions,paiement},
   data() {
   return {
     showSide: true
@@ -110,15 +110,40 @@ computed: {
  },
 methods: {
   toggleSideBar() {
-    this.showSide = !this.showSide    
+    this.showSide = !this.showSide
   },
   ...mapActions({
      'logout':'auth/logout'
   }),
   signout(){
      this.logout().then(()=>this.$router.push('/'))
-  }
-},
- 
+  }, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+    },
+
  }
 </script>

@@ -10,35 +10,35 @@
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
-            
+
 
             <router-link to="/paimep" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <paiement/>
               Paiment
             </router-link>
- 
+
             <router-link to="/interp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <Bilan/>
               Interventions
             </router-link>
-            
+
             <router-link to="/Profileprof" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <Profile2/>
               Profile
             </router-link>
 
 
-                
+
 
           </div>
-         
+
           <div class="h-[50px]">
-            <div>             
+            <div>
               <div @click="signout"  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
                 <Decconexion/>
                 Déconnexion
-                          
-              </div>              
+
+              </div>
           </div>
           </div>
 
@@ -57,7 +57,7 @@
         <!-- Search bar -->
         <div class="w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center ">
-            <!-- Search bar -->    
+            <!-- Search bar -->
           </div>
           <!-- User login -->
           <div class="mr-16 w-[200px] ">
@@ -66,7 +66,7 @@
               <div class="font-semibold dark:text-white text-left">
 
                 <div v-if="authenticated">{{ user.email }}</div>
-                
+
                 <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
               </div>
             </div>
@@ -87,9 +87,9 @@
  import Bilan from '@/components/Dashboard/Icons/Bilan.vue'
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue'
 import Profile2 from '@/components/Dashboard/Icons/Profile2.vue'
-import { mapGetters ,mapActions} from 'vuex' 
+import { mapGetters ,mapActions} from 'vuex'
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
-
+import axios from 'axios';
  export default {
    components:{ Profile2, Decconexion,Bilan,Profile,paiement} ,
   data() {
@@ -105,16 +105,42 @@ import Profile from '@/components/Dashboard/Icons/Profile.vue'
     },
    methods: {
      toggleSideBar() {
-       this.showSide = !this.showSide    
+       this.showSide = !this.showSide
      },
      ...mapActions({
         'logout':'auth/logout'
      }),
      signout(){
         this.logout().then(()=>this.$router.push('/'))
-     }
+     }, getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+
    },
 
- 
+
  }
 </script>
