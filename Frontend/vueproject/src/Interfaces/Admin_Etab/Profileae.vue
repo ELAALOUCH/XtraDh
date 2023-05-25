@@ -75,7 +75,7 @@
   </template>
   
   <script>
-  import Editprofile from '@/components/Dashboard/Univ/Editprofile.vue'
+  import Editprofile from '@/components/Dashboard/etab/Admin/Editprofile.vue'
   
   export default {
     components: {Editprofile},
