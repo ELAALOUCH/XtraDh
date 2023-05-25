@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Ajouter prof
+      Ajouter prof 
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -31,13 +31,7 @@
           <input type="date" id="DATE_NAISSANCE" v-model="formData.Date_Naissance" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4">
-          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
-          <select v-model="Etablissement">
-                <option :value="etab.id"  v-for="etab  in etabs" :key="etab">{{etab.Nom}}</option>
-            </select>
-        </div>
-
+       
         <div class="mb-4">
           <label for="Grade" class="block text-gray-700 font-bold mb-2">Grade:</label>
           <select v-model="formData.grade">
@@ -72,6 +66,8 @@
             @click="closeModal">
             Cancel
           </button>
+
+          {{ errors }}
         </div>
       </div>
     </div>
@@ -92,6 +88,8 @@ export default{
                 grade : '',
                 email : '',
                 type : '',
+                grads : '',
+                errors : ''
               }
             }
         },
@@ -102,22 +100,28 @@ export default{
         },
         methods:{
             async submitForm(){
-                 const response =  await axios.post('/storeProfEtb',{
+              try{
+                const response =  await axios.post('/storeProfEtb',{
                     PPR:this.formData.PPR,
                     Nom:this.formData.Nom,
                     prenom:this.formData.Prenom,
                     Date_Naissance:this.formData.Date_Naissance,
-                    grade:this.formData.grade,
+                    id_Grade:this.formData.grade,
                     email:this.formData.email,
-                    type : this.formData.type,
-                    
+                    type : this.formData.type,    
                  })
-                 
                  console.log(response)
+                 this.showModal = false;
+              }catch(e){
+                console.log()
+                this.errors = e.response.data.errors ; 
+              }
+                 
+                
 
             },
       closeModal() {
-      this.showModal = false;
+        this.showModal = false;
     },
         }
     }

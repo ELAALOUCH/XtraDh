@@ -12,14 +12,14 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
 use Doctrine\Instantiator\InstantiatorInterface;
-
+/*
 Route::get('/api/get-nonce', function () {
     $nonce = app(NonceGenerator::class)->generate();
 
     return response()->json([
         'nonce' => $nonce,
     ]);
-});
+});*/
 /* Etablissement Routes */
 
 
