@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -117,6 +118,35 @@ export default {
       establishmentFilter: '', // Add a new data property for the filter
       establishments: ['Azus', 'Samsung', 'Apple'] // Add an array of establishment names
     };
+  },
+  methods:{
+     getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+
   },
   computed: {
     filteredData() {
