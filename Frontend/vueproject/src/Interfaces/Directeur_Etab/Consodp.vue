@@ -7,11 +7,13 @@
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
-                id_intervenant
+                <div class="flex items-center">
+                  Nom
+                </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  id_etab
+                  Prenom
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
@@ -52,12 +54,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in productyObj" :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ data.id_intervenant }}
-              </th>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in ints" :key="data.id">
               <td class="py-4 px-6">
-                {{ data.id_etab }}
+                {{ data.enseignant.Nom }}
+              </td><td class="py-4 px-6">
+                {{ data.enseignant.prenom }}
               </td>
               <td class="py-4 px-6">
                 {{ data.VH }}
@@ -72,13 +73,13 @@
                 {{ data.IR }}
               </td>
               <td class="py-4 px-6">
-                {{ data.Net }}
+                {{ data.NET }}
               </td>
               <td class="py-4 px-6">
                 {{ data.Annee_univ }}
               </td>
               <td class="py-4 px-6">
-                {{ data.semestre }}
+                {{ data.Semestre }}
               </td>
             </tr>
           </tbody>
@@ -92,50 +93,15 @@
   export default {
     data() {
       return {
-        productyObj: [
-          {
-            id: 1,
-            id_intervenant: '12',
-            id_etab: 'azerr',
-            VH: 'ytn',
-            Taux_H: 'aertbsf',
-            Brut: 'dsd',
-            IR: 'sdfsd',
-            Net: 'fsfd',
-            Annee_univ: '2002',
-            semestre: 'Sa'
-          }
-        ]
+        ints:''
       };
     },
     methods:{
-         getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-
-    }
+  },
+  async mounted(){
+    const response = await axios.get('/Paiement');
+    this.ints=response.data
+    console.log(response.data)
+  }
   };
   </script>

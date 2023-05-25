@@ -7,9 +7,7 @@
         <label for="filterYear">Filtrer par année :</label>
         <select id="filterYear" v-model="selectedYear">
           <option value="">Toutes les années</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
+          <option v-for="year in uniqueYears" :value="year" :key="year">{{ year }}</option>
         </select>
       </div>
 
@@ -17,9 +15,7 @@
         <label for="filterSemester">Filtrer par semestre :</label>
         <select id="filterSemester" v-model="selectedSemester">
           <option value="">Tous les semestres</option>
-          <option value="S1">Semestre 1</option>
-          <option value="S2">Semestre 2</option>
-          <!-- Ajoutez les semestres supplémentaires ici -->
+          <option v-for="semester in uniqueSemesters" :value="semester" :key="semester">{{ semester }}</option>
         </select>
       </div>
     </div>
@@ -63,35 +59,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-            v-for="data in filteredData"
-            :key="data.id"
-          >
-            <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ data.Intitule_intervention }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.annee_univ }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.semestre }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.date_debut }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.date_fin }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.Nbr_heures }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.visa_uae }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.visa_etb }}
-            </td>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in pfs " :key="data.id">
+            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap" >
+                 {{ data.Intitule_Intervention }}
+             </th>
+             <td class="py-4 px-6" >
+               {{ data.Annee_univ }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Semestre }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Date_debut }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Date_fin }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Nbr_heures }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.visa_etb }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.visa_uae }}
+             </td>              
           </tr>
         </tbody>
       </table>
@@ -106,81 +98,37 @@ export default {
     return {
       selectedYear: '',
       selectedSemester: '',
-      productObj: [
-        {
-          id: 1,
-          Intitule_intervention: 'Azus',
-          annee_univ: 2021,
-          semestre: '2',
-          date_debut: 2230,
-          date_fin: 2012,
-          Nbr_heures: '50hrs',
-          visa_uae: 1,
-          visa_etb: 1
-        },
-        {
-          id: 2,
-          Intitule_intervention: 'azert',
-          annee_univ: 2022,
-          semestre: '1',
-          date_debut: 2023,
-          date_fin: 2052,
-          Nbr_heures: '95hrs',
-          visa_uae: 0,
-          visa_etb: 1
-        },
-      ]
+      pfs: ''
     };
   },
   computed: {
     filteredData() {
       if (this.selectedYear && this.selectedSemester) {
-        return this.productObj.filter(
+        return this.pfs.filter(
           (data) =>
             data.annee_univ === parseInt(this.selectedYear) &&
             data.semestre === this.selectedSemester
         );
       } else if (this.selectedYear) {
-        return this.productObj.filter(
+        return this.pfs.filter(
           (data) => data.annee_univ === parseInt(this.selectedYear)
         );
       } else if (this.selectedSemester) {
-        return this.productObj.filter(
+        return this.pfs.filter(
           (data) => data.semestre === this.selectedSemester
         );
       } else {
-        return this.productObj;
+        return this.pfs;
       }
     }
   },
   methods:{
-     getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-
-  }
+      
+  },
+  async mounted(){
+    const response =await axios.get('/Intervention');
+    this.pfs=response.data
+    console.log(response.data[0])
+ }
 };
 </script>

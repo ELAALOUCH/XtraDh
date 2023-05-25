@@ -11,6 +11,16 @@
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
+                  Nom
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  Prenom
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
                   Annee_univ
                 </div>
               </th>
@@ -41,33 +51,37 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
-              </th>
-              <td class="py-4 px-6">
-                {{ data.color }}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in cons " :key="data.id">
+             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                {{ data.Intitule_Intervention  }}
+             </th>
+             <td class="py-4 px-6">
+                {{ data.enseignant.Nom }}
+              </td><td class="py-4 px-6">
+                {{ data.enseignant.prenom }}
               </td>
               <td class="py-4 px-6">
-                {{ data.category }}
+                 {{ data.Annee_univ  }}
               </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
+             <td class="py-4 px-6">
+                 {{ data.Semestre  }}
               </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
+             <td class="py-4 px-6">
+                 {{ data.Date_debut  }}
               </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
+             <td class="py-4 px-6">
+                 {{ data.Date_fin  }}
               </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
+             <td class="py-4 px-6">
+                 {{ data.Nbr_heures  }}
               </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
+             <td class="py-4 px-6">
+                 {{ data.visa_etb  }}
               </td>
-
-            </tr>
+             <td class="py-4 px-6">
+                 {{ data.visa_uae  }}
+              </td>              
+          </tr>
           </tbody>
         </table>
       </div>
@@ -82,56 +96,14 @@ import axios from 'axios';
     components: {},
   data(){
     return {
-        name:'',
-        color:'',
-        category:'',
-        price:null,
-        productyObj:[
-        {
-            id:1,
-            name:'Azus',
-            color:'Gold',
-            category:' Ipad ',
-            price:5000
-        },
-
-    ],
-
+        cons:''
     }
   },
-  methods:{
-   refuser(){
-    alert('youll delete')
-   }, getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
+  async mounted(){
+  const response = await axios.get('/Intervention');
+   this.cons=response.data
+   console.log(response.data)
 
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-
-
-  },
-
-  }
+  },}
 
   </script>

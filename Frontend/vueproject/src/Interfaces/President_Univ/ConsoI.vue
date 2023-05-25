@@ -53,32 +53,30 @@
         <tbody>
           <tr
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-            v-for="data in filteredData"
-            :key="data.id"
-          >
+               v-for="data in cons" :key="data.id">
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ data.name }}
+              {{ data.Intitule_Intervention }}
             </th>
             <td class="py-4 px-6">
-              {{ data.color }}
+              {{ data.Annee_univ }}
             </td>
             <td class="py-4 px-6">
-              {{ data.category }}
+              {{ data.Semestre }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ data.Date_debut }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ data.Date_fin }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ data.Nbr_heures }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ data.visa_uae }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ data.visa_etb }}
             </td>
           </tr>
         </tbody>
@@ -89,74 +87,32 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
-      productyObj: [
-        {
-          id: 1,
-          name: 'Azus',
-          color: 'Gold',
-          category: 'Ipad',
-          price: 5000
-        },
-        {
-          id: 2,
-          name: 'Samsung',
-          color: 'Silver',
-          category: 'Phone',
-          price: 6000
-        },
-        {
-          id: 3,
-          name: 'Apple',
-          color: 'Rose Gold',
-          category: 'Laptop',
-          price: 7000
-        }
-      ],
-      establishmentFilter: '', // Add a new data property for the filter
-      establishments: ['Azus', 'Samsung', 'Apple'] // Add an array of establishment names
+      establishmentFilter: '',
+      establishments: [], // Add your establishment data here
+      cons: [], // Store the response data in an array
     };
   },
-  methods:{
-     getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-
+  async mounted() {
+    const response = await axios.get('/Intervention');
+    this.cons = response.data;
+    console.log(response.data);
   },
   computed: {
     filteredData() {
-      // Compute the filtered data based on the establishment filter
       if (this.establishmentFilter === '') {
-        return this.productyObj; // Return all data if no filter is applied
+        return this.cons; // Return all data if no filter is applied
       } else {
-        return this.productyObj.filter(data => data.name === this.establishmentFilter);
+        return this.cons.filter(
+          (data) =>
+            data &&
+            data.Semestre === this.establishmentFilter
+        );
       }
-    }
-  }
+    },
+  },
 };
 </script>

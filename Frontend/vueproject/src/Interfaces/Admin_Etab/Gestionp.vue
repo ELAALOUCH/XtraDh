@@ -90,8 +90,6 @@
       </table>
     </div>
   </div>
-  
-              
 </template>
 
 <script>
@@ -122,7 +120,8 @@ export default {
   },
   async mounted() {
       try {
-        await axios.get('/profetab').then(res => {
+        
+        await axios.get('/Enseignant').then(res => {
           console.log(res)
           this.profs=res.data
         })
@@ -136,6 +135,3 @@ export default {
   }
 </script>
 
-<style>
-
-</style>

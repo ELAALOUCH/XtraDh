@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Ajouter prof
+      Ajouter Intervention
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -9,7 +9,8 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-3xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Ajouter Prof</h2>
+        <h2 class="text-2xl font-bold mb-4">Ajouter Intervention</h2>
+
         <div class="mb-4">
           <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
@@ -66,10 +67,8 @@ export default {
       this.showModal = false;
     },
     submitForm() {
-      // Perform CRUD logic here, such as adding the etablissement
       console.log(this.formData);
 
-      // Reset the form data and close the modal
       this.formData.name = '';
       this.formData.email = '';
       this.closeModal();

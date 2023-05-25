@@ -97,7 +97,7 @@ async created(){
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-}, getNonce() {
+}, /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -123,7 +123,8 @@ methods:{
     },
     created() {
       this.getNonce();
-    },
+    },*/
+  }
 
 }
 

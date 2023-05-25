@@ -89,27 +89,28 @@
     components: {Create,Edit},
   data(){
     return {
-        name:'',
-        color:'',
-        category:'',
-        price:null,
-        productyObj:[
-        {
-            id:1,
-            name:'Azus',
-            color:'Gold',
-            category:' Ipad ',
-            price:5000
-        },
-
-    ],
+     presi:{ }
 
     }
+  },
+  async mounted(){
+    try {
+      await axios.get('/Administrateur ').then(res=>{   
+      console.log(res)
+      this.profs=res.presi
+      })
+
+    } catch (error) {
+      
+    } 
   },
   methods:{
     togglemodal(){
     this.showmodal=!this.showmodal
-  }, getNonce() {
+  },
+
+}
+  /* getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -137,8 +138,8 @@
       this.getNonce();
     },
 
+  }*/
   }
-
   </script>
 
   <style>

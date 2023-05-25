@@ -117,7 +117,7 @@ data(){
 methods:{
  refuser(){
   alert('youll delete')
- }, getNonce() {
+ }, /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -144,7 +144,7 @@ methods:{
     created() {
       this.getNonce();
 
-
+    }*/
 },
 
 }
