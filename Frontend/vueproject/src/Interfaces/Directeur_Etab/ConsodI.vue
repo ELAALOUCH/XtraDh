@@ -11,6 +11,16 @@
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
+                  Nom
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
+                  Prenom
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <div class="flex items-center">
                   Annee_univ
                 </div>
               </th>
@@ -43,28 +53,33 @@
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in cons " :key="data.id">
              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                {{ data.intervention ? data.intervention.Intitule_Intervention : '' }}
+                {{ data.Intitule_Intervention  }}
              </th>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.Annee_univ : '' }}
+                {{ data.enseignant.Nom }}
+              </td><td class="py-4 px-6">
+                {{ data.enseignant.prenom }}
+              </td>
+              <td class="py-4 px-6">
+                 {{ data.Annee_univ  }}
               </td>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.Semestre : '' }}
+                 {{ data.Semestre  }}
               </td>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.Date_debut : '' }}
+                 {{ data.Date_debut  }}
               </td>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.Date_fin : '' }}
+                 {{ data.Date_fin  }}
               </td>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.Nbr_heures : '' }}
+                 {{ data.Nbr_heures  }}
               </td>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.visa_etb : '' }}
+                 {{ data.visa_etb  }}
               </td>
              <td class="py-4 px-6">
-                 {{ data.intervention ? data.intervention.visa_uae : '' }}
+                 {{ data.visa_uae  }}
               </td>              
           </tr>
           </tbody>
@@ -85,7 +100,7 @@ import axios from 'axios';
     }
   },
   async mounted(){
-  const response = await axios.get('/Enseignant');
+  const response = await axios.get('/Intervention');
    this.cons=response.data
    console.log(response.data)
 

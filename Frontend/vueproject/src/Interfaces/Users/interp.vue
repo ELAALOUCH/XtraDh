@@ -7,9 +7,7 @@
         <label for="filterYear">Filtrer par année :</label>
         <select id="filterYear" v-model="selectedYear">
           <option value="">Toutes les années</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
+          <option v-for="year in uniqueYears" :value="year" :key="year">{{ year }}</option>
         </select>
       </div>
 
@@ -17,8 +15,7 @@
         <label for="filterSemester">Filtrer par semestre :</label>
         <select id="filterSemester" v-model="selectedSemester">
           <option value="">Tous les semestres</option>
-          <option value="S1">Semestre 1</option>
-          <option value="S2">Semestre 2</option>
+          <option v-for="semester in uniqueSemesters" :value="semester" :key="semester">{{ semester }}</option>
         </select>
       </div>
     </div>
@@ -63,30 +60,30 @@
         </thead>
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in pfs " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                  {{ data.intervention ? data.intervention.Intitule_Intervention : '' }}
-              </th>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.Annee_univ : '' }}
-              </td>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.Semestre : '' }}
-              </td>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.Date_debut : '' }}
-              </td>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.Date_fin : '' }}
-              </td>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.Nbr_heures : '' }}
-              </td>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.visa_etb : '' }}
-              </td>
-             <td class="py-4 px-6">
-               {{ data.intervention ? data.intervention.visa_uae : '' }}
-              </td>              
+            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap" >
+                 {{ data.Intitule_Intervention }}
+             </th>
+             <td class="py-4 px-6" >
+               {{ data.Annee_univ }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Semestre }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Date_debut }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Date_fin }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Nbr_heures }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.visa_etb }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.visa_uae }}
+             </td>              
           </tr>
         </tbody>
       </table>
@@ -107,21 +104,21 @@ export default {
   computed: {
     filteredData() {
       if (this.selectedYear && this.selectedSemester) {
-        return this.productObj.filter(
+        return this.pfs.filter(
           (data) =>
             data.annee_univ === parseInt(this.selectedYear) &&
             data.semestre === this.selectedSemester
         );
       } else if (this.selectedYear) {
-        return this.productObj.filter(
+        return this.pfs.filter(
           (data) => data.annee_univ === parseInt(this.selectedYear)
         );
       } else if (this.selectedSemester) {
-        return this.productObj.filter(
+        return this.pfs.filter(
           (data) => data.semestre === this.selectedSemester
         );
       } else {
-        return this.productObj;
+        return this.pfs;
       }
     }
   },
@@ -129,9 +126,9 @@ export default {
       
   },
   async mounted(){
-    const response =await axios.get('/Intervention ');
-    console.log(response)
+    const response =await axios.get('/Intervention');
     this.pfs=response.data
+    console.log(response.data[0])
  }
 };
 </script>

@@ -40,9 +40,22 @@
         <tbody>
           <tr v-for="data in Obj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="py-4 px-6" >
-              {{ data.user }}
+              {{ data.user.email }}
             </td>
             <td class="py-4 px-6" >
+              {{ data.user.type }}
+            </td>
+            <td class="py-4 px-6" >
+              {{ data.PPR }}
+            </td>
+            <td class="py-4 px-6" >
+              {{ data.Nom }}
+            </td>
+            <td class="py-4 px-6" >
+              {{ data.prenom }}
+            </td>
+            <td class="py-4 px-6" >
+              {{ data.etablissement.Nom }}
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
@@ -68,76 +81,25 @@ export default {
   components: {Create,Edit},
 data(){
   return {
-      Obj:
-      {
-        Email:'',
-        Type:'',
-        PPR:'',
-        Nom:'',
-        PRENOM:'',
-        ETABLISSEMENT:''
-
-      }
+      Obj:'',
   }
 },
 async mounted() {
       try {
-        console.log('aze')
-        await axios.get('/Administrateur').then(res => {
-         // console.log(res)
-          console.log(res.data[0].user)
+         const response=await axios.get('/Administrateur')
+         console.log(response.data)
+         this.Obj=response.data
+          /*console.log(res.data[0].user)
           console.log(res.data[0].prenom)
-          console.log(res.data[0].etablissement.Nom)
-
-
-          this.obj=res.data
-        })
-        //
-
-        /*
-          ppr: this.name,
-          nom: this.nom,
-          prenom: this.prenom,
-          date_naissance: this.date_naissance,
-          etablissement: this.etablissement,
-          grade: this.grade,
-          email: this.email,
-          type: this.type*/
-
+          console.log(res.data[0].etablissement.Nom)*/ 
         this.showModal = false;
       } catch (error) {
-        console.error(error);
+        //console.error(error);
       }},
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-}, /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-    }*/
+}, 
 }}
 
 
