@@ -11,7 +11,14 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
+use Spatie\Csp\Nonce\NonceGenerator;
 use Doctrine\Instantiator\InstantiatorInterface;
+
+
+/* Etablissement Routes */
+
+/*get nonce */
+
 
 Route::get('/api/get-nonce', function () {
     $nonce = app(NonceGenerator::class)->generate();
@@ -20,8 +27,6 @@ Route::get('/api/get-nonce', function () {
         'nonce' => $nonce,
     ]);
 });
-/* Etablissement Routes */
-
 
 
 /* Paiement Routes */
@@ -93,13 +98,13 @@ Route::apiResource('Intervention',InterventionController::class);
 // Route::apiResource('Paiement',PaiementController::class);
 //});
 
-//Route::middleware(['auth:sanctum','role:directeur'])->group( function () {
+//Route::middleware(['auth:sanctum','role:directeur_etb'])->group( function () {
     //protected for directeur
     Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
 Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 //});
 
-//Route::middleware(['auth:sanctum','role:présidnt'])->group( function () {
+//Route::middleware(['auth:sanctum','role:presidnt_univ'])->group( function () {
     //protected for président
     Route::get('/valideruae',[InterventionController::class,'valideruae']);
 Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
