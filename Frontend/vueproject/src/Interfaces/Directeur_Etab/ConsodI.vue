@@ -41,33 +41,32 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
-              </th>
-              <td class="py-4 px-6">
-                {{ data.color }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.category }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.price }}
-              </td>
-
-            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in cons " :key="data.id">
+              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+      {{ data.intervention ? data.intervention.Intitule_Intervention : '' }}
+    </th>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.Annee_univ : '' }}
+    </td>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.Semestre : '' }}
+    </td>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.Date_debut : '' }}
+    </td>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.Date_fin : '' }}
+    </td>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.Nbr_heures : '' }}
+    </td>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.visa_etb : '' }}
+    </td>
+    <td class="py-4 px-6">
+      {{ data.intervention ? data.intervention.visa_uae : '' }}
+    </td>              
+          </tr>
           </tbody>
         </table>
       </div>
@@ -77,29 +76,24 @@
   </template>
   
   <script>
+import axios from 'axios';
+
  
   export default {
     components: {},
   data(){
     return {
-        name:'',
-        color:'',
-        category:'',
-        price:null,   
-        productyObj:[
-        {
-            id:1,
-            name:'Azus',
-            color:'Gold',
-            category:' Ipad ',
-            price:5000
-        },
-        
-    ],
-
+        cons:''
     }
   },
+  async mounted(){
+  const response = await axios.get('/Enseignant');
+   this.cons=response.data
+   console.log(response.data)
+
+  },
   methods:{
+    
    refuser(){
     alert('youll delete')
    }
