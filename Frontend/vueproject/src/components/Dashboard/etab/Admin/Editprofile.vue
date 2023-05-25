@@ -10,7 +10,27 @@
       <div class="modal-content bg-white rounded-lg p-6 w-11/12 max-w-6xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
         <h2 class="text-2xl font-bold mb-4">Edit</h2>
-        
+
+        <div class="mb-4">
+          <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
+          <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+          <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
+          <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+        </div>
+
         <div class="mb-4">
           <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
           <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
@@ -34,20 +54,9 @@
         </div>
 
 
-        <div class="mb-4">
-          <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
-          <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
-        </div>
 
-        <div class="mb-4">
-          <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
-          <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
-        </div>
 
-        <div class="mb-4">
-          <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
-          <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
-        </div>
+
 
         
 

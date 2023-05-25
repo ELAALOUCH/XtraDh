@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="w-screen overflow-y-hidden h-screen flex">
     <!-- Side bar -->
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">

@@ -1,15 +1,22 @@
 <template>
-    <div class="flex flex-col md:flex-row h-screen items-center">
-      <div class="bg-blue-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-        <img src="@/assets/images/AF1QipPd4KGT1xMp13QlE4z_5-CuAMb52cNEd-AmuNrcw1600-h1000-k-no.jpeg" alt="" class="w-full h-full object-cover">
-      </div>
 
-      <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
-        <div class="w-full h-100">
-          <h1 class="text-sky-600 text-6xl text-center">XtraDh</h1>
+  <div class="flex flex-col md:flex-row h-screen items-center">
+ 
+ <div class="bg-blue-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+   <img src="@/assets/images/AF1QipPd4KGT1xMp13QlE4z_5-CuAMb52cNEd-AmuNrcw1600-h1000-k-no.jpeg" alt="" class="w-full h-full object-cover">
+ </div>
+ 
+ <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
+   <div class="w-full h-100 ">
 
-          <form @submit.prevent="submitlogin()" class="mt-6">
-            <div>
+     <div class="flex justify-center">
+      <img src="@/assets/images/Image1.png" alt="image">
+     </div>
+ 
+     <form  @submit.prevent="submitlogin()" class="mt-6" >
+       <div>
+   
+
          <label for="email" class="block text-gray-700">Email Address</label>
          <input v-model="user.email" type="email"  id="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
        </div>
@@ -108,7 +115,7 @@ export default {
     case 'admin_univ':
       this.$router.push('Dash_au');
       break;
-    case 'président_univ':
+    case 'president_univ':
       this.$router.push('Dash_pu');
       break;
     case 'admin_etb':

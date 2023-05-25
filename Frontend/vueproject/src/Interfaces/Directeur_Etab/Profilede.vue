@@ -66,12 +66,13 @@
       </div>
     </div>
 
-
   </template>
 
   <script>
-  import Editprofile from '@/components/Dashboard/Univ/Editprofile.vue'
+
+  import Editprofile from '@/components/Dashboard/etab/Directeur/Editprofile.vue'
   import axios from 'axios';
+
   export default {
     components: {Editprofile},
   data(){
