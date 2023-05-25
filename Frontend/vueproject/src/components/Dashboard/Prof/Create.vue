@@ -44,19 +44,6 @@
           <input type="Email" id="Email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
 
-
-
-        <div class="mb-4">
-          <label for="type" class="block text-gray-700 font-bold mb-2">type:</label>
-          <select v-model="formData.type" required class="border rounded w-full py-2 px-3">
-                <option value="1">Enseignant</option>
-                <option value="2">Admin etablissement</option>
-                <option value="3">Directeur etablissement</option>
-                <option value="4">President université</option>
-                <option value="5">Admin université</option>
-            </select>       
-           </div>
-
         <div class="flex justify-end">
           <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             @click="submitForm">
@@ -87,7 +74,7 @@ export default{
                 Date_Naissance: '',
                 grade : '',
                 email : '',
-                type : '',
+                type : 'prof',
                 grads : '',
                 errors : ''
               }
@@ -95,7 +82,7 @@ export default{
         },
         async created(){
          
-            const grads = await axios.get('/Grade');
+            const grads = await axios.get('/grade');
            this.grads = grads.data ; 
         },
         methods:{

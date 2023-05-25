@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class administrateur extends Model
+class Administrateur extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -17,11 +17,11 @@ class administrateur extends Model
 
     ];
     
-    public function user(){
+    public function User(){
        // return $this->belongsTo(user::class,'id','id_user','administrateurs');
-       return $this->belongsTo(user::class,'id_user','id_user');
+       return $this->belongsTo(User::class,'id_user','id_user');
     }
-    public function etablissement(){
-        return $this->belongsTo(etablissement::class,'Etablissement','id');
+    public function Etablissement(){
+        return $this->belongsTo(Etablissement::class,'Etablissement','id');
     }
 }

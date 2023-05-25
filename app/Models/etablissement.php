@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class etablissement extends Model
+class Etablissement extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -19,19 +19,19 @@ class etablissement extends Model
     protected $hidden = ['pivot'];
     public function enseignant()
     {
-        return $this->hasMany(enseignant::class,'Etablissement','id');
+        return $this->hasMany(Enseignant::class,'Etablissement','id');
     }
     public function administrateur()
     {
-        return $this->hasMany(administrateur::class,'Etablissement','id');
+        return $this->hasMany(Administrateur::class,'Etablissement','id');
     }
     public function intervention()
     {
-        return $this->hasMany(intervention::class,'id_Etab','id');
+        return $this->hasMany(Intervention::class,'id_Etab','id');
     }
     public function paiement()
     {
-        return $this->hasMany(paiement::class,'id_Etab','id');
+        return $this->hasMany(Paiement::class,'id_Etab','id');
     }
 
 }

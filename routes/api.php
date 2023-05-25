@@ -11,6 +11,7 @@ use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
+use App\Models\Enseignant;
 use Spatie\Csp\Nonce\NonceGenerator;
 use Doctrine\Instantiator\InstantiatorInterface;
 /*
@@ -26,7 +27,7 @@ Route::get('/api/get-nonce', function () {
 
 
 /* Paiement Routes */
-Route::apiResource('Paiement',PaiementController::class);
+Route::apiResource('paiement',PaiementController::class);
 
 
 
@@ -34,7 +35,7 @@ Route::apiResource('Paiement',PaiementController::class);
 
 /** AUTH ROUTE */
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/Forgot',[ForgetController::class,'forgot']);
+Route::post('/forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
 
 
@@ -45,7 +46,7 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 
 /**  Users Routes */
-Route::apiResource('User',userController::class);
+Route::apiResource('user',userController::class);
 Route::post('/storeProfEtb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
 Route::post('/storeAdmEtb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
 Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middleware("auth:sanctum");
@@ -70,17 +71,18 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
-    Route::apiResource('Etablissement',EtablissementController::class);
+    Route::apiResource('etablissement',EtablissementController::class);
     /*Grade Routes */
-Route::apiResource('Grade',GradeController::class);
+Route::apiResource('grade',GradeController::class);
 /* Enseignant routes */
 
-Route::apiResource('Enseignant',EnseignantController::class);
+Route::apiResource('enseignant',EnseignantController::class);
 /* Administrateur routes */
 
-Route::apiResource('Administrateur',AdministrateurController::class);
+Route::apiResource('administrateur',AdministrateurController::class);
+Route::get('/adminetb',[AdministrateurController::class,'indexETB'])->middleware('auth:sanctum');
 /* Intervention Routes */
-Route::apiResource('Intervention',InterventionController::class);
+Route::apiResource('intervention',InterventionController::class);
 
 //});
 
@@ -88,9 +90,9 @@ Route::apiResource('Intervention',InterventionController::class);
     //protected for admin etb
     /* Enseignant routes */
 
-Route::apiResource('Enseignant',EnseignantController::class);
+Route::apiResource('enseignant',EnseignantController::class);
 /* Intervention Routes */
-Route::apiResource('Intervention',InterventionController::class);
+Route::apiResource('intervention',InterventionController::class);
 // /* Paiement Routes */
 // Route::apiResource('Paiement',PaiementController::class);
 //});
@@ -109,7 +111,9 @@ Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
 
 //Route::middleware(['auth:sanctum','role:prof'])->group( function () {
     //protected for prof
-    Route::apiResource('Enseignant',EnseignantController::class);
+    Route::apiResource('enseignant',EnseignantController::class);
+    Route::get('/profetab',[EnseignantController::class,'indexetb'])->middleware('auth:sanctum');
+    Route::delete('/deleteprof/{id_user}',[userController::class,'destroyprof']);
 //});
 
 

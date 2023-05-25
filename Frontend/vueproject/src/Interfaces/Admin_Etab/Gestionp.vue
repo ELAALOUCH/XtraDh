@@ -79,8 +79,8 @@
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-               <Edit/>
-               <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
+               <Edit :id="data.id" />
+               <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteprof(data)">
                  Delete
                </button>                  
               </div>
@@ -103,17 +103,26 @@ export default {
   components: { Create, Edit },
   data() {
     return {
-      profs: '',
+      profs: null,
       showModal: false
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
-    }},
+    },
+    async deleteprof(id){
+      console.log(id.user.id_user)
+      const response = await axios.delete('/deleteprof/'+id.user.id_user)
+      console.log(response)
+      let index = this.profs.indexOf(id)
+      this.profs.splice(index,1)
+    }
+  
+  },
   async mounted() {
       try {
-        await axios.get('/Enseignant').then(res => {
+        await axios.get('/profetab').then(res => {
           console.log(res)
           this.profs=res.data
         })

@@ -80,7 +80,7 @@ class InterventionController extends Controller
      */
     public function show( $id)
     {
-        $intervention = intervention::where('id_intervention',$id);
+        $intervention = Intervention::where('id_intervention',$id);
         return response()->json(
             $intervention->with(['etablissement:id,Nom'])
             ->with(['enseignant:id,PPR,Nom,prenom'])
@@ -99,7 +99,7 @@ class InterventionController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $intervention = intervention::where('id_intervention',$id)->first();
+        $intervention = Intervention::where('id_intervention',$id)->first();
         //@dd($request);
         $fields = $request->validate([
             'id_Intervenant'=>'required|exists:enseignants,id',
@@ -124,7 +124,7 @@ class InterventionController extends Controller
      */
     public function destroy($id)
     {
-        $intervention = intervention::where('id_intervention',$id)->first();
+        $intervention = Intervention::where('id_intervention',$id)->first();
        $intervention->delete();
        return $intervention;
     }
@@ -132,13 +132,13 @@ class InterventionController extends Controller
 
     public function valideruae($id)
     {
-        $intervention = intervention::where('id_intervention',$id)->first();
+        $intervention = Intervention::where('id_intervention',$id)->first();
         $intervention->visa_uae = 1 ;
         return $intervention ;
     }
     public function valideretb($id)
     {
-        $intervention = intervention::where('id_intervention',$id)->first();
+        $intervention = Intervention::where('id_intervention',$id)->first();
         $intervention->visa_etb = 1 ;
         $intervention->update();
         return $intervention ;
@@ -146,7 +146,7 @@ class InterventionController extends Controller
 
     public function invalideruae($id)
     {
-        $intervention = intervention::where('id_intervention',$id)->first();
+        $intervention = Intervention::where('id_intervention',$id)->first();
         $intervention->visa_uae = 0 ;
         $intervention->update();
         return $intervention ;
@@ -155,7 +155,7 @@ class InterventionController extends Controller
     {
 
        // @dd($id);
-        $intervention = intervention::where('id_intervention',$id)->first();
+        $intervention = Intervention::where('id_intervention',$id)->first();
         $intervention->visa_etb = 0 ;
         $intervention->update();
         return $intervention ;
