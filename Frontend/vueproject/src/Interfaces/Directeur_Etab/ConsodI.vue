@@ -89,12 +89,8 @@ import axios from 'axios';
    this.cons=response.data
    console.log(response.data)
 
-  },
-  methods:{
-    
-   refuser(){
-    alert('youll delete')
-   }, getNonce() {
+  },}
+   /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -122,8 +118,7 @@ import axios from 'axios';
       this.getNonce();
 
 
-  },
+  },*/
 
-  }
 
   </script>

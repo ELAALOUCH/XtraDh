@@ -92,6 +92,7 @@
 
 <script>
 import axios from 'axios';
+import Create from '@/components/Dashboard/Intervention/Create.vue'
 export default {
   components:{Create},
   data() {
@@ -108,12 +109,9 @@ export default {
       
     },
   },
-  async mounted{
-    const response=  await axios  
-  
-  }
-  
- getNonce() {
+
+
+ /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -135,9 +133,9 @@ export default {
           .catch(error => {
             console.error('Erreur lors de la récupération du nonce:', error);
           });
-      }
-    }
+      },
     created(){
       this.getNonce();
+    }*/
     }
 </script>
