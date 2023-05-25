@@ -23,24 +23,24 @@ class Enseignant extends Model
     ];
 
     public function etab_permanant(){
-        return $this->belongsTo(etablissement::class,'Etablissement','id');
+        return $this->belongsTo(Etablissement::class,'Etablissement','id');
     }
     public function grade()
     {
-        return $this->belongsTo(grade::class,'id_Grade','id_Grade');
+        return $this->belongsTo(Grade::class,'id_Grade','id_Grade');
     }
     public function  paiement(){
-        return $this->hasMany(paiement::class,'id_Intervenant','id','enseignant');
+        return $this->hasMany(Paiement::class,'id_Intervenant','id','enseignant');
         
     }
     public function  intervention(){
-        return $this->belongsTo(intervention::class,'id','id_Intervenant');   
+        return $this->belongsTo(Intervention::class,'id','id_Intervenant');   
     }
     public function interventionEtab(){
-        return $this->belongsTo(etablissement::class,intervention::class,'id_Intervenant','id_Etab');
+        return $this->belongsTo(Etablissement::class,intervention::class,'id_Intervenant','id_Etab');
     }
     public function user(){
-        return $this->belongsTo(user::class,'id','id_user','enseignants');
+        return $this->belongsTo(User::class,'id_user','id_user');
     }
 
 

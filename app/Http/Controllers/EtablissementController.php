@@ -15,7 +15,7 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        $etab = etablissement::all();
+        $etab = Etablissement::all();
         return response()->json($etab);
     }
 

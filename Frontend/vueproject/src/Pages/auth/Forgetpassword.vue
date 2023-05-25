@@ -38,7 +38,7 @@ import Footer from '@/components/Login/Footer.vue'
     methods: {
       async submitForm() {
   try {
-    const response = await axios.post('/Forgot', {
+    const response = await axios.post('/forgot', {
       email: this.email
     });
     const redirectTime = 5000; // Redirect after 5 seconds (5000 milliseconds)

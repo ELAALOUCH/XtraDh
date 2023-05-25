@@ -18,7 +18,7 @@ class PaiementController extends Controller
      */
     public function index()
     {
-        $paiements = paiement::with(['enseignant:id,Nom,prenom'])
+        $paiements = Paiement::with(['enseignant:id,Nom,prenom'])
             ->with(['etablissement:id,Nom'])
             ->get();
         return response()->json($paiements);

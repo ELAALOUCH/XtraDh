@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm">
+    <button @click="showModal=true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm">
       Edit
     </button>
 
@@ -27,34 +27,13 @@
 
         <div class="mb-4">
           <label for="DATE_NAISSANCE" class="block text-gray-700 font-bold mb-2">DATE_NAISSANCE:</label>
-          <input type="DATE_NAISSANCE" id="DATE_NAISSANCE" v-model="formData.DATE_NAISSANCE" required class="border rounded w-full py-2 px-3">
+          <input type="date" id="DATE_NAISSANCE" v-model="formData.Date_Naissance" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4">
-          <label for="Etablissement" class="block text-gray-700 font-bold mb-2">Etablissement:</label>
-          <input type="Etablissement" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="Grade" class="block text-gray-700 font-bold mb-2">Grade:</label>
-          <select v-model="formData.Grade">
-            <option :value="grad.id_Grade"  v-for="grad  in grads" :key="grad">{{grad.designation}}</option>
-          </select>
-        </div>
 
         <div class="mb-4">
           <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
           <input type="Email" id="Email" v-model="formData.Email" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="Password" class="block text-gray-700 font-bold mb-2">Password:</label>
-          <input type="password" id="Password" v-model="formData.Password" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="Type" class="block text-gray-700 font-bold mb-2">Type:</label>
-          <input type="text" id="Type" v-model="formData.Type" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="flex justify-end mt-4">
@@ -74,31 +53,53 @@
 import axios from 'axios';
 
 export default {
-  data() {
+  props:['id'],
+ data() {
     return {
       showModal: false,
       formData: {
+        id_user:'',
         PPR: '',
         Nom: '',
         Prenom: '',
-        DATE_NAISSANCE: '',
-        Etablissement: '',
-        Grade: '',
+        Date_Naissance: '',
         Email: '',
-        Password: '',
-        Type: ''
-      }
+
+      },
+      
     };
   },
+  async mounted(){
+    const response = await axios.get('/enseignant/'+this.id)
+    console.log(response.data)
+    this.formData.PPR = response.data.PPR ; 
+    this.formData.Nom = response.data.Nom;
+    this.formData.Prenom = response.data.prenom ;
+    this.formData.Date_Naissance = response.data.Date_Naissance ;
+    this.formData.Email = response.data.user.email ;
+    this.formData.id_user = response.data.id_user;
+
+  }
+  ,
   methods: {
+   
+    
     closeModal() {
       this.showModal = false;
     },
     async submitForm() {
       try {
-        const response = await axios.put(`/api/Enseignant/${this.formData.PPR}`, this.formData);
-        console.log(response.data); 
-        this.closeModal();
+        const response = await axios.patch('/updateprof/'+this.formData.id_user,{
+         PPR:this.formData.PPR, 
+          Nom:this.formData.Nom,
+          prenom:this.formData.Prenom,
+          Date_Naissance:this.formData.Date_Naissance,
+          email:this.formData.Email,
+          id_user:this.formData.id_user 
+        });
+        console.log(response)
+        this.$router.push('/Gestionp')
+        this.showModal = false;
       } catch (error) {
         console.error(error);
       }

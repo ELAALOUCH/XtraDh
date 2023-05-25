@@ -92,7 +92,7 @@ export default {
     };
   }, 
   async created(){
-            const grads = await axios.get('http://127.0.0.1:8000/api/Grade');
+            const grads = await axios.get('http://127.0.0.1:8000/api/grade');
            console.log(grads.data)
            this.grads = grads.data ; 
         },

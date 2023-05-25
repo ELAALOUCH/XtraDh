@@ -15,7 +15,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grade = grade::all();
+        $grade = Grade::all();
         return response()->json($grade);
     }
 
@@ -32,7 +32,7 @@ class GradeController extends Controller
             'charge_statutaire'=>'required',
             'Taux_horaire_Vocation'=>'required',
          ]);
-         $grade = grade::Create($champs);
+         $grade = Grade::Create($champs);
          return response()->json($grade); 
          /* $grade= new Grade();
          $grade->designation = $request->designation;
@@ -50,7 +50,7 @@ class GradeController extends Controller
      */
     public function show($idgrade)
     {
-        $grade = grade::find($idgrade);
+        $grade = Grade::find($idgrade);
         return response()->json($grade);
     }
 
@@ -63,7 +63,7 @@ class GradeController extends Controller
      */
     public function update(Request $request, $idgrade)
     {
-         $grade = grade::find($idgrade);
+         $grade = Grade::find($idgrade);
         $champs = $request->validate([
             'designation'=>'required',
             'charge_statutaire'=>'required',
@@ -87,7 +87,7 @@ class GradeController extends Controller
      */
     public function destroy($idgrade)
     {
-        $grade = grade::find($idgrade);
+        $grade = Grade::find($idgrade);
         $grade->delete();
         return response()->json($grade);
     }

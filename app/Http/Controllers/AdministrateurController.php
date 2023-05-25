@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\enseignant;
 use Illuminate\Http\Request;
 use App\Models\Administrateur;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdministrateurController extends Controller
@@ -18,12 +19,27 @@ class AdministrateurController extends Controller
     {
        /*$adm = administrateur::with('etablissement')->get();
         return $adm;*/
-        $adm = administrateur::with('user')
+        $adm = Administrateur::with('user')
                               ->with('Etablissement')
                               ->get();
 
         return $adm;
     }
+
+
+    public function indexETB(){
+        //cette methode est pour afficher la liste de prof qui appartient à etablissement de admistrateur (etab_permanent)
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $enseignant = Administrateur::where('Etablissement',$etb)->with(['Etablissement:id,Nom'])
+                                                                ->with(['user'])
+                                                                ->get();
+        return  response()->json($enseignant) ;
+    }
+
+    public function directeur($idetab){
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -41,7 +57,7 @@ class AdministrateurController extends Controller
             'id_user'=>'required'
         ]);
     //    $attributs['PPR']=Crypt::encrypt($attributs->PPR);
-        $adm = administrateur::Create($attributs);
+        $adm = Administrateur::Create($attributs);
         return response()->json($adm);
     }
 
@@ -84,7 +100,7 @@ class AdministrateurController extends Controller
     }
     public function show($idAdm)
     {
-        $adm = administrateur::with(['user'])
+        $adm = Administrateur::with(['user'])
             ->with(['Etablissement'])
             ->find($idAdm);
      //   $adm->PPR=Crypt::decrypt($adm->PPR);
@@ -100,7 +116,7 @@ class AdministrateurController extends Controller
      */
     public function update(Request $request, $idAdm)
     {
-        $adm = administrateur::find($idAdm);
+        $adm = Administrateur::find($idAdm);
         $attributs = $request->validate([
             'PPR'=>'required',
             'Nom'=>'required',
@@ -121,6 +137,6 @@ class AdministrateurController extends Controller
      */
     public function destroy($idAdm)
     {
-        return administrateur::find($idAdm)->delete();
+        return Administrateur::find($idAdm)->delete();
     }
 }

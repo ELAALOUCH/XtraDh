@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class user extends Authenticatable
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 /**
@@ -48,7 +48,7 @@ class user extends Authenticatable
         return $this->hasOne(Enseignant::class,'id_user','id_user');
     }
     public function administrateur(){
-        return $this->hasOne(administrateur::class,'id_user','id_user','users');
+        return $this->hasOne(Administrateur::class,'id_user','id_user','users');
     }
 
 }

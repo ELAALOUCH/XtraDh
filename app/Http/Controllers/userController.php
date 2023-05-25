@@ -27,7 +27,7 @@ class userController extends Controller
 
     public function index()
     {
-        return user::with(['administrateur'])
+        return User::with(['administrateur'])
                     ->with(['enseignant'])
                     ->get();
     }
@@ -91,7 +91,7 @@ class userController extends Controller
         });
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $request['id_user'] = $user->id_user;
-        $request['Etablissement'] = administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         //create enseignant
          $ensctrl =  new EnseignantController();
         $ensctrl = $ensctrl->storeETB($request);
@@ -128,7 +128,7 @@ class userController extends Controller
         });*/
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $request['id_user'] = $user->id_user;
-        $request['Etablissement'] = administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         //create enseignant
         return $request;
          $ensctrl =  new AdministrateurController();
@@ -185,7 +185,7 @@ class userController extends Controller
     }
     public function updateprof(Request $request,$id){
      
-        $user = user::where('id_user',$id)->first();
+        $user = User::where('id_user',$id)->first();
          $user->update($request->only(['email','password','type']));
         //create enseignant
         $id = Enseignant::where('id_user',$user->id_user)->first();
@@ -196,7 +196,7 @@ class userController extends Controller
         $adm = user::where('id_user',$id)->first();
             $adm->update($req->only(['email','password','type']));
 
-            $id=administrateur::where('id_user',$adm->id_user)->first();
+            $id=Administrateur::where('id_user',$adm->id_user)->first();
             $adm_cntrol = new AdministrateurController();
             return $adm_cntrol->update($req,$id->id);
     }
@@ -206,9 +206,18 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function destroyprof($id){
+        $user = User::find($id);
+         $ens = Enseignant::where('id_user',$user->id_user)->first()->delete();
+         return $user->delete(); 
+    }
+
+
+
     public function destroy($id)
     {
-        return user::find($id)->delete();
+        return User::find($id)->delete();
 
     }
 }
