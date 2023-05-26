@@ -10,9 +10,6 @@
               email
             </th>
             <th scope="col" class="py-3 px-6">
-              password
-            </th>
-            <th scope="col" class="py-3 px-6">
               type
             </th>
             <th scope="col" class="py-3 px-6">
@@ -41,27 +38,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in presi " :key="data.id">
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
+               {{ data.user.email }}
               </th>
               <td class="py-4 px-6">
-                {{ data.color }}
+                {{data.user.email}}
               </td>
               <td class="py-4 px-6">
-                {{ data.category }}
+                {{ data.PPR }}
               </td>
               <td class="py-4 px-6">
-                {{ data.price }}
+                {{ data.Nom }}
               </td>
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
+               {{ data.prenom }}
               </th>
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
-              </th>
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.name }}
+               {{ data.etablissement.Nom }}
               </th>
 
               <td class="py-4 px-6 text-right">
@@ -97,7 +91,7 @@
     try {
       await axios.get('/administrateur ').then(res=>{   
       console.log(res)
-      this.profs=res.presi
+      this.presi=res.data
       })
 
     } catch (error) {
