@@ -212,6 +212,11 @@ class userController extends Controller
          $ens = Enseignant::where('id_user',$user->id_user)->first()->delete();
          return $user->delete(); 
     }
+    public function destroyAdmin($id){
+        $user = User::find($id);
+         $ens = Administrateur::where('id_user',$user->id_user)->first()->delete();
+         return $user->delete(); 
+    }
 
 
 

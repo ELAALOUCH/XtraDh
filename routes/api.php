@@ -28,7 +28,7 @@ Route::get('/api/get-nonce', function () {
 
 /* Paiement Routes */
 Route::apiResource('paiement',PaiementController::class);
-
+Route::get('/paiementprof/{prof}',[PaiementController::class,'paiementprof']);
 
 
 

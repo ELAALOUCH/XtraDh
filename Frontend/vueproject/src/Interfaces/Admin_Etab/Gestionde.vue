@@ -95,7 +95,7 @@
   },
   async mounted(){
     try {
-      await axios.get('/Administrateur ').then(res=>{   
+      await axios.get('/administrateur ').then(res=>{   
       console.log(res)
       this.profs=res.presi
       })
