@@ -23,7 +23,9 @@ Route::get('/api/get-nonce', function () {
     ]);
 });*/
 
-
+/** GENERATE PDF */
+Route::get('postfix', [PaiementController::class, 'postfix']);
+Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
 
 
 /* Paiement Routes */
@@ -102,10 +104,6 @@ Route::apiResource('intervention',InterventionController::class);
     //protected for directeur
     Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
 Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
-
-/** GENERATE PDF */
-Route::get('postfix', [PaiementController::class, 'postfix']);
-Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
 
 
 });
