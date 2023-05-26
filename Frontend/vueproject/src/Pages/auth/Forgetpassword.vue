@@ -52,7 +52,7 @@ import Footer from '@/components/Login/Footer.vue'
     this.error = error.response.data.message;
     console.log(error.response.data.message);
   }
-}, getNonce() {
+},/* getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -78,8 +78,8 @@ import Footer from '@/components/Login/Footer.vue'
     },
     created() {
       this.getNonce();
-    }
+    }*/
  }
-    
+}
 
 </script>

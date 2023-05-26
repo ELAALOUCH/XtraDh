@@ -79,7 +79,16 @@
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-               <Edit :id="data.id" />
+                <td class="py-4 px-6 text-right">
+              <div class="inline-flex">
+                <router-link :to="'Edit/:id' + data.id" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                    Edit
+                </router-link>
+               <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteprof(data)">
+                 Delete
+               </button>                  
+              </div>
+            </td>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteprof(data)">
                  Delete
                </button>                  
@@ -95,10 +104,10 @@
 <script>
 import axios from 'axios';
 import Create from '@/components/Dashboard/Prof/Create.vue';
-import Edit from '@/components/Dashboard/Prof/Edit.vue';
+//import Edit from '@/components/Dashboard/Prof/Edit.vue';
 
 export default {
-  components: { Create, Edit },
+  components: { Create },
   data() {
     return {
       profs: null,
@@ -121,7 +130,7 @@ export default {
   async mounted() {
       try {
         
-        await axios.get('/Enseignant').then(res => {
+        await axios.get('/profetab').then(res => {
           console.log(res)
           this.profs=res.data
         })

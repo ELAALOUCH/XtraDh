@@ -42,6 +42,7 @@ import Profhome from '@/Interfaces/Users/Profhome.vue'
 import Profileprof from '@/Interfaces/Users/Profileprof.vue'
 import interp from '@/Interfaces/Users/interp.vue'
 import paimep from '@/Interfaces/Users/paimep.vue'
+import Edit from '@/components/Dashboard/Prof/Edit.vue'
 
 
 
@@ -241,6 +242,10 @@ const routes = [
         path:'/paimep',
         component:paimep
       },
+      {
+        path:'/Edit/:id',
+        component:Edit
+      }
 
     ]
   },
