@@ -109,7 +109,7 @@
       };
     },
     methods:{
-        getNonce() {
+      /*  getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -135,7 +135,8 @@
     },
     created() {
       this.getNonce();
-    }
-
-  };
+    }*/
+  
+  }
+}
   </script>

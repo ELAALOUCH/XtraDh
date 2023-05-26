@@ -30,7 +30,7 @@ import axios from 'axios';
         this.$router.push('/'); // Replace with your desired route path
       }, redirectTime);
       this.isLoading=!this.isLoading
-    }, getNonce() {
+    }, /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -56,7 +56,7 @@ import axios from 'axios';
     },
     created() {
       this.getNonce();
-    }
-    }
+    }*/
+    }}
 
 </script>

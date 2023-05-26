@@ -59,7 +59,7 @@ import { createLogger } from 'vuex';
         }
 
 
-      }, getNonce() {
+      }, /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -85,8 +85,8 @@ import { createLogger } from 'vuex';
     },
     created() {
       this.getNonce();
-    }
-
+    }*/
+  }
     
   };
   </script>

@@ -135,7 +135,7 @@ export default {
     this.error = 'An error occurred during login';
   }
 }
-, getNonce() {
+, /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -161,8 +161,8 @@ export default {
     },
     created() {
       this.getNonce();
-    }
-
+    }*/
+  }
   }
   </script>
 
