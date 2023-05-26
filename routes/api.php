@@ -22,7 +22,7 @@ Route::get('/api/get-nonce', function () {
         'nonce' => $nonce,
     ]);
 });*/
-/* Etablissement Routes */
+
 
 
 
@@ -71,6 +71,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
+    /* Etablissement Routes */
     Route::apiResource('etablissement',EtablissementController::class);
     /*Grade Routes */
 Route::apiResource('grade',GradeController::class);
@@ -86,7 +87,7 @@ Route::apiResource('intervention',InterventionController::class);
 
 //});
 
-//Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
+Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
     //protected for admin etb
     /* Enseignant routes */
 
@@ -101,7 +102,13 @@ Route::apiResource('intervention',InterventionController::class);
     //protected for directeur
     Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
 Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
-//});
+
+/** GENERATE PDF */
+Route::get('postfix', [PaiementController::class, 'postfix']);
+Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
+
+
+});
 
 //Route::middleware(['auth:sanctum','role:presidnt_univ'])->group( function () {
     //protected for président
