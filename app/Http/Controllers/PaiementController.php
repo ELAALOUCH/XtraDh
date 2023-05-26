@@ -138,7 +138,7 @@ class PaiementController extends Controller
             ->with(['etablissement:id,Nom'])
             ->first();
 
-        $grade = grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
+        $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
         //@dd($paiement->enseignant->Nom);
         $intervention = $paiement->enseignant->id ;
 
@@ -160,5 +160,14 @@ class PaiementController extends Controller
            return  $pdf->download('itsolutionstuff.pdf');
     }
 
+    public function paiementprof($id_prof)
+    {
+        $paiement = Paiement::where('id_Intervenant',$id_prof)
+        ->with(['enseignant:id,Nom,prenom,id_Grade'])
+        ->with(['etablissement:id,Nom'])
+        ->first();
+        $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
+        return $grade;
+    }
     
 }
