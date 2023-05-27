@@ -10,9 +10,6 @@
               email
             </th>
             <th scope="col" class="py-3 px-6">
-              type
-            </th>
-            <th scope="col" class="py-3 px-6">
               PPR
             </th>
             <th scope="col" class="py-3 px-6">
@@ -42,9 +39,6 @@
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                {{ data.user.email }}
               </th>
-              <td class="py-4 px-6">
-                {{data.user.email}}
-              </td>
               <td class="py-4 px-6">
                 {{ data.PPR }}
               </td>

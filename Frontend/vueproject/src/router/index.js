@@ -38,7 +38,7 @@ import Consodp from '@/Interfaces/Directeur_Etab/Consodp.vue'
 
 
 
-import Profhome from '@/Interfaces/Users/Profhome.vue' 
+//import Profhome from '@/Interfaces/Users/Profhome.vue' 
 import Profileprof from '@/Interfaces/Users/Profileprof.vue'
 import interp from '@/Interfaces/Users/interp.vue'
 import paimep from '@/Interfaces/Users/paimep.vue'
@@ -127,6 +127,10 @@ const routes = [
         component: Gestionp
       },
       {
+        path:'/Gestionp/Edit/:id',
+        component:Edit
+      },
+      {
         path:'/GestionaI',
         component:GestionaI
       },
@@ -137,7 +141,7 @@ const routes = [
       {
         path: '/Profileae',
         component:Profileae
-      }
+      },
 ]
   },
 
@@ -242,11 +246,6 @@ const routes = [
         path:'/paimep',
         component:paimep
       },
-      {
-        path:'/Edit/:id',
-        component:Edit
-      }
-
     ]
   },
 
