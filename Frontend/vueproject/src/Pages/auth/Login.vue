@@ -10,7 +10,7 @@
    <div class="w-full h-100 ">
 
      <div class="flex justify-center">
-      <img src="@/assets/images/Image1.png" alt="image">
+      <img src="@/assets/images/download.jpg" alt="image">
      </div>
  
      <form  @submit.prevent="submitlogin()" class="mt-6" >
