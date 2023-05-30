@@ -29,12 +29,15 @@ import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
 import GestionaI from '@/Interfaces/Admin_Etab/GestionaI.vue'
 import Gestionde from '@/Interfaces/Admin_Etab/Gestionde.vue'
 import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
+import Editi from '@/components/Dashboard/Intervention/Editi.vue'
 
 
 import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
 import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
 import ConsodI from '@/Interfaces/Directeur_Etab/ConsodI.vue'
 import Consodp from '@/Interfaces/Directeur_Etab/Consodp.vue'
+import Editd from '@/components/Dashboard/etab/Directeur/Editd.vue'
+
 
 
 
@@ -153,8 +156,16 @@ const routes = [
         component:GestionaI
       },
       {
+        path:'/Gestionde/Edit/:id',
+        component:Editi
+      },
+      {
         path: '/Gestionde',
         component:Gestionde
+      },
+      {
+        path:'/Gestionde/Edit/:id',
+        component:Editd
       },
       {
         path: '/Profileae',

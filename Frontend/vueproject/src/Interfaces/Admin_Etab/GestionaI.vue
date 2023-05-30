@@ -77,7 +77,9 @@
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-               <Edit/>
+                <router-link :to="`/GestionI/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                    Edit
+                </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                  Delete
                </button>                  
@@ -97,8 +99,8 @@ export default {
   components:{Create},
   data() {
     return {
-      formData: {
-        PPR: '',
+      data:{
+        PPR: '1200',
 
       },
      

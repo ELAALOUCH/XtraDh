@@ -1,140 +1,101 @@
 <template>
-    <div>
-      <h3 class="text-2xl font-bold text-left py-2">Changez Votre Profile</h3>
+  <form @submit.prevent="submitForm" >
 
-      <div class="overflow-x-auto relative  sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="py-3 px-6">
-                PPR
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Nom
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Prenom
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Etablissement
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  email
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  password
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-             </th>
+<div class="relative z-0 w-full mb-6 group">
+  <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+  <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.ppr }}
-              </th>
-              <td class="py-4 px-6">
-                {{ data.nom }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.prenom }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.etablissement }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.email }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.password }}
-              </td>
+<div class="relative z-0 w-full mb-6 group">
+  <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe:</label>
+    <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
-              <td class="py-4 px-6 text-right">
-                <div class="inline-flex">
-                   <Editprofile/>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="relative z-0 w-full mb-6 group">
+  <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
+    <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
+<div class="relative z-0 w-full mb-6 group">
+  <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
+  <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
-  </template>
+  <div class="relative z-0 w-full mb-6 group">
+     <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+    <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3" disabled>
+  </div>
 
-  <script>
+  <div class="relative z-0 w-full mb-6 group">
+    <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+    <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3" disabled>
+  </div>
+  <td class="py-4 px-6 text-right">
+    <div class="inline-flex">
+      <Editprofile/>
+  </div>
+    </td>
+  </form>
 
-  import Editprofile from '@/components/Dashboard/etab/Admin/Editprofile.vue'
-  import axios from 'axios';
+</template>
 
-  export default {
-    components: {Editprofile},
-  data(){
-    return {
-        ppr:'',
-        nom:'',
-        prenom:'',
-        etablissement:'',
-        email:'',
-        password:'',
-        productyObj:[
-        {
-        ppr:'12',
-        nom:'azerr',
-        prenom:'ytn',
-        etablissement:'aertbsf',
-        email:'10@10.com',
-        password:'120'
-        },
+<script>
+import axios from 'axios';
+import Editprofile from '@/components/Dashboard/etab/Admin/Editprofile.vue'
 
-    ],
+export default {
+   components:{Editprofile},
+  data() {
+  return {
+    formData: {
+      id_user: '',
+      PPR: '',
+      Nom: '',
+      Prenom: '',
+      Date_Naissance: '',
+      Email: '',
+    },
+  };
+},
+methods: {
+ async submitForm() {
+    try
+     {
+      let id_user = this.$route.params.id
+      console.log(id_user);
+      const response = await axios.patch('/updateprof/'+ id_user, {
+        PPR: this.formData.PPR,
+        Nom: this.formData.Nom,
+        prenom: this.formData.Prenom,
+        Date_Naissance: this.formData.Date_Naissance,
+        email: this.formData.Email,
+        id_user: this.formData.id_user,
+      });
+      console.log(response);
+     // this.$router.push('/Gestionp')
 
+    } catch (error) {
+      console.error(error);
+      // Handle error
     }
   },
-  methods:{
-    togglemodal(){
-    this.showmodal=!this.showmodal
-  }, /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-    }*/
-
-  }
+},
+   async mounted(){
+    let id = this.$route.params.id
+    this.formData.id_user=id
+    console.log(this.$route.params.id)
+   const response = await axios.get('/enseignant/'+this.formData.id_user)
+  console.log(response.data)
+  this.formData.PPR = response.data.PPR ; 
+  this.formData.Nom = response.data.Nom;
+  this.formData.Prenom = response.data.prenom ;
+  this.formData.Date_Naissance = response.data.Date_Naissance ;
+  this.formData.Email = response.data.user.email ;
+  this.formData.id_user = response.data.user.id_user;
+},
+  cancelForm() {
+  },
 }
 
-  </script>
+</script>
+

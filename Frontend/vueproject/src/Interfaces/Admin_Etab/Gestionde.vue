@@ -54,7 +54,9 @@
 
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
-                   <Edit/>
+                  <router-link :to="`/Gestionde/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                    Edit
+                </router-link>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                    Delete
                  </button>
@@ -71,10 +73,9 @@
 
   <script>
   import Create from '@/components/Dashboard/etab/Directeur/Create.vue'
-  import Edit from '@/components/Dashboard/etab/Directeur/Edit.vue'
   import axios from 'axios';
   export default {
-    components: {Create,Edit},
+    components: {Create},
   data(){
     return {
      presi:{ }
