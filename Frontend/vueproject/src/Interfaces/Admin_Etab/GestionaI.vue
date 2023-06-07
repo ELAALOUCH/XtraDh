@@ -50,7 +50,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b  " v-for="data in profs " :key="data.id">
+          <tr class="bg-white border-b  " v-for="data in interv " :key="data.id">
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
              {{ data.PPR }}
             </th>
@@ -99,45 +99,32 @@ export default {
   components:{Create},
   data() {
     return {
-      data:{
-        PPR: '1200',
+      interv:null,
+      showModal: false
 
-      },
-     
     };
   },
   methods: {
     handleSubmit() {
       
     },
+    /*toggleModal() {
+      this.showModal = !this.showModal;
+    },*/
   },
+  async mounted(){
+    try {       
+        await axios.get('/profetab').then(res => {
+          console.log(res)
+          this.interv=res.data
+        })
+      
+  
+        this.showModal = false;
+      } catch (error) {
+        console.error(error);
+      }
+  }
 
-
- /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      },
-    created(){
-      this.getNonce();
-    }*/
     }
 </script>

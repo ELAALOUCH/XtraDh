@@ -32,6 +32,7 @@ import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
 import Editi from '@/components/Dashboard/Intervention/Editi.vue'
 
 
+
 import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
 import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
 import ConsodI from '@/Interfaces/Directeur_Etab/ConsodI.vue'
@@ -81,7 +82,7 @@ const routes = [
     path:'/Resetpassword/:token',
     name:'Resetpassword',
     component:Resetpassword,
-    beforeEnter: (to, from, next) => {
+    /*beforeEnter: (to, from, next) => {
       
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
@@ -89,7 +90,7 @@ const routes = [
 
       next()
 
-    },
+    },*/
   },
 
 
@@ -156,7 +157,7 @@ const routes = [
         component:GestionaI
       },
       {
-        path:'/Gestionde/Edit/:id',
+        path:'/GestionaI/Edit/:id',
         component:Editi
       },
       {
@@ -166,7 +167,7 @@ const routes = [
       {
         path:'/Gestionde/Edit/:id',
         component:Editd
-      },
+      },      
       {
         path: '/Profileae',
         component:Profileae

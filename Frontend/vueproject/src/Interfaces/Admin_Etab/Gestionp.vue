@@ -112,9 +112,9 @@ export default {
     };
   },
   methods: {
-    toggleModal() {
+    /*toggleModal() {
       this.showModal = !this.showModal;
-    },
+    },*/
     async deleteprof(id){
       console.log(id.user.id_user)
       const response = await axios.delete('/deleteprof/'+id.user.id_user)
