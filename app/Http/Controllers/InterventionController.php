@@ -96,8 +96,19 @@ class InterventionController extends Controller
     public function getIntervention()
     {
         $user = Auth::user();
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
         DB::table('users')
-        ->join('enseignants','users.id_user','=','enseignants.id_user');
+        ->join('enseignants','users.id_user','=','enseignants.id_user')->get();
     }
 
 
