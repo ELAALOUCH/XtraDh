@@ -4,7 +4,7 @@
       <label for="establishmentFilter" class="block text-gray-700 font-bold mb-2">
         Filter by Establishment:
       </label>
-      <select v-model="establishmentFilter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
+      <select v-model="filter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
         <option  selected value="">All Establishments</option>
         <option v-for="etb in etabs" :value="etb.Nom">{{ etb.Nom }}</option>
       </select>
@@ -66,7 +66,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in interv " :key="data.id">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in filteredData " :key="data.id">
              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                 {{ data.Intitule_Intervention  }}
              </th>
@@ -116,7 +116,8 @@ import axios from 'axios';
   data(){
     return {
         interv :  [],
-        etabs : []
+        etabs : [],
+        filter : ''
     }
   },
   async mounted(){
@@ -129,14 +130,11 @@ import axios from 'axios';
   },
   computed: {
     filteredData() {
-      if (this.establishmentFilter === '') {
-        return this.cons; // Return all data if no filter is applied
+      if (this.filter.length > 0 ) {
+        return this.interv.filter((intr)=> intr.Nom_etb.toLowerCase().includes(this.filter.toLocaleLowerCase()) )
+        //return this.cons; // Return all data if no filter is applied
       } else {
-        return this.cons.filter(
-          (data) =>
-            data &&
-            data.Semestre === this.establishmentFilter
-        );
+        return this.interv
       }
     },
   },
