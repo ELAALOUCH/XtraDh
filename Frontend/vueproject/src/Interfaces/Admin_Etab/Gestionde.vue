@@ -1,79 +1,56 @@
 <template>
-    <div>
-      <h3 class="text-2xl font-bold text-left py-2">Listes des directeurs d'établissement</h3>
-
-      <div class="overflow-x-auto relative  sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="py-3 px-6">
-              email
-            </th>
-            <th scope="col" class="py-3 px-6">
-              type
-            </th>
-            <th scope="col" class="py-3 px-6">
-              PPR
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Nom
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Prenom
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Etablissement
-              </div>
-            </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex justify-end" >
-                  <create/>
+ <section class="container mx-auto p-6 font-mono">
+  <h3 class="text-2xl font-bold text-left pb-4">Listes des directeurs d'établissement</h3>
+  <div class="w-full mb-8 overflow-hidden rounded-lg ">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
+      <table class="w-full">
+        <thead>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-4 py-3">NOM</th>
+            <th class="px-4 py-3">PRENOM</th>
+            <th class="px-4 py-3">PPR</th>
+            <th class="px-4 py-3"> EMAIL</th>
+            <th class="px-4 py-3"> ETABLISSEMNT</th>
+            <th class="px-4 py-3"> TYPE </th>
+            <th scope="col" class="py-3 px-2">
+              <div class="flex justify-center" >
+                <create/>
+              </div> 
+           </th> 
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="text-gray-700" v-for="data in presi " :key="data.id_user">
+            <td class="px-4 py-3 border">
+              <div class="flex items-center text-sm">
+                <div>
+                  <p class="font-semibold text-black">{{ data.Nom }} </p>
                 </div>
-             </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in presi " :key="data.id_user">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.email }}
-              </th>
-              <td class="py-4 px-6">
-                {{data.type}}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.PPR }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.Nom }}
-              </td>
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.prenom }}
-              </th>
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.etab_Nom }}
-              </th>
-
-              <td class="py-4 px-6 text-right">
+              </div>
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{ data.prenom }}</td>
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ data.PPR }}
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{ data.email }}</td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{ data.etab_Nom }}</td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{ data.type }}</td>
+            <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
-                  <router-link :to="`/Gestionde/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                  <router-link :to="`/Gestionde/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mx-2 ">
                     Edit
                 </router-link>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteAdm(data)">
+                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteAdm(data)">
                    Delete
                  </button>
                 </div>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
     </div>
-
+  </div>
+</section>
 
   </template>
 
