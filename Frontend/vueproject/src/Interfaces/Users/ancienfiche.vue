@@ -12,8 +12,8 @@
   export default {
     data() {
       return {
-        years: [2019, 2020, 2021], // Les années disponibles
-        apiEndpoint: 'http://exemple-api.com/fiches-paie/', // URL de l'API pour le téléchargement des fiches de paie
+        years: [2019, 2020, 2021,12,15,15], // Les années disponibles
+        apiEndpoint: '/fiches-paie',
       };
     },
     methods: {
