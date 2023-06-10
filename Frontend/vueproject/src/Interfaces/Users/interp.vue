@@ -20,7 +20,7 @@
       </div>
 
       <router-link to="/ancienfiche">
-        <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Voir les anciennes fiches de paie</button>
+        <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"> anciennes fiches de paie</button>
       </router-link>
     </div>
 
@@ -54,12 +54,6 @@
             <th scope="col" class="py-3 px-6">
               Nbr_heures
             </th>
-            <th scope="col" class="py-3 px-6">
-              Visa_uae
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Visa_etb
-            </th>
           </tr>
         </thead>
         <tbody>
@@ -81,13 +75,7 @@
              </td>
              <td class="py-4 px-6" >
                {{ data.Nbr_heures }}
-             </td>
-             <td class="py-4 px-6" >
-               {{ data.visa_etb }}
-             </td>
-             <td class="py-4 px-6" >
-               {{ data.visa_uae }}
-             </td>              
+             </td>            
           </tr>
         </tbody>
       </table>
@@ -130,7 +118,7 @@ export default {
       
   },
   async mounted(){
-    const response =await axios.get('/Intervention');
+    const response =await axios.get('/intervention');
     this.pfs=response.data
     console.log(response.data[0])
  }

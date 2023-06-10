@@ -131,13 +131,12 @@ export default {
           console.log(res)
           this.profs=res.data
         })
-      
-  
         this.showModal = false;
       } catch (error) {
         console.error(error);
       }
     }
+    
   }
 </script>
 
