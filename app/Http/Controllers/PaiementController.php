@@ -103,10 +103,20 @@ class PaiementController extends Controller
 
     public function postfix(){    
         //cette methode pour envoye la liste des paiement au developpeur POSTFIX LINUX
-        $postfix = [];   
-        $avant = date("Y")-1;
-        $apres = date("Y");
+        $postfix = []; 
+          
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
         $date = $avant.'/'.$apres ;
+    
         //@dd($date);
         $paiements = Paiement::select('id','id_Intervenant')->where('Annee_univ',$date)->get('id');
         //@dd($paiements = Paiement::select('id','id_Intervenant'));

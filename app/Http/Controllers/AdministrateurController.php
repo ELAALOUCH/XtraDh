@@ -37,7 +37,7 @@ class AdministrateurController extends Controller
             ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
             ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
             ->where('administrateurs.Etablissement',$etb)
-            ->where('users.type','direct_etb')
+            ->where('users.type','directeur_etab')
             ->get();
       
         return  response()->json($users) ;
@@ -129,6 +129,7 @@ class AdministrateurController extends Controller
         $attributs = $request->validate([
             'Nom'=>'required',
             'prenom'=>'required',
+            'PPR'=>'required'
         ]);
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
