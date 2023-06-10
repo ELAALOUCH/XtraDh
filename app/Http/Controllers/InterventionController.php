@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enseignant;
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use App\Models\Administrateur;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -93,25 +94,34 @@ class InterventionController extends Controller
 
     }
 
-    public function getIntervention()
+    public function directeuretabinterv()
     {
         $user = Auth::user();
-        $mois = date('n');
-        if($mois > 06){
-            $avant = date("Y");
-            $apres = date("Y")+1; 
-        }
-        else{
-              $avant = date("Y")-1;
-              $apres = date("Y");
-        }
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $intervention =  DB::table('interventions')
+        ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
+        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->where('etablissements.id',$etb)      
+        //->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
+        ->get();
+        return $intervention; 
+
+    }
+
+
+
+    public function getprofIntervention()
+    {
+        $user = Auth::user();
       
-        $date = $avant.'/'.$apres ;
+        
        $intervention =  DB::table('interventions')
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
         ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
         ->where('enseignants.id_user',$user->id_user)    
-        ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab')
+        ->where('interventions.visa_uae',1)    
+        ->where('interventions.visa_uae',1)    
+        ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures')
         ->get();
         return $intervention; 
     }

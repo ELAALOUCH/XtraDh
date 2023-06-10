@@ -7,45 +7,36 @@
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
       <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-      <div class="modal-content bg-white rounded-lg p-4 sm:p-6 md:p-8 w-11/12 max-w-md mx-auto">
+      <div class="modal-content bg-white rounded-lg p-6 w-11/12 w-60 max-w-6xl mx-auto">
+        <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
         <h2 class="text-2xl font-bold mb-4">Edit</h2>
 
-        <div class="mb-4 flex items-center justify-between">
-          <label for="PPR" class="text-right text-gray-700 font-bold mr-2">PPR:</label>
-          <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
+        <div class="mb-4">
+          <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="text"  v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4 flex items-center justify-between">
-          <label for="Name" class="text-right text-gray-700 font-bold mr-2">Name:</label>
-          <input type="text" id="Name" v-model="formData.Name" required class="border rounded w-full py-2 px-3">
+        <div class="mb-4">
+          <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+          <input type="text"  v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4 flex items-center justify-between">
-          <label for="Prenom" class="text-right text-gray-700 font-bold mr-2">Prenom:</label>
-          <input type="text" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="text"  v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4 flex items-center justify-between">
-          <label for="Etablissement" class="text-right text-gray-700 font-bold mr-2">Etablissement:</label>
-          <input type="text" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe:</label>
+          <input type="password"  v-model="formData.password"  class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4 flex items-center justify-between">
-          <label for="email" class="text-right text-gray-700 font-bold mr-2">Email:</label>
-          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4 flex items-center justify-between">
-          <label for="password" class="text-right text-gray-700 font-bold mr-2">Password:</label>
-          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mt-8 flex justify-end">
-          <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
-            Cancel
-          </button>
+        <div class="flex justify-end mb-4">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
             Update
+          </button>
+          <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Cancel
           </button>
         </div>
       </div>
@@ -54,30 +45,54 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  props:{
+    user:{
+      type: Object
+    }
+  },
   data() {
     return {
       showModal: false,
       formData: {
-        PPR: '',
-        Name: '',
-        Prenom: '',
-        Etablissement: '',
+        PPR : '',
+        id : '',
+        Nom:'',
+        prenom : '',
         email: '',
-        password: ''
+        password : ''
       }
     };
+  },
+  watch: {
+    user: {
+      handler(newUser) {
+        console.log(newUser)
+        this.formData.PPR = newUser.PPR
+        this.formData.Nom = newUser.Nom;
+        this.formData.id = newUser.id;
+        this.formData.prenom = newUser.prenom;
+        this.formData.email = newUser.email;
+      },
+      immediate: true
+    }
   },
   methods: {
     closeModal() {
       this.showModal = false;
     },
-    submitForm() {
-      // Perform update logic here
-      console.log(this.formData);
+    async submitForm() {
+        const response = await axios.patch('/updateprof/'+this.formData.id,{
+          Nom : this.formData.Nom,
+          prenom : this.formData.prenom,
+          email : this.formData.email,
+          password : this.formData.password,
+          PPR : this.formData.PPR 
+        })
+      window.location.reload();
 
-      // Close the modal
-      this.closeModal();
     }
   }
 };

@@ -219,6 +219,20 @@ class userController extends Controller
         return  response()->json($user) ;
    
   }
+    public function profProfile()
+    {   
+        $etb = Enseignant::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $user = Auth::user();
+        $user = DB::table('enseignants')
+                    ->join('users', 'enseignants.id_user', '=', 'users.id_user')
+                    ->join('etablissements','enseignants.Etablissement','=','etablissements.id')
+                    ->select('users.id_user','users.email','users.type', 'enseignants.Nom','enseignants.prenom','enseignants.PPR','etablissements.Nom as etab_Nom')
+                    ->where('enseignants.Etablissement',$etb)
+                    ->where('users.id_user',$user->id_user)
+                    ->first();
+        return  response()->json($user) ;
+   
+  }
 
     public function updateAdm(Request $req,$id){
         //$id = $req->id;
