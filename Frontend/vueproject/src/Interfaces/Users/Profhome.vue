@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Bonjour {{  }} , voila vous données</h3>
+      <h3 class="text-2xl font-serif text-left py-2">Bonjour {{  }} , voila vous données</h3>
 
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

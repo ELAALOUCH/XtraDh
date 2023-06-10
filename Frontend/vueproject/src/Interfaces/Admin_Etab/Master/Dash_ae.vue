@@ -4,7 +4,7 @@
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Admin D'etablissement</h3>
+          <h3 class=" font-serif font-bold text-xl">Admin D'etablissement</h3>
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
@@ -35,7 +35,7 @@
 
           <div class="h-[50px]">
             <div>
-              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
+              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md hover:text-gray-800  transition duration-400 ease-in-out">
                  <Decconexion/>
                 Déconnexion
               </div>
@@ -60,7 +60,7 @@
 
           <!-- User login -->
           <ul role="list" class="max-w-sm divide-y divide-gray-200 dark:divide-gray-700">
-        <li class="py-3 sm:py-4">
+            <li class="py-3 sm:py-4">
             <div class="flex items-center space-x-3">
             <div class="flex-shrink-0">
                 <img class="w-8 h-8 rounded-full" src="@/assets/images/download.jpg" alt="Neil image">
@@ -75,9 +75,9 @@
                 <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
                 Admin
             </span>
-        </div>
-         </li>
-    </ul>  
+          </div>
+          </li>
+         </ul>  
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
@@ -86,7 +86,6 @@
         </div>
       </div>
     </div>
-    <!-- Main  -->
   </div>
 </template>
  <script>

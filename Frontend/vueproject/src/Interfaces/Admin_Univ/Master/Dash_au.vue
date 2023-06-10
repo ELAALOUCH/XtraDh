@@ -21,6 +21,16 @@
                 <interventions/> Gestion d'admins d'établissements
             </router-link>
 
+            <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <interventions />
+            Gestion des directeurs d'Etablissement
+            </router-link>
+
+            <router-link to="/Gestionp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <interventions />
+            Gestion des profs
+            </router-link>
+
 
             <router-link to="/Profileau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <Profile/> Profile
@@ -33,7 +43,7 @@
 
           <div class="h-[50px]">
   <div>
-    <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out">
+    <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md  hover:text-gray-800 transition duration-400 ease-in-out">
          <decconexion/>
         Déconnexion
     </div>
