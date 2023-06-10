@@ -37,9 +37,9 @@
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.etab_permanant.Nom }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.grade.designation }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.user.type }}</td>
-            <td class="py-4 px-6 text-right">
+            <td class="border-solid border-2 border-gray-100 py-4 px-6 text-right">
               <div class="inline-flex">
-                <td class="py-4 px-6 text-right">
+                <div class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionp/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
                 Editer
@@ -48,7 +48,7 @@
                 Supprimer
                </button>                  
               </div>
-            </td>                
+            </div>                
               </div>
             </td>
           </tr>

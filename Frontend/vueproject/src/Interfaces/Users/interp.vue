@@ -5,9 +5,9 @@
     <div class="flex space-x-4 items-center justify-between">
       <div>
         <label for="filterYear">Filtrer par année :</label>
-        <select id="filterYear" v-model="selectedYear">
+        <select id="filterYear" v-model="selectedYear" >
           <option value="">Toutes les années</option>
-          <option v-for="year in uniqueYears" :value="year" :key="year">{{ year }}</option>
+          <option v-for="year in pfs" :value="year.Annee_univ" :key="year">{{ year.Annee_univ }}</option>
         </select>
       </div>
 
@@ -65,6 +65,9 @@
                  {{ data.Intitule_Intervention }}
              </th>
              <td class="py-4 px-6" >
+               {{ data.etab }}
+             </td>
+             <td class="py-4 px-6" >
                {{ data.Annee_univ }}
              </td>
              <td class="py-4 px-6" >
@@ -121,7 +124,7 @@ export default {
       
   },
   async mounted(){
-    const response =await axios.get('/intervention');
+    const response =await axios.get('/getintervention');
     this.pfs=response.data
     console.log(response.data[0])
  }
