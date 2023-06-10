@@ -88,7 +88,7 @@ export default{
         methods:{
             async submitForm(){
               try{
-                const response =  await axios.post('/storeProfEtb',{
+                const response =  await axios.post('/storeprofetb',{
                     PPR:this.formData.PPR,
                     Nom:this.formData.Nom,
                     prenom:this.formData.Prenom,
@@ -99,6 +99,7 @@ export default{
                  })
                  console.log(response)
                  this.showModal = false;
+                 window.location.reload();
               }catch(e){
                 console.log()
                 this.errors = e.response.data.errors ; 

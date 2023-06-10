@@ -1,15 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Enseignant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
+use App\Models\administrateur;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\EnseignantController;
-use App\Models\administrateur;
-use App\Models\Enseignant;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Controllers\EnseignantController;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class userController extends Controller
@@ -136,12 +137,12 @@ class userController extends Controller
         $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         //create enseignant
         
-         $ensctrl =  new AdministrateurController();
-        $ensctrl = $ensctrl->storeETB($request);
+        $admctrl =  new AdministrateurController();
+        $admctrl = $admctrl->storeETB($request);
         $response= [
             'user'=>$user,
             'token' =>$token,
-            'enseignant'=>$ensctrl
+            'admin'=>$admctrl
         ];
         return response($response,202);
     }
@@ -202,7 +203,24 @@ class userController extends Controller
         $ensctrl =  new EnseignantController();
         return $ensctrl = $ensctrl->update($request,$id->id);   
     }
+
+    public function adminProfile()
+    {   
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $user = Auth::user();
+        $user = DB::table('administrateurs')
+                    ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+                    ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+                    ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+                    ->where('administrateurs.Etablissement',$etb)
+                    ->where('users.id_user',$user->id_user)
+                    ->first();
+        return  response()->json($user) ;
+   
+  }
+
     public function updateAdm(Request $req,$id){
+        //$id = $req->id;
         $adm = user::where('id_user',$id)->first();
         if($req->email)
             $adm->email = $req->email ;
@@ -222,6 +240,7 @@ class userController extends Controller
         $ensctrl =  new InterventionController();
         return $ensctrl = $ensctrl->storePPR($request); 
     }
+
 
 
     /**
