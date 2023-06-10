@@ -197,7 +197,8 @@ class userController extends Controller
             $user->email = $request->email ;
        if($request->password)
             $user->password = bcrypt($request->password);
-        $user->update();          
+          $user->save();  
+
         //update enseignant
         $id = Enseignant::where('id_user',$user->id_user)->first();
         $ensctrl =  new EnseignantController();

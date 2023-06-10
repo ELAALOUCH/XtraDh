@@ -47,16 +47,13 @@ export default {
    async submitForm() {
       try
        {
-        let id_user = this.$route.params.id
-        console.log(id_user);
-        const response = await axios.patch('/updateprof/'+ id_user, {
+        const response = await axios.patch('/updateprof/'+ this.formData.id_user, {
           PPR: this.formData.PPR,
           Nom: this.formData.Nom,
           prenom: this.formData.Prenom,
           Date_Naissance: this.formData.Date_Naissance,
           id_user: this.formData.id_user,
-
-          email: this.formData.Email !== this.prev_email ? this.formData.Email : null,
+          email : this.formData.Email, 
           
         });
         console.log(response);
