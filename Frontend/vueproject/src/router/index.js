@@ -46,8 +46,8 @@ import Editd from '@/components/Dashboard/etab/Directeur/Editd.vue'
 import Profileprof from '@/Interfaces/Users/Profileprof.vue'
 import interp from '@/Interfaces/Users/interp.vue'
 import paimep from '@/Interfaces/Users/paimep.vue'
+import ancienfiche from '@/Interfaces//Users/ancienfiche.vue'
 import Edit from '@/components/Dashboard/Prof/Edit.vue'
-
 
 
 
@@ -276,6 +276,10 @@ const routes = [
         path:'/paimep',
         component:paimep
       },
+       {
+        path:'/ancienfiche',
+        component:ancienfiche
+       }
     ]
   },
 

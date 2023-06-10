@@ -25,7 +25,7 @@
 
 
             <router-link to="/ConsultationP" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-            <eye/> Consultation de paiments
+            <eye/> Consultation de paiements
             </router-link>
 
 

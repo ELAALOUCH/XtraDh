@@ -13,17 +13,17 @@
         
         <div class="mb-4">
           <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="email" v-model="formData.email" class="border rounded w-full py-2 px-3"  required>
         </div>
 
         <div class="mb-4">
           <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe:</label>
-          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
+          <input type="password" id="password" v-model="formData.password" class="border rounded w-full py-2 px-3"  required>
         </div>
 
         <div class="mb-4">
           <label for="type" class="block text-gray-700 font-bold mb-2">Type:</label>
-          <select id="type" v-model="formData.type" required class="border rounded w-full py-2 px-3">
+          <select id="type" v-model="formData.type" class="border rounded w-full py-2 px-3"  required>
             <option value="">Sélectionnez un type</option>
             <option value="admin_uae">Admin UAE</option>
             <option value="admin_etb">Admin ETB</option>
@@ -36,7 +36,7 @@
 
         <div class="mb-4">
           <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
-          <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="etablissement" v-model="formData.Etablissement" class="border rounded w-full py-2 px-3"  required>
         </div>
 
         <div class="mb-4">
@@ -46,7 +46,7 @@
 
         <div class="mb-4">
           <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
-          <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="prenom" v-model="formData.Prénom" class="border rounded w-full py-2 px-3"  required>
         </div>
 
         
