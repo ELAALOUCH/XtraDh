@@ -58,7 +58,7 @@ methods: {
         id_user: this.formData.id_user,
       });
       console.log(response);
-     // this.$router.push('/Gestionp')
+      this.$router.push('/Gestionde')
 
     } catch (error) {
       console.error(error);

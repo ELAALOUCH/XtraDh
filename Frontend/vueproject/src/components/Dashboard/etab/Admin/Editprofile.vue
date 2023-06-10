@@ -90,7 +90,8 @@ export default {
         })
        
 
-      this.closeModal();
+      window.location.reload();
+
     }
   }
 };
