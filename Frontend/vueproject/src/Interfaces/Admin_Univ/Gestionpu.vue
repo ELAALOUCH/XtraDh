@@ -74,11 +74,11 @@
 </template>
 
 <script>
-import Create from '@/components/Dashboard/etab/Admin/Create.vue'
+import create from '@/components/Dashboard/Président/create.vue'
 import Edit from '@/components/Dashboard/etab/Admin/Edit.vue'
 import axios from 'axios'
 export default {
-  components: {Create,Edit},
+  components: {create,Edit},
 data(){
   return {
       Obj:'',

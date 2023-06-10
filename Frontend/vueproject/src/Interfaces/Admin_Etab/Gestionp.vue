@@ -81,17 +81,14 @@
               <div class="inline-flex">
                 <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-                <router-link :to="'Edit/:id' + data.id" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                <router-link :to="`/Gestionp/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
                     Edit
                 </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteprof(data)">
                  Delete
                </button>                  
               </div>
-            </td>
-               <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteprof(data)">
-                 Delete
-               </button>                  
+            </td>                
               </div>
             </td>
           </tr>
@@ -115,9 +112,9 @@ export default {
     };
   },
   methods: {
-    toggleModal() {
+    /*toggleModal() {
       this.showModal = !this.showModal;
-    },
+    },*/
     async deleteprof(id){
       console.log(id.user.id_user)
       const response = await axios.delete('/deleteprof/'+id.user.id_user)

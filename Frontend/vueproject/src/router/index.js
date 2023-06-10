@@ -29,16 +29,20 @@ import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
 import GestionaI from '@/Interfaces/Admin_Etab/GestionaI.vue'
 import Gestionde from '@/Interfaces/Admin_Etab/Gestionde.vue'
 import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
+import Editi from '@/components/Dashboard/Intervention/Editi.vue'
+
 
 
 import GestiondI from '@/Interfaces/Directeur_Etab/GestiondI.vue'
 import Profilede from '@/Interfaces/Directeur_Etab/Profilede.vue'
 import ConsodI from '@/Interfaces/Directeur_Etab/ConsodI.vue'
 import Consodp from '@/Interfaces/Directeur_Etab/Consodp.vue'
+import Editd from '@/components/Dashboard/etab/Directeur/Editd.vue'
 
 
 
-import Profhome from '@/Interfaces/Users/Profhome.vue' 
+
+//import Profhome from '@/Interfaces/Users/Profhome.vue' 
 import Profileprof from '@/Interfaces/Users/Profileprof.vue'
 import interp from '@/Interfaces/Users/interp.vue'
 import paimep from '@/Interfaces/Users/paimep.vue'
@@ -63,12 +67,30 @@ const routes = [
   {
     path:'/Wait',
     name:'Wait',
-    component:Wait
+    component:Wait,
+    beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' })
+      }
+
+      next()
+
+    },
   },
   {
     path:'/Resetpassword/:token',
     name:'Resetpassword',
-    component:Resetpassword
+    component:Resetpassword,
+    /*beforeEnter: (to, from, next) => {
+      
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' })
+      }
+
+      next()
+
+    },*/
   },
 
 
@@ -127,17 +149,29 @@ const routes = [
         component: Gestionp
       },
       {
+        path:'/Gestionp/Edit/:id',
+        component:Edit
+      },
+      {
         path:'/GestionaI',
         component:GestionaI
+      },
+      {
+        path:'/GestionaI/Edit/:id',
+        component:Editi
       },
       {
         path: '/Gestionde',
         component:Gestionde
       },
       {
+        path:'/Gestionde/Edit/:id',
+        component:Editd
+      },      
+      {
         path: '/Profileae',
         component:Profileae
-      }
+      },
 ]
   },
 
@@ -242,11 +276,6 @@ const routes = [
         path:'/paimep',
         component:paimep
       },
-      {
-        path:'/Edit/:id',
-        component:Edit
-      }
-
     ]
   },
 
