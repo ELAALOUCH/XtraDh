@@ -47,9 +47,10 @@ class InterventionController extends Controller
     }
 
     public function storePPR(Request $request){
+        
          $fields = $request->validate([
             'PPR'=>'required|exists:enseignants,PPR',
-            'id_Etab'=>'required|exists:etablissements,id',
+            'id_etab'=>'required|exists:etablissements,id',
             'Intitule_Intervention'=>'required',
              'Annee_univ'=>'required',
              'Semestre'=>'required',
@@ -60,12 +61,12 @@ class InterventionController extends Controller
          $PPR = $request->PPR;
          $intervention = new Intervention();
          $intervention->id_Intervenant = Enseignant::where('PPR',$PPR)->first()->id;
-         $intervention->id_Etab = $fields['id_Etab'];
+         $intervention->id_Etab = $fields['id_etab'];
          $intervention->Intitule_Intervention = $fields['Intitule_Intervention'];
          $intervention->Annee_univ=$fields['Annee_univ'];
          $intervention->Semestre=$fields['Semestre'];
-         $intervention->Date_debut=date('d-m-Y', strtotime($fields['Date_debut']));     
-         $intervention->Date_fin=date('d-m-Y', strtotime($fields['Date_fin']));        
+         $intervention->Date_debut=$fields['Date_debut'];     
+         $intervention->Date_fin=$fields['Date_fin'];        
          $intervention->Nbr_heures = $fields["Nbr_heures"];
 
          return $intervention->save();

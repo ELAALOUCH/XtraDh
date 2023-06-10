@@ -47,10 +47,11 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 /**  Users Routes */
 Route::apiResource('user',userController::class);
-Route::post('/storeProfEtb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
-Route::post('/storeAdmEtb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
+Route::post('/storeprofetb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
+Route::post('/storeadminetb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
 Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middleware("auth:sanctum");
-Route::patch('/updateAdm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
+Route::patch('/updateadm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
+Route::post('/ajoutinterventionetab',[userController::class,'ajoutinterventionetab'])->middleware("auth:sanctum");
 
 
 //protected routes
@@ -80,7 +81,7 @@ Route::apiResource('enseignant',EnseignantController::class);
 /* Administrateur routes */
 
 Route::apiResource('administrateur',AdministrateurController::class);
-Route::get('/adminetb',[AdministrateurController::class,'indexETB'])->middleware('auth:sanctum');
+Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->middleware('auth:sanctum');
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
 
@@ -105,8 +106,8 @@ Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 
 //Route::middleware(['auth:sanctum','role:presidnt_univ'])->group( function () {
     //protected for président
-    Route::get('/valideruae',[InterventionController::class,'valideruae']);
-Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
+    Route::get('/valideruae/{id}',[InterventionController::class,'valideruae']);
+Route::get('/invalideruae/{id}',[InterventionController::class,'invalideruae']);
 //});
 
 //Route::middleware(['auth:sanctum','role:prof'])->group( function () {

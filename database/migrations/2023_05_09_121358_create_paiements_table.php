@@ -21,9 +21,9 @@ class CreatePaiementsTable extends Migration
             $table->foreign('id_Etab')->references('id')->on('etablissements')->onDelete('set null');
             $table->float('VH')->default(0);
             $table->float('Taux_H');
-            $table->float('Brut')->default(0);
+            $table->float('Brut')->storedAs(' "VH" * "Taux_H" ');
             $table->float('IR')->default(0.38);
-            $table->float('NET')->default(0);
+            $table->float('NET')->storedAs(' "VH" * "Taux_H" * (1-"IR")');
             $table->string('Annee_univ',10);
             $table->string('Semestre');
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\enseignant;
 use Illuminate\Http\Request;
 use App\Models\Administrateur;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,18 +28,24 @@ class AdministrateurController extends Controller
     }
 
 
-    public function indexETB(){
-        //cette methode est pour afficher la liste de prof qui appartient à etablissement de admistrateur (etab_permanent)
+    public function directeurETB(){
+        //cette methode est pour afficher la liste des directeur  qui appartient à etablissement de admistrateur (etab_permanent)
         $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
-        $enseignant = Administrateur::where('Etablissement',$etb)->with(['Etablissement:id,Nom'])
-                                                                ->with(['user'])
-                                                                ->get();
-        return  response()->json($enseignant) ;
+
+        $users = DB::table('administrateurs')
+            ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+            ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+            ->select('users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+            ->where('administrateurs.Etablissement',$etb)
+            ->where('users.type','direct_etb')
+            ->get();
+        return $users;
+        return  response()->json($users) ;
     }
 
-    public function directeur($idetab){
 
-    }
+
+
 
 
     /**
