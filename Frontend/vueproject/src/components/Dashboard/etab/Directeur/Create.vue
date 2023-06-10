@@ -17,31 +17,10 @@
         </div>
 
         <div class="mb-4">
-          <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe:</label>
-          <input type="password" id="password" v-model="formData.password" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="type" class="block text-gray-700 font-bold mb-2">Type:</label>
-          <select id="type" v-model="formData.type" required class="border rounded w-full py-2 px-3">
-            <option value="">Sélectionnez un type</option>
-            <option value="admin_uae">Admin UAE</option>
-            <option value="admin_etb">Admin ETB</option>
-            <option value="enseignant">Enseignant</option>
-            <option value="directeur_etb">Directeur ETB</option>
-            <option value="president_uae">Président UAE</option>
-          </select>
-        </div>
-
-        <div class="mb-4">
           <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4">
-          <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
-          <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
-        </div>
 
         <div class="mb-4">
           <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
@@ -50,7 +29,7 @@
 
         <div class="mb-4">
           <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
-          <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
 
@@ -70,13 +49,18 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       showModal: false,
       formData: {
         Nom: '',
-        Etablissement: ''
+        prenom : '',
+        PPR : '',
+        email :'',
+        type:'direct_etb',
+
       }
     };
   },
@@ -84,14 +68,24 @@ export default {
     closeModal() {
       this.showModal = false;
     },
-    submitForm() {
-      // Perform CRUD logic here, such as adding the etablissement
-      console.log(this.formData);
-
-      // Reset the form data and close the modal
-      this.formData.name = '';
-      this.formData.email = '';
+    async submitForm() {
+        const response = await axios.post('/storeadminetb',{
+          Nom :  this.formData.Nom, 
+          email : this.formData.email,
+          PPR : this.formData.PPR,
+          type : this.formData.type,  
+          prenom : this.formData.prenom,
+        })
+        .then(()=>{
+           this.formData.Nom = '' 
+           this.formData.email = ''
+           this.PPR = ''
+           this.formData.type = ''  
+           this.formData.prenom = ''
+        })
       this.closeModal();
+      window.location.reload();
+      console.log(response)
     }
   }
 };

@@ -35,11 +35,11 @@ class AdministrateurController extends Controller
         $users = DB::table('administrateurs')
             ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
             ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
-            ->select('users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+            ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
             ->where('administrateurs.Etablissement',$etb)
             ->where('users.type','direct_etb')
             ->get();
-        return $users;
+      
         return  response()->json($users) ;
     }
 
@@ -105,13 +105,15 @@ class AdministrateurController extends Controller
         return $administrateur;
         //return response()->json(['message' => 'Enseignant créé avec succès'], 201);
     }
-    public function show($idAdm)
+    public function show($id)
     {
-        $adm = Administrateur::with(['user'])
-            ->with(['Etablissement'])
-            ->find($idAdm);
-     //   $adm->PPR=Crypt::decrypt($adm->PPR);
-        return response()->json($adm);
+        $user = DB::table('administrateurs')
+                    ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+                    ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+                    ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+                    ->where('users.id_user',$id)
+                    ->first();
+        return response()->json($user);
     }
 
     /**
@@ -125,11 +127,8 @@ class AdministrateurController extends Controller
     {
         $adm = Administrateur::find($idAdm);
         $attributs = $request->validate([
-            'PPR'=>'required',
             'Nom'=>'required',
             'prenom'=>'required',
-            'Etablissement'=>'required',
-            'id_user'=>'required'
         ]);
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
