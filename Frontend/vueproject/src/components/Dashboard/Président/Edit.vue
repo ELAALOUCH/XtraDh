@@ -86,10 +86,8 @@ export default {
       this.showModal = false;
     },
     submitForm() {
-      // Effectuez ici votre logique CRUD, comme la mise à jour de l'utilisateur
       console.log(this.formData);
 
-      // Réinitialisez les données du formulaire et fermez la fenêtre modale
       this.formData.email = '';
       this.formData.password = '';
       this.formData.type = '';

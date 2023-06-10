@@ -2,7 +2,7 @@
   <div>
     <h3 class="text-2xl font-bold text-left py-2">Consultation des interventions</h3>
 
-    <div class="flex space-x-4">
+    <div class="flex space-x-4 items-center justify-between">
       <div>
         <label for="filterYear">Filtrer par année :</label>
         <select id="filterYear" v-model="selectedYear">
@@ -18,6 +18,10 @@
           <option v-for="semester in uniqueSemesters" :value="semester" :key="semester">{{ semester }}</option>
         </select>
       </div>
+
+      <router-link to="/ancienfiche">
+        <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Voir les anciennes fiches de paie</button>
+      </router-link>
     </div>
 
     <div class="overflow-x-auto relative sm:rounded-lg">
