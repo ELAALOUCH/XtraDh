@@ -37,8 +37,11 @@
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in presi " :key="data.id">
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.user.email }}
+               {{ data.email }}
               </th>
+              <td class="py-4 px-6">
+                {{data.type}}
+              </td>
               <td class="py-4 px-6">
                 {{ data.PPR }}
               </td>
@@ -49,7 +52,7 @@
                {{ data.prenom }}
               </th>
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               {{ data.etablissement.Nom }}
+               {{ data.etab_Nom }}
               </th>
 
               <td class="py-4 px-6 text-right">
@@ -84,7 +87,7 @@
   },
   async mounted(){
     try {
-      await axios.get('/administrateur ').then(res=>{   
+      await axios.get('/directeuretab ').then(res=>{   
       console.log(res)
       this.presi=res.data
       })
