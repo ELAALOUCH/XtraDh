@@ -84,15 +84,14 @@ export default {
   components: {Create,Edit},
 data(){
   return {
-      profs:null,
+      profs:[],
 
   }
 },
 async created(){
-  const response = await axios.get('/Enseignant');
+  const response = await axios.get('/consultpaiementetabdirecteur');
   console.log(response.data)
   this.profs = response.data
-  console.log(this.profs[0].etab_permanant.Nom)
 },
 methods:{
   togglemodal(){

@@ -51,14 +51,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in cons " :key="data.id">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in interv " :key="data.id">
              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                 {{ data.Intitule_Intervention  }}
              </th>
              <td class="py-4 px-6">
-                {{ data.enseignant.Nom }}
+                {{ data.prof_nom }}
               </td><td class="py-4 px-6">
-                {{ data.enseignant.prenom }}
+                {{ data.prenom }}
               </td>
               <td class="py-4 px-6">
                  {{ data.Annee_univ  }}
@@ -96,12 +96,12 @@ import axios from 'axios';
     components: {},
   data(){
     return {
-        cons:''
+        interv :  []
     }
   },
   async mounted(){
-  const response = await axios.get('/Intervention');
-   this.cons=response.data
+  const response = await axios.get('/directeuretabintervvalid');
+   this.interv=response.data
    console.log(response.data)
 
   },}

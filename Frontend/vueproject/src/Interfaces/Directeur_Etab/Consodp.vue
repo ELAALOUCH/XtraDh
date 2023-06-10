@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Consulter les etats de paiments</h3>
+      <h3 class="text-2xl font-bold text-left py-2">Consulter les etats de paiments de année actuelle</h3>
 
       <div class="overflow-x-auto relative sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -56,9 +56,9 @@
           <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in ints" :key="data.id">
               <td class="py-4 px-6">
-                {{ data.enseignant.Nom }}
+                {{ data.Nom }}
               </td><td class="py-4 px-6">
-                {{ data.enseignant.prenom }}
+                {{ data.prenom }}
               </td>
               <td class="py-4 px-6">
                 {{ data.VH }}
@@ -99,7 +99,7 @@
     methods:{
   },
   async mounted(){
-    const response = await axios.get('/Paiement');
+    const response = await axios.get('/consultpaiementetabdirecteur');
     this.ints=response.data
     console.log(response.data)
   }
