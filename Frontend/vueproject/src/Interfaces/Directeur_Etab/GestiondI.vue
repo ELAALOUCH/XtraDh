@@ -20,6 +20,9 @@
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
+                Nbr_heures
+            </th>
+            <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
                 Date_debut
               </div>
@@ -30,54 +33,51 @@
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
-                Nbr_heures
+              <div class="flex items-center">
+                Etat
+              </div>
             </th>
+            
+            
             <th scope="col" class="py-3 px-6">
-                Visa_etb
+              Operation
             </th>
-            <th scope="col" class="py-3 px-6">
-                Visa_uae
-            </th>
-            <th scope="col" class="py-3 px-6">
-           </th>
-            <th scope="col" class="py-3 px-6">
-              <span class="sr-only">Edit</span>
-            </th>
+            
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in interv " :key="data">
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.name }}
+             {{ data.Intitule_Intervention }}
             </th>
             <td class="py-4 px-6">
-              {{ data.color }}
+              {{ data.Annee_univ }}
+            </td>
+            
+            <td class="py-4 px-6">
+              {{ data.Semestre }}
             </td>
             <td class="py-4 px-6">
-              {{ data.category }}
+              {{ data.Nbr_heures }}
+            </td>
+            
+            <td class="py-4 px-6">
+              {{ data.Date_debut }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
+              {{ data.Date_fin }}
             </td>
             <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.price }}
+              <span v-if="!data.visa_etb" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">invalide</span>
+              <span v-if="data.visa_etb" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">valide</span>
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-               <button  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                 Accepter
+               <button v-if="!data.visa_etb"  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="validerinterv(data)">
+                 valider
                </button>
-               <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="refuser">
-                 Refuser
+               <button v-if="data.visa_etb" class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="invaliderinterv(data)">
+                 invalider
                </button>
               </div>
             </td>
@@ -97,27 +97,42 @@ export default {
   components: {},
 data(){
   return {
-      name:'',
-      color:'',
-      category:'',
-      price:null,
-      productyObj:[
-      {
-          id:1,
-          name:'Azus',
-          color:'Gold',
-          category:' Ipad ',
-          price:5000
-      },
+      interv : []
 
-  ],
+  
 
   }
 },
+async mounted()
+{
+  const response = await axios.get('/directeuretabintervall')
+  this.interv = response.data 
+},
 methods:{
- refuser(){
-  alert('youll delete')
- }, /*getNonce() {
+  
+ async validerinterv(e)
+  {
+    const response = await axios.get('/valideretb/'+e.id_intervention)
+    let index = this.interv.indexOf(e)
+    this.interv[index].visa_etb = 1 ;
+  },
+   async invaliderinterv(e)
+  {
+    const response = await axios.get('/invalideretb/'+e.id_intervention)
+    let index = this.interv.indexOf(e)
+    this.interv[index].visa_etb = 0 ;
+  },
+
+
+
+
+
+
+
+
+
+
+  /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
             const nonce = response.data.nonce;
@@ -145,7 +160,7 @@ methods:{
       this.getNonce();
 
     }*/
-},
+}
 
 }
 

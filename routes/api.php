@@ -30,6 +30,8 @@ Route::get('/api/get-nonce', function () {
 Route::apiResource('paiement',PaiementController::class);
 Route::get('/paiementprof',[PaiementController::class,'paiementprof'])->middleware("auth:sanctum");
 Route::get('/historiquepdfpaie',[PaiementController::class,'historiquepdfpaie'])->middleware("auth:sanctum");
+Route::get('/consultpaiementetabdirecteur',[PaiementController::class,'consultpaiementetabdirecteur'])->middleware("auth:sanctum");
+
 
 
 
@@ -103,7 +105,8 @@ Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->m
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
 Route::get('/getintervention',[InterventionController::class,'getprofIntervention'])->middleware('auth:sanctum');
-Route::get('/directeuretabinterv',[InterventionController::class,'directeuretabinterv'])->middleware('auth:sanctum');
+Route::get('/directeuretabintervall',[InterventionController::class,'directeuretabintervall'])->middleware('auth:sanctum');
+Route::get('/directeuretabintervvalid',[InterventionController::class,'directeuretabintervvalid'])->middleware('auth:sanctum');
 //});
 
 //Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {

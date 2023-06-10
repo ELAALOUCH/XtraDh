@@ -94,7 +94,7 @@ class InterventionController extends Controller
 
     }
 
-    public function directeuretabinterv()
+    public function directeuretabintervall()
     {
         $user = Auth::user();
         $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
@@ -102,13 +102,30 @@ class InterventionController extends Controller
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
         ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
         ->where('etablissements.id',$etb)      
+       // ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
+        ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb')
+        ->orderBy('id_intervention')
+        ->get();
+        return $intervention; 
+
+    }
+    public function directeuretabintervvalid()
+    {
+        $user = Auth::user();
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $intervention =  DB::table('interventions')
+        ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
+        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->where('etablissements.id',$etb)      
+        ->where('visa_etb',1)
+        ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_nom','enseignants.prenom')      
         //->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
         ->get();
         return $intervention; 
 
     }
 
-
+    
 
     public function getprofIntervention()
     {

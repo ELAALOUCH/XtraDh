@@ -8,6 +8,7 @@ use App\Models\Paiement;
 use App\Models\Enseignant;
 use App\Models\intervention;
 use Illuminate\Http\Request;
+use App\Models\Administrateur;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -171,6 +172,28 @@ class PaiementController extends Controller
            return  $pdf->download('itsolutionstuff.pdf');
     }
 
+    public function consultpaiementetabdirecteur()
+    {
+        $user = Auth::user();
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
+        $paiement = DB::table('paiements')
+                    ->join('enseignants','paiements.id_Intervenant','=','enseignants.id')
+                    ->where('id_Etab',$etb)
+                    ->where('Annee_univ',$date)
+                    ->get();
+        return $paiement;
+    }
     public function paiementprof()
     {
         $user = Auth::user();
