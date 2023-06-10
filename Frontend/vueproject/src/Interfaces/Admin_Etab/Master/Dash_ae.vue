@@ -60,15 +60,25 @@
           </div>
 
           <!-- User login -->
-          <div class="w-[200px] ">
-            <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
-              <img class="w-10 h-10 rounded-full border-2 border-blue-50" src="@/assets/images/download.jpg">
-              <div class="font-semibold dark:text-white text-left">
-                <div v-if="authenticated">{{ user.email }}</div>
-                <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
-              </div>
+          <ul role="list" class="max-w-sm divide-y divide-gray-200 dark:divide-gray-700">
+        <li class="py-3 sm:py-4">
+            <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full" src="@/assets/images/download.jpg" alt="Neil image">
             </div>
-          </div>
+            <div class="flex-1 min-w-0">
+
+                <p class="text-l text-gray-500 font-serif truncate " v-if="authenticated">
+                  {{ user.email }}
+                </p>
+            </div>
+            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                Admin
+            </span>
+        </div>
+         </li>
+    </ul>  
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
