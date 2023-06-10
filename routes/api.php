@@ -116,6 +116,11 @@ Route::get('/directeuretabintervvalid',[InterventionController::class,'directeur
 Route::apiResource('enseignant',EnseignantController::class);
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
+Route::get('/interventionuaevalid',[InterventionController::class,'interventionuaevalid']);
+
+
+
+
 // /* Paiement Routes */
 // Route::apiResource('Paiement',PaiementController::class);
 //});
