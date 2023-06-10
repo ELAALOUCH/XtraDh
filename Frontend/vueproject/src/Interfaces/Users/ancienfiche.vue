@@ -2,21 +2,28 @@
     <div class="flex flex-col items-center mt-8">
       <h1 class="text-3xl font-bold mb-8">Téléchargement des fiches de paie</h1>
       
-      <div v-for="year in years" :key="year" class="flex items-center mb-4">
-        <span class="mr-2 text-lg font-semibold">{{ year }}:</span>
-        <button @click="downloadPaySlip(year)" class="px-4 py-2 bg-blue-500 text-white rounded">Télécharger</button>
+      <div v-for="item in Data" :key="item" class="flex items-center mb-4">
+        <span class="mr-2 text-lg font-semibold">{{ item.annee }}:</span>
+        <a :href="item.url" class="px-4 py-2 bg-blue-500 text-white rounded">Télécharger</a>
       </div>
     </div>
   </template>
   <script>
+  import axios from 'axios'
   export default {
-    data() {
+    async mounted()
+    {
+      const response = await axios.get('/historiquepdfpaie')
+        this.Data = response.data ; 
+    } 
+    ,data() {
       return {
-        years: [2019, 2020, 2021,12,15,15], // Les années disponibles
-        apiEndpoint: '/fiches-paie',
+        Data : []
       };
     },
     methods: {
+      
+      /*
       downloadPaySlip(year) {
         // Construire le lien de téléchargement du fichier PDF pour l'année spécifiée
         const downloadLink = `${this.apiEndpoint}${year}.pdf`;
@@ -28,7 +35,7 @@
         
         // Simuler un clic sur le lien pour déclencher le téléchargement
         link.click();
-      },
+      },*/
     },
   };
   </script>

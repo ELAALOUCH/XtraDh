@@ -28,8 +28,8 @@ Route::get('/api/get-nonce', function () {
 
 /* Paiement Routes */
 Route::apiResource('paiement',PaiementController::class);
-Route::get('/paiementprof/{prof}',[PaiementController::class,'paiementprof']);
-
+Route::get('/paiementprof',[PaiementController::class,'paiementprof'])->middleware("auth:sanctum");
+Route::get('/historiquepdfpaie',[PaiementController::class,'historiquepdfpaie'])->middleware("auth:sanctum");
 
 
 
@@ -53,6 +53,7 @@ Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middl
 Route::patch('/updateadm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
 Route::post('/ajoutinterventionetab',[userController::class,'ajoutinterventionetab'])->middleware("auth:sanctum");
 Route::get('/adminprofile',[userController::class,'adminProfile'])->middleware("auth:sanctum");
+Route::get('/profprofile',[userController::class,'profProfile'])->middleware("auth:sanctum");
 Route::delete('/deleteadm/{id_user}',[userController::class,'destroyadmin']);
 
 
@@ -101,7 +102,8 @@ Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->m
 
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
-Route::get('/getintervention',[InterventionController::class,'getIntervention'])->middleware('auth:sanctum');
+Route::get('/getintervention',[InterventionController::class,'getprofIntervention'])->middleware('auth:sanctum');
+Route::get('/directeuretabinterv',[InterventionController::class,'directeuretabinterv'])->middleware('auth:sanctum');
 //});
 
 //Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {

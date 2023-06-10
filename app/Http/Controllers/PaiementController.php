@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enseignant;
-use App\Models\grade;
-use App\Models\intervention;
-use App\Models\Paiement;
-use Illuminate\Http\Request;
 use PDF;
+use App\Models\grade;
+use App\Models\Paiement;
+use App\Models\Enseignant;
+use App\Models\intervention;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PaiementController extends Controller
 {
@@ -151,6 +153,7 @@ class PaiementController extends Controller
         $intervention = $paiement->enseignant->id ;
 
         $intervention = intervention::where('id_Intervenant',$intervention)
+                                    ->where('Annee_univ',$paiement->Annee_univ)
                                     ->where('visa_uae',1)
                                     ->where('visa_etb',1)
                                     ->with(['etablissement:id,Nom']) 
@@ -168,14 +171,45 @@ class PaiementController extends Controller
            return  $pdf->download('itsolutionstuff.pdf');
     }
 
-    public function paiementprof($id_prof)
+    public function paiementprof()
     {
-        $paiement = Paiement::where('id_Intervenant',$id_prof)
-        ->with(['enseignant:id,Nom,prenom,id_Grade'])
-        ->with(['etablissement:id,Nom'])
-        ->first();
-        $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
-        return $grade;
+        $user = Auth::user();
+        $ens = Enseignant::where('id_user',$user->id_user)->first();
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
+        $paiement = DB::table('paiements')
+                    ->join('etablissements','id_Etab','=','etablissements.id')
+                    ->where('id_Intervenant',$ens->id)
+                    ->where('Annee_univ',$date)
+                    ->get();
+       // $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
+        return $paiement;
+    }
+
+    public function historiquepdfpaie()
+    {
+     
+        $user = Auth::user();
+        $ens = Enseignant::where('id_user',$user->id_user)->first();
+        $paiements = DB::table('paiements')
+                    ->where('id_Intervenant',$ens->id)
+                    ->get();
+        $urls = [];        
+        foreach($paiements as $paie){
+            
+            $tab = ['url'=>'http://127.0.0.1:8000/api/generate-pdf/'.$paie->id,'annee'=>$paie->Annee_univ] ;
+            array_push($urls,$tab);   
+        }
+        return $urls;
     }
     
 }
