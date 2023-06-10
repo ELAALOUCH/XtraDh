@@ -83,8 +83,8 @@ class userController extends Controller
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-        $fields['password']=Str::random(15);
-       
+      //  $fields['password']=Str::random(15);
+       $fields['password'] = "1234";
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -197,7 +197,8 @@ class userController extends Controller
             $user->email = $request->email ;
        if($request->password)
             $user->password = bcrypt($request->password);
-        $user->save();          
+          $user->save();  
+
         //update enseignant
         $id = Enseignant::where('id_user',$user->id_user)->first();
         $ensctrl =  new EnseignantController();

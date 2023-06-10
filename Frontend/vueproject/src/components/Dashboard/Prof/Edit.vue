@@ -40,24 +40,24 @@ export default {
         Date_Naissance: '',
         Email: '',
       },
+      prev_email : ''  
     };
   },
   methods: {
    async submitForm() {
       try
        {
-        let id_user = this.$route.params.id
-        console.log(id_user);
-        const response = await axios.patch('/updateprof/'+ id_user, {
+        const response = await axios.patch('/updateprof/'+ this.formData.id_user, {
           PPR: this.formData.PPR,
           Nom: this.formData.Nom,
           prenom: this.formData.Prenom,
           Date_Naissance: this.formData.Date_Naissance,
-          email: this.formData.Email,
           id_user: this.formData.id_user,
+          email : this.formData.Email, 
+          
         });
         console.log(response);
-       // this.$router.push('/Gestionp')
+        this.$router.push('/Gestionp')
 
       } catch (error) {
         console.error(error);
@@ -76,6 +76,7 @@ export default {
     this.formData.Prenom = response.data.prenom ;
     this.formData.Date_Naissance = response.data.Date_Naissance ;
     this.formData.Email = response.data.user.email ;
+    this.prev_email = response.data.user.email ;
     this.formData.id_user = response.data.user.id_user;
   },
     cancelForm() {
