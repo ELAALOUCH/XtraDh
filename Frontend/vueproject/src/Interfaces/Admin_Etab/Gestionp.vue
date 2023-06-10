@@ -86,7 +86,8 @@
                 </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteprof(data)">
                  Delete
-               </button>                  
+               </button>
+               
               </div>
             </td>                
               </div>

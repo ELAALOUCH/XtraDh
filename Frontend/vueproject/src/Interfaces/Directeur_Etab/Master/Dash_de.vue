@@ -4,7 +4,7 @@
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Directeur d'etablissementl</h3>
+          <h3 class="font-bold text-xl">Directeur d'etablissement</h3>
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">

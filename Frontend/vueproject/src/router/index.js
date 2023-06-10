@@ -123,7 +123,23 @@ const routes = [
       {
         path:'/Profileau',
         component:Profileau
-      }
+      },
+      /*{
+        path: '/Gestionp',
+        component: Gestionp
+      },
+      {
+        path:'/Gestionp/Edit/:id',
+        component:Edit
+      },
+      {
+        path: '/Gestionde',
+        component:Gestionde
+      },
+      {
+        path:'/Gestionde/Edit/:id',
+        component:Editd
+      }, */
 
     ]
   },
