@@ -57,7 +57,7 @@ export default {
           id_user: this.formData.id_user,
         });
         console.log(response);
-       // this.$router.push('/Gestionp')
+       this.$router.push('/Gestionp')
 
       } catch (error) {
         console.error(error);

@@ -14,6 +14,8 @@ import Dash_users from '@/Interfaces/Users/Master/Dash_users.vue'
 import Gestionae from '@/Interfaces/Admin_Univ/Gestionae.vue'
 import Profileau from '@/Interfaces/Admin_Univ/Profileau.vue'
 import Gestionpu from '@/Interfaces/Admin_Univ/Gestionpu.vue'
+import Editpu from '@/components/Dashboard/Président/Editpu.vue'
+import Editae from '@/components/Dashboard/etab/Admin/Editae.vue'
 
 
 
@@ -106,10 +108,17 @@ const routes = [
       path: '/Gestionae',
       component: Gestionae
       },
-
+      {
+        path: '/Gestionae/Edit/:id',
+        component: Editae
+        },
       {
         path:'/Gestionpu',
         component:Gestionpu
+      },      
+      {
+        path:'/Gestionpu/Edit/:id',
+        component:Editpu
       },
       {
         path:'/Profileau',
