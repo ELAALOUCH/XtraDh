@@ -4,7 +4,7 @@
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Directeur d'etablissementl</h3>
+          <h3 class="font-bold text-xl">Directeur d'etablissement</h3>
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
@@ -35,7 +35,7 @@
 
           <div class="h-[50px]">
             <div>
-              <div @click=signout()  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
+              <div @click=signout()  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-m hover:text-gray-800  transition duration-400 ease-in-out">
                 <Decconexion />
                 Déconnexion
               </div>

@@ -1,9 +1,15 @@
 <template>
-    <div>
-      <h3 class="text-2xl font-bold text-left py-2">Consulter vote procédure de paiement de année en cours</h3>
+  <div>
+    <div class="flex justify-between items-center">
+      <h3 class="text-2xl font-bold text-left py-2">Consulter votre procédure de paiement de l'année en cours</h3>
 
-      <div class="overflow-x-auto relative sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <router-link to="/ancienfiche">
+        <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
+      </router-link>
+    </div>
+
+    <div class="overflow-x-auto relative sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               
