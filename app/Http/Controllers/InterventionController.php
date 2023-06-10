@@ -107,8 +107,13 @@ class InterventionController extends Controller
         }
       
         $date = $avant.'/'.$apres ;
-        DB::table('users')
-        ->join('enseignants','users.id_user','=','enseignants.id_user')->get();
+       $intervention =  DB::table('interventions')
+        ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
+        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->where('enseignants.id_user',$user->id_user)    
+        ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab')
+        ->get();
+        return $intervention; 
     }
 
 
