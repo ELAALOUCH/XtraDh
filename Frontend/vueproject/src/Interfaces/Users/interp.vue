@@ -1,28 +1,24 @@
 <template>
   <div>
     <h3 class="text-2xl font-bold text-left py-2">Consultation des interventions</h3>
-
     <div class="flex space-x-4 items-center justify-between">
-      <div>
-        <label for="filterYear">Filtrer par année :</label>
-        <select id="filterYear" v-model="selectedYear" >
-          <option value="">Toutes les années</option>
-          <option v-for="year in pfs" :value="year.Annee_univ" :key="year">{{ year.Annee_univ }}</option>
-        </select>
-      </div>
 
-      <div>
-        <label for="filterSemester">Filtrer par semestre :</label>
-        <select id="filterSemester" v-model="selectedSemester">
-          <option value="">Tous les semestres</option>
-          <option v-for="semester in uniqueSemesters" :value="semester" :key="semester">{{ semester }}</option>
-        </select>
-      </div>
-
-      <router-link to="/ancienfiche">
-        <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"> anciennes fiches de paie</button>
-      </router-link>
-    </div>
+  <div >
+    <label for="filterYear">Filtrer par année :</label>
+    <select id="filterYear" v-model="selectedYear">
+      <option value="">Toutes les années</option>
+      <option v-for="year in pfs" :value="year.Annee_univ" :key="year">{{ year.Annee_univ }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="filterSemester">Filtrer par semestre :</label>
+    <select id="filterSemester" v-model="selectedSemester">
+      <option value="">Tous les semestres</option>
+      <option value="Semestre 1">Semestre 1</option>
+      <option value="Semestre 2">Semestre 2</option>
+    </select>
+  </div>
+</div>
 
     <div class="overflow-x-auto relative sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -120,13 +116,11 @@ export default {
       }
     }
   },
-  methods:{
-      
-  },
+ 
   async mounted(){
     const response =await axios.get('/getintervention');
     this.pfs=response.data
-    console.log(response.data[0])
+    console.log(response.data)
  }
 };
 </script>
