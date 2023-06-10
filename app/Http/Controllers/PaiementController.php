@@ -21,8 +21,12 @@ class PaiementController extends Controller
      */
     public function index()
     {
-        $paiements = Paiement::with(['enseignant:id,Nom,prenom'])
-            ->with(['etablissement:id,Nom'])
+        $paiements = $paiement = DB::table('paiements')
+                    ->join('enseignants','paiements.id_Intervenant','=','enseignants.id')
+                    ->join('etablissements','id_Etab','=','etablissements.id')
+
+                    ->select('VH','Taux_H','Brut','Annee_univ','Semestre','IR','NET','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
+
             ->get();
         return response()->json($paiements);
     }
