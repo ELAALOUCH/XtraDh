@@ -25,7 +25,6 @@
     <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
     <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3" disabled>
   </div>
-
   <div class="py-4 px-6 text-right">
     <div class="inline-flex" v-if="formData.id">
       <Editprofile :user="formData"/>

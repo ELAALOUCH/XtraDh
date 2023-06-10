@@ -21,7 +21,6 @@
           <input type="text"  v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
-
         <div class="mb-4">
           <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
           <input type="text"  v-model="formData.email" required class="border rounded w-full py-2 px-3">
@@ -32,11 +31,12 @@
           <input type="password"  v-model="formData.password"  class="border rounded w-full py-2 px-3">
         </div>
 
-        
-
-        <div class="flex justify-end">
+        <div class="flex justify-end mb-4">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
             Update
+          </button>
+          <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Cancel
           </button>
         </div>
       </div>
@@ -88,8 +88,6 @@ export default {
           email : this.formData.email,
           password : this.formData.password
         })
-       
-
       window.location.reload();
 
     }

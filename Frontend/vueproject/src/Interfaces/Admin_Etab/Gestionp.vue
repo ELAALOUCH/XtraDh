@@ -112,9 +112,6 @@ export default {
     };
   },
   methods: {
-    /*toggleModal() {
-      this.showModal = !this.showModal;
-    },*/
     async deleteprof(id){
       console.log(id.user.id_user)
       const response = await axios.delete('/deleteprof/'+id.user.id_user)
@@ -126,7 +123,6 @@ export default {
   },
   async mounted() {
       try {
-        
         await axios.get('/profetab').then(res => {
           console.log(res)
           this.profs=res.data

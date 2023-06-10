@@ -31,13 +31,9 @@
   <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3" disabled>
 </div>
 
-
-  
-  <td class="py-4 px-6 text-right">
     <div class="inline-flex">
       <Editprofile/>
   </div>
-    </td>
   </form>
 
 </template>
