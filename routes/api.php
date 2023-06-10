@@ -52,6 +52,9 @@ Route::post('/storeadminetb',[userController::class,'storeAdmEtb'])->middleware(
 Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middleware("auth:sanctum");
 Route::patch('/updateadm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
 Route::post('/ajoutinterventionetab',[userController::class,'ajoutinterventionetab'])->middleware("auth:sanctum");
+Route::get('/adminprofile',[userController::class,'adminProfile'])->middleware("auth:sanctum");
+Route::delete('/deleteadm/{id_user}',[userController::class,'destroyadmin']);
+
 
 
 //protected routes

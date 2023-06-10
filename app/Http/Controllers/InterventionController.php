@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Enseignant;
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class InterventionController extends Controller
@@ -90,6 +92,14 @@ class InterventionController extends Controller
     );
 
     }
+
+    public function getIntervention()
+    {
+        $user = Auth::user();
+        DB::table('users')
+        ->join('enseignants','users.id_user','=','enseignants.id_user');
+    }
+
 
     /**
      * Update the specified resource in storage.

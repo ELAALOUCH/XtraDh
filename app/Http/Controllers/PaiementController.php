@@ -39,7 +39,6 @@ class PaiementController extends Controller
             'Taux_H'=>'required',
             'Annee_univ'=>'required',
             'Semestre'=>'required',
-            'Brut'=>'required',
             'IR'=>'required',
 
         ]);
@@ -80,7 +79,6 @@ class PaiementController extends Controller
             'Taux_H'=>'required',
             'Annee_univ'=>'required',
             'Semestre'=>'required',
-            'Brut'=>'required',
             'IR'=>'required',
 
         ]);
