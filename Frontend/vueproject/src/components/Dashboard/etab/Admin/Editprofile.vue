@@ -57,6 +57,7 @@ export default {
     return {
       showModal: false,
       formData: {
+        PPR : '',
         id : '',
         Nom:'',
         prenom : '',
@@ -69,6 +70,7 @@ export default {
     user: {
       handler(newUser) {
         console.log(newUser)
+        this.formData.PPR = newUser.PPR
         this.formData.Nom = newUser.Nom;
         this.formData.id = newUser.id;
         this.formData.prenom = newUser.prenom;
@@ -86,7 +88,8 @@ export default {
           Nom : this.formData.Nom,
           prenom : this.formData.prenom,
           email : this.formData.email,
-          password : this.formData.password
+          password : this.formData.password,
+          PPR : this.formData.PPR 
         })
       window.location.reload();
 
