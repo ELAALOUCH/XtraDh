@@ -24,6 +24,7 @@
       </div>
     </div>
 
+
   <div class="w-full mb-8 overflow-hidden rounded-lg mt-7 ">
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
@@ -87,13 +88,11 @@ export default {
       }
     }
   },
-  methods:{
-      
-  },
+ 
   async mounted(){
     const response =await axios.get('/getintervention');
     this.pfs=response.data
-    console.log(response.data[0])
+    console.log(response.data)
  }
 };
 </script>

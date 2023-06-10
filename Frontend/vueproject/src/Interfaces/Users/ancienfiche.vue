@@ -58,19 +58,6 @@
     },
     methods: {
       
-      /*
-      downloadPaySlip(year) {
-        // Construire le lien de téléchargement du fichier PDF pour l'année spécifiée
-        const downloadLink = `${this.apiEndpoint}${year}.pdf`;
-        
-        // Créer un élément <a> pour déclencher le téléchargement
-        const link = document.createElement('a');
-        link.href = downloadLink;
-        link.download = `FichePaie_${year}.pdf`;
-        
-        // Simuler un clic sur le lien pour déclencher le téléchargement
-        link.click();
-      },*/
     },
   };
   </script>

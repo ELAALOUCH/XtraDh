@@ -1,4 +1,5 @@
 <template>
+
     <section class="container mx-auto p-6 font-mono">
     <h3 class="text-2xl font-serif text-left pb-4">Consulter vote procédure de paiement d'année en cours</h3>
     <div class="w-full mb-8 overflow-hidden rounded-lg ">
