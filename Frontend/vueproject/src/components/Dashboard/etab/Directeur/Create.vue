@@ -59,7 +59,7 @@ export default {
         prenom : '',
         PPR : '',
         email :'',
-        type:'direct_etb',
+        type:'directeur_etab',
 
       }
     };

@@ -96,8 +96,24 @@ class InterventionController extends Controller
     public function getIntervention()
     {
         $user = Auth::user();
-        DB::table('users')
-        ->join('enseignants','users.id_user','=','enseignants.id_user');
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
+       $intervention =  DB::table('interventions')
+        ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
+        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->where('enseignants.id_user',$user->id_user)    
+        ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab')
+        ->get();
+        return $intervention; 
     }
 
 

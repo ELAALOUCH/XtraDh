@@ -76,18 +76,32 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 //Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
     Route::apiResource('etablissement',EtablissementController::class);
+
+
+
+
     /*Grade Routes */
 Route::apiResource('grade',GradeController::class);
-/* Enseignant routes */
+
+
+
+
+
+
+
 
 Route::apiResource('enseignant',EnseignantController::class);
 /* Administrateur routes */
 
+
+
 Route::apiResource('administrateur',AdministrateurController::class);
 Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->middleware('auth:sanctum');
+
+
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
-
+Route::get('/getintervention',[InterventionController::class,'getIntervention'])->middleware('auth:sanctum');
 //});
 
 //Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
@@ -101,6 +115,11 @@ Route::apiResource('intervention',InterventionController::class);
 // Route::apiResource('Paiement',PaiementController::class);
 //});
 
+
+
+
+
+//          validation
 //Route::middleware(['auth:sanctum','role:directeur_etb'])->group( function () {
     //protected for directeur
     Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);

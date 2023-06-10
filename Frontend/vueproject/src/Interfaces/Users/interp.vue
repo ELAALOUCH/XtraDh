@@ -32,6 +32,9 @@
               Intitule_intervention
             </th>
             <th scope="col" class="py-3 px-6">
+              Etablissement
+            </th>
+            <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
                 Annee_univ
               </div>
