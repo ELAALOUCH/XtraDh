@@ -26,10 +26,6 @@
                <Profile2/>
               Profile
             </router-link>
-
-
-
-
           </div>
 
           <div class="h-[50px]">

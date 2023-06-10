@@ -7,7 +7,7 @@
         <a :href="item.url" class="px-4 py-2 bg-blue-500 text-white rounded">Télécharger</a>
       </div>
     </div> -->
-    <h3 class="text-3xl font-bold mb-8">Téléchargement votre fiches de paie</h3>
+    <h3 class="text-3xl font-serif mb-8">Télécharger votre fiches de paie</h3>
     <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left text-gray-500 ">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">

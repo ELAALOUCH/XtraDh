@@ -1,6 +1,6 @@
 <template>
   <section class="container mx-auto p-6 font-mono">
-  <h3 class="text-2xl font-bold text-left pb-4">Listes des profs</h3>
+  <h3 class="text-2xl font-serif text-left pb-4">Listes des profs</h3>
   <div class="w-full mb-8 overflow-hidden rounded-lg ">
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">

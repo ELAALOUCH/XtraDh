@@ -1,8 +1,8 @@
 <template>
-    <h3 class="text-2xl font-bold text-left py-2">Consultation des interventions</h3>
+    <h3 class="text-2xl font-serif text-left py-2">Consultation des interventions</h3>
     <div class="flex justify-end ">
           <router-link to="/ancienfiche">
-                    <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">anciennes fiches de paie</button>
+                    <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
           </router-link>
       </div>
 
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-  <div class="w-full mb-8 overflow-hidden rounded-lg mt-4 ">
+  <div class="w-full mb-8 overflow-hidden rounded-lg mt-7 ">
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
         <thead>
@@ -48,7 +48,7 @@
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.Semestre }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.Date_debut }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.Date_fin }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.Nbr_heures }}</td>
+            <td class="px-4 py-3 text-ms font-semibold border text-center">{{ data.Nbr_heures }}</td>
             </tr>
         </tbody>
       </table>
