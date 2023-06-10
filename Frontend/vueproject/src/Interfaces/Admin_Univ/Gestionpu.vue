@@ -86,7 +86,7 @@ data(){
 },
 async mounted() {
       try {
-         const response=await axios.get('/Administrateur')
+         const response=await axios.get('/administrateur')
          console.log(response.data)
          this.Obj=response.data
           /*console.log(res.data[0].user)

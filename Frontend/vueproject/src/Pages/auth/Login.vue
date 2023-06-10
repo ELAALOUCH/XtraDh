@@ -15,12 +15,9 @@
  
      <form  @submit.prevent="submitlogin()" class="mt-6" >
        <div>
-   
-
          <label for="email" class="block text-gray-700">Email Address</label>
          <input v-model="user.email" type="email"  id="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
        </div>
-
        <div class="mt-4">
     <label for="password" class="block text-gray-700">Password</label>
     <div class="relative">
@@ -53,13 +50,10 @@
        <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
         px-4 py-3 mt-6">Log In
       </button>
-
-          </form>
-
+   </form>
      <hr class="my-6 border-gray-300 w-full">
      <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - All Rights Reserved.</p>
    </div>
-
  </div>
  </div>
  </template>
@@ -67,11 +61,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import axios from 'axios';
-import Header from '@/components/Login/Header.vue';
-import Footer from '@/components/Login/Footer.vue';
-
 export default {
-
   data() {
         return {
             user: {
@@ -135,36 +125,8 @@ export default {
     this.error = 'An error occurred during login';
   }
 }
-, /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-    }*/
-  }
-  }
-  </script>
+  } }
+ </script>
 
   <style>
   .image {

@@ -30,12 +30,9 @@
     <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
     <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3" disabled>
   </div>
-  
-  <td class="py-4 px-6 text-right">
-    <div class="inline-flex">
+      <div class="inline-flex">
       <Editprofile/>
   </div>
-    </td>
   </form>
 
 </template>

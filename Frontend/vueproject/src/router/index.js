@@ -68,15 +68,7 @@ const routes = [
     path:'/Wait',
     name:'Wait',
     component:Wait,
-    beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
-      }
-
-      next()
-
-    },
+ 
   },
   {
     path:'/Resetpassword/:token',
