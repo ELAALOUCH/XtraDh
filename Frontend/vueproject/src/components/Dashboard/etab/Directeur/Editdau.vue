@@ -58,7 +58,7 @@
           id_user: this.formData.id_user,
         });
         console.log(response);
-        this.$router.push('/Gestionde')
+        this.$router.push('/Gestiondeau')
   
       } catch (error) {
         console.error(error);

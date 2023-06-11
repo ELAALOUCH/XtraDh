@@ -14,7 +14,7 @@
             <th class="px-4 py-3"> TYPE </th>
             <th scope="col" class="py-3 px-2">
               <div class="flex justify-center" >
-                <create/>
+                <create :test="test"/>
               </div> 
            </th> 
           </tr>
@@ -61,8 +61,8 @@
     components: {Create},
   data(){
     return {
-     presi:[]
-
+     presi:[],
+      test : 0 
     }
   },
   async mounted(){

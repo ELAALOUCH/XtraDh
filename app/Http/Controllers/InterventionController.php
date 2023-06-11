@@ -26,6 +26,7 @@ class InterventionController extends Controller
         ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
         ->where('interventions.visa_etb',1) 
         ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
+        ->orderBy('id_intervention')
         ->get();
         return response()->json($interventions);
     }
@@ -37,6 +38,7 @@ class InterventionController extends Controller
         ->where('interventions.visa_etb',1)    
         ->where('interventions.visa_uae',1)   
         ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
+        ->orderBy('id_intervention')
         ->get();
         return response()->json($interventions);
     }
@@ -135,6 +137,7 @@ class InterventionController extends Controller
         ->where('visa_etb',1)
         ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_nom','enseignants.prenom')      
         //->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
+        ->orderBy('id_intervention')
         ->get();
         return $intervention; 
 
@@ -154,6 +157,7 @@ class InterventionController extends Controller
         ->where('interventions.visa_etb',1)    
         ->where('interventions.visa_uae',1)    
         ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures')
+        ->orderBy('id_intervention')
         ->get();
         return $intervention; 
     }

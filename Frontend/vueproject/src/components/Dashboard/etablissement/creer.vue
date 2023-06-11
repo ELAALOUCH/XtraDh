@@ -18,14 +18,9 @@
   
           <div class="mb-4">
             <label for="Nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
-            <input type="password" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+            <input type="text" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
           </div>
   
-  
-          <div class="mb-4">
-            <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
-            <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
-          </div>
   
           <div class="mb-4">
             <label for="Telephone" class="block text-gray-700 font-bold mb-2">Telephone:</label>
@@ -61,18 +56,18 @@
   </template>
   
   <script>
+  import  axios  from 'axios';
   export default {
     data() {
       return {
         showModal: false,
         formData: {
-          email: '',
-          password: '',
-          type: '',
-          PPR: '',
-          Etablissement: '',
-          Nom: '',
-          Prénom: ''
+          code : '',
+          Nom : '',
+          Telephone : '',
+          Fax : '',
+          ville  : '',
+          Nbr_enseignants :''          
         }
       };
     },
@@ -80,19 +75,17 @@
       closeModal() {
         this.showModal = false;
       },
-      submitForm() {
-        // Effectuez ici votre logique CRUD, comme l'ajout de l'établissement
-        console.log(this.formData);
-  
-        // Réinitialisez les données du formulaire et fermez la fenêtre modale
-        this.formData.email = '';
-        this.formData.password = '';
-        this.formData.type = '';
-        this.formData.PPR = '';
-        this.formData.Etablissement = '';
-        this.formData.Nom = '';
-        this.formData.Prénom = '';
-  
+      async submitForm() {
+        const response = await axios.post('/etablissement',{
+          code : this.formData.code,
+          Nom : this.formData.Nom,
+          Telephone : this.formData.Telephone,
+          Faxe : this.formData.Fax,
+          ville : this.formData.ville,
+          Nbr_enseignants : this.formData.Nbr_enseignants,
+
+        }) 
+        window.location.reload();
         this.closeModal();
       }
     }

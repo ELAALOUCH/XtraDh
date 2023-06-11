@@ -52,7 +52,7 @@
                 <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
                     Edit
                 </router-link>
-               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
+               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteAdm(data)">
                  Delete
                </button>
               </div>
@@ -72,7 +72,7 @@ export default {
   components: {create},
 data(){
   return {
-      Obj:'',
+      Obj:[],
   }
 },
 async mounted() {
@@ -90,7 +90,20 @@ async mounted() {
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-}, 
+},
+async deleteAdm(data)
+  {
+   const response = axios.delete('/deleteadm/'+data.id).then(()=>{
+      let index = this.Obj.indexOf(data);
+      console.log(index)
+      this.Obj.splice(index,1);
+    });
+    console.log(response)
+    
+
+  } 
+
+
 }}
 
 

@@ -37,7 +37,7 @@ class PaiementController extends Controller
                     ->join('etablissements','id_Etab','=','etablissements.id')
                     ->where('Annee_univ',$date)
                     ->select('VH','Taux_H','Brut','Annee_univ','Semestre','IR','NET','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
-
+                    ->orderByDesc('id')
             ->get();
         return response()->json($paiements);
     }
@@ -240,6 +240,7 @@ class PaiementController extends Controller
         $ens = Enseignant::where('id_user',$user->id_user)->first();
         $paiements = DB::table('paiements')
                     ->where('id_Intervenant',$ens->id)
+                    ->orderByDesc('Annee_univ')
                     ->get();
         $urls = [];        
         foreach($paiements as $paie){

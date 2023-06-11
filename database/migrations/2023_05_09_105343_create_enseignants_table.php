@@ -20,11 +20,11 @@ class CreateEnseignantsTable extends Migration
             $table->string('prenom');
             $table->date('Date_Naissance');
             $table->unsignedBigInteger('Etablissement');
-            $table->foreign('Etablissement')->references('id')->on('etablissements')->onDelete('set null');;
+            $table->foreign('Etablissement')->references('id')->on('etablissements')->onDelete('cascade');;
             $table->unsignedBigInteger('id_Grade');
-            $table->foreign('id_Grade')->references('id_Grade')->on('grades')->onDelete('set null');;
+            $table->foreign('id_Grade')->references('id_Grade')->on('grades')->onDelete('cascade');;
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('set null');;
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

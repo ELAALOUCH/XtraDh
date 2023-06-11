@@ -34,6 +34,7 @@ class AdministrateurController extends Controller
                   ->join('etablissements','etablissements.id','=','Etablissement')
                   ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
                   ->where('users.type','admin_etb')
+                  ->orderBy('administrateurs.id')
                 ->get();
                 return $adm; 
     }
@@ -44,6 +45,18 @@ class AdministrateurController extends Controller
                   ->join('etablissements','etablissements.id','=','Etablissement')
                   ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
                   ->where('users.type','president_univ')
+                  ->orderBy('administrateurs.id')
+                ->get();
+                return $adm; 
+    }
+    public function listedirecteuretbforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','directeur_etb')
+                  ->orderBy('administrateurs.id')
                 ->get();
                 return $adm; 
     }
@@ -59,7 +72,8 @@ class AdministrateurController extends Controller
             ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
             ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
             ->where('administrateurs.Etablissement',$etb)
-            ->where('users.type','directeur_etab')
+            ->where('users.type','directeur_etb')
+            ->orderBy('administrateurs.id')
             ->get();
       
         return  response()->json($users) ;
@@ -134,6 +148,7 @@ class AdministrateurController extends Controller
                     ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
                     ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
                     ->where('users.id_user',$id)
+                    ->orderBy('administrateurs.id')
                     ->first();
         return response()->json($user);
     }
