@@ -93,16 +93,6 @@ methods:{
     let index = this.interv.indexOf(e)
     this.interv[index].visa_uae = 0 ;
   },
-
-
-
-
-
-
-
-
-
-
   /*getNonce() {
         axios.get('/api/get-nonce')
           .then(response => {
