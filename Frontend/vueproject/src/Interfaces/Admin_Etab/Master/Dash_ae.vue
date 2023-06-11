@@ -91,14 +91,13 @@
  <script>
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue';
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
-  import Footer from '@/components/Login/Footer.vue'
   import interventions from '@/components/Dashboard/Icons/interventions.vue';
   import intervention from '@/components/Dashboard/Icons/intervention.vue';
   import axios from 'axios';
   import { mapGetters ,mapActions} from 'vuex'
 
  export default {
-  components:{Footer,Decconexion,Profile2,interventions,intervention},
+  components:{Decconexion,Profile2,interventions,intervention},
   data() {
   return {
     showSide: true

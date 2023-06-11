@@ -12,7 +12,6 @@
           <div class=" flex flex-col justify-between space-y-[10px]">
 
 
-
           <router-link to="/ConsoI" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <intervention class="px-1"/>
              Consultations des Interventions
@@ -34,7 +33,6 @@
             </router-link>
 
          </div>
-
 
 
           <div class="h-[50px]">
@@ -89,7 +87,6 @@
         </div>
       </div>
     </div>
-    <!-- Main  -->
   </div>
 </template>
  <script>
