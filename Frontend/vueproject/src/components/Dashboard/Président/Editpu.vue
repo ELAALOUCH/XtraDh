@@ -1,10 +1,7 @@
 <template>
   <div>
-    <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Edit
-    </button>
-
-    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
+    
+    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" >
       <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
       <div class="modal-content bg-white rounded-lg p-6 w-11/12 w-60 max-w-6xl mx-auto">
@@ -57,11 +54,7 @@
 import axios from 'axios';
 
 export default {
-  props:{
-    user:{
-      type: Object
-    }
-  },
+ 
   data() {
     return {
       showModal: false,
@@ -74,19 +67,6 @@ export default {
         password : ''
       }
     };
-  },
-  watch: {
-    user: {
-      handler(newUser) {
-        console.log(newUser)
-        this.formData.PPR = newUser.PPR
-        this.formData.Nom = newUser.Nom;
-        this.formData.id = newUser.id;
-        this.formData.prenom = newUser.prenom;
-        this.formData.email = newUser.email;
-      },
-      immediate: true
-    }
   },
   methods: {
     closeModal() {

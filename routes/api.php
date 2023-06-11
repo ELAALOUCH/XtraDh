@@ -100,6 +100,8 @@ Route::apiResource('enseignant',EnseignantController::class);
 
 Route::apiResource('administrateur',AdministrateurController::class);
 Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->middleware('auth:sanctum');
+Route::get('/listeAdminETBforadminuae',[AdministrateurController::class,'listeAdminETBforadminuae']);
+Route::get('/listepresidentuaeforadminuae',[AdministrateurController::class,'listepresidentuaeforadminuae']);
 
 
 /* Intervention Routes */

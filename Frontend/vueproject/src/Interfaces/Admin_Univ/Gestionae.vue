@@ -9,9 +9,7 @@
             <th scope="col" class="py-3 px-6">
               email
             </th>
-            <th scope="col" class="py-3 px-6">
-              type
-            </th>
+           
             <th scope="col" class="py-3 px-6">
               PPR
             </th>
@@ -40,11 +38,9 @@
         <tbody>
           <tr v-for="data in Obj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="py-4 px-6" >
-              {{ data.user.email }}
+              {{ data.email }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.user.type }}
-            </td>
+            
             <td class="py-4 px-6" >
               {{ data.PPR }}
             </td>
@@ -55,7 +51,7 @@
               {{ data.prenom }}
             </td>
             <td class="py-4 px-6" >
-              {{ data.etablissement.Nom }}
+              {{ data.etab_Nom }}
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
@@ -87,7 +83,7 @@ data(){
 },
 async mounted() {
       try {
-         const response=await axios.get('/administrateur')
+         const response=await axios.get('/listeAdminETBforadminuae')
          console.log(response.data)
          this.Obj=response.data
         this.showModal = false;
