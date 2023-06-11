@@ -1,15 +1,11 @@
 <template>
     <h3 class="text-2xl font-serif text-left py-2">Consultation des interventions</h3>
-    <div class="flex justify-end ">
-          <router-link to="/ancienfiche">
-                    <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
-          </router-link>
-      </div>
+
 
     <div class="flex space-x-4 items-center justify-center">
       <div>
         <label for="filterYear">Filtrer par année :</label>
-        <select id="filterYear" v-model="selectedYear" >
+        <select id="filterYear" v-model="selectedYear">
           <option value="">Toutes les années</option>
           <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
         </select>
@@ -73,6 +69,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -83,6 +80,10 @@ export default {
     };
   },
   computed: {
+    uniqueYears() {
+      const years = this.pfs.map((data) => data.Annee_univ);
+      return [...new Set(years)];
+    },
     filteredData() {
       if (this.selectedYear.length > 0 ) {
         if(this.selectedSemester.length>0){

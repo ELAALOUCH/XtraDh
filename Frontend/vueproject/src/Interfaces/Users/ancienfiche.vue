@@ -37,7 +37,6 @@
                       <a :href="item.url">Télécharger</a>
                   </button>
                 </td>
-
             </tr>
         </tbody>
     </table>
@@ -50,14 +49,11 @@
     {
       const response = await axios.get('/historiquepdfpaie')
         this.Data = response.data ; 
-    } 
-    ,data() {
+    },
+    data() {
       return {
         Data : []
       };
-    },
-    methods: {
-      
     },
   };
   </script>

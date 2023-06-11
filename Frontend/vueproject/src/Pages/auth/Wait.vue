@@ -1,8 +1,8 @@
 <template>
     <div class="flex justify-center items-center h-screen bg-blue-400">
       <div class="w-96 bg-white rounded-lg shadow-lg p-8">
-        <h1 class="text-4xl font-bold mb-8 text-center" >Wait Please an email will be sent, check your email </h1>
-        <button @click="startRedirect" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Back to login</button>
+        <h1 class="text-4xl font-bold mb-8 text-center" >Veuillez patienter, un e-mail vous sera envoyé</h1>
+        <button @click="startRedirect" type="submit" class="w-full bg-blue-500 text-white font-bold rounded-md py-2 px-4 hover:bg-blue-600">Retour à l'accueil</button>
         <div v-if="isLoading" class="fixed top-0 left-30 right-0 bottom-30 flex items-center justify-center z-20">
       <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
     </div>

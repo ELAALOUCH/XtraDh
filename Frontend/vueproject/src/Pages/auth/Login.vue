@@ -15,11 +15,11 @@
  
      <form  @submit.prevent="submitlogin()" class="mt-6" >
        <div>
-         <label for="email" class="block text-gray-700">Email Address</label>
+         <label for="email" class="block text-gray-700">Adresse mail</label>
          <input v-model="user.email" type="email"  id="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
        </div>
        <div class="mt-4">
-    <label for="password" class="block text-gray-700">Password</label>
+    <label for="password" class="block text-gray-700">Mot de passe</label>
     <div class="relative">
       <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Enter Password" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
       <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -44,15 +44,15 @@
         </div>
 
        <router-link to="/Forgetpassword" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700 mt-2" >
-         Forgot Password ?
+         Mot de passe oublié ?
        </router-link>
 
        <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
-        px-4 py-3 mt-6">Log In
+        px-4 py-3 mt-6">Connexion
       </button>
    </form>
      <hr class="my-6 border-gray-300 w-full">
-     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - All Rights Reserved.</p>
+     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - Tous les droits sont réservés</p>
    </div>
  </div>
  </div>

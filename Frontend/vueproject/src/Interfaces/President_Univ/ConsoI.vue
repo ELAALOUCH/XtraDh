@@ -6,7 +6,7 @@
 
   <div class="my-4">
       <label for="establishmentFilter" class="block text-gray-700 font-serif  mb-2">
-        Filter par Etablissement
+        Filtrer par Etablissement
       </label>
       <select v-model="establishmentFilter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
         <option  selected value="">Tous les etablissements</option>

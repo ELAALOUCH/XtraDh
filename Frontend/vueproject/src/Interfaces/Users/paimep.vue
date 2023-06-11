@@ -2,6 +2,11 @@
 
     <section class="container mx-auto p-6 font-mono">
     <h3 class="text-2xl font-serif text-left pb-4">Consulter vote procédure de paiement d'année en cours</h3>
+    <div class="flex justify-end ">
+          <router-link to="/ancienfiche">
+                <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
+          </router-link>
+      </div>
     <div class="w-full mb-8 overflow-hidden rounded-lg ">
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
