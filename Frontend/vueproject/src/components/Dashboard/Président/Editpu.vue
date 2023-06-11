@@ -2,12 +2,6 @@
   <form @submit.prevent="submitForm" >
 
 <div class="relative z-0 w-full mb-6 group">
-  <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-  <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-</div>
-
-
-<div class="relative z-0 w-full mb-6 group">
   <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
     <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
 </div>
@@ -22,6 +16,11 @@
     <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
     <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
   </div>
+
+  <div class="relative z-0 w-full mb-6 group">
+  <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+  <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+</div>
 
 
 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Soumettre</button>

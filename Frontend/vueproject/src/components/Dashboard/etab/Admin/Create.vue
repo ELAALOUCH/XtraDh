@@ -9,33 +9,8 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
+
         <h2 class="text-2xl font-bold mb-4">Ajouter Admin Etab </h2>
-
-       
-
-
-        
-
-
-        <div class="mb-4">
-          <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
-          <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="Nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
-          <input type="Nom" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
-          <input type="Prenom" id="Prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
-        </div>
-
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-        </div>
         <div class="mb-4">
           <label for="type" class="block text-gray-700 font-bold mb-2">Etablisssement:</label>
           <select id="type" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
