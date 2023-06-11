@@ -10,12 +10,11 @@
             <th class="px-4 py-3">NOM</th>
             <th class="px-4 py-3">PRENOM</th>
             <th class="px-4 py-3"> DATE DE NAISSANCE</th>
-            <th class="px-4 py-3"> ETABLISSEMNT</th>
+            <th class="px-4 py-3"> ETABLISSEMENT</th>
             <th class="px-4 py-3"> GRADE</th>
-            <th class="px-4 py-3"> TYPE </th>
             <th scope="col" class="py-3 px-2">
               <div class="flex justify-center" >
-                <create/>
+                <create :test="test" />
               </div> 
            </th> 
           </tr>
@@ -36,7 +35,6 @@
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.Date_Naissance }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.etab_permanant.Nom }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.grade.designation }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.user.type }}</td>
             <td class="border-solid border-2 border-gray-100 py-4 px-6 text-right">
               <div class="inline-flex">
                 <div class="py-4 px-6 text-right">
@@ -69,7 +67,8 @@ export default {
   data() {
     return {
       profs: null,
-      showModal: false
+      showModal: false,
+      test : 1
     };
   },
   methods: {
@@ -84,7 +83,7 @@ export default {
   },
   async mounted() {
       try {
-        await axios.get('/profetab').then(res => {
+        await axios.get('/enseignant').then(res => {
           console.log(res)
           this.profs=res.data
         })

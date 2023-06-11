@@ -61,7 +61,7 @@
     },
     async mounted()
     {
-      const response = await axios.get('paiementprof')
+      const response = await axios.get('/paiementprof')
       this.paiements = response.data 
       console.log(response.data)
       

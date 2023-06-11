@@ -16,9 +16,9 @@ class CreatePaiementsTable extends Migration
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_Intervenant');
-            $table->foreign('id_Intervenant')->references('id')->on('enseignants')->onDelete('set null');
+            $table->foreign('id_Intervenant')->references('id')->on('enseignants')->onDelete('cascade');
             $table->unsignedBigInteger('id_Etab');
-            $table->foreign('id_Etab')->references('id')->on('etablissements')->onDelete('set null');
+            $table->foreign('id_Etab')->references('id')->on('etablissements')->onDelete('cascade');
             $table->float('VH')->default(0);
             $table->float('Taux_H');
             $table->float('Brut')->storedAs(' "VH" * "Taux_H" ');

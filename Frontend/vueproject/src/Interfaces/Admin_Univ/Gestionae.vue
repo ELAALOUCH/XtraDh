@@ -58,7 +58,7 @@
                 <router-link :to="`/Gestionae/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
                     Edit
                 </router-link>
-               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="delete">
+               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteadm(data)">
                  Delete
                </button>
               </div>
@@ -78,7 +78,7 @@ export default {
   components: {Create},
 data(){
   return {
-      Obj:'',
+      Obj:[],
   }
 },
 async mounted() {
@@ -94,6 +94,12 @@ methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
 }, 
+async deleteadm(e){
+  const response = axios.delete('/deleteadm/'+e.id);
+  let index = this.Obj.indexOf(e);
+  this.Obj.splice(index,1);
+  console.log(e)
+}
 }}
 
 

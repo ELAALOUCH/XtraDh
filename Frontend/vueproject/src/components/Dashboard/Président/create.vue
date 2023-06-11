@@ -30,7 +30,7 @@
 
         <div class="mb-4">
           <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
-          <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="flex justify-end">
@@ -47,17 +47,18 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       showModal: false,
       formData: {
         email: '',
-        type: '',
+        type: 'president_univ',
         PPR: '',
         Nom: '',
-        Etablissement: '',
-        Prénom: ''
+        Etablissement: '99999',
+        prenom: ''
       }
     };
   },
@@ -65,18 +66,26 @@ export default {
     closeModal() {
       this.showModal = false;
     },
-    submitForm() {
-      // Effectuez ici votre logique CRUD, comme l'ajout de l'établissement
-      console.log(this.formData);
-
-      // Réinitialisez les données du formulaire et fermez la fenêtre modale
-      this.formData.email = '';
-      this.formData.type = '';
-      this.formData.PPR = '';
-      this.formData.Nom = '';
-      this.formData.Prénom = '';
+    async submitForm() {
+        console.log(this.formData.type)
+        const response = await axios.post('/storeadminetb',{
+          Nom :  this.formData.Nom, 
+          email : this.formData.email,
+          PPR : this.formData.PPR,
+          type : this.formData.type,  
+          prenom : this.formData.prenom,
+          Etablissement : this.formData.Etablissement
+        })
+        .then(()=>{
+           this.formData.Nom = '' 
+           this.formData.email = ''
+           this.PPR = ''
+           this.formData.prenom = ''
+        })
 
       this.closeModal();
+      window.location.reload();
+      console.log(response)
     }
   }
 };
