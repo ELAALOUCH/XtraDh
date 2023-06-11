@@ -1,5 +1,15 @@
 <template>
   <form @submit.prevent="submitForm" >
+    
+    <div class="relative z-0 w-full mb-6 group">
+     <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+    <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3" disabled>
+  </div>
+
+  <div class="relative z-0 w-full mb-6 group">
+    <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+    <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3" disabled>
+  </div>
 
 <div class="relative z-0 w-full mb-6 group">
   <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
@@ -21,15 +31,7 @@
   <input type="text" id="etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3" disabled>
 </div>
 
-  <div class="relative z-0 w-full mb-6 group">
-     <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
-    <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3" disabled>
-  </div>
 
-  <div class="relative z-0 w-full mb-6 group">
-    <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
-    <input type="text" id="prenom" v-model="formData.Prénom" required class="border rounded w-full py-2 px-3" disabled>
-  </div>
     <div class="inline-flex">
       <Editprofile/>
      </div>

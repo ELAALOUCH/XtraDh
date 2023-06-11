@@ -8,7 +8,6 @@
       <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
       <div class="modal-content bg-white rounded-lg p-4 sm:p-6 md:p-8 w-11/12 max-w-md mx-auto">
-        <h2 class="text-2xl font-bold mb-4">Edit</h2>
 
         <div class="mb-4 flex items-center justify-between">
           <label for="PPR" class="text-right text-gray-700 font-bold mr-2">PPR:</label>
@@ -26,14 +25,16 @@
         </div>
 
         <div class="mb-4 flex items-center justify-between">
+          <label for="email" class="text-right text-gray-700 font-bold mr-2">Email:</label>
+          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4 flex items-center justify-between">
           <label for="Etablissement" class="text-right text-gray-700 font-bold mr-2">Etablissement:</label>
           <input type="text" id="Etablissement" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="mb-4 flex items-center justify-between">
-          <label for="email" class="text-right text-gray-700 font-bold mr-2">Email:</label>
-          <input type="email" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-        </div>
+
 
         <div class="mb-4 flex items-center justify-between">
           <label for="password" class="text-right text-gray-700 font-bold mr-2">Password:</label>
