@@ -90,15 +90,7 @@ const routes = [
     path:'/Resetpassword/:token',
     name:'Resetpassword',
     component:Resetpassword,
-    beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
-      }
-
-      next()
-
-    },
+    
   },
   {
     path:'/Dash_au',

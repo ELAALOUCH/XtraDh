@@ -226,7 +226,7 @@
             <div class="title" style="font-size: 1.4em;" >Si vous avez perdu votre mot de passe ou souhaitez le réinitialiser, utilisez ce lien ci-dessous pour commencer</div>
         </div>
         <div class="actions">
-            <button onclick="window.location.href='https://google.com';" class="btn btn-main">Réinitialiser</button>
+            <a href="http://localhost:8080/Resetpassword/{{$token}}" class="btn btn-main">Réinitialiser</button>
         </div>
 
 
