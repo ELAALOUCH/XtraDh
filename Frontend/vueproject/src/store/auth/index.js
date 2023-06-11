@@ -22,8 +22,8 @@ export default {
             return state.user
         }
     },
+    
     actions: {
-
     async submit({dispatch},credentials){
            try {
             const response = await axios.post('/login',credentials)

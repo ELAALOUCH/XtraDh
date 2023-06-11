@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store';
-
+import axios from 'axios';
 import Login from '../Pages/auth/Login.vue'
 import NotFound from '@/views/NotFound.vue'
 import Forgetpassword from '@/Pages/auth/Forgetpassword.vue'
@@ -103,18 +103,9 @@ const routes = [
         return next({ name: 'Login' });
       }
       const user = store.getters['auth/user'];
-      console.log(user.type)
-      if (user.type !== 'admin_univ') {
-        if (user.type == 'prof') {
-          return next({ name: 'Dash_users' });
-        } else if (user.type === 'directeur_etb') {
-          return next({ name: 'Dash_de' });
-        } else if (user.type === 'admin_etb') {
-          return next({ name: 'Dash_ae' });
-        }else if (user.type === 'president_univ') {
-          return next({ name: 'Dash_pu' });
-        }
-      }
+      if (user.type !== 'admin_users') {
+      sessionStorage.removeItem('token');
+    }
       next();
     },
     children:[
@@ -138,7 +129,6 @@ const routes = [
         path:'/Profileau',
         component:Profileau
       },
-      
       
       {
         path: '/Gestionpau',
@@ -184,10 +174,6 @@ const routes = [
 
 
 
-
-
-
-
   {
     path:'/Dash_ae',
     name:'Dash_ae',
@@ -196,12 +182,10 @@ const routes = [
       if (!store.getters['auth/authenticated']) {
         return next({ name: 'Login' });
       }
-    
       const user = store.getters['auth/user'];
-      if (user.type !== 'admin_etb') {
-        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
-      }
-    
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
+    }
       next();
     },
     redirect:'Gestionp',
@@ -246,12 +230,11 @@ const routes = [
       if (!store.getters['auth/authenticated']) {
         return next({ name: 'Login' });
       }
-    
       const user = store.getters['auth/user'];
-      if (user.type !== 'directeur_etb') {
-        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
-      }
-    
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
+
+    }
       next();
     },
     redirect:'Profilede',
@@ -278,7 +261,6 @@ const routes = [
   },
 
 
-
   {
     path:'/Dash_pu',
     name:'Dash_pu',
@@ -287,12 +269,10 @@ const routes = [
       if (!store.getters['auth/authenticated']) {
         return next({ name: 'Login' });
       }
-    
       const user = store.getters['auth/user'];
-      if (user.type !== 'president_univ') {
-        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
-      }
-    
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
+    }
       next();
     },
     redirect:'Profilepu',
@@ -318,6 +298,7 @@ const routes = [
   },
 
 
+
   {
     path:'/Dash_users',
     name:'Dash_users',
@@ -326,12 +307,11 @@ const routes = [
       if (!store.getters['auth/authenticated']) {
         return next({ name: 'Login' });
       }
-    
       const user = store.getters['auth/user'];
-      if (user.type !== 'prof') {
-        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
-      }
-    
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
+
+    }
       next();
     },
     redirect:'Profileprof',
@@ -354,12 +334,12 @@ const routes = [
        }
     ]
   },
-
    {
     path:'/:catchAll(.*)',
     name:'NotFound',
     component: NotFound
-   }  
+   },
+
 ]
 
 const router = createRouter({
