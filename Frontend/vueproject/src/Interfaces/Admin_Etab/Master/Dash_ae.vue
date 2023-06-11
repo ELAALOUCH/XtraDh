@@ -12,22 +12,22 @@
           <div class=" flex flex-col justify-between space-y-[10px]">
 
             <router-link to="/Gestionde" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-            <interventions />
+            <interventions class="px-1" />
             Gestion des directeurs 
             </router-link>
 
             <router-link to="/Gestionp" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-            <interventions />
+            <interventions class="px-1" />
             Gestion des profs
             </router-link>
 
             <router-link to="/GestionaI" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-             <intervention/>
+             <intervention class="px-1"/>
              Gestion des Interventions
             </router-link>
 
             <router-link to="/Profileae" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out ">
-             <Profile2/>
+             <Profile2 class="px-1" />
              Profil
             </router-link>
 
@@ -35,8 +35,8 @@
 
           <div class="h-[50px]">
             <div>
-              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full cursor-pointer text-sm font-medium rounded-md hover:text-gray-800  transition duration-400 ease-in-out">
-                 <Decconexion/>
+              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full  text-sm font-medium rounded-md cursor-pointer  transition duration-400 ease-in-out">
+                 <Decconexion  />
                 Déconnexion
               </div>
           </div>
