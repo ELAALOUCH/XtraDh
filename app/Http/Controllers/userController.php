@@ -99,7 +99,8 @@ class userController extends Controller
         });
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $request['id_user'] = $user->id_user;
-        $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        if(!isset($request->Etablissement))
+            $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement;
         //create enseignant
          $ensctrl =  new EnseignantController();
         $ensctrl = $ensctrl->storeETB($request);
@@ -120,7 +121,7 @@ class userController extends Controller
             'type'=>'required'
         ]);
            //  $fields['password']=Str::random(15);
-             $fields['password'] = $request->password ; 
+             $fields['password'] = '1234'; 
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -133,10 +134,10 @@ class userController extends Controller
             $message->subject('Voici le mot de pass de votre compte hsup');
         });
          $token = $user->createToken('MyAppToken')->plainTextToken;
-        $request['id_user'] = $user->id_user;
-        $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $request['id_user'] = $user->id_user; 
+        if(!isset($request->Etablissement))
+            $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         //create enseignant
-        
         $admctrl =  new AdministrateurController();
         $admctrl = $admctrl->storeETB($request);
         $response= [

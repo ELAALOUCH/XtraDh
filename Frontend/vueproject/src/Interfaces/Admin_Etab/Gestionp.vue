@@ -15,7 +15,7 @@
             <th class="px-4 py-3"> TYPE </th>
             <th scope="col" class="py-3 px-2">
               <div class="flex justify-center" >
-                <Create/>
+                <Create :test="test" />
               </div> 
            </th> 
           </tr>
@@ -68,7 +68,8 @@ export default {
   data() {
     return {
       profs: null,
-      showModal: false
+      showModal: false,
+      test : 0
     };
   },
   methods: {

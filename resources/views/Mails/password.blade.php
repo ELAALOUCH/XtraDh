@@ -224,7 +224,7 @@
             <div class="title" style="font-size: 1.4em;" >{{$password}}</div>
         </div>
         <div class="actions">
-            <button class="btn btn-main">Login</button>
+            <a href="http://localhost:8080/">Login</a>
         </div>
 
     </div>

@@ -15,7 +15,9 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grade = Grade::all();
+        $grade = DB::table('grades')
+                 ->orderBy('id_Grade')
+                 ->get();
         return response()->json($grade);
     }
 
@@ -88,6 +90,7 @@ class GradeController extends Controller
     public function destroy($idgrade)
     {
         $grade = Grade::find($idgrade);
+        
         $grade->delete();
         return response()->json($grade);
     }

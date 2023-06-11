@@ -62,7 +62,9 @@
                   <router-link :to="`/Gestionetab/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mx-2">
                       Edit
                   </router-link>
+
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="">
+
                    Delete
                  </button>
                 </div>
@@ -82,7 +84,7 @@
     components: {creer},
   data(){
     return {
-        Obj:'',
+        Obj:[],
     }
   },
   async mounted() {
@@ -98,6 +100,13 @@
     togglemodal(){
     this.showmodal=!this.showmodal
   }, 
+  async deleteetb(data){
+    console.log(data)
+    const response = await axios.delete('/etablissement/'+data.id);
+    let index = this.Obj.indexOf(data)
+    this.Obj.splice(index,1)
+
+  }
   }}
   
   

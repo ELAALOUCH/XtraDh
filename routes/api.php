@@ -100,6 +100,9 @@ Route::apiResource('enseignant',EnseignantController::class);
 
 Route::apiResource('administrateur',AdministrateurController::class);
 Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->middleware('auth:sanctum');
+Route::get('/listeAdminETBforadminuae',[AdministrateurController::class,'listeAdminETBforadminuae']);
+Route::get('/listepresidentuaeforadminuae',[AdministrateurController::class,'listepresidentuaeforadminuae']);
+Route::get('/listedirecteuretbforadminuae',[AdministrateurController::class,'listedirecteuretbforadminuae']);
 
 
 /* Intervention Routes */
@@ -107,6 +110,7 @@ Route::apiResource('intervention',InterventionController::class);
 Route::get('/getintervention',[InterventionController::class,'getprofIntervention'])->middleware('auth:sanctum');
 Route::get('/directeuretabintervall',[InterventionController::class,'directeuretabintervall'])->middleware('auth:sanctum');
 Route::get('/directeuretabintervvalid',[InterventionController::class,'directeuretabintervvalid'])->middleware('auth:sanctum');
+Route::post('/storePPR',[InterventionController::class,'storePPR']);
 //});
 
 //Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
