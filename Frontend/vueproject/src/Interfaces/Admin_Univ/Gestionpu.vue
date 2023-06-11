@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-2xl font-serif text-left py-2">Listes des admins d'etablissements</h3>
+    <h3 class="text-2xl font-serif text-left py-2">Gestion de président </h3>
 
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
       <table class="w-full text-sm text-left text-gray-500 ">
