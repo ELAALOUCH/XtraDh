@@ -23,11 +23,7 @@
                 Prenom
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Etablissement
-              </div>
-            </th>
+
             <th scope="col" class="py-3 px-6">
              <div class="flex justify-end" >
                   <create/>
@@ -50,9 +46,7 @@
             <td class="py-4 px-6" >
               {{ data.prenom }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.etab_Nom }}
-            </td>
+
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
