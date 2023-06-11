@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store';
-
+import axios from 'axios';
 import Login from '../Pages/auth/Login.vue'
 import NotFound from '@/views/NotFound.vue'
 import Forgetpassword from '@/Pages/auth/Forgetpassword.vue'
@@ -92,21 +92,23 @@ const routes = [
     component:Resetpassword,
     
   },
+
   {
     path:'/Dash_au',
     name:'Dash_au',
     component:Dash_au,
-    beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
-      }
-
-      next()
-
-    },
     redirect:'Gestionae',
-    children :[
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
+      }
+      const user = store.getters['auth/user'];
+      if (user.type !== 'admin_users') {
+      sessionStorage.removeItem('token');
+    }
+      next();
+    },
+    children:[
       {
       path: '/Gestionae',
       component: Gestionae
@@ -127,7 +129,6 @@ const routes = [
         path:'/Profileau',
         component:Profileau
       },
-      
       
       {
         path: '/Gestionpau',
@@ -173,24 +174,19 @@ const routes = [
 
 
 
-
-
-
-
-
-
   {
     path:'/Dash_ae',
     name:'Dash_ae',
     component:Dash_ae,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
-
-      next()
-
+      const user = store.getters['auth/user'];
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
+    }
+      next();
     },
     redirect:'Gestionp',
     children :[
@@ -231,13 +227,15 @@ const routes = [
     name:'Dash_de',
     component:Dash_de,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
+      const user = store.getters['auth/user'];
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
 
-      next()
-
+    }
+      next();
     },
     redirect:'Profilede',
     children :[
@@ -263,19 +261,19 @@ const routes = [
   },
 
 
-
   {
     path:'/Dash_pu',
     name:'Dash_pu',
     component:Dash_pu,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
-
-      next()
-
+      const user = store.getters['auth/user'];
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
+    }
+      next();
     },
     redirect:'Profilepu',
     children :[
@@ -300,17 +298,21 @@ const routes = [
   },
 
 
+
   {
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
+      const user = store.getters['auth/user'];
+      if (user.type !== 'admin_users') {
+        sessionStorage.removeItem('token');
 
-      next()
+    }
+      next();
     },
     redirect:'Profileprof',
     children :[
@@ -332,17 +334,13 @@ const routes = [
        }
     ]
   },
-
    {
     path:'/:catchAll(.*)',
     name:'NotFound',
     component: NotFound
-   }  
+   },
+
 ]
-
-
-
-
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
