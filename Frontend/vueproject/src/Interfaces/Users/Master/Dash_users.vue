@@ -13,25 +13,25 @@
 
 
             <router-link to="/paimep" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <paiement/>
+               <paiement class="px-1"/>
               Paiement
             </router-link>
 
             <router-link to="/interp" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <Bilan/>
+               <Bilan class="px-1" />
               Interventions
             </router-link>
 
             <router-link to="/Profileprof" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <Profile2/>
+               <Profile2 class="px-1"/>
               Profil
             </router-link>
           </div>
 
           <div class="h-[50px]">
             <div>
-              <div @click="signout"  class="inline-flex relative items-center cursor-pointer py-[10px] px-[10px] w-full text-sm font-medium rounded-md hover:text-gray-800  transition duration-400 ease-in-out ">
-                <Decconexion/>
+              <div @click="signout"  class="inline-flex relative items-center cursor-pointer py-[10px] px-[10px] w-full text-sm font-medium rounded-md   transition duration-400 ease-in-out ">
+                <Decconexion class="cursor-pointer"/>
                 Déconnexion
 
               </div>
