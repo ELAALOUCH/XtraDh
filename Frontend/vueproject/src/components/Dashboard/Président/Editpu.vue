@@ -1,22 +1,48 @@
 <template>
-  <form @submit.prevent="submitForm" >
+  <div>
+    <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Edit
+    </button>
 
-<div class="relative z-0 w-full mb-6 group">
-  <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-  <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-</div>
+    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
+      <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
+      <div class="modal-content bg-white rounded-lg p-6 w-11/12 w-60 max-w-6xl mx-auto">
+        <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
+        <h2 class="text-2xl font-bold mb-4">Edit</h2>
 
-<div class="relative z-0 w-full mb-6 group">
-  <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
-    <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
-</div>
+        <div class="mb-4">
+          <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="text"  v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+        </div>
 
+        <div class="mb-4">
+          <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+          <input type="text"  v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
+        </div>
 
-  <div class="relative z-0 w-full mb-6 group">
-     <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
-    <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="text"  v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe:</label>
+          <input type="password"  v-model="formData.password"  class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="flex justify-end mb-4">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
+            Update
+          </button>
+          <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+<<<<<<< HEAD
 
   <div class="relative z-0 w-full mb-6 group">
     <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
@@ -27,60 +53,79 @@
 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Soumettre</button>
 </form>
 
+=======
+>>>>>>> d4a585d131b8943a3cd5397a00ad858247ea9235
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-data() {
-  return {
-    formData: {
-      id_user: '',
-      PPR: '',
-      Nom: '',
-      prenom: '',
-      email: '',
-    },
-  };
-},
-methods: {
- async submitForm() {
-    try
-     {
-      let id_user = this.$route.params.id
-      console.log(id_user);
-      const response = await axios.patch('/updateadm/'+ id_user, {
-        PPR: this.formData.PPR,
-        Nom: this.formData.Nom,
-        prenom: this.formData.prenom,
-        email: this.formData.email,
-        id_user: this.formData.id_user,
-      });
-      console.log(response);
-      this.$router.push('/Gestionpu')
-
-    } catch (error) {
-      console.error(error);
-      // Handle error
+  props:{
+    user:{
+      type: Object
     }
   },
-},
-   async mounted(){
-    let id = this.$route.params.id
-    this.formData.id_user=id
-    console.log(this.$route.params.id)
-   const response = await axios.get('/administrateur/'+this.formData.id_user)
-  console.log(response.data)
-  this.formData.PPR = response.data.PPR ; 
-  this.formData.Nom = response.data.Nom;
-  this.formData.prenom = response.data.prenom ;
-  this.formData.email = response.data.email ;
-  this.formData.id_user = response.data.id_user;
-},
-  cancelForm() {
+  data() {
+    return {
+      showModal: false,
+      formData: {
+        PPR : '',
+        id : '',
+        Nom:'',
+        prenom : '',
+        email: '',
+        password : ''
+      }
+    };
   },
-}
+  watch: {
+    user: {
+      handler(newUser) {
+        console.log(newUser)
+        this.formData.PPR = newUser.PPR
+        this.formData.Nom = newUser.Nom;
+        this.formData.id = newUser.id;
+        this.formData.prenom = newUser.prenom;
+        this.formData.email = newUser.email;
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+    },
+    async submitForm() {
+        const response = await axios.patch('/updateadm/'+this.formData.id,{
+          Nom : this.formData.Nom,
+          prenom : this.formData.prenom,
+          email : this.formData.email,
+          password : this.formData.password,
+          PPR : this.formData.PPR 
+        })
+      window.location.reload();
 
+    }
+  }
+};
 </script>
 
+<style>
+.modal {
+  z-index: 9999;
+}
+
+.modal-overlay {
+  z-index: -1;
+}
+
+.close {
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+</style>

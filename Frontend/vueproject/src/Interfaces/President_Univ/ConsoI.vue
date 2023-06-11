@@ -1,116 +1,93 @@
 <template>
-  <div>
-    <div class="my-4">
-      <label for="establishmentFilter" class="block text-gray-700 font-bold mb-2">
-        Filtrer par Etablissement:
+
+<section class="container mx-auto p-6 font-mono">
+
+  <h3 class="text-2xl font-serif text-left pb-4">Listes des directeurs d'établissement</h3>
+
+  <div class="my-4">
+      <label for="establishmentFilter" class="block text-gray-700 font-serif  mb-2">
+        Filtrer par Etablissement
       </label>
       <select v-model="establishmentFilter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
-        <option value="">Toutes les etablissements</option>
-        <option v-for="establishment in establishments" :value="establishment">{{ establishment }}</option>
+        <option  selected value="">Tous les etablissements</option>
+        <option v-for="etb in etabs" :value="etb.Nom">{{ etb.Nom }}</option>
       </select>
     </div>
 
-    <h3 class="text-2xl font-bold text-left py-2">Consultation des interventions</h3>
-
-    <div class="overflow-x-auto relative sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="py-3 px-6">
-              Intitule_intervention
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Annee_univ
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Semestre
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Date_debut
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Date_fin
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Nbr_heures
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Visa_uae
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Visa_etb
-            </th>
+  <div class="w-full mb-8 overflow-hidden rounded-lg ">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
+      <table class="w-full">
+        <thead>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-2 py-3">Intitule_intervention</th>
+            <th class="px-2 py-3">Nom</th>
+            <th class="px-2 py-3">Prenom</th>
+            <th class="px-2 py-3"> Etablissement</th>
+            <th class="px-2 py-3"> Annee_univ</th>
+            <th class="px-2 py-3"> Semestre </th>
+            <th class="px-2 py-3"> Date_debut </th>
+            <th class="px-2 py-3"> Date_fin </th>
+            <th class="px-2 py-3"> Nbr_heures </th>
+            <th class="px-2 py-3"> Visa_uae </th>
+            <th class="px-2 py-3"> Visa_etb </th>
           </tr>
         </thead>
-        <tbody>
-          <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-               v-for="data in cons" :key="data.id">
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ data.Intitule_Intervention }}
-            </th>
-            <td class="py-4 px-6">
-              {{ data.Annee_univ }}
+        <tbody class="bg-white">
+          <tr class="text-gray-700" v-for="data in interv " :key="data.id">
+            <td class="px-2 py-3 border">
+              <div class="flex items-center text-sm">
+                <div>
+                  <p class="font-semibold text-black">{{ data.Intitule_Intervention }} </p>
+                </div>
+              </div>
             </td>
-            <td class="py-4 px-6">
-              {{ data.Semestre }}
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.prof_Nom }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">
+              {{ data.prenom }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.Date_debut }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.Date_fin }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.Nbr_heures }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.visa_uae }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.visa_etb }}
-            </td>
-          </tr>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Nom_etb }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Annee_univ }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Semestre }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border"> {{ data.Date_debut }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Date_fin }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.Nbr_heures }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.visa_etb }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.visa_uae }}</td>
+            </tr>
+
         </tbody>
       </table>
     </div>
   </div>
+</section>
 </template>
 
-<script>
+  <script>
 import axios from 'axios';
-
-export default {
-  data() {
+  export default {
+    components: {},
+  data(){
     return {
-      establishmentFilter: '',
-      establishments: [], // Add your establishment data here
-      cons: [], // Store the response data in an array
-    };
+        interv :  [],
+        etabs : [],
+        filter : ''
+    }
   },
-  async mounted() {
-    const response = await axios.get('/Intervention');
-    this.cons = response.data;
-    console.log(response.data);
+  async mounted(){
+  const response = await axios.get('/interventionuaevalid');
+  const etbs = await axios.get('/etablissement')
+  this.etabs = etbs.data;
+   this.interv=response.data
+   console.log(response.data)
+
   },
   computed: {
     filteredData() {
-      if (this.establishmentFilter === '') {
-        return this.cons; // Return all data if no filter is applied
+      if (this.filter.length > 0 ) {
+        return this.interv.filter((intr)=> intr.Nom_etb.toLowerCase().includes(this.filter.toLocaleLowerCase()) )
+        //return this.cons; // Return all data if no filter is applied
       } else {
-        return this.cons.filter(
-          (data) =>
-            data &&
-            data.Semestre === this.establishmentFilter
-        );
+        return this.interv
       }
     },
   },

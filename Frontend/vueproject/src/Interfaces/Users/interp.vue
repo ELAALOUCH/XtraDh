@@ -7,7 +7,7 @@
         <label for="filterYear">Filtrer par année :</label>
         <select id="filterYear" v-model="selectedYear">
           <option value="">Toutes les années</option>
-          <option v-for="year in uniqueYears" :value="year" :key="year">{{ year }}</option>
+          <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
         </select>
       </div>
 
@@ -36,18 +36,31 @@
             <th class="px-4 py-3">Nbr_heures</th>
           </tr>
         </thead>
-        <tbody class="bg-white">
-          <tr class="text-gray-700" v-for="data in pfs " :key="data.id">
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.Intitule_Intervention }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.etab }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">
-              {{ data.Annee_univ }}
-            </td>
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.Semestre }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.Date_debut }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">{{ data.Date_fin }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border text-center">{{ data.Nbr_heures }}</td>
-            </tr>
+
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in filteredData " :key="data.id">
+            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap" >
+                 {{ data.Intitule_Intervention }}
+             </th>
+             <td class="py-4 px-6" >
+               {{ data.etab }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Annee_univ }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Semestre }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Date_debut }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Date_fin }}
+             </td>
+             <td class="py-4 px-6" >
+               {{ data.Nbr_heures }}
+             </td>            
+          </tr>
         </tbody>
       </table>
     </div>
@@ -62,7 +75,8 @@ export default {
     return {
       selectedYear: '',
       selectedSemester: '',
-      pfs: [],
+      pfs: '',
+      years : []
     };
   },
   computed: {
@@ -71,26 +85,34 @@ export default {
       return [...new Set(years)];
     },
     filteredData() {
-      if (this.selectedYear && this.selectedSemester) {
-        return this.pfs.filter(
-          (data) =>
-            data.Annee_univ.toString() === this.selectedYear &&
-            data.Semestre === this.selectedSemester
-        );
-      } else if (this.selectedYear) {
-        return this.pfs.filter((data) => data.Annee_univ.toString() === this.selectedYear);
-      } else if (this.selectedSemester) {
-        return this.pfs.filter((data) => data.Semestre === this.selectedSemester);
-      } else {
-        return this.pfs;
+      if (this.selectedYear.length > 0 ) {
+        if(this.selectedSemester.length>0){
+            let tab = this.pfs.filter((intr)=> intr.Annee_univ.toLowerCase().includes(this.selectedYear.toLocaleLowerCase()) )
+            return tab.filter((intr)=>intr.Semestre.toLocaleLowerCase().includes(this.selectedSemester.toLocaleLowerCase()))
+        }
+        else {
+          return this.pfs.filter((intr)=> intr.Annee_univ.toLowerCase().includes(this.selectedYear.toLocaleLowerCase()) )
+        }
+      } 
+      else if(this.selectedSemester.length>0){
+        return this.pfs.filter((intr)=>intr.Semestre.toLocaleLowerCase().includes(this.selectedSemester.toLocaleLowerCase()))
       }
+      else {
+        return this.pfs
+      }
+      
     },
   },
+ 
+  async mounted(){
+    const response =await axios.get('/getintervention');
+    this.pfs=response.data
+    this.pfs.forEach(element => {
+      if (!this.years.includes(element.Annee_univ)) {
+          this.years.push(element.Annee_univ);
+      }
+    });
 
-  async mounted() {
-    const response = await axios.get('/getintervention');
-    this.pfs = response.data;
-    console.log(response.data);
-  },
+ }
 };
 </script>
