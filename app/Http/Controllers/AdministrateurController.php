@@ -27,6 +27,28 @@ class AdministrateurController extends Controller
         return $adm;
     }
 
+    public function listeAdminETBforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','admin_etb')
+                ->get();
+                return $adm; 
+    }
+    public function listepresidentuaeforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','president_univ')
+                ->get();
+                return $adm; 
+    }
+
+
 
     public function directeurETB(){
         //cette methode est pour afficher la liste des directeur  qui appartient à etablissement de admistrateur (etab_permanent)

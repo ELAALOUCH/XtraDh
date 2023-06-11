@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Enseignant;
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use App\Models\Administrateur;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 
 class InterventionController extends Controller
@@ -202,6 +204,21 @@ class InterventionController extends Controller
         $intervention = Intervention::where('id_intervention',$id)->first();
         $intervention->visa_uae = 1 ;
         $intervention->update();
+        $intervention = DB::table('interventions')
+                            ->join('enseignants','id_Intervenant','=','enseignants.id')
+                            ->join('etablissements','interventions.id_Etab','=','etablissements.id')
+                            ->join('users','enseignants.id_user','=','users.id_user')
+                            ->where('id_intervention',$id)->first();
+       
+
+        $email = $intervention->email;
+        Mail::send('Mails.valide',['intervention'=>$intervention],function(Message $message)use($email){
+            $message->to($email);
+            $message->subject('Validation de votre intervention');
+        });
+
+
+
         return $intervention ;
     }
     public function valideretb($id)

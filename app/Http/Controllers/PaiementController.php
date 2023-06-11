@@ -21,10 +21,21 @@ class PaiementController extends Controller
      */
     public function index()
     {
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
         $paiements = $paiement = DB::table('paiements')
                     ->join('enseignants','paiements.id_Intervenant','=','enseignants.id')
                     ->join('etablissements','id_Etab','=','etablissements.id')
-
+                    ->where('Annee_univ',$date)
                     ->select('VH','Taux_H','Brut','Annee_univ','Semestre','IR','NET','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
 
             ->get();
