@@ -37,7 +37,7 @@ class PaiementController extends Controller
                     ->join('etablissements','id_Etab','=','etablissements.id')
                     ->where('Annee_univ',$date)
                     ->select('VH','Taux_H','Brut','Annee_univ','Semestre','IR','NET','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
-                    ->orderByDesc('id')
+                    ->orderByDesc('paiements.id')
             ->get();
         return response()->json($paiements);
     }
