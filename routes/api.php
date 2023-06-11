@@ -25,7 +25,9 @@ Route::get('/api/get-nonce', function () {
 
 /* Paiement Routes */
 Route::apiResource('paiement',PaiementController::class);
-
+Route::get('/paiementprof',[PaiementController::class,'paiementprof'])->middleware("auth:sanctum");
+Route::get('/historiquepdfpaie',[PaiementController::class,'historiquepdfpaie'])->middleware("auth:sanctum");
+Route::get('/consultpaiementetabdirecteur',[PaiementController::class,'consultpaiementetabdirecteur'])->middleware("auth:sanctum");
 
 
 
@@ -39,10 +41,15 @@ Route::post('/reset',[ForgetController::class,'reset']);
 
 /**  Users Routes */
 Route::apiResource('user',userController::class);
-Route::post('/storeProfEtb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
-Route::post('/storeAdmEtb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
+Route::post('/storeprofetb',[userController::class,'storeProfEtb'])->middleware("auth:sanctum");
+Route::post('/storeadminetb',[userController::class,'storeAdmEtb'])->middleware("auth:sanctum");
 Route::patch('/updateprof/{idprof}',[userController::class,'updateprof'])->middleware("auth:sanctum");
-Route::patch('/updateAdm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
+Route::patch('/updateadm/{idAdm}',[userController::class,'updateAdm'])->middleware("auth:sanctum");
+Route::post('/ajoutinterventionetab',[userController::class,'ajoutinterventionetab'])->middleware("auth:sanctum");
+Route::get('/adminprofile',[userController::class,'adminProfile'])->middleware("auth:sanctum");
+Route::get('/profprofile',[userController::class,'profProfile'])->middleware("auth:sanctum");
+Route::delete('/deleteadm/{id_user}',[userController::class,'destroyadmin']);
+
 
 
 //protected routes
@@ -65,18 +72,36 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     //protected for admin univ
     /* Etablissement Routes */
     Route::apiResource('etablissement',EtablissementController::class);
+
+
+
+
     /*Grade Routes */
 Route::apiResource('grade',GradeController::class);
-/* Enseignant routes */
+
+
+
+
+
+
+
 
 Route::apiResource('enseignant',EnseignantController::class);
 /* Administrateur routes */
 
+
+
 Route::apiResource('administrateur',AdministrateurController::class);
-Route::get('/adminetb',[AdministrateurController::class,'indexETB'])->middleware('auth:sanctum');
+Route::get('/directeuretab',[AdministrateurController::class,'directeurETB'])->middleware('auth:sanctum');
+Route::get('/listeAdminETBforadminuae',[AdministrateurController::class,'listeAdminETBforadminuae']);
+Route::get('/listepresidentuaeforadminuae',[AdministrateurController::class,'listepresidentuaeforadminuae']);
+
+
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
-
+Route::get('/getintervention',[InterventionController::class,'getprofIntervention'])->middleware('auth:sanctum');
+Route::get('/directeuretabintervall',[InterventionController::class,'directeuretabintervall'])->middleware('auth:sanctum');
+Route::get('/directeuretabintervvalid',[InterventionController::class,'directeuretabintervvalid'])->middleware('auth:sanctum');
 //});
 
 //Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
@@ -86,6 +111,11 @@ Route::apiResource('intervention',InterventionController::class);
 Route::apiResource('enseignant',EnseignantController::class);
 /* Intervention Routes */
 Route::apiResource('intervention',InterventionController::class);
+Route::get('/interventionuaevalid',[InterventionController::class,'interventionuaevalid']);
+
+
+
+
 // /* Paiement Routes */
 // Route::apiResource('Paiement',PaiementController::class);
 
@@ -96,6 +126,11 @@ Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof'
 
 //});
 
+
+
+
+
+//          validation
 //Route::middleware(['auth:sanctum','role:directeur_etb'])->group( function () {
     //protected for directeur
     Route::get('/valideretb/{id}',[InterventionController::class,'valideretb']);
@@ -108,8 +143,8 @@ Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 
 //Route::middleware(['auth:sanctum','role:presidnt_univ'])->group( function () {
     //protected for président
-    Route::get('/valideruae',[InterventionController::class,'valideruae']);
-Route::get('/invalideruae',[InterventionController::class,'invalideruae']);
+    Route::get('/valideruae/{id}',[InterventionController::class,'valideruae']);
+Route::get('/invalideruae/{id}',[InterventionController::class,'invalideruae']);
 //});
 
 //Route::middleware(['auth:sanctum','role:prof'])->group( function () {

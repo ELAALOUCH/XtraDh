@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,11 +66,11 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', 'dpg-chb5scak728tp9c5kedg-a.frankfurt-postgres.render.com'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'test'),
-            'username' => env('DB_USERNAME', 'postgres'),
-            'password' => env('DB_PASSWORD', 'amine'),
+            'database' => env('DB_DATABASE', 'hsup_accel'),
+            'username' => env('DB_USERNAME', 'hsup_accel_user'),
+            'password' => env('DB_PASSWORD', 'inDvGL4D1s5jBM5TwCOlnikci1EzgbYD'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

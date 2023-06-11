@@ -1,134 +1,73 @@
-
 <template>
-    <div>
-      <h3 class="text-2xl font-bold text-left py-2">Changez Votre Profile</h3>
+  <form @submit.prevent="submitForm" >
 
-      <div class="overflow-x-auto relative  sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Nom
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Prenom
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  Etablissement
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  email
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-                <div class="flex items-center">
-                  password
-                </div>
-              </th>
-              <th scope="col" class="py-3 px-6">
-             </th>
+<div class="relative z-0 w-full mb-6 group">
+  <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+  <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in productyObj " :key="data.id">
-              <td class="py-4 px-6">
-                {{ data.nom }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.prenom }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.etablissement }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.email }}
-              </td>
-              <td class="py-4 px-6">
-                {{ data.password }}
-              </td>
+<div class="relative z-0 w-full mb-6 group">
+  <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
+    <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
-              <td class="py-4 px-6 text-right">
-                <div class="inline-flex">
-                   <Editprofile/>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="relative z-0 w-full mb-6 group">
+  <label for="etablissement" class="block text-gray-700 font-bold mb-2">Établissement:</label>
+  <input type="text" id="etablissement" v-model="formData.etablissement" required class="border rounded w-full py-2 px-3" disabled>
+</div>
 
-  </template>
+  <div class="relative z-0 w-full mb-6 group">
+     <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+    <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3" disabled>
+  </div>
 
-  <script>
+  <div class="relative z-0 w-full mb-6 group">
+    <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+    <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3" disabled>
+  </div>
+  <div class="py-4 px-6 text-left">
+    <div class="inline-flex" v-if="formData.id">
+      <Editprofile :user="formData"/>
+  </div>
+  </div>
+  </form>
 
-  import Editprofile from '@/components/Dashboard/etab/Directeur/Editprofile.vue'
-  import axios from 'axios';
+</template>
 
-  export default {
-    components: {Editprofile},
-  data(){
-    return {
-        ppr:'',
-        nom:'',
-        prenom:'',
-        etablissement:'',
-        email:'44',
-        password:'gf'   ,
-        productyObj:[
-        {
-        ppr:'12',
-        nom:'azerr',
-        prenom:'ytn',
-        etablissement:'aertbsf',
-        email:'4fsd',
-        password:'gfsf'
-        },
+<script>
+import axios from 'axios';
+import Editprofile from '@/components/Dashboard/etab/Admin/Editprofile.vue'
 
-    ],
-
-    }
-  },
-  methods:{
-    togglemodal(){
-    this.showmodal=!this.showmodal
-  }, /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
+export default {
+   components:{Editprofile},
+  data() {
+  return {
+    formData: {
+      id : '',
+      PPR: '',
+      Nom: '',
+      prenom: '',
+      email: '',
+      etablissement:'',
+      
     },
-    created() {
-      this.getNonce();
-    },
-*/
+    
   }
+},
+async mounted (){
+    const user = (await axios.get('/adminprofile')).data
+    console.log(user) 
+    this.formData.PPR = user.PPR
+    this.formData.id = user.id_user
+    this.formData.email = user.email
+    this.formData.Nom = user.Nom
+    this.formData.prenom = user.prenom
+    this.formData.etablissement = user.etab_Nom
+
+}
+   
+
 }
 
-  </script>
+</script>
+

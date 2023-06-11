@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-2xl font-bold text-left py-2">Listes des admins d'etablissements</h3>
+    <h3 class="text-2xl font-bold text-left py-2">Listes des présidents universitaire</h3>
 
     <div class="overflow-x-auto">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -9,9 +9,7 @@
             <th scope="col" class="py-3 px-6">
               email
             </th>
-            <th scope="col" class="py-3 px-6">
-              type
-            </th>
+           
             <th scope="col" class="py-3 px-6">
               PPR
             </th>
@@ -25,26 +23,20 @@
                 Prenom
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Etablissement
-              </div>
-            </th>
+
             <th scope="col" class="py-3 px-6">
              <div class="flex justify-end" >
                   <create/>
-                </div>
+              </div>
            </th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="data in Obj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="py-4 px-6" >
-              {{ data.user.email }}
+              {{ data.email }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.user.type }}
-            </td>
+           
             <td class="py-4 px-6" >
               {{ data.PPR }}
             </td>
@@ -54,12 +46,12 @@
             <td class="py-4 px-6" >
               {{ data.prenom }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.etablissement.Nom }}
-            </td>
+
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-               <Edit/>
+                <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                    Edit
+                </router-link>
                <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                  Delete
                </button>
@@ -74,11 +66,10 @@
 </template>
 
 <script>
-import Create from '@/components/Dashboard/etab/Admin/Create.vue'
-import Edit from '@/components/Dashboard/etab/Admin/Edit.vue'
+import create from '@/components/Dashboard/Président/create.vue'
 import axios from 'axios'
 export default {
-  components: {Create,Edit},
+  components: {create},
 data(){
   return {
       Obj:'',
@@ -86,7 +77,7 @@ data(){
 },
 async mounted() {
       try {
-         const response=await axios.get('/Administrateur')
+         const response=await axios.get('/listepresidentuaeforadminuae')
          console.log(response.data)
          this.Obj=response.data
           /*console.log(res.data[0].user)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\enseignant;
 use Illuminate\Http\Request;
 use App\Models\Administrateur;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,19 +27,47 @@ class AdministrateurController extends Controller
         return $adm;
     }
 
+    public function listeAdminETBforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','admin_etb')
+                ->get();
+                return $adm; 
+    }
+    public function listepresidentuaeforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','president_univ')
+                ->get();
+                return $adm; 
+    }
 
-    public function indexETB(){
-        //cette methode est pour afficher la liste de prof qui appartient à etablissement de admistrateur (etab_permanent)
+
+
+    public function directeurETB(){
+        //cette methode est pour afficher la liste des directeur  qui appartient à etablissement de admistrateur (etab_permanent)
         $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
-        $enseignant = Administrateur::where('Etablissement',$etb)->with(['Etablissement:id,Nom'])
-                                                                ->with(['user'])
-                                                                ->get();
-        return  response()->json($enseignant) ;
+
+        $users = DB::table('administrateurs')
+            ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+            ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+            ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+            ->where('administrateurs.Etablissement',$etb)
+            ->where('users.type','directeur_etab')
+            ->get();
+      
+        return  response()->json($users) ;
     }
 
-    public function directeur($idetab){
 
-    }
+
+
 
 
     /**
@@ -98,13 +127,15 @@ class AdministrateurController extends Controller
         return $administrateur;
         //return response()->json(['message' => 'Enseignant créé avec succès'], 201);
     }
-    public function show($idAdm)
+    public function show($id)
     {
-        $adm = Administrateur::with(['user'])
-            ->with(['Etablissement'])
-            ->find($idAdm);
-     //   $adm->PPR=Crypt::decrypt($adm->PPR);
-        return response()->json($adm);
+        $user = DB::table('administrateurs')
+                    ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+                    ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+                    ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+                    ->where('users.id_user',$id)
+                    ->first();
+        return response()->json($user);
     }
 
     /**
@@ -118,11 +149,9 @@ class AdministrateurController extends Controller
     {
         $adm = Administrateur::find($idAdm);
         $attributs = $request->validate([
-            'PPR'=>'required',
             'Nom'=>'required',
             'prenom'=>'required',
-            'Etablissement'=>'required',
-            'id_user'=>'required'
+            'PPR'=>'required'
         ]);
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);

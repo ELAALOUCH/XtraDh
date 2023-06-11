@@ -1,15 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Enseignant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
+use App\Models\administrateur;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\EnseignantController;
-use App\Models\administrateur;
-use App\Models\Enseignant;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Controllers\EnseignantController;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class userController extends Controller
@@ -27,10 +28,18 @@ class userController extends Controller
 
     public function index()
     {
-        return User::with(['administrateur'])
-                    ->with(['enseignant'])
-                    ->get();
+        return response()->json(User::all());
     }
+
+   
+
+
+
+
+
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,7 +54,8 @@ class userController extends Controller
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-        $fields['password']=Str::random(15);
+        //$fields['password']=Str::random(15);
+        $fields['password'] = $request->password ; 
 
         $user = User::create([
             'type' =>$fields['type'],
@@ -68,22 +78,20 @@ class userController extends Controller
     }
     public function storeProfEtb(Request $request)
     {
-        //return $request;
         //cette methode pour storer des enseignant dans etablissement de administrateur (automatiquement)
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-        $fields['password']=Str::random(15);
-       // return $fields;
+      //  $fields['password']=Str::random(15);
+       $fields['password'] = "1234";
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
-       // return $user;
-       // 'email' => Crypt::encrypt($fields['email']),
-     //   $email = Crypt::decrypt($fields['email']);
+       
+       
        $email = $fields['email'];
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
@@ -105,38 +113,36 @@ class userController extends Controller
 
     public function storeAdmEtb(Request $request)
     {
-        //cette methode pour storer des enseignant dans etablissement de administrateur (automatiquement)
-        return $request;
+        //cette methode pour storer des administateur etablissement dans etablissement de administrateur (automatiquement)
+        
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-             $fields['password']=Str::random(15);
-
+           //  $fields['password']=Str::random(15);
+             $fields['password'] = $request->password ; 
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
-        return $user;
-       // 'email' => Crypt::encrypt($fields['email']),
-     //   $email = Crypt::decrypt($fields['email']);
-      /* $email = $fields['email'];
+        
+        $email = $fields['email'];
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
             $message->subject('Voici le mot de pass de votre compte hsup');
-        });*/
+        });
          $token = $user->createToken('MyAppToken')->plainTextToken;
         $request['id_user'] = $user->id_user;
         $request['Etablissement'] = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         //create enseignant
-        return $request;
-         $ensctrl =  new AdministrateurController();
-        $ensctrl = $ensctrl->storeETB($request);
+        
+        $admctrl =  new AdministrateurController();
+        $admctrl = $admctrl->storeETB($request);
         $response= [
             'user'=>$user,
             'token' =>$token,
-            'enseignant'=>$ensctrl
+            'admin'=>$admctrl
         ];
         return response($response,202);
     }
@@ -186,20 +192,72 @@ class userController extends Controller
     public function updateprof(Request $request,$id){
      
         $user = User::where('id_user',$id)->first();
-         $user->update($request->only(['email','password','type']));
-        //create enseignant
+       //  $user->update(['email'=>$request->email,'password'=>bcrypt($request->password)]);
+       if($request->email)
+            $user->email = $request->email ;
+       if($request->password)
+            $user->password = bcrypt($request->password);
+          $user->save();  
+
+        //update enseignant
         $id = Enseignant::where('id_user',$user->id_user)->first();
         $ensctrl =  new EnseignantController();
         return $ensctrl = $ensctrl->update($request,$id->id);   
     }
-    public function updateAdm(Request $req,$id){
-        $adm = user::where('id_user',$id)->first();
-            $adm->update($req->only(['email','password','type']));
 
-            $id=Administrateur::where('id_user',$adm->id_user)->first();
-            $adm_cntrol = new AdministrateurController();
-            return $adm_cntrol->update($req,$id->id);
+    public function adminProfile()
+    {   
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $user = Auth::user();
+        $user = DB::table('administrateurs')
+                    ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+                    ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+                    ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+                    ->where('administrateurs.Etablissement',$etb)
+                    ->where('users.id_user',$user->id_user)
+                    ->first();
+        return  response()->json($user) ;
+   
+  }
+    public function profProfile()
+    {   
+        $etb = Enseignant::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $user = Auth::user();
+        $user = DB::table('enseignants')
+                    ->join('users', 'enseignants.id_user', '=', 'users.id_user')
+                    ->join('etablissements','enseignants.Etablissement','=','etablissements.id')
+                    ->select('users.id_user','users.email','users.type', 'enseignants.Nom','enseignants.prenom','enseignants.PPR','etablissements.Nom as etab_Nom')
+                    ->where('enseignants.Etablissement',$etb)
+                    ->where('users.id_user',$user->id_user)
+                    ->first();
+        return  response()->json($user) ;
+   
+  }
+
+    public function updateAdm(Request $req,$id){
+        //$id = $req->id;
+        $adm = user::where('id_user',$id)->first();
+        if($req->email)
+            $adm->email = $req->email ;
+        if($req->password)
+            $adm->password = bcrypt($req->password);
+        $adm->save(); 
+        $id=Administrateur::where('id_user',$adm->id_user)->first();
+        $adm_cntrol = new AdministrateurController();
+        return $adm_cntrol->update($req,$id->id);
     }
+
+    public function ajoutinterventionetab(Request $request)
+    {
+        $user = Auth::user();
+        $etb = administrateur::where('id_user',$user->id_user)->select('Etablissement')->first();
+        $request["id_etab"] = $etb->Etablissement;
+        $ensctrl =  new InterventionController();
+        return $ensctrl = $ensctrl->storePPR($request); 
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -210,6 +268,11 @@ class userController extends Controller
     public function destroyprof($id){
         $user = User::find($id);
          $ens = Enseignant::where('id_user',$user->id_user)->first()->delete();
+         return $user->delete(); 
+    }
+    public function destroyAdmin($id){
+        $user = User::find($id);
+         $ens = Administrateur::where('id_user',$user->id_user)->first()->delete();
          return $user->delete(); 
     }
 
