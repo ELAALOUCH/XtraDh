@@ -16,6 +16,10 @@
           <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
         </div>
+        <div class="mb-4">
+          <label for="ppr" class="block text-gray-700 font-bold mb-2">email:</label>
+          <input type="email" id="ppr" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
 
 
         <div class="mb-4">
@@ -104,8 +108,8 @@ export default {
            this.formData.type = ''  
            this.formData.prenom = ''
         })
-      //this.closeModal();
-      //window.location.reload();
+      this.closeModal();
+      window.location.reload();
       console.log(response)
     }
   }
