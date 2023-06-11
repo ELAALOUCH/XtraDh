@@ -8,7 +8,6 @@
       <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
       <div class="modal-content bg-white rounded-lg p-4 sm:p-6 md:p-8 w-11/12 max-w-md mx-auto">
-        <h2 class="text-2xl font-bold mb-4">Edit</h2>
 
         <div class="mb-4 flex items-center justify-between">
           <label for="PPR" class="text-right text-gray-700 font-bold mr-2">PPR:</label>

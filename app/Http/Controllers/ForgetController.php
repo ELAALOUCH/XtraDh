@@ -44,6 +44,8 @@ class ForgetController extends Controller
             ],400);
         }
     }
+
+    
     /** @var User $user */
     public function reset(ResetRequest $request){
         $token = $request->input('token');

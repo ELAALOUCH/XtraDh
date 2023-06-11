@@ -9,9 +9,7 @@
             <th scope="col" class="py-3 px-6">
               email
             </th>
-            <th scope="col" class="py-3 px-6">
-              type
-            </th>
+            
             <th scope="col" class="py-3 px-6">
               PPR
             </th>
@@ -33,18 +31,19 @@
               <th scope="col" class="py-3 px-6">
                 <div class="flex justify-center" >
                   <create/>
+
                 </div>
              </th>
             </tr>
           </thead>
           <tbody>
+
             <tr class="bg-white border-b  " v-for="data in presi " :key="data.id_user">
               <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+
                {{ data.email }}
               </th>
-              <td class="py-4 px-6">
-                {{data.type}}
-              </td>
+             
               <td class="py-4 px-6">
                 {{ data.PPR }}
               </td>
@@ -60,7 +59,9 @@
 
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
+
                   <router-link :to="`/Gestiondeau/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
+
                     Edit
                 </router-link>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteAdm(data)">
@@ -84,13 +85,14 @@
     components: {Create},
   data(){
     return {
-     presi:[]
+     presi:[],
+     test : 1
 
     }
   },
   async mounted(){
     try {
-      await axios.get('/directeuretab ').then(res=>{   
+      await axios.get('/listedirecteuretbforadminuae ').then(res=>{   
       console.log(res)
       this.presi=res.data
       })
@@ -105,7 +107,7 @@
   },
   async deleteAdm(data)
   {
-    const response = axios.delete('/deleteadm/'+data.id_user).then(()=>{
+    const response = axios.delete('/deleteadm/'+data.id).then(()=>{
       let index = this.presi.indexOf(data);
       console.log(index)
       this.presi.splice(index,1);

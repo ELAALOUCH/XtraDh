@@ -9,7 +9,6 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-3xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Ajouter </h2>
 
         <div class="mb-4">
           <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
@@ -27,22 +26,34 @@
         </div>
 
         <div class="mb-4">
+          <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="Email" id="Email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
           <label for="DATE_NAISSANCE" class="block text-gray-700 font-bold mb-2">DATE_NAISSANCE:</label>
           <input type="date" id="DATE_NAISSANCE" v-model="formData.Date_Naissance" required class="border rounded w-full py-2 px-3">
         </div>
 
        
+       
         <div class="mb-4">
-          <label for="Grade" class="block text-gray-700 font-bold mb-2">Grade:</label>
-          <select v-model="formData.grade">
-                <option :value="grad.id_Grade"  v-for="grad  in grads" :key="grad">{{grad.designation}}</option>
-            </select>
+          <label for="type" class="block text-gray-700 font-bold mb-2">Grade:</label>
+          <select id="type" v-model="formData.grade" required class="border rounded w-full py-2 px-3">
+            <option selected value="" disabled >Selectionner le grade</option>
+            <option :value="grad.id_Grade" selected v-for="grad  in grads" :key="grad.id_Grade">{{grad.designation}}</option>
+            
+          </select>
+        </div>
+        <div class="mb-4" v-if="show">
+          <label for="type" class="block text-gray-700 font-bold mb-2">Etablisssement Origine:</label>
+          <select id="type" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+            <option selected value="" disabled >Selectionner etablissement </option>
+            <option v-for ="etb in formData.etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>
+            
+          </select>
         </div>
 
-        <div class="mb-4">
-          <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="Email" id="Email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-        </div>
 
         <div class="flex justify-end">
           <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -63,6 +74,12 @@
 <script>
 import axios from 'axios'
 export default{
+      props : {
+        test : {
+          type : Number  
+        }
+      }
+          ,
         data(){       
             return {
                showModal: false,
@@ -75,14 +92,26 @@ export default{
                 email : '',
                 type : 'prof',
                 grads : '',
-                errors : ''
-              }
+                errors : '',
+                Etablissement : '',
+                etabs : [],
+                
+              },
+              show : 0
             }
         },
         async created(){
-         
-            const grads = await axios.get('/grade');
+          this.show = this.test
+          console.log( this.formData.show )
+          const grads = await axios.get('/grade');
            this.grads = grads.data ; 
+           const etbs = await axios.get('http://127.0.0.1:8000/api/etablissement'); 
+         // console.log(etbs.data)    
+            etbs.data.forEach(e => {
+              if(e.Nom!='UAE'){
+                this.formData.etabs.push(e)
+              }            
+            });
         },
         methods:{
             async submitForm(){
@@ -94,9 +123,10 @@ export default{
                     Date_Naissance:this.formData.Date_Naissance,
                     id_Grade:this.formData.grade,
                     email:this.formData.email,
-                    type : this.formData.type,    
+                    type : this.formData.type,   
+                    Etablissement : this.formData.Etablissement 
                  })
-                 console.log(response)
+                 //console.log(response)
                  this.showModal = false;
                  window.location.reload();
               }catch(e){

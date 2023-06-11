@@ -35,8 +35,8 @@
 
           <div class="h-[50px]">
             <div>
-              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full  text-sm font-medium rounded-md cursor-pointer  transition duration-400 ease-in-out">
-                 <Decconexion  />
+              <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md  border-gray-200 cursor-pointer hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
+                 <Decconexion/>
                 Déconnexion
               </div>
           </div>
@@ -91,14 +91,13 @@
  <script>
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue';
  import Profile2 from '@/components/Dashboard/Icons/Profile2.vue';
-  import Footer from '@/components/Login/Footer.vue'
   import interventions from '@/components/Dashboard/Icons/interventions.vue';
   import intervention from '@/components/Dashboard/Icons/intervention.vue';
   import axios from 'axios';
   import { mapGetters ,mapActions} from 'vuex'
 
  export default {
-  components:{Footer,Decconexion,Profile2,interventions,intervention},
+  components:{Decconexion,Profile2,interventions,intervention},
   data() {
   return {
     showSide: true

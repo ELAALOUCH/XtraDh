@@ -18,9 +18,9 @@ class CreateAdministrateursTable extends Migration
             $table->string('PPR');
             $table->string('Nom');
             $table->string('prenom');
-            $table->foreignId('Etablissement')->constrained('etablissements','id')->onDelete('set null');;
+            $table->foreignId('Etablissement')->constrained('etablissements','id')->onDelete('cascade');;
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('set null');;
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

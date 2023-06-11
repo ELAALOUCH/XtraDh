@@ -9,21 +9,20 @@
   
         <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
           <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-          <h2 class="text-2xl font-bold mb-4">Ajouter etablissement</h2>
   
           <div class="mb-4">
             <label for="Designantion" class="block text-gray-700 font-bold mb-2">Designantion:</label>
-            <input type="text" id="Designantion" v-model="formData.Designantion" required class="border rounded w-full py-2 px-3">
+            <input type="text" id="Designantion" v-model="formData.designation" required class="border rounded w-full py-2 px-3">
           </div>
   
           <div class="mb-4">
             <label for="Charge_statutaire" class="block text-gray-700 font-bold mb-2">Charge_statutaire:</label>
-            <input type="text" id="Charge_statutaire" v-model="formData.Charge_statutaire" required class="border rounded w-full py-2 px-3">
+            <input type="number" id="Charge_statutaire" v-model="formData.charge_statutaire" required class="border rounded w-full py-2 px-3">
           </div>
 
           <div class="mb-4">
             <label for="Taux_horaire_Vocation" class="block text-gray-700 font-bold mb-2">Taux_horaire_Vocation:</label>
-            <input type="text" id="Taux_horaire_Vocation" v-model="formData.Taux_horaire_Vocation" required class="border rounded w-full py-2 px-3">
+            <input type="number" id="Taux_horaire_Vocation" v-model="formData.Taux_horaire" required class="border rounded w-full py-2 px-3">
           </div>
   
   
@@ -42,18 +41,16 @@
   </template>
   
   <script>
+import axios from 'axios';
+
   export default {
     data() {
       return {
         showModal: false,
         formData: {
-          email: '',
-          password: '',
-          type: '',
-          PPR: '',
-          Etablissement: '',
-          Nom: '',
-          Prénom: ''
+          designation : '',
+          charge_statutaire : '',
+          Taux_horaire : ''
         }
       };
     },
@@ -61,19 +58,13 @@
       closeModal() {
         this.showModal = false;
       },
-      submitForm() {
-        // Effectuez ici votre logique CRUD, comme l'ajout de l'établissement
-        console.log(this.formData);
-  
-        // Réinitialisez les données du formulaire et fermez la fenêtre modale
-        this.formData.email = '';
-        this.formData.password = '';
-        this.formData.type = '';
-        this.formData.PPR = '';
-        this.formData.Etablissement = '';
-        this.formData.Nom = '';
-        this.formData.Prénom = '';
-  
+      async submitForm() {
+        const response = await axios.post('/grade',{
+          designation : this.formData.designation,
+          charge_statutaire : this.formData.charge_statutaire,
+          Taux_horaire_Vocation : this.formData.Taux_horaire
+        }) 
+        window.location.reload();
         this.closeModal();
       }
     }

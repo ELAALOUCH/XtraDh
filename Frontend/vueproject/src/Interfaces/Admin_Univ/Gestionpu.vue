@@ -1,6 +1,8 @@
 <template>
   <div>
+
     <h3 class="text-2xl font-serif text-left py-2">Gestion de président </h3>
+
 
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
       <table class="w-full text-sm text-left text-gray-500 ">
@@ -9,9 +11,7 @@
             <th scope="col" class="py-3 px-6">
               email
             </th>
-            <th scope="col" class="py-3 px-6">
-              type
-            </th>
+           
             <th scope="col" class="py-3 px-6">
               PPR
             </th>
@@ -25,11 +25,7 @@
                 Prenom
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Etablissement
-              </div>
-            </th>
+
             <th scope="col" class="py-3 px-6">
              <div class="flex justify-center" >
                   <create/>
@@ -40,11 +36,9 @@
         <tbody>
           <tr v-for="data in Obj" :key="data.id" class="bg-white border-b">
             <td class="py-4 px-6" >
-              {{ data.user.email }}
+              {{ data.email }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.user.type }}
-            </td>
+           
             <td class="py-4 px-6" >
               {{ data.PPR }}
             </td>
@@ -54,15 +48,15 @@
             <td class="py-4 px-6" >
               {{ data.prenom }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.etablissement.Nom }}
-            </td>
+
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
                     Edit
                 </router-link>
+
                <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="">
+
                  Delete
                </button>
               </div>
@@ -82,12 +76,12 @@ export default {
   components: {create},
 data(){
   return {
-      Obj:'',
+      Obj:[],
   }
 },
 async mounted() {
       try {
-         const response=await axios.get('/administrateur')
+         const response=await axios.get('/listepresidentuaeforadminuae')
          console.log(response.data)
          this.Obj=response.data
           /*console.log(res.data[0].user)
@@ -100,7 +94,20 @@ async mounted() {
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-}, 
+},
+async deleteAdm(data)
+  {
+   const response = axios.delete('/deleteadm/'+data.id).then(()=>{
+      let index = this.Obj.indexOf(data);
+      console.log(index)
+      this.Obj.splice(index,1);
+    });
+    console.log(response)
+    
+
+  } 
+
+
 }}
 
 

@@ -9,9 +9,7 @@
             <th scope="col" class="py-3 px-6">
               email
             </th>
-            <th scope="col" class="py-3 px-6">
-              type
-            </th>
+           
             <th scope="col" class="py-3 px-6">
               PPR
             </th>
@@ -40,11 +38,9 @@
         <tbody>
           <tr v-for="data in Obj" :key="data.id" class="bg-white border-b ">
             <td class="py-4 px-6" >
-              {{ data.user.email }}
+              {{ data.email }}
             </td>
-            <td class="py-4 px-6" >
-              {{ data.user.type }}
-            </td>
+            
             <td class="py-4 px-6" >
               {{ data.PPR }}
             </td>
@@ -55,14 +51,14 @@
               {{ data.prenom }}
             </td>
             <td class="py-4 px-6" >
-              {{ data.etablissement.Nom }}
+              {{ data.etab_Nom }}
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionae/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
                     Edit
                 </router-link>
-               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="">
+               <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="">
                  Delete
                </button>
               </div>
@@ -82,12 +78,12 @@ export default {
   components: {Create},
 data(){
   return {
-      Obj:'',
+      Obj:[],
   }
 },
 async mounted() {
       try {
-         const response=await axios.get('/administrateur')
+         const response=await axios.get('/listeAdminETBforadminuae')
          console.log(response.data)
          this.Obj=response.data
         this.showModal = false;
@@ -98,6 +94,12 @@ methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
 }, 
+async deleteadm(e){
+  const response = axios.delete('/deleteadm/'+e.id);
+  let index = this.Obj.indexOf(e);
+  this.Obj.splice(index,1);
+  console.log(e)
+}
 }}
 
 

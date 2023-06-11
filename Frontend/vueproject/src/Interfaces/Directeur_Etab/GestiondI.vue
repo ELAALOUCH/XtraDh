@@ -71,7 +71,7 @@
               <span v-if="!data.visa_etb" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">invalide</span>
               <span v-if="data.visa_etb" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">valide</span>
             </td>
-            <td class="py-4 px-6 text-right">
+            <td class="py-4 px-6">
               <div class="inline-flex">
                <button v-if="!data.visa_etb"  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="validerinterv(data)">
                  valider
