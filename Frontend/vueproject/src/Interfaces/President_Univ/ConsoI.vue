@@ -54,6 +54,7 @@
             <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.visa_etb }}</td>
             <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.visa_uae }}</td>
             </tr>
+
         </tbody>
       </table>
     </div>
@@ -68,7 +69,8 @@ import axios from 'axios';
   data(){
     return {
         interv :  [],
-        etabs : []
+        etabs : [],
+        filter : ''
     }
   },
   async mounted(){
@@ -81,14 +83,11 @@ import axios from 'axios';
   },
   computed: {
     filteredData() {
-      if (this.establishmentFilter === '') {
-        return this.cons; // Return all data if no filter is applied
+      if (this.filter.length > 0 ) {
+        return this.interv.filter((intr)=> intr.Nom_etb.toLowerCase().includes(this.filter.toLocaleLowerCase()) )
+        //return this.cons; // Return all data if no filter is applied
       } else {
-        return this.cons.filter(
-          (data) =>
-            data &&
-            data.Semestre === this.establishmentFilter
-        );
+        return this.interv
       }
     },
   },
