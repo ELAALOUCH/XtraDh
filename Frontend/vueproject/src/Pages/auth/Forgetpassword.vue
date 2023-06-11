@@ -24,10 +24,7 @@
 
 <script>
 import axios from 'axios';
-import Header from '@/components/Login/Header.vue'
-import Footer from '@/components/Login/Footer.vue'
   export default{
-    components:{Footer,Header},
     data() {
       return {
         email: '',
