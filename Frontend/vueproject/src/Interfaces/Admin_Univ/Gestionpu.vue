@@ -33,7 +33,7 @@
             <th scope="col" class="py-3 px-6">
              <div class="flex justify-end" >
                   <create/>
-                </div>
+              </div>
            </th>
           </tr>
         </thead>

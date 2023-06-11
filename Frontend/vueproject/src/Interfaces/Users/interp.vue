@@ -1,17 +1,13 @@
 <template>
     <h3 class="text-2xl font-serif text-left py-2">Consultation des interventions</h3>
-    <div class="flex justify-end ">
-          <router-link to="/ancienfiche">
-                    <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
-          </router-link>
-      </div>
+
 
     <div class="flex space-x-4 items-center justify-center">
       <div>
         <label for="filterYear">Filtrer par année :</label>
-        <select id="filterYear" v-model="selectedYear" >
+        <select id="filterYear" v-model="selectedYear">
           <option value="">Toutes les années</option>
-          <option v-for="year in pfs" :value="year.Annee_univ" :key="year">{{ year.Annee_univ }}</option>
+          <option v-for="year in uniqueYears" :value="year" :key="year">{{ year }}</option>
         </select>
       </div>
 
@@ -19,7 +15,8 @@
         <label for="filterSemester">Filtrer par semestre :</label>
         <select id="filterSemester" v-model="selectedSemester">
           <option value="">Tous les semestres</option>
-          <option v-for="semester in uniqueSemesters" :value="semester" :key="semester">{{ semester }}</option>
+          <option value="Semestre 1">Semestre 1</option>
+          <option value="Semestre 2">Semestre 2</option>
         </select>
       </div>
     </div>
@@ -59,40 +56,41 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
       selectedYear: '',
       selectedSemester: '',
-      pfs: ''
+      pfs: [],
     };
   },
   computed: {
+    uniqueYears() {
+      const years = this.pfs.map((data) => data.Annee_univ);
+      return [...new Set(years)];
+    },
     filteredData() {
       if (this.selectedYear && this.selectedSemester) {
         return this.pfs.filter(
           (data) =>
-            data.annee_univ === parseInt(this.selectedYear) &&
-            data.semestre === this.selectedSemester
+            data.Annee_univ.toString() === this.selectedYear &&
+            data.Semestre === this.selectedSemester
         );
       } else if (this.selectedYear) {
-        return this.pfs.filter(
-          (data) => data.annee_univ === parseInt(this.selectedYear)
-        );
+        return this.pfs.filter((data) => data.Annee_univ.toString() === this.selectedYear);
       } else if (this.selectedSemester) {
-        return this.pfs.filter(
-          (data) => data.semestre === this.selectedSemester
-        );
+        return this.pfs.filter((data) => data.Semestre === this.selectedSemester);
       } else {
         return this.pfs;
       }
-    }
+    },
   },
- 
-  async mounted(){
-    const response =await axios.get('/getintervention');
-    this.pfs=response.data
-    console.log(response.data)
- }
+
+  async mounted() {
+    const response = await axios.get('/getintervention');
+    this.pfs = response.data;
+    console.log(response.data);
+  },
 };
 </script>

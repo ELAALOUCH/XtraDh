@@ -21,14 +21,30 @@
                 <interventions/> Gestion d'admins d'établissements
             </router-link>
 
-            <router-link to="/Gestionde" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <router-link to="/Gestiondeau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <interventions />
             Gestion des directeurs d'Etablissement
             </router-link>
 
-            <router-link to="/Gestionp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <router-link to="/Gestionpau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <interventions />
             Gestion des profs
+            </router-link>
+
+            <router-link to="/Gestioninterv" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <interventions />
+            Gestion des interventions
+            </router-link>
+
+            
+            <router-link to="/Gestiongrade" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <Grade />
+            Gestion de grade
+            </router-link>
+
+            <router-link to="/Gestionetab" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <Shcool />
+            Gestion des etablissements
             </router-link>
 
 
@@ -39,11 +55,9 @@
 
           </div>
 
-
-
           <div class="h-[50px]">
-  <div>
-    <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md  hover:text-gray-800 transition duration-400 ease-in-out">
+         <div>
+    <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md  hover:text-gray-800 transition duration-400 ease-in-out ">
          <decconexion/>
         Déconnexion
     </div>
@@ -97,10 +111,14 @@
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue';
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
 import interventions from '@/components/Dashboard/Icons/interventions.vue';
+import intervention from '@/components/Dashboard/Icons/intervention.vue';
+import Grade from '@/components/Dashboard/Icons/Grade.vue';
+import Shcool from '@/components/Dashboard/Icons/Shcool.vue';
+
  import {mapGetters, mapActions} from 'vuex';
  import axios from 'axios';
  export default {
-  components:{Decconexion,Profile,president,interventions,president},
+  components:{Decconexion,Profile,president,interventions,president,intervention,Grade,Shcool},
   data() {
   return {
     showSide: true

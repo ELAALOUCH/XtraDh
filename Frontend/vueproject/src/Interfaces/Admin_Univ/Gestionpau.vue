@@ -15,7 +15,7 @@
             <th class="px-4 py-3"> TYPE </th>
             <th scope="col" class="py-3 px-2">
               <div class="flex justify-center" >
-                <Create/>
+                <create/>
               </div> 
            </th> 
           </tr>
@@ -41,7 +41,7 @@
               <div class="inline-flex">
                 <div class="py-4 px-6 text-right">
               <div class="inline-flex">
-                <router-link :to="`/Gestionp/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
+                <router-link :to="`/Gestionpau/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
                 Editer
                 </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteprof(data)">
@@ -62,6 +62,7 @@
 <script>
 import axios from 'axios';
 import Create from '@/components/Dashboard/Prof/Create.vue';
+//import Edit from '@/components/Dashboard/Prof/Edit.vue';
 
 export default {
   components: { Create },

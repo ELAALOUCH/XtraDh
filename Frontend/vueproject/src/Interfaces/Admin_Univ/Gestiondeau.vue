@@ -60,7 +60,7 @@
 
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
-                  <router-link :to="`/Gestionde/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                  <router-link :to="`/Gestiondeau/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
                     Edit
                 </router-link>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteAdm(data)">
