@@ -23,11 +23,6 @@ Route::get('/api/get-nonce', function () {
     ]);
 });*/
 
-/** GENERATE PDF */
-Route::get('postfix', [PaiementController::class, 'postfix']);
-Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
-
-
 /* Paiement Routes */
 Route::apiResource('paiement',PaiementController::class);
 
@@ -39,11 +34,6 @@ Route::apiResource('paiement',PaiementController::class);
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/forgot',[ForgetController::class,'forgot']);
 Route::post('/reset',[ForgetController::class,'reset']);
-
-
-/** GENERATE PDF */
-Route::get('postfix', [PaiementController::class, 'postfix']);
-Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
 
 
 
@@ -89,7 +79,7 @@ Route::apiResource('intervention',InterventionController::class);
 
 //});
 
-Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
+//Route::middleware(['auth:sanctum','role:admin_etb'])->group( function () {
     //protected for admin etb
     /* Enseignant routes */
 
@@ -98,6 +88,12 @@ Route::apiResource('enseignant',EnseignantController::class);
 Route::apiResource('intervention',InterventionController::class);
 // /* Paiement Routes */
 // Route::apiResource('Paiement',PaiementController::class);
+
+/** GENERATE PDF */
+Route::get('postfix', [PaiementController::class, 'postfix']);
+Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
+
+
 //});
 
 //Route::middleware(['auth:sanctum','role:directeur_etb'])->group( function () {
@@ -106,7 +102,9 @@ Route::apiResource('intervention',InterventionController::class);
 Route::get('/invalideretb/{id}',[InterventionController::class,'invalideretb']);
 
 
-});
+
+
+//});
 
 //Route::middleware(['auth:sanctum','role:presidnt_univ'])->group( function () {
     //protected for président
