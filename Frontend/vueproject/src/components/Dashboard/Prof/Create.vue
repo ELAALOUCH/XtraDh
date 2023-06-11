@@ -9,7 +9,6 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-3xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Ajouter </h2>
 
         <div class="mb-4">
           <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
@@ -24,6 +23,11 @@
         <div class="mb-4">
           <label for="Prenom" class="block text-gray-700 font-bold mb-2">Prenom:</label>
           <input type="text" id="Prenom" v-model="formData.Prenom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
+          <input type="Email" id="Email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
 
         <div class="mb-4">
@@ -50,10 +54,6 @@
           </select>
         </div>
 
-        <div class="mb-4">
-          <label for="Email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="Email" id="Email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-        </div>
 
         <div class="flex justify-end">
           <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
