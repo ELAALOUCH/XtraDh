@@ -54,7 +54,7 @@ Route::delete('/deleteadm/{id_user}',[userController::class,'destroyadmin']);
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
-    Route::post('/logout',[AuthController::class,'logout']);
+    Route::delete('/logout',[AuthController::class,'logout']);
     Route::get('/user-profile',[AuthController::class,'userProfile']);
 
 });
