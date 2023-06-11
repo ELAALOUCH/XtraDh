@@ -90,31 +90,34 @@ const routes = [
     path:'/Resetpassword/:token',
     name:'Resetpassword',
     component:Resetpassword,
-    beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
-      }
 
-      next()
-
-    },
   },
+
   {
     path:'/Dash_au',
     name:'Dash_au',
     component:Dash_au,
-    beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
-      }
-
-      next()
-
-    },
     redirect:'Gestionae',
-    children :[
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
+      }
+      const user = store.getters['auth/user'];
+      console.log(user.type)
+      if (user.type !== 'admin_univ') {
+        if (user.type == 'prof') {
+          return next({ name: 'Dash_users' });
+        } else if (user.type === 'directeur_etb') {
+          return next({ name: 'Dash_de' });
+        } else if (user.type === 'admin_etb') {
+          return next({ name: 'Dash_ae' });
+        }else if (user.type === 'president_univ') {
+          return next({ name: 'Dash_pu' });
+        }
+      }
+      next();
+    },
+    children:[
       {
       path: '/Gestionae',
       component: Gestionae
@@ -185,20 +188,21 @@ const routes = [
 
 
 
-
-
   {
     path:'/Dash_ae',
     name:'Dash_ae',
     component:Dash_ae,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
-
-      next()
-
+    
+      const user = store.getters['auth/user'];
+      if (user.type !== 'admin_etb') {
+        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
+      }
+    
+      next();
     },
     redirect:'Gestionp',
     children :[
@@ -239,13 +243,16 @@ const routes = [
     name:'Dash_de',
     component:Dash_de,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
-
-      next()
-
+    
+      const user = store.getters['auth/user'];
+      if (user.type !== 'directeur_etb') {
+        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
+      }
+    
+      next();
     },
     redirect:'Profilede',
     children :[
@@ -277,13 +284,16 @@ const routes = [
     name:'Dash_pu',
     component:Dash_pu,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
-
-      next()
-
+    
+      const user = store.getters['auth/user'];
+      if (user.type !== 'president_univ') {
+        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
+      }
+    
+      next();
     },
     redirect:'Profilepu',
     children :[
@@ -313,12 +323,16 @@ const routes = [
     name:'Dash_users',
     component:Dash_users,
     beforeEnter: (to, from, next) => {
-      
-      if(!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' })
+      if (!store.getters['auth/authenticated']) {
+        return next({ name: 'Login' });
       }
-
-      next()
+    
+      const user = store.getters['auth/user'];
+      if (user.type !== 'prof') {
+        return next('/'); // Replace 'Unauthorized' with the appropriate route name for unauthorized access
+      }
+    
+      next();
     },
     redirect:'Profileprof',
     children :[
@@ -347,10 +361,6 @@ const routes = [
     component: NotFound
    }  
 ]
-
-
-
-
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
