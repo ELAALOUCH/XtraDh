@@ -1,10 +1,10 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Listes des directeurs d'établissement</h3>
+      <h3 class="text-2xl font-serif text-left py-2">Listes des directeurs d'établissement</h3>
 
-      <div class="overflow-x-auto relative  sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
+        <table class="w-full text-sm text-left text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
             <th scope="col" class="py-3 px-6">
               email
@@ -31,15 +31,15 @@
               </div>
             </th>
               <th scope="col" class="py-3 px-6">
-                <div class="flex justify-end" >
+                <div class="flex justify-center" >
                   <create/>
                 </div>
              </th>
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in presi " :key="data.id_user">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr class="bg-white border-b  " v-for="data in presi " :key="data.id_user">
+              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
                {{ data.email }}
               </th>
               <td class="py-4 px-6">
@@ -60,10 +60,10 @@
 
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
-                  <router-link :to="`/Gestiondeau/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                  <router-link :to="`/Gestiondeau/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
                     Edit
                 </router-link>
-                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="deleteAdm(data)">
+                 <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteAdm(data)">
                    Delete
                  </button>
                 </div>
