@@ -8,7 +8,7 @@
       <label for="establishmentFilter" class="block text-gray-700 font-serif  mb-2">
         Filtrer par Etablissement
       </label>
-      <select v-model="establishmentFilter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
+      <select v-model="filter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
         <option  selected value="">Tous les etablissements</option>
         <option v-for="etb in etabs" :value="etb.Nom">{{ etb.Nom }}</option>
       </select>
@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody class="bg-white">
-          <tr class="text-gray-700" v-for="data in interv " :key="data.id">
+          <tr class="text-gray-700" v-for="data in filteredData " :key="data.id">
             <td class="px-2 py-3 border">
               <div class="flex items-center text-sm">
                 <div>
