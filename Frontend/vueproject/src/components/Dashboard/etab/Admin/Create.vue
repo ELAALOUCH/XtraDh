@@ -12,6 +12,25 @@
 
         <h2 class="text-2xl font-bold mb-4">Ajouter Admin Etab </h2>
         <div class="mb-4">
+          <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
+          <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
+        </div>
+        <div class="mb-4">
+          <label for="ppr" class="block text-gray-700 font-bold mb-2">email:</label>
+          <input type="email" id="ppr" v-model="formData.email" required class="border rounded w-full py-2 px-3">
+        </div>
+
+
+        <div class="mb-4">
+          <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
+          <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
+        </div>
+
+        <div class="mb-4">
+          <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom:</label>
+          <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
+        </div>
+        <div class="mb-4">
           <label for="type" class="block text-gray-700 font-bold mb-2">Etablisssement:</label>
           <select id="type" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
             <option v-for ="etb in formData.etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>
@@ -85,8 +104,8 @@ export default {
            this.formData.prenom = ''
         })
 
-      //this.closeModal();
-      //window.location.reload();
+      this.closeModal();
+      window.location.reload();
       console.log(response)
     }
   }
