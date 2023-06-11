@@ -1,10 +1,10 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="w-screen overflow-y-hidden h-screen flex">
     <!-- Side bar -->
-    <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
-      <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
+    <div class="w-[200px] h-full bg-blue-200 text-white" v-show="showSide">
+      <div class="h-[50px] w-[200px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Président d'université</h3>
+          <h3 class="font-serif text-xl"> Président </h3>
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
@@ -13,24 +13,24 @@
 
 
 
-          <router-link to="/ConsoI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+          <router-link to="/ConsoI" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <intervention/>
              consultations des Interventions
             </router-link>
 
-            <router-link to="/GestionpI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+            <router-link to="/GestionpI" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
              <interges/>
              Gestion des Interventions
             </router-link>
 
 
-            <router-link to="/ConsultationP" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-            <eye/> Consultation de paiements
+            <router-link to="/ConsultationP" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+            <eye/> Consultation des paiements
             </router-link>
 
 
-            <router-link to="/Profilepu" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
-            <Profile/> Profile
+            <router-link to="/Profilepu" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">
+            <Profile/>Profile
             </router-link>
 
          </div>
@@ -64,15 +64,25 @@
             <!-- Search bar -->
           </div>
           <!-- User login -->
-          <div class="w-[200px] ">
-            <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
-              <img class="w-10 h-10 rounded-full border-2 border-blue-50" src="@/assets/images/download.jpg">
-              <div class="font-semibold dark:text-white text-left">
-                <div v-if="authenticated">{{ user.email }}</div>
-                <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
-              </div>
+          <ul role="list" class="max-w-sm divide-y divide-gray-200">
+            <li class="py-3 sm:py-4">
+            <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full" src="@/assets/images/download.jpg" alt="Neil image">
             </div>
+            <div class="flex-1 min-w-0">
+
+                <p class="text-l text-gray-500 font-serif truncate " v-if="authenticated">
+                  {{ user.email }}
+                </p>
+            </div>
+            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                Président
+            </span>
           </div>
+          </li>
+         </ul>  
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">

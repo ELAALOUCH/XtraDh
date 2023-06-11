@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h3 class="text-2xl font-bold text-left py-2">Consulter les etats de paiments de année actuelle</h3>
+  <div class="w-full">
+    <h3 class="text-2xl font-serif text-left py-2">Consulter les etats de paiments d'année actuelle</h3>
 
-    <div class="overflow-x-auto relative sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
+      <table class="w-full text-sm text-left text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
@@ -59,7 +59,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in ints" :key="data.id">
+          <tr class="bg-white border-b " v-for="data in ints" :key="data.id">
             <td class="py-4 px-6">
               {{ data.prof_Nom }}
             </td>
