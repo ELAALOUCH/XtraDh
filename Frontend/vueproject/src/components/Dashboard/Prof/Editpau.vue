@@ -61,7 +61,7 @@ export default {
         });
         console.log(response);
 
-       this.$router.push('/Gestionp')
+       this.$router.push('/Gestionpau')
 
 
       } catch (error) {
