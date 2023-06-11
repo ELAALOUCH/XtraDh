@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Edit
+      Modifier
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -9,7 +9,7 @@
 
       <div class="modal-content bg-white rounded-lg p-6 w-11/12 w-60 max-w-6xl mx-auto">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Edit</h2>
+        <h2 class="text-2xl font-bold mb-4">Modifier</h2>
 
         <div class="mb-4">
           <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
@@ -33,10 +33,10 @@
 
         <div class="flex justify-end mb-4">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
-            Update
+            Modifer
           </button>
           <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
-            Cancel
+            Anuuler
           </button>
         </div>
       </div>

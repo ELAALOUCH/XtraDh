@@ -2,10 +2,10 @@
   <div>
     <div class="my-4">
       <label for="establishmentFilter" class="block text-gray-700 font-bold mb-2">
-        Filter by Establishment:
+        Filtrer par Etablissement:
       </label>
       <select v-model="establishmentFilter" id="establishmentFilter" class="border rounded w-full py-2 px-3">
-        <option value="">All Establishments</option>
+        <option value="">Toutes les etablissements</option>
         <option v-for="establishment in establishments" :value="establishment">{{ establishment }}</option>
       </select>
     </div>

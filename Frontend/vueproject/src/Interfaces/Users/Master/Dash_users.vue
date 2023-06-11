@@ -24,7 +24,7 @@
 
             <router-link to="/Profileprof" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <Profile2/>
-              Profile
+              Profil
             </router-link>
           </div>
 

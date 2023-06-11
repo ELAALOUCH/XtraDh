@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="showModal = true" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
-      Ajouter Président_univ
+      Ajouter 
     </button>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="showModal">
@@ -9,7 +9,7 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Ajouter Président_univ</h2>
+        <h2 class="text-2xl font-bold mb-4">Ajouter </h2>
 
         <div class="mb-4">
           <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
