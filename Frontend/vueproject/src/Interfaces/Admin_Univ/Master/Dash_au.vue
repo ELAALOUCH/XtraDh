@@ -57,8 +57,9 @@
 
           <div class="h-[50px]">
          <div>
-    <div @click=signout() class="inline-flex relative  items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md cursor-pointer   transition duration-400 ease-in-out ">
-         <decconexion clas="cursor-pointer "/>
+
+    <div @click=signout() class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 cursor-pointer  hover:text-gray-800 transition duration-400 ease-in-out ">
+         <decconexion/>
         Déconnexion
     </div>
   </div>
