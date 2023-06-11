@@ -1,111 +1,63 @@
 <template>
-  <div>
-    <h3 class="text-2xl font-bold text-left py-2">Gestion des Interventions</h3>
-
-    <div class="overflow-x-auto relative  sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="py-3 px-6">
-             Intitule_intervention
-            </th>
-            <th scope="col" class="py-3 px-6">
-             Nom
-            </th>
-            <th scope="col" class="py-3 px-6">
-             Prenom
-            </th>
-            <th scope="col" class="py-3 px-6">
-             Etablissement
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Annee_univ
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Semestre
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-                Nbr_heures
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Date_debut
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Date_fin
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Etat
-              </div>
-            </th>
-            
-            
-            <th scope="col" class="py-3 px-6">
-              Operation
-            </th>
-            
+ <section class="container w-full mx-auto p-6 font-mono">
+  <h3 class="text-2xl font-serif text-left pb-4">Gestion des Interventions</h3>
+  <div class="w-full mb-8 overflow-hidden rounded-lg ">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-200 ">
+      <table class="w-full">
+        <thead>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-2 py-3">Intitule_intervention</th>
+            <th class="px-2 py-3">Nom</th>
+            <th class="px-2 py-3">Prenom</th>
+            <th class="px-2 py-3"> Etablissement</th>
+            <th class="px-2 py-3"> Annee_univ</th>
+            <th class="px-2 py-3"> Semestre </th>
+            <th class="px-2 py-3"> Nbr_heures </th>
+            <th class="px-2 py-3"> Date_debut </th>
+            <th class="px-2 py-3"> Date_fin </th>
+            <th class="px-2 py-3"> Etat </th>
+            <th class="px-2 py-3"> Operation </th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " v-for="data in interv " :key="data">
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.Intitule_Intervention }}
-            </th>
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.prof_Nom }}
-            </th>
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.prenom }}
-            </th>
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-             {{ data.Nom_etb }}
-            </th>
-            <td class="py-4 px-6">
-              {{ data.Annee_univ }}
+        <tbody class="bg-white">
+          <tr class="text-gray-700"  v-for="data in interv " :key="data">
+            <td class="px-2 py-3 border">
+              <div class="flex items-center text-sm">
+                <div>
+                  <p class="font-semibold text-black">{{ data.Intitule_Intervention }} </p>
+                </div>
+              </div>
             </td>
-            
-            <td class="py-4 px-6">
-              {{ data.Semestre }}
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.prof_Nom }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">
+              {{ data.prenom }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.Nbr_heures }}
-            </td>
-            
-            <td class="py-4 px-6">
-              {{ data.Date_debut }}
-            </td>
-            <td class="py-4 px-6">
-              {{ data.Date_fin }}
-            </td>
-            <td class="py-4 px-6">
-              <span v-if="!data.visa_uae" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">invalide</span>
-              <span v-if="data.visa_uae" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">valide</span>
-            </td>
-            <td class="py-4 px-6 text-right">
-              <div class="inline-flex">
-               <button v-if="!data.visa_uae"  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="validerinterv(data)">
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Nom_etb }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Annee_univ }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Semestre }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.Nbr_heures }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border"> {{ data.Date_debut }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Date_fin }}</td>
+            <td class="px-2 py-3 text-ms font-semibold border">
+              <span v-if="!data.visa_uae" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">invalide</span>
+              <span v-if="data.visa_uae" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">valide</span>
+              </td>
+              <td class="px-2 py-3 text-ms font-semibold border">
+                <div class="inline-flex">
+               <button v-if="!data.visa_uae"  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="validerinterv(data)">
                  valider
                </button>
-               <button v-if="data.visa_uae" class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="invaliderinterv(data)">
+               <button v-if="data.visa_uae" class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="invaliderinterv(data)">
                  invalider
                </button>
               </div>
-            </td>
-          </tr>
+              </td>  
+            </tr>
         </tbody>
       </table>
     </div>
   </div>
-
-
+</section>
 </template>
 
 

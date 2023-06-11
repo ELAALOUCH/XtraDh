@@ -56,7 +56,7 @@
             <!-- Search bar -->
           </div>
           <!-- User login -->
-          <ul role="list" class="max-w-sm divide-y divide-gray-200 dark:divide-gray-700">
+          <ul role="list" class="max-w-sm divide-y divide-gray-200">
             <li class="py-3 sm:py-4">
             <div class="flex items-center space-x-3">
             <div class="flex-shrink-0">
