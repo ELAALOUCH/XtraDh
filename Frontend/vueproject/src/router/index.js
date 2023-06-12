@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store';
-import axios from 'axios';
+
 import Login from '../Pages/auth/Login.vue'
 import NotFound from '@/views/NotFound.vue'
 import Forgetpassword from '@/Pages/auth/Forgetpassword.vue'
@@ -103,8 +103,9 @@ const routes = [
         return next({ name: 'Login' });
       }
       const user = store.getters['auth/user'];
-      if (user.type !== 'admin_users') {
-      sessionStorage.removeItem('token');
+
+      if (user.type !== 'admin_univ') {
+      localStorage.removeItem('token');
     }
       next();
     },
@@ -172,8 +173,6 @@ const routes = [
     ]
   },
 
-
-
   {
     path:'/Dash_ae',
     name:'Dash_ae',
@@ -183,8 +182,9 @@ const routes = [
         return next({ name: 'Login' });
       }
       const user = store.getters['auth/user'];
-      if (user.type !== 'admin_users') {
-        sessionStorage.removeItem('token');
+
+      if (user.type !== 'admin_etb') {
+        localStorage.removeItem('token');
     }
       next();
     },
@@ -231,9 +231,9 @@ const routes = [
         return next({ name: 'Login' });
       }
       const user = store.getters['auth/user'];
-      if (user.type !== 'admin_users') {
-        sessionStorage.removeItem('token');
 
+      if (user.type !== 'directeur_etb') {
+        localStorage.removeItem('token');
     }
       next();
     },
@@ -270,8 +270,11 @@ const routes = [
         return next({ name: 'Login' });
       }
       const user = store.getters['auth/user'];
-      if (user.type !== 'admin_users') {
-        sessionStorage.removeItem('token');
+
+      if (user.type !== 'president_univ') {
+        console.log(user.type)
+        localStorage.removeItem('token');
+
     }
       next();
     },
@@ -310,6 +313,11 @@ const routes = [
       const user = store.getters['auth/user'];
       if (user.type !== 'admin_users') {
         sessionStorage.removeItem('token');
+
+
+      const user = store.getters['auth/user'];
+      if (user.type !== 'prof') {
+        localStorage.removeItem('token');
 
     }
       next();
