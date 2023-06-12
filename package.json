@@ -1,0 +1,19 @@
+{
+    "private": true,
+    "scripts": {
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production",
+        "dev": "concurrently \"npm run serve --prefix Frontend/vueproject\" \"php artisan serve\""
+    },
+    "devDependencies": {
+        "axios": "^0.21",
+        "concurrently": "^8.0.1",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14"
+    }
+}

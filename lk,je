@@ -1,0 +1,180 @@
+[33md4c332b[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m Delete .github/workflows directory
+[33m7e3d94d[m clean files
+[33md14b747[m update readme file
+[33mbbbc45d[m updqte Front
+[33mc5a8516[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33m3d4b2a1[m update Front
+[33m8f32d7c[m[33m ([m[1;31morigin/feature/secure[m[33m)[m update Kernel.php
+[33mffb6b52[m cryptage des données sensible
+[33mbe08798[m Test du contrôleur Administrateur
+[33m30b28fa[m Test du contrôleur Enseignant
+[33ma06d5dd[m Test du contrôleur Intervention
+[33m34fcde3[m Test du contôleur Etablissement
+[33m8489939[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33m21d3ebc[m Update api.php
+[33mbaa112a[m Update usercreateTest.php 2
+[33m9119931[m Update usercreateTest.php
+[33mbdea22a[m test usercreateTest.php
+[33m90bd591[m Update usercreateTest.php 2
+[33m7c3d85b[m Update usercreateTest.php
+[33m7664d42[m Create laravel.yml
+[33m5ded4ea[m Merge pull request #5 from ELAALOUCH/release/0.1.0
+[33m946bc79[m[33m ([m[1;31morigin/release/0.1.0[m[33m)[m change structure
+[33m7599fcf[m Test du contrôleur grades
+[33m0f20426[m Merge branch 'release/0.1.0' of github.com:ELAALOUCH/XtraDh into release/0.1.0
+[33m4a16789[m Merge branch 'feature/interfaces/login' into develop
+[33mfd1145a[m auth com
+[33m0931fa0[m last com in feature
+[33m2c396b7[m fixes ENS & ADM controllers
+[33m4d5b3e6[m add factories + fixe Enseignant and Admin Controllers
+[33mf04909a[m update auth controller
+[33m534e1bd[m update and destroy le controlleur enseignant
+[33m08ee86c[m function afficher de l enseignant
+[33m76c8692[m destory fnction admin controller
+[33maa3623e[m last v of login
+[33m07812bb[m Add update function to Admin Controller
+[33m2d153e4[m Add show method to Admin Controller
+[33m4acd873[m Add store method to Admin Controller
+[33m86c1d23[m the most updated login
+[33mab7add2[m error correction
+[33mab47923[m Merge pull request #4 from ELAALOUCH/develop
+[33m824bd0f[m Update 2023_05_09_113128_create_interventions_table.php
+[33ma1d39a6[m new view after modif
+[33mfe4aa58[m login cnt
+[33m982f0e7[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into feature/interfaces/login
+[33m961f63b[m fix log out issus
+[33ma9f2f70[m changes
+[33ma8cde61[m continue here
+[33m031d383[m fix intervention validation issus 986
+[33mf8c9367[m last conf
+[33m085cc4e[m change test
+[33m7654fd5[m fixes conflit 998
+[33m00824d3[m fixes 999
+[33mc00d57c[m fixes conflicts
+[33me1bc880[m resolve conflict 2 authController
+[33mb4dbe9e[m fixes
+[33m9643812[m Merge branch 'feature/secure-auth', remote-tracking branch 'origin' into develop
+[33ma105683[m resolve conflict authController
+[33md90c661[m api
+[33m3c4e341[m Merge remote-
+[33m10a34a8[m conflit solution
+[33m2006c4b[m add email to users controller
+[33m3fef82c[m Merge pull request #3 from ELAALOUCH/feature/login-responsive
+[33m6816fd2[m rendre login responsive
+[33m7276123[m Merge pull request #2 from ELAALOUCH/feature/interfaces/login
+[33m48b8b71[m changes conf
+[33m89cae4f[m changes on router
+[33me70d219[m changes on authCont
+[33mc7542c0[m  more and more changes
+[33mc8116af[m Merge remote-tracking branch 'origin' into feature/secure-auth
+[33m550e7e2[m Le logout ne peut s'effectuer que si utilisateur est authentifer
+[33m8053e84[m fix post fix method
+[33m691eb74[m logout done
+[33m2eda9d7[m changes login-2
+[33m03a63f9[m more changes on login
+[33mc9788cb[m delete laravel.yml
+[33m0ffb33e[m Configuration du package CSP
+[33m001c558[m Create laravel.yml
+[33m4b34b6b[m  login basics implemented
+[33mfb23ce1[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33maf480ff[m fixe migrations files
+[33m5b3b103[m changes on backend
+[33m20e5460[m update : little changes
+[33ma257452[m changes
+[33m2c5c336[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33m38c3e32[m Correction du hachage de mdp
+[33m9e6659e[m Merge pull request #1 from ELAALOUCH/feature/secure-auth
+[33mdb4317b[m correction des erreur
+[33mb88f0b0[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33mdfd6a4f[m Merge branch 'feature/secure-auth' into develop
+[33mdf16370[m resoudre problem  900 K fichiers
+[33m2bf67e9[m change : last changes on this feature
+[33md33f8d3[m update: mor update on interfaces
+[33m7a79acb[m change: changes on pres_univ
+[33me689caa[m Controleur Grade
+[33m38c1459[m Controleur Grade
+[33m71faaff[m change : more changes ( updating modal )
+[33m476a2b6[m Merge branch 'feature/continue-login' into develop
+[33m0a62af5[m update : changes in backend
+[33m4c932c4[m update: more changer on interfaces
+[33m97e5057[m update : more changes on interrfaces
+[33mb600583[m change; dash _ components
+[33m284599f[m update :  changes on interfaces
+[33mc5626a1[m update .env
+[33m15051bf[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33mf9cff6e[m Test des fichiers de migration(Rollback)
+[33me94875d[m Update api.php
+[33m21a5aac[m Test des fichiers de migration(création)
+[33mbaded46[m Controleur Grade
+[33ma2fd87b[m Controleur Etablissement
+[33m6a0b354[m update : changes on auth
+[33m9e8ec4c[m add NET to Paiement
+[33m1020d8e[m update : resetpwd
+[33mc260ab6[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into feature/continue-login
+[33mf3cac15[m change : changes dash_ae
+[33mb6b902a[m add name to end points (post fix)
+[33m621b90f[m update : update interfaces 2
+[33m9854599[m change : changes on interfaces
+[33m60434cd[m add PDF feature AND END-POINTS FOR EMAIL: PDF PAIEMENT
+[33m7d420e9[m Verification de la sécurité contre les injection sql
+[33m1ed79dd[m update: changes
+[33m9c7bf22[m merging feature/controllers-developement to develop
+[33maf1e857[m finish authentification tests
+[33ma20bff6[m develop: develop reset password method
+[33m3318319[m add: add logout in dash_au
+[33mbddd10f[m add: add subscriber
+[33m9c21cd6[m update: changes in login and dash_au
+[33m2b02261[m develop: develop user controller
+[33md0591ad[m develop: develop paiement controller
+[33m3beef87[m develop : develop intervention controller
+[33m04cb129[m Merge branch 'feature/interfaces' into develop
+[33m38f2038[m update: update components
+[33m8e7cae7[m updates : changes on interfaces
+[33m9447445[m Redéfiniton des gates
+[33madc0187[m update : routes and interfaces
+[33m5345c08[m update : interfaces updated
+[33m06f1db4[m implement: dashboards implementd
+[33m7e0b16e[m add: dashboards added
+[33m4949908[m develop:developping index and store methodes of enseignant
+[33md7e5c89[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33ma6fdc19[m Merge branch 'feature/login-implement' into develop
+[33m10f7c82[m modify : reset password modified
+[33m22729bf[m fixes:fix migration files drop table
+[33m76f20dc[m Merge branch 'feature/relationships' into develop
+[33m2810a1b[m create:etablissement de la relation entre paiement et enseignant
+[33mb2490f3[m create;etablissement de la relation enter user et enseignant et administrateur
+[33m7f49649[m :creation:etablissement de la relation entre intervetion et enseignant et etablissement
+[33m03f5a94[m create:etablissement de la relation entre grade et enseignant
+[33m523f8c4[m create:etablissement des relations de etablissement avec les autre modèle
+[33m6b3b346[m add: page wait added , integrate the other login pages in router
+[33m9ceffda[m create:etablissement des relation de administrateur avec les autre modèle
+[33m6f406cb[m add: forget password added
+[33madd5461[m add: Not found added
+[33m17de03f[m create : login(footer-header-created)
+[33m301ae79[m create: etablissement des relation de enseignant avec les autre modèle
+[33m0c1b3ae[m create:relatioship Enseignant vers les autre model
+[33m1d8afc8[m fixes: fixing migration issues
+[33m0d3a5ff[m solving error server 505
+[33m649cde8[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33m52af694[m Merge branch 'feature/login' into develop
+[33ma490791[m delete : delete existing items from router
+[33m7d72ce2[m delete : deleting existing files
+[33m14034eb[m add: packages tailwind added
+[33me693c2d[m update foreign keys
+[33me67c897[m merging feature controllers to develop
+[33m093def8[m Merge branch 'develop' of https://github.com/ELAALOUCH/XtraDh into develop
+[33m7945b8f[m create:creation des modeles ens,etb,grad,paie
+[33m3086e06[m create:models
+[33m3b23723[m Update api.php
+[33m9157003[m premire tentative de sécuriser les routes
+[33me473b87[m Premiere configuration de Sanctum
+[33md680311[m create:creation des modèle de base
+[33mfd7a0d0[m create : create vue project files
+[33mc0b5da6[m create: create front end with readme file
+[33m38fe9e3[m create Front end repo
+[33m5ae6c29[m Merge branch 'feature/laravel-project-files' into develop
+[33ma411743[m create: creation des route de API REST
+[33m260601b[m create: creation des controlleur de base
+[33m09514a4[m create:fichier de migration
+[33m8d51279[m create:laravel project created
+[33mf93b50a[m[33m ([m[1;31morigin/main[m[33m)[m Initial commit
