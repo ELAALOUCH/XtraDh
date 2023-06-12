@@ -14,9 +14,19 @@ class roleUser
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next,string $role)
+    public function handle($request, Closure $next, string $role)
     {
-        if ($request->user()->type ===$role) return $next($request);
+        // Si $role n'est pas nul, convertissez-le en tableau
+        $roles = !is_null($role) ? (is_array($role) ? $role : explode('|', $role)) : [];
+
+        // Vérifiez si l'utilisateur authentifié a l'un des rôles spécifiés
+        if (in_array($request->user()->type, $roles)) {
+            return $next($request);
+        }
+
+        // Si l'utilisateur n'a pas le rôle requis, interrompez la requête avec une erreur 403 Forbidden
         abort(403);
     }
+
 }
+
