@@ -1,10 +1,12 @@
 <template>
   <div>
-    <h3 class="text-2xl font-bold text-left py-2">Listes des présidents universitaire</h3>
 
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <h3 class="text-2xl font-serif text-left py-2">Gestion de président </h3>
+
+
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
+      <table class="w-full text-sm text-left text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
             <th scope="col" class="py-3 px-6">
               email
@@ -24,15 +26,15 @@
               </div>
             </th>
 
-            <th scope="col" class="py-3 px-6">
-             <div class="flex justify-end" >
+            <th scope="col" class="py-3 px-6 ">
+             <div class="ml-[500px]" >
                   <create/>
               </div>
            </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="data in Obj" :key="data.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <tr v-for="data in Obj" :key="data.id" class="bg-white border-b">
             <td class="py-4 px-6" >
               {{ data.email }}
             </td>
@@ -49,10 +51,12 @@
 
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-                <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">
+                <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
                     Edit
                 </router-link>
-               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
+
+               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteAdm(data)">
+
                  Delete
                </button>
               </div>
@@ -72,7 +76,7 @@ export default {
   components: {create},
 data(){
   return {
-      Obj:'',
+      Obj:[],
   }
 },
 async mounted() {
@@ -90,7 +94,20 @@ async mounted() {
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-}, 
+},
+async deleteAdm(data)
+  {
+   const response = axios.delete('/deleteadm/'+data.id).then(()=>{
+      let index = this.Obj.indexOf(data);
+      console.log(index)
+      this.Obj.splice(index,1);
+    });
+    console.log(response)
+    
+
+  } 
+
+
 }}
 
 

@@ -44,12 +44,14 @@ class ForgetController extends Controller
             ],400);
         }
     }
+
+    
     /** @var User $user */
     public function reset(ResetRequest $request){
         $token = $request->input('token');
         if(! $passwordResets = DB::table('password_resets')->where('token',$token)->first()){
             return response([
-                'message'=>'Invalid token'
+                'errors'=>'The token is invalid'
             ],400);
         }
         if(! $user = User::where('email',$passwordResets->email)->first()){

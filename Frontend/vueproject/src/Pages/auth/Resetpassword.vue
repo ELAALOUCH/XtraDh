@@ -29,19 +29,15 @@
 
   <script>
 
-  import axios from 'axios';
-    import Header from '@/components/Login/Header.vue'
-    import Footer from '@/components/Login/Footer.vue'
+import axios from 'axios';
 import { createLogger } from 'vuex';
   export default {
-    components:{Footer,Header},
-
     data() {
       return {
         email: '',
         password: '',
         confirmPassword: '',
-        error:''
+        error:null 
       };
     },
     methods: {
@@ -54,7 +50,7 @@ import { createLogger } from 'vuex';
         });
         this.$router.push('/')
           }catch(error){
-          this.error =  error.response.data.errors.password_confirm[0]
+          this.error =  error.response.data.errors
         }
 
 

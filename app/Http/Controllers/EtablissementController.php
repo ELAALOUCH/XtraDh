@@ -15,7 +15,9 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        $etab = Etablissement::all();
+        $etab = DB::table('etablissements')
+                    ->orderBy('code')
+                    ->get();
         return response()->json($etab);
     }
 
@@ -35,8 +37,15 @@ class EtablissementController extends Controller
             'ville'=>'required',
             'Nbr_enseignants'=>'required',
          ]);
-         $etab = Etablissement::Create($champs);
-         return response()->json($etab);
+         $etab = new Etablissement();
+         $etab->code = $champs['code'];
+         $etab->Nom = $champs['Nom'];
+         $etab->Telephone = $champs['Telephone'];
+         $etab->Faxe = $champs['Faxe'];
+         $etab->ville = $champs['ville'];
+         $etab->Nbr_enseignants = $champs['Nbr_enseignants'];
+         
+         return response()->json($etab->save());
          
          /* $etab = new Etablissement();
          $etab->code = $request->code;

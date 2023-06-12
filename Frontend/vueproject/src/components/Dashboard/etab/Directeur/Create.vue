@@ -9,16 +9,16 @@
 
       <div class="modal-content bg-white rounded-lg p-6 max-w-xl">
         <span class="close absolute top-0 right-0 m-4 cursor-pointer" @click="closeModal">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Ajouter </h2>
 
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-          <input type="text" id="email" v-model="formData.email" required class="border rounded w-full py-2 px-3">
-        </div>
+
 
         <div class="mb-4">
           <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
           <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
+        </div>
+        <div class="mb-4">
+          <label for="ppr" class="block text-gray-700 font-bold mb-2">email:</label>
+          <input type="email" id="ppr" v-model="formData.email" required class="border rounded w-full py-2 px-3">
         </div>
 
 
@@ -32,7 +32,12 @@
           <input type="text" id="prenom" v-model="formData.prenom" required class="border rounded w-full py-2 px-3">
         </div>
 
-
+        <div class="mb-4" v-if="show">
+          <label for="type" class="block text-gray-700 font-bold mb-2">Etablisssement:</label>
+          <select id="type" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
+            <option v-for ="etb in formData.etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>  
+          </select>
+        </div>
         <div class="flex justify-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             @click="submitForm">
@@ -51,6 +56,11 @@
 <script>
 import axios from 'axios'
 export default {
+  props : {
+    test : {
+      type  : Number
+    }
+  },
   data() {
     return {
       showModal: false,
@@ -59,11 +69,25 @@ export default {
         prenom : '',
         PPR : '',
         email :'',
-        type:'directeur_etab',
+        type:'directeur_etb',
+        Etablissement : '',
+        etabs : []
 
-      }
+      },
+      show : 0
     };
-  },
+  },async created(){
+          this.show = this.test ;
+            const etbs = await axios.get('http://127.0.0.1:8000/api/etablissement'); 
+            console.log(etbs.data)    
+            etbs.data.forEach(e => {
+              if(e.Nom!='UAE'){
+                this.formData.etabs.push(e)
+              }            
+            });
+          
+           //this.etabs = etbs.data ; 
+        },
   methods: {
     closeModal() {
       this.showModal = false;
@@ -75,6 +99,7 @@ export default {
           PPR : this.formData.PPR,
           type : this.formData.type,  
           prenom : this.formData.prenom,
+          Etablissement : this.formData.Etablissement
         })
         .then(()=>{
            this.formData.Nom = '' 

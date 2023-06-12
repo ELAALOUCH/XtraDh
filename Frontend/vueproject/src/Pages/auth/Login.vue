@@ -10,18 +10,18 @@
    <div class="w-full h-100 ">
 
      <div class="flex justify-center">
-      <img src="@/assets/images/download.jpg" alt="image">
+      <img src="@/assets/images/logo.jpg" alt="image" class="logo">
      </div>
  
      <form  @submit.prevent="submitlogin()" class="mt-6" >
        <div>
          <label for="email" class="block text-gray-700">Adresse mail</label>
-         <input v-model="user.email" type="email"  id="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
+         <input v-model="user.email" type="email"  id="email" placeholder="Entrer l'e-mail" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
        </div>
        <div class="mt-4">
     <label for="password" class="block text-gray-700">Mot de passe</label>
     <div class="relative">
-      <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Enter Password" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+      <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Entrer le mot de passe" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
       <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
         <svg class="h-8 w-8 text-dark cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" @click="togglePasswordVisibility">
           <circle cx="12" cy="12" r="2" />
@@ -134,7 +134,10 @@ export default {
     height: 450px;
     border-radius: 10px;
   }
-
+  .logo{
+    height: 300px;
+    width: 300px;
+  }
   .w-96 {
     margin-bottom: 3px;
   }

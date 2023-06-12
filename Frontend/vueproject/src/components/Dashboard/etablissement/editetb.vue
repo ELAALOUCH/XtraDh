@@ -43,12 +43,13 @@ export default {
   data() {
     return {
       formData: {
-        id_user: '',
-        PPR: '',
-        Nom: '',
-        Prenom: '',
-        Date_Naissance: '',
-        Email: '',
+          id : '',
+          code : '',
+          Nom : '',
+          Telephone : '',
+          Fax : '',
+          ville  : '',
+          Nbr_enseignants :''
       },
       prev_email : ''  
     };
@@ -57,18 +58,18 @@ export default {
    async submitForm() {
       try
        {
-        const response = await axios.patch('/updateprof/'+ this.formData.id_user, {
-          PPR: this.formData.PPR,
-          Nom: this.formData.Nom,
-          prenom: this.formData.Prenom,
-          Date_Naissance: this.formData.Date_Naissance,
-          id_user: this.formData.id_user,
-          email : this.formData.Email, 
+        const response = await axios.patch('/etablissement/'+ this.formData.id, {
+          code : this.formData.code,
+          Nom : this.formData.Nom,
+          Telephone : this.formData.Telephone,
+          Faxe : this.formData.Fax,
+          ville : this.formData.ville,
+          Nbr_enseignants : this.formData.Nbr_enseignants,
           
         });
         console.log(response);
 
-       this.$router.push('/Gestionp')
+       this.$router.push('/Gestionetab')
 
 
       } catch (error) {
@@ -79,20 +80,17 @@ export default {
   },
      async mounted(){
       let id = this.$route.params.id
-      this.formData.id_user=id
-      console.log(this.$route.params.id)
-     const response = await axios.get('/enseignant/'+this.formData.id_user)
-    console.log(response.data)
-    this.formData.PPR = response.data.PPR ; 
-    this.formData.Nom = response.data.Nom;
-    this.formData.Prenom = response.data.prenom ;
-    this.formData.Date_Naissance = response.data.Date_Naissance ;
-    this.formData.Email = response.data.user.email ;
-    this.prev_email = response.data.user.email ;
-    this.formData.id_user = response.data.user.id_user;
-  },
-    cancelForm() {
-    },
+      console.log(id)
+          this.formData.id=id
+          const response = await axios.get('/etablissement/'+id)
+          this.formData.id = response.data.id,
+          this.formData.code = response.data.code ,
+          this.formData.Nom =   response.data.Nom,
+          this.formData.Telephone =  response.data.Telephone,
+          this.formData.Fax =  response.data.Faxe,
+          this.formData.ville  =  response.data.ville,
+          this.formData.Nbr_enseignants =  response.data.Nbr_enseignants
+  }
   }
 
 </script>

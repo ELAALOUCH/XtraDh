@@ -1,6 +1,6 @@
 <template>
     <div >
-        <h5><p class="text-4xl font-medium text-gray-600 mb-8">Ajouter Intervention</p></h5>
+        <h5><p class="text-4xl font-serif text-gray-600 mb-8">Ajouter Intervention</p></h5>
       <div v-if="test">
         <div class="flex p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
           <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -36,6 +36,13 @@
             <option value="Semestre 2">Semestre 2</option>
             
         </select>
+
+        <select  required v-model="Etablissement" id="underline_select" class="block py-2.5 px-1.5 w-full text-sm text-gray-500 mt-4  bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            <option selected value="" disabled >Selectionner etablissement </option>
+            <option v-for ="etb in etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>
+          
+      </select>
+  
   
         
     
@@ -70,19 +77,33 @@
           Date_fin:'',
           Nbr_heures:'',
           Semestre : '',
-          test : 0 
+          test : 0 ,
+          Etablissement : '',
+          etabs : []
         }
       },
+      async created(){
+            const etbs = await axios.get('http://127.0.0.1:8000/api/etablissement'); 
+            console.log(etbs.data)    
+            etbs.data.forEach(e => {
+              if(e.Nom!='UAE'){
+                this.etabs.push(e)
+              }            
+            });
+          
+           //this.etabs = etbs.data ; 
+        },
       methods:{
         async handlesubmit(){
-            const response = await axios.post('/ajoutinterventionetab',{
+            const response = await axios.post('/storePPR',{
               PPR:this.PPR,
               Intitule_Intervention:this.Intitule_Intervention,
               Annee_univ:this.Annee_univ,
               Date_debut:this.Date_debut,
               Date_fin:this.Date_fin,
               Nbr_heures:this.Nbr_heures,
-              Semestre : this.Semestre
+              Semestre : this.Semestre,
+              id_etab : this.Etablissement 
                       }).then(()=>{
                         this.PPR='',
                         this.Intitule_Intervention='',
