@@ -93,7 +93,6 @@ export default {
                       this.Semestre= ''
                       this.test = 1 ; 
                     })
-          console.log(response)
       }
     }
 }

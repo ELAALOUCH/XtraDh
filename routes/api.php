@@ -78,8 +78,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //Route::middleware(['auth:sanctum','role:admin_univ'])->group( function () {
     //protected for admin univ
-    Route::apiResource('etablissement',EtablissementController::class);
-
+    Route::apiResource('etablissement',EtablissementController::class)->middleware("auth:sanctum");
 
 
 

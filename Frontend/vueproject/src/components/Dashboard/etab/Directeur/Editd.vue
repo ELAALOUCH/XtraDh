@@ -44,6 +44,7 @@ data() {
       Nom: '',
       prenom: '',
       email: '',
+     
     },
   };
 },
@@ -80,6 +81,7 @@ methods: {
   this.formData.prenom = response.data.prenom ;
   this.formData.email = response.data.email ;
   this.formData.id_user = response.data.id_user;
+  
 },
   cancelForm() {
   },
