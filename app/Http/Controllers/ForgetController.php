@@ -51,7 +51,7 @@ class ForgetController extends Controller
         $token = $request->input('token');
         if(! $passwordResets = DB::table('password_resets')->where('token',$token)->first()){
             return response([
-                'message'=>'Invalid token'
+                'errors'=>'The token is invalid'
             ],400);
         }
         if(! $user = User::where('email',$passwordResets->email)->first()){
