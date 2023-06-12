@@ -272,6 +272,7 @@ const routes = [
       const user = store.getters['auth/user'];
       if (user.type !== 'admin_users') {
         sessionStorage.removeItem('token');
+        
     }
       next();
     },
