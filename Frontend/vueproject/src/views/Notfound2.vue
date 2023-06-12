@@ -14,7 +14,6 @@
     data() {
       return {
         message: 'Vous avez pas la permission',
-
       }
 
     },

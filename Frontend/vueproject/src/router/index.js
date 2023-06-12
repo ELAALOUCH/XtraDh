@@ -102,7 +102,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='admin_univ'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -174,12 +177,6 @@ const routes = [
 
 
 
-
-
-
-
-
-
   {
     path:'/Dash_ae',
     name:'Dash_ae',
@@ -189,7 +186,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='admin_etb'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -236,7 +236,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='directeur_etb'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -274,7 +277,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='president_univ'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -310,8 +316,12 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='prof'){
+      return next({name:'NotFound2'})
+     }
       next()
+
     },
     redirect:'Profileprof',
     children :[
@@ -339,6 +349,15 @@ const routes = [
     name:'NotFound',
     component: NotFound
    }  
+   ,
+   {
+    path:'/NotFound2',
+    name:'NotFound2',
+    component: NotFound2
+   }  
+   ,
+   
+   
 ]
 
 
