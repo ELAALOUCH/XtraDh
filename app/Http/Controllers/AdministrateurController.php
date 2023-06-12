@@ -64,7 +64,7 @@ class AdministrateurController extends Controller
 
 
     public function directeurETB(){
-        //cette methode est pour afficher la liste des directeur  qui appartient à etablissement de admistrateur (etab_permanent)
+        //cette methode est pour afficher la liste des directeur  qui appartient à etablissement de admistrateur 
         $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
 
         $users = DB::table('administrateurs')

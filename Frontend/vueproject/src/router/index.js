@@ -306,22 +306,7 @@ const routes = [
     path:'/Dash_users',
     name:'Dash_users',
     component:Dash_users,
-    beforeEnter: (to, from, next) => {
-      if (!store.getters['auth/authenticated']) {
-        return next({ name: 'Login' });
-      }
-      const user = store.getters['auth/user'];
-      if (user.type !== 'admin_users') {
-        sessionStorage.removeItem('token');
-
-
-      const user = store.getters['auth/user'];
-      if (user.type !== 'prof') {
-        localStorage.removeItem('token');
-
-    }
-      next();
-    },
+    
     redirect:'Profileprof',
     children :[
       {
