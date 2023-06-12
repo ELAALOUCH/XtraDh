@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen overflow-y-hidden h-screen flex">
     <!-- Side bar -->
-    <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
+    <div class="w-[500px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
           <h3 class="font-serif text-xl">Directeur </h3>
