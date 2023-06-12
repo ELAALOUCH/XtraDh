@@ -9,7 +9,7 @@
   </template>
   
   <script>
-
+import { router } from '@/router';
   export default {
     data() {
       return {
@@ -19,7 +19,8 @@
     },
     methods:{
       goback(){
-        history.go(-1);
+        const previousUrl =document.referrer;
+        console.log(previousUrl)
       }    
     }
     
