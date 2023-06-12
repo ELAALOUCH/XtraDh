@@ -37,12 +37,10 @@
                 Etat
               </div>
             </th>
-            
-            
             <th scope="col" class="py-3 px-6">
               Operation
             </th>
-            
+  
           </tr>
         </thead>
         <tbody>
@@ -122,9 +120,6 @@ methods:{
     let index = this.interv.indexOf(e)
     this.interv[index].visa_etb = 0 ;
   },
-
-
-
 
 
 
