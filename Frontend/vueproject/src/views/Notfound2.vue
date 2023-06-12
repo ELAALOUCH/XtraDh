@@ -19,8 +19,7 @@ import { router } from '@/router';
     },
     methods:{
       goback(){
-        const previousUrl =document.referrer;
-        console.log(previousUrl)
+       this.$router.back()
       }    
     }
     
