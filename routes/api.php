@@ -16,7 +16,7 @@ Route::post('/reset', [ForgetController::class, 'reset']);
 // Routes authentifiées
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/adminprofile', [UserController::class, 'adminProfile']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::delete('/logout', [AuthController::class, 'logout']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
 
