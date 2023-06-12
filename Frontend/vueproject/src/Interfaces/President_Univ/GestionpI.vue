@@ -68,9 +68,6 @@ export default {
 data(){
   return {
       interv : []
-
-  
-
   }
 },
 async mounted()
