@@ -1,32 +1,36 @@
 <template>
     <form @submit.prevent="submitForm" >
 
-  <div class="relative z-0 w-full mb-6 group">
+      <div class="relative z-0 w-full mb-2 group">
+  <h1 class="font-serif text-2xl">Modifier l'etablissement</h1>
+</div>
+
+  <div class="relative z-0 w-full mb-2 group">
     <label for="code" class="block text-gray-700 font-bold mb-2">code:</label>
     <input type="text" id="code" v-model="formData.code" required class="border rounded w-full py-2 px-3">
   </div>
 
-  <div class="relative z-0 w-full mb-6 group">
+  <div class="relative z-0 w-full mb-2 group">
     <label for="Nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
     <input type="text" id="Nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3">
   </div>
 
-  <div class="relative z-0 w-full mb-6 group">
+  <div class="relative z-0 w-full mb-2 group">
     <label for="Telephone" class="block text-gray-700 font-bold mb-2">Telephone:</label>
   <input type="text" id="Telephone" v-model="formData.Telephone" required class="border rounded w-full py-2 px-3">
   </div>
 
-  <div class="relative z-0 w-full mb-6 group">
+  <div class="relative z-0 w-full mb-2 group">
     <label for="Fax" class="block text-gray-700 font-bold mb-2">Fax:</label>
   <input type="text" id="Fax" v-model="formData.Fax" required class="border rounded w-full py-2 px-3">
   </div>
 
-  <div class="relative z-0 w-full mb-6 group">
+  <div class="relative z-0 w-full mb-2 group">
     <label for="ville" class="block text-gray-700 font-bold mb-2">ville:</label>
   <input type="text" id="ville" v-model="formData.ville" required class="border rounded w-full py-2 px-3">
   </div>
 
-  <div class="relative z-0 w-full mb-6 group">
+  <div class="relative z-0 w-full mb-2 group">
     <label for="Nbr_enseignants" class="block text-gray-700 font-bold mb-2">Nbr_enseignants:</label>
   <input type="text" id="Nbr_enseignants" v-model="formData.Nbr_enseignants" required class="border rounded w-full py-2 px-3">
   </div>

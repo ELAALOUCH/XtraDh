@@ -5,18 +5,18 @@
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-200 ">
       <table class="w-full">
         <thead>
-          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-            <th class="px-2 py-3">Intitule_intervention</th>
+          <tr class="text-sm  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-2 py-3">intervention</th>
             <th class="px-2 py-3">Nom</th>
             <th class="px-2 py-3">Prenom</th>
-            <th class="px-2 py-3"> Etablissement</th>
-            <th class="px-2 py-3"> Annee_univ</th>
+            <th class="px-2 py-3"> Etab</th>
+            <th class="px-2 py-3"> Annee</th>
             <th class="px-2 py-3"> Semestre </th>
-            <th class="px-2 py-3"> Nbr_heures </th>
-            <th class="px-2 py-3"> Date_debut </th>
-            <th class="px-2 py-3"> Date_fin </th>
+            <th class="px-2 py-3"> Nbr_hrs</th>
+            <th class="px-2 py-3"> debut </th>
+            <th class="px-2 py-3"> fin </th>
             <th class="px-2 py-3"> Etat </th>
-            <th class="px-2 py-3"> Operation </th>
+            <th class="px-2 py-3"> action </th>
           </tr>
         </thead>
         <tbody class="bg-white">
@@ -24,25 +24,25 @@
             <td class="px-2 py-3 border">
               <div class="flex items-center text-sm">
                 <div>
-                  <p class="font-semibold text-black">{{ data.Intitule_Intervention }} </p>
+                  <p class=" text-black">{{ data.Intitule_Intervention }} </p>
                 </div>
               </div>
             </td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.prof_Nom }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">
+            <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
+            <td class="px-2 py-3 text-sm  border">
               {{ data.prenom }}
             </td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Nom_etb }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Annee_univ }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Semestre }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.Nbr_heures }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border"> {{ data.Date_debut }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Date_fin }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">
+            <td class="px-2 py-3 text-sm  border">{{ data.Nom_etb }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Annee_univ }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Semestre }}</td>
+            <td class="px-2 py-3 text-sm  border text-center">{{ data.Nbr_heures }}</td>
+            <td class="px-2 py-3 text-sm  border"> {{ data.Date_debut }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Date_fin }}</td>
+            <td class="px-2 py-3 text-sm  border">
               <span v-if="!data.visa_uae" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">invalide</span>
               <span v-if="data.visa_uae" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">valide</span>
               </td>
-              <td class="px-2 py-3 text-ms font-semibold border">
+              <td class="px-2 py-3 text-sm  border">
                 <div class="inline-flex">
                <button v-if="!data.visa_uae"  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="validerinterv(data)">
                  valider

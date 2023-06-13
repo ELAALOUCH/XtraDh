@@ -48,10 +48,10 @@
         </thead>
         <tbody>
           <tr class="bg-white border-b  " v-for="data in interv " :key="data">
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+            <th class="py-4 px-6 font-medium text-gray-900  ">
              {{ data.Intitule_Intervention }}
             </th>
-            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+            <th class="py-4 px-6 font-medium text-gray-900  ">
              {{ data.etab }}
             </th>
             <td class="py-4 px-6">
@@ -133,35 +133,6 @@ methods:{
 
 
 
-
-  /*getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
-
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-
-    }*/
 }
 
 }

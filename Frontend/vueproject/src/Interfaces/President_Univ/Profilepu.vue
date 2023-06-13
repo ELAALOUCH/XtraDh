@@ -1,6 +1,10 @@
 <template>
   <form @submit.prevent="submitForm" >
-    
+     
+    <div class="relative z-0 w-full mb-6 group">
+  <h1 class="font-serif text-2xl">Modifier votre profil</h1>
+</div>
+
     <div class="relative z-0 w-full mb-6 group">
      <label for="nom" class="block text-gray-700 font-bold mb-2">Nom:</label>
     <input type="text" id="nom" v-model="formData.Nom" required class="border rounded w-full py-2 px-3" disabled>

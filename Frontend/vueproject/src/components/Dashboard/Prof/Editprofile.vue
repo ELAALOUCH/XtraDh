@@ -30,8 +30,8 @@
           <input type="password"  v-model="formData.password"  class="border rounded w-full py-2 px-3">
         </div>
 
-        <div class="flex justify-end mb-4">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
+        <div class="flex justify-center mb-4">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mr-2 px-4 rounded" @click="submitForm">
             Modifier
           </button>
           <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">

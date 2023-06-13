@@ -1,5 +1,10 @@
 <template>
   <form @submit.prevent="submitForm" >
+
+    <div class="relative z-0 w-full mb-6 group">
+  <h1 class="font-serif text-2xl">Modifier votre profil</h1>
+</div>
+
    <div class="relative z-0 w-full mb-2 group">
      <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
     <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3" disabled>

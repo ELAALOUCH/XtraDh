@@ -11,7 +11,6 @@
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
           <div class=" flex flex-col justify-between space-y-[10px]">
 
-
             <router-link to="/GestiondI" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <interventions class="px-1" />
               Gestion des Interventions
@@ -31,6 +30,7 @@
                <Profile2 class="px-1" />
              Profil
             </router-link>
+
           </div>
 
           <div class="h-[50px]">

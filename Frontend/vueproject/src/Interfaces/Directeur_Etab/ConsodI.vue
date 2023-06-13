@@ -52,7 +52,7 @@
           </thead>
           <tbody>
             <tr class="bg-white border-b  " v-for="data in interv " :key="data.id">
-             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+             <th class="py-4 px-6 font-medium text-gray-900 ">
                 {{ data.Intitule_Intervention  }}
              </th>
              <td class="py-4 px-6">

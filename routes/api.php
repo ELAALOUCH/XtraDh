@@ -70,6 +70,7 @@ Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb|directeur_etb|pres
     Route::post('/storePPR', [InterventionController::class, 'storePPR']);
     Route::patch('/updateadm/{idAdm}', [UserController::class, 'updateAdm']);
     Route::apiResource('intervention', InterventionController::class);
+
 });
 
 // Routes pour les rôles "admin_univ", "prof" et "president_univ"
