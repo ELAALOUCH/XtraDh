@@ -43,10 +43,10 @@
                   Nbr_heures
               </th>
               <th scope="col" class="py-3 px-6">
-                  Visa_uae
+                  Visa_etb
               </th>
               <th scope="col" class="py-3 px-6">
-                Visa_etb
+                Visa_uae
               </th>
             </tr>
           </thead>

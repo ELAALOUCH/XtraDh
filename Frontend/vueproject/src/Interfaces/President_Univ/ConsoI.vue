@@ -28,8 +28,8 @@
             <th class="px-2 py-3"> Date_debut </th>
             <th class="px-2 py-3"> Date_fin </th>
             <th class="px-2 py-3"> Nbr_heures </th>
-            <th class="px-2 py-3"> Visa_uae </th>
             <th class="px-2 py-3"> Visa_etb </th>
+            <th class="px-2 py-3"> Visa_uae </th>
           </tr>
         </thead>
         <tbody class="bg-white">

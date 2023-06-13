@@ -133,7 +133,7 @@ class InterventionController extends Controller
         $intervention =  DB::table('interventions')
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
         ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
-        ->where('etablissements.id',$etb)      
+        ->where('interventions.id_Etab',$etb)      
         ->where('visa_etb',1)
         ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_nom','enseignants.prenom')      
         //->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
@@ -228,6 +228,7 @@ class InterventionController extends Controller
     public function valideretb($id)
     {
         $intervention = Intervention::where('id_intervention',$id)->first();
+        //return $intervention ; 
         $intervention->visa_etb = 1 ;
         $intervention->update();
         return $intervention ;
