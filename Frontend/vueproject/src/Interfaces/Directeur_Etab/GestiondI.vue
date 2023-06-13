@@ -10,6 +10,9 @@
              Intitule_intervention
             </th>
             <th scope="col" class="py-3 px-6">
+             Etablissement
+            </th>
+            <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
                 Annee_univ
               </div>
@@ -37,18 +40,19 @@
                 Etat
               </div>
             </th>
-            
-            
             <th scope="col" class="py-3 px-6">
               Operation
             </th>
-            
+  
           </tr>
         </thead>
         <tbody>
           <tr class="bg-white border-b  " v-for="data in interv " :key="data">
             <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
              {{ data.Intitule_Intervention }}
+            </th>
+            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+             {{ data.etab }}
             </th>
             <td class="py-4 px-6">
               {{ data.Annee_univ }}
@@ -107,6 +111,7 @@ async mounted()
 {
   const response = await axios.get('/directeuretabintervall')
   this.interv = response.data 
+  console.log(this.interv)
 },
 methods:{
   
@@ -122,9 +127,6 @@ methods:{
     let index = this.interv.indexOf(e)
     this.interv[index].visa_etb = 0 ;
   },
-
-
-
 
 
 

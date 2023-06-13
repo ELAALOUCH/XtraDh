@@ -10,7 +10,7 @@
    <div class="w-full h-100 ">
 
      <div class="flex justify-center">
-      <img src="@/assets/images/download.jpg" alt="image">
+      <img src="@/assets/images/logo.jpg" alt="image" class="logo">
      </div>
  
      <form  @submit.prevent="submitlogin()" class="mt-6" >
@@ -134,7 +134,10 @@ export default {
     height: 450px;
     border-radius: 10px;
   }
-
+  .logo{
+    height: 300px;
+    width: 300px;
+  }
   .w-96 {
     margin-bottom: 3px;
   }

@@ -37,7 +37,7 @@ import { createLogger } from 'vuex';
         email: '',
         password: '',
         confirmPassword: '',
-        error:''
+        error:null 
       };
     },
     methods: {
@@ -50,7 +50,7 @@ import { createLogger } from 'vuex';
         });
         this.$router.push('/')
           }catch(error){
-          this.error =  error.response.data.errors.password_confirm[0]
+          this.error =  error.response.data.errors
         }
 
 

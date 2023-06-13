@@ -146,7 +146,7 @@ class AdministrateurController extends Controller
         $user = DB::table('administrateurs')
                     ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
                     ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
-                    ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+                    ->select('etablissements.id as id_etab','users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
                     ->where('users.id_user',$id)
                     ->orderBy('administrateurs.id')
                     ->first();

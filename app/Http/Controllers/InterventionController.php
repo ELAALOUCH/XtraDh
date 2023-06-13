@@ -118,9 +118,9 @@ class InterventionController extends Controller
         $intervention =  DB::table('interventions')
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
         ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
-        ->where('etablissements.id',$etb)      
+        ->where('interventions.id_Etab',$etb)      
        // ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
-        ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','enseignants.Nom as prof_nom','enseignants.prenom')
+        ->select('id_intervention','etablissements.Nom as etab','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','enseignants.Nom as prof_nom','enseignants.prenom')
         ->orderBy('id_intervention')
         ->get();
         return $intervention; 

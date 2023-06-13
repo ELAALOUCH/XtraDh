@@ -58,7 +58,7 @@
                 <router-link :to="`/Gestionae/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
                     Edit
                 </router-link>
-               <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="">
+               <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteadm(e)">
                  Delete
                </button>
               </div>
