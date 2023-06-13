@@ -23,11 +23,13 @@
     <div class="relative">
       <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Entrer le mot de passe" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
       <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+
         <svg class="h-8 w-8 text-dark cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" @click="togglePasswordVisibility">
           <circle cx="12" cy="12" r="2" />
           <path v-if="!showPassword" d="M3 12l2.5 2.5a6.5 6.5 0 0 0 10.95 -3.5a6.5 6.5 0 0 0 -10.95 -3.5l-2.5 2.5" />
           <path v-if="showPassword" d="M2 12l4 4l6 -6" />
         </svg>
+        
       </div>
     </div>
   </div>

@@ -19,8 +19,7 @@ import { router } from '@/router';
     },
     methods:{
       goback(){
-        this.$router.back();
-
+       this.$router.back()
       }    
     }
     
