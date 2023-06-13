@@ -11,6 +11,8 @@ use App\Http\Controllers\EtablissementController;
 use Illuminate\Support\Facades\Route;
 
 // Routes publiques
+Route::get('postfix', [PaiementController::class, 'postfix']);
+Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot', [ForgetController::class, 'forgot']);
 Route::post('/reset', [ForgetController::class, 'reset']);
