@@ -4,7 +4,7 @@
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
-          <h3 class=" font-serif font-bold text-xl">Admin D'etablissement</h3>
+          <h3 class=" font-serif font-bold text-xl">Admin D'établissement</h3>
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
@@ -18,7 +18,7 @@
 
             <router-link to="/Gestionp" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <interventions class="px-1" />
-            Gestion des profs
+            Gestion des professeurs
             </router-link>
 
             <router-link to="/GestionaI" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-300  hover:text-blue-800 transition duration-400 ease-in-out">

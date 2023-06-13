@@ -1,6 +1,6 @@
 <template>
   <section class="container mx-auto p-6 font-mono">
-  <h3 class="text-2xl font-serif text-left pb-4">Listes des profs</h3>
+  <h3 class="text-2xl font-serif text-left pb-4">Liste des professeurs</h3>
   <div class="w-full mb-8 overflow-hidden rounded-lg ">
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
@@ -36,18 +36,16 @@
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.etab_permanant.Nom }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.grade.designation }}</td>
             <td class="border-solid border-2 border-gray-100 py-4 px-6 text-right">
-              <div class="inline-flex">
                 <div class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionpau/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
-                Editer
+                Modifier
                 </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteprof(data)">
                 Supprimer
                </button>                  
               </div>
             </div>                
-              </div>
             </td>
           </tr>
         </tbody>

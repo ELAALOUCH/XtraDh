@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="text-2xl font-serif text-left py-2">Consulter les etats de paiments de année actuelle</h3>
+      <h3 class="text-2xl font-serif text-left py-2">Consulter les états de paiements de l'année actuelle</h3>
 
       <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
