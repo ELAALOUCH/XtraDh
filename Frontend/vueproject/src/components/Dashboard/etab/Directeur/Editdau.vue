@@ -1,6 +1,9 @@
 <template>
     <form @submit.prevent="submitForm" >
-  
+
+      <div class="relative z-0 w-full mb-4 group">
+     <h1 class="font-serif text-2xl">Modifier les données de directeur</h1>
+    </div>
 
       <div class="relative z-0 w-full mb-6 group">
     <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>

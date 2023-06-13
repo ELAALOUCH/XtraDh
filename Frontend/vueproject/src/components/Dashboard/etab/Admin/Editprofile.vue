@@ -31,7 +31,7 @@
         </div>
 
         <div class="flex justify-end mb-4">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submitForm">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold mr-2 py-2 px-4 rounded" @click="submitForm">
             Modifer
           </button>
           <button @click="closeModal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">

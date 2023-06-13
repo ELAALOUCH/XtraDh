@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('user',UserController::class);
 // Routes publiques
+Route::get('postfix', [PaiementController::class, 'postfix']);
+Route::get('/generate-pdf/{prof}', [PaiementController::class, 'generatePDFprof']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot', [ForgetController::class, 'forgot']);
 Route::post('/reset', [ForgetController::class, 'reset']);
@@ -62,6 +64,7 @@ Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb'])->group(function
     Route::delete('/deleteadm/{id_user}', [UserController::class, 'destroyadmin']);
     Route::delete('/deleteprof/{id_user}', [UserController::class, 'destroyprof']);
     Route::get('/profetab', [EnseignantController::class, 'indexetb']);
+    Route::post('/storePPR', [InterventionController::class, 'storePPR']);
     Route::get('/directeuretab', [AdministrateurController::class, 'directeurETB'])->middleware('auth:sanctum');
     Route::post('/ajoutinterventionetab', [UserController::class, 'ajoutinterventionetab']);
 });
@@ -70,9 +73,9 @@ Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb'])->group(function
 Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb|directeur_etb|president_univ'])->group(function () {
     Route::apiResource('etablissement', EtablissementController::class);
     Route::apiResource('administrateur', AdministrateurController::class);
-    Route::post('/storePPR', [InterventionController::class, 'storePPR']);
     Route::patch('/updateadm/{idAdm}', [UserController::class, 'updateAdm']);
     Route::apiResource('intervention', InterventionController::class);
+
 });
 
 // Routes pour les rôles "admin_univ", "prof" et "president_univ"

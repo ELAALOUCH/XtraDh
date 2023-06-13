@@ -7,8 +7,8 @@
                 <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
           </router-link>
       </div>
-    <div class="w-full mb-8 overflow-hidden rounded-lg " >
-    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
+    <div class="w-full mb-8 overflow-hidden rounded-lg ">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-300px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
         <thead>
           <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
@@ -73,13 +73,12 @@
           
         ],
         date : 0,
-        message : "Nous vous remercions de votre intérêt pour notre service de paiement. Nous souhaitons vous informer que le paiement n'est pas disponible pour le moment. Cependant, soyez assuré que nous mettons tout en œuvre pour rendre cette fonctionnalité accessible dès que possible. Veuillez noter que le paiement sera disponible uniquement entre le 30 juin et le 30 septembre. Pendant cette période, vous pourrez effectuer vos transactions en toute tranquillité.Nous vous prions de nous excuser pour ce désagrément temporaire et vous remercions de votre patience et de votre compréhension. Si vous avez des questions supplémentaires ou avez besoin d'une assistance, n'hésitez pas à nous contacter."
       };
     },
     async mounted()
     {
       const response = await axios.get('/paiementprof')
-      this.paiements = response.data 
+      this.paiements = response.data
       console.log(response.data)
       
       // Création d'une instance de l'objet Date pour la date actuelle
