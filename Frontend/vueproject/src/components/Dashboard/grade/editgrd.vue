@@ -6,7 +6,7 @@
     </div>
 
   <div class="relative z-0 w-full mb-6 group">
-    <label for="Designation" class="block text-gray-700 font-bold mb-2">Designation:</label>
+    <label for="Designation" class="block text-gray-700 font-bold mb-2">Désignation:</label>
     <input type="text" id="Designation" v-model="formData.designation" required class="border rounded w-full py-2 px-3">
   </div>
 
@@ -16,7 +16,7 @@
   </div>
 
   <div class="relative z-0 w-full mb-6 group">
-    <label for="Prenom" class="block text-gray-700 font-bold mb-2">Taux Horraire Vocation :</label>
+    <label for="Prenom" class="block text-gray-700 font-bold mb-2">Taux Horaire Vacation :</label>
   <input type="number" id="Prenom" v-model="formData.Taux_horaire" required class="border rounded w-full py-2 px-3">
   </div>
 

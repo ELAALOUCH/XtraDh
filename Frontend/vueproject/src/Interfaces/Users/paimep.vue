@@ -13,12 +13,12 @@
         <thead>
           <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
             <th class="px-4 py-3">Etablissement</th>
-            <th class="px-4 py-3">Volume Horraire</th>
-            <th class="px-4 py-3">Taux_Horraire</th>
+            <th class="px-4 py-3">Volume Horaire</th>
+            <th class="px-4 py-3">Taux_Horaire</th>
             <th class="px-4 py-3">Salaire Brut</th>
             <th class="px-4 py-3">Import sur revenu</th>
             <th class="px-4 py-3">Salaire Net</th>
-            <th class="px-4 py-3">Annee_univirsitaire</th>
+            <th class="px-4 py-3">Année_universitaire</th>
             <th class="px-4 py-3">Semestre</th>
           </tr>
         </thead>

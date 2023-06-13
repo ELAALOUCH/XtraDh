@@ -2,7 +2,7 @@
     <form @submit.prevent="submitForm" >
 
    <div class="relative z-0 w-full mb-4 group">
-     <h1 class="font-serif text-2xl">Modifier les données de professseur</h1>
+     <h1 class="font-serif text-2xl">Modifier les données du professeur</h1>
     </div>
 
   <div class="relative z-0 w-full mb-6 group">

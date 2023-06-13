@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-2xl font-serif text-left py-2">Listes des admins d'etablissements</h3>
+    <h3 class="text-2xl font-serif text-left py-2">Liste des admins d'établissements</h3>
 
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
       <table class="w-full text-sm text-left text-gray-500 ">
@@ -56,10 +56,10 @@
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionae/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
-                    Edit
+                    Modifier
                 </router-link>
                <button  class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteadm(e)">
-                 Delete
+                 Supprimer
                </button>
               </div>
             </td>

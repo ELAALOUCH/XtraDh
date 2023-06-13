@@ -15,14 +15,15 @@
              <th class="px-2 py-3"> Nbr_hrs</th>
              <th class="px-2 py-3"> debut </th>
              <th class="px-2 py-3"> fin </th>
-             <th scope="col" class="py-3 px-6">
 
+             <th scope="col" class="py-3 px-6 text-center">
               <router-link to="/Gestioninterv/Create">
                <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
                 ajouter
               </button>
               </router-link>
            </th>
+
            </tr>
          </thead>
          <tbody class="bg-white">
@@ -50,7 +51,7 @@
                 <div class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`Gestioninterv/Edit/${data.id_intervention}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
-                Editer
+                Modifier
                 </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteinterv(data)">
                 Supprimer

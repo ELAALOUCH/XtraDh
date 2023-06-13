@@ -90,7 +90,7 @@ methods: {
   this.formData.email = response.data.email ;
   this.formData.id_user = response.data.id_user;
   this.formData.Etablissement = response.data.id_etab  
-  const etbs = await axios.get('http://127.0.0.1:8000/api/etablissement'); 
+  const etbs = await axios.get('/etablissement'); 
   etbs.data.forEach(e => {
       if(e.Nom!='UAE'){
           this.formData.etabs.push(e)

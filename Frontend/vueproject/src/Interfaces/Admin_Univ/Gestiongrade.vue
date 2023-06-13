@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="text-2xl font-serif text-left py-2">Listes de grade</h3>
+      <h3 class="text-2xl font-serif text-left py-2">Liste des grades</h3>
   
       <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -11,12 +11,12 @@
                 Designantion
               </th>
 
-              <th scope="col" class="py-3 px-6">
+              <th scope="col" class="py-3 px-6 text-center">
                 Charge_statutaire
               </th>
 
-              <th scope="col" class="py-3 px-6">
-                Taux_horaire_Vocation
+              <th scope="col" class="py-3 px-6 text-center">
+                Taux_horaire_Vacation
               </th>
 
               <th scope="col" class="py-3 pl-16">
@@ -32,21 +32,21 @@
               <td class="py-4 px-6" >
                 {{ data.designation }}
               </td>
-              <td class="py-4 px-6" >
+              <td class="py-4 px-6 text-center" >
                 {{ data.charge_statutaire}}
               </td>
-              <td class="py-4 px-6" >
+              <td class="py-4 px-6 text-center" >
                 {{ data.Taux_horaire_Vocation}}
               </td>
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
 
                   <router-link :to="`/Gestiongrade/Edit/${data.id_Grade}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
-                      Edit
+                      Modifier
                   </router-link>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deletegrade(data)">
 
-                   Delete
+                   Supprimer
                  </button>
                 </div>
               </td>
