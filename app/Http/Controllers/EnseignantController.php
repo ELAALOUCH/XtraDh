@@ -50,20 +50,7 @@ class EnseignantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $form_fields = $request->validate([
-    //         'PPR'=>'required',
-    //         'Nom'=>'required|max:30',
-    //         'prenom'=>'required|max:30',
-    //         'Date_Naissance'=>'date|required'
-    //     ]);
-    //     $form_fields['Etablissement'] = $request->Etablissement;
-    //     $form_fields['id_Grade'] = $request->id_Grade;
-    //     $form_fields['id_user'] = $request->id_user;
-    //     $form_fields['PPR'] = Crypt::encrypt($request->PPR);
-    //     return enseignant::create($form_fields);
-    // }
+    
     public function store(Request $request)
 {
     // Validation des champs

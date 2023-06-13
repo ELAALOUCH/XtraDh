@@ -237,6 +237,7 @@ class InterventionController extends Controller
     public function valideretb($id)
     {
         $intervention = Intervention::where('id_intervention',$id)->first();
+        //return $intervention ; 
         $intervention->visa_etb = 1 ;
         $intervention->update();
         return $intervention ;

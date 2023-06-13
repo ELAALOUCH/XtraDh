@@ -91,7 +91,12 @@
         try {
            const response=await axios.get('/etablissement')
            console.log(response.data)
-           this.Obj=response.data
+           response.data.forEach(element => {
+            if(element.Nom !=='UAE'){
+             this.Obj.push(element)
+          }
+           });
+           
           this.showModal = false;
         } catch (error) {
           console.error(error);
@@ -103,6 +108,7 @@
   async deleteetb(data){
     console.log(data)
     const response = await axios.delete('/etablissement/'+data.id);
+   
     let index = this.Obj.indexOf(data)
     this.Obj.splice(index,1)
 
