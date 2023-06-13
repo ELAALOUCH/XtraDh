@@ -32,15 +32,6 @@ class userController extends Controller
     }
 
    
-
-
-
-
-
-
-
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -62,8 +53,7 @@ class userController extends Controller
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
-       // 'email' => Crypt::encrypt($fields['email']),
-     //   $email = Crypt::decrypt($fields['email']);
+     
        $email = $fields['email'];
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
@@ -83,8 +73,8 @@ class userController extends Controller
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-      //  $fields['password']=Str::random(15);
-       $fields['password'] = "1234";
+       $fields['password']=Str::random(15);
+       //$fields['password'] = "1234";
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -109,7 +99,7 @@ class userController extends Controller
             'token' =>$token,
             'enseignant'=>$ensctrl
         ];
-        return response($response,202);
+        return response()->json($response,202);
     }
 
     public function storeAdmEtb(Request $request)
@@ -120,9 +110,8 @@ class userController extends Controller
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-           //  $fields['password']=Str::random(15);
-             $fields['password'] = '1234'; 
-        $user = User::create([
+            $fields['password']=Str::random(15);
+            $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
@@ -156,11 +145,13 @@ class userController extends Controller
      */
     public function show($id)
     {
-        return response()->json(
-            user::with(['administrateur'])
-                ->with(['enseignant'])
-                ->find($id)    
-        );
+        $user = user::with(['administrateur'])
+                     ->with(['enseignant'])
+                     ->find($id)  ;
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
+        return response()->json($user,200);
     }
 
     /**
@@ -181,19 +172,25 @@ class userController extends Controller
 
 
         $user = user::find($id);
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
         $user->update($fields);
-        //$token = $user->createToken('MyAppToken')->plainTextToken;
+
         $response= [
             'user'=>$user,
             'token' =>Auth::user()->tokens()
         ];
-        return response($response,202);
+        return response()->json($response,202);
 
     }
     public function updateprof(Request $request,$id){
      
         $user = User::where('id_user',$id)->first();
-       //  $user->update(['email'=>$request->email,'password'=>bcrypt($request->password)]);
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
+
        if($request->email)
             $user->email = $request->email ;
        if($request->password)
@@ -203,7 +200,8 @@ class userController extends Controller
         //update enseignant
         $id = Enseignant::where('id_user',$user->id_user)->first();
         $ensctrl =  new EnseignantController();
-        return $ensctrl = $ensctrl->update($request,$id->id);   
+        $ensctrl = $ensctrl->update($request,$id->id);   
+        return response($ensctrl,202);
     }
 
     public function adminProfile()
@@ -238,6 +236,10 @@ class userController extends Controller
     public function updateAdm(Request $req,$id){
         //$id = $req->id;
         $adm = user::where('id_user',$id)->first();
+        if($adm==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
+
         if($req->email)
             $adm->email = $req->email ;
         if($req->password)
@@ -245,7 +247,8 @@ class userController extends Controller
         $adm->save(); 
         $id=Administrateur::where('id_user',$adm->id_user)->first();
         $adm_cntrol = new AdministrateurController();
-        return $adm_cntrol->update($req,$id->id);
+        $adm_cntrol = $adm_cntrol->update($req,$id->id);
+        return response()->json($adm_cntrol,202);
     }
 
     public function ajoutinterventionetab(Request $request)
@@ -254,7 +257,8 @@ class userController extends Controller
         $etb = administrateur::where('id_user',$user->id_user)->select('Etablissement')->first();
         $request["id_etab"] = $etb->Etablissement;
         $ensctrl =  new InterventionController();
-        return $ensctrl = $ensctrl->storePPR($request); 
+        $ensctrl = $ensctrl->storePPR($request); 
+        return response()->json($ensctrl,201);
     }
 
 
@@ -268,13 +272,19 @@ class userController extends Controller
 
     public function destroyprof($id){
         $user = User::find($id);
-         $ens = Enseignant::where('id_user',$user->id_user)->first()->delete();
-         return $user->delete(); 
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
+         $ens = Enseignant::where('id_user',$user->id_user)->first()->delete();   
+         return response()->json($user->delete(),202);
     }
     public function destroyAdmin($id){
         $user = User::find($id);
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
          $ens = Administrateur::where('id_user',$user->id_user)->first()->delete();
-         return $user->delete(); 
+         return response()->json($user->delete(),202);
     }
 
 

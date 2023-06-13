@@ -99,9 +99,8 @@ class AdministrateurController extends Controller
             'Etablissement'=>'required',
             'id_user'=>'required'
         ]);
-    //    $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm = Administrateur::Create($attributs);
-        return response()->json($adm);
+        return response()->json($adm,201);
     }
 
     /**
@@ -127,9 +126,7 @@ class AdministrateurController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
     
-        // Cryptage du champ PPR
-       // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
-    
+        
         // Création de l'enseignant
         $administrateur = Administrateur::create([
             'PPR' => $request->input('PPR'),
@@ -138,8 +135,7 @@ class AdministrateurController extends Controller
             'Etablissement' => $request["Etablissement"],
             'id_user' => $request["id_user"],
         ]);
-        return $administrateur;
-        //return response()->json(['message' => 'Enseignant créé avec succès'], 201);
+        return response()->json($administrateur, 201);
     }
     public function show($id)
     {
@@ -150,6 +146,9 @@ class AdministrateurController extends Controller
                     ->where('users.id_user',$id)
                     ->orderBy('administrateurs.id')
                     ->first();
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
         return response()->json($user);
     }
 
@@ -163,6 +162,9 @@ class AdministrateurController extends Controller
     public function update(Request $request, $idAdm)
     {
         $adm = Administrateur::find($idAdm);
+        if($adm==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
         $attributs = $request->validate([
             'Nom'=>'required',
             'prenom'=>'required',
@@ -170,7 +172,7 @@ class AdministrateurController extends Controller
         ]);
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
-        return response()->json($adm);
+        return response()->json($adm,202);
     }
 
     /**
@@ -181,6 +183,7 @@ class AdministrateurController extends Controller
      */
     public function destroy($idAdm)
     {
-        return Administrateur::find($idAdm)->delete();
+        $user = Administrateur::find($idAdm)->delete();
+        response()->json($user->delete(),202);
     }
 }
