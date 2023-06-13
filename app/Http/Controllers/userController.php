@@ -21,10 +21,7 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-    //$this->middleware('auth:sanctum')->except(['store']);
-    }
+   
 
     public function index()
     {
@@ -68,7 +65,6 @@ class userController extends Controller
     }
     public function storeProfEtb(Request $request)
     {
-        //cette methode pour storer des enseignant dans etablissement de administrateur (automatiquement)
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
@@ -104,7 +100,6 @@ class userController extends Controller
 
     public function storeAdmEtb(Request $request)
     {
-        //cette methode pour storer des administateur etablissement dans etablissement de administrateur (automatiquement)
         
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
@@ -176,7 +171,6 @@ class userController extends Controller
             return response()->json(['errors'=>'user not found'],404);
         }
         $user->update($fields);
-
         $response= [
             'user'=>$user,
             'token' =>Auth::user()->tokens()
@@ -292,6 +286,5 @@ class userController extends Controller
     public function destroy($id)
     {
         return User::find($id)->delete();
-
     }
 }

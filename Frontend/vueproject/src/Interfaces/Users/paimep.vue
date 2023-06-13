@@ -1,7 +1,7 @@
 <template>
-
-    <section class="container mx-auto p-6 font-mono">
-    <h3 class="text-2xl font-serif text-left pb-4">Consulter vote procédure de paiement d'année en cours</h3>
+  <div>
+    <section class="container mx-auto p-6 font-mono" v-if="date">
+    <h3 class="text-2xl font-serif text-left pb-4">Consulter vote procédure de paiement d'année en cours {{ date }}</h3>
     <div class="flex justify-end ">
           <router-link to="/ancienfiche">
                 <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
@@ -45,8 +45,23 @@
       </table>
     </div>
   </div>
-</section>
-
+  
+    </section>
+    <section v-if="!date">
+      Nous vous remercions de votre intérêt pour notre service de paiement. Nous souhaitons vous informer que le paiement n'est pas disponible pour le moment. Cependant, soyez assuré que nous mettons tout en œuvre pour rendre cette fonctionnalité accessible dès que possible.
+      <br><br>
+      Veuillez noter que le paiement sera disponible uniquement entre le 30 juin et le 30 septembre. Pendant cette période, vous pourrez effectuer vos transactions en toute tranquillité.
+       <br><br>
+      Nous vous prions de nous excuser pour ce désagrément temporaire et vous remercions de votre patience et de votre compréhension. Si vous avez des questions supplémentaires ou avez besoin d'une assistance, n'hésitez pas à nous contacter.
+      <br><br>
+      Pour télécharger Vos anciennes fiches de paie veuiller cliquer 
+      <router-link to="/ancienfiche">
+                <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
+          </router-link>
+    </section>
+  </div>
+   
+  
   </template>
 
   <script>
@@ -55,8 +70,9 @@
     data() {
       return {
         paiements: [
-
-        ]
+          
+        ],
+        date : 0,
       };
     },
     async mounted()
@@ -64,6 +80,20 @@
       const response = await axios.get('/paiementprof')
       this.paiements = response.data
       console.log(response.data)
+      
+      // Création d'une instance de l'objet Date pour la date actuelle
+      var dateActuelle = new Date();
+
+      // Récupération du mois et du jour actuels
+      var moisActuel = dateActuelle.getMonth() + 1; // Les mois commencent à partir de 0, donc on ajoute 1
+
+      // Vérification si la date est entre le 30 juin et le 30 septembre
+      if (moisActuel >= 7 && moisActuel <= 9 ) {
+
+        this.date = 1;
+      } else {
+        this.date = 0;
+      }
 
     }
   };

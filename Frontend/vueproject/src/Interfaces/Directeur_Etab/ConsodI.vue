@@ -45,10 +45,10 @@
               <th scope="col" class="py-3 px-3">
                   Nbr_heures
               </th>
-              <th scope="col" class="py-3 px-3">
+              <th scope="col" class="py-3 px-6">
                   Visa_etb
               </th>
-              <th scope="col" class="py-3 px-3">
+              <th scope="col" class="py-3 px-6">
                 Visa_uae
               </th>
             </tr>
