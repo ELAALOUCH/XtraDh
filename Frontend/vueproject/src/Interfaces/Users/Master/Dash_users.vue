@@ -9,10 +9,9 @@
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
-          <div class=" flex flex-col justify-between space-y-[10px]">
+          <div class=" flex flex-col justify-between space-y-[10px] ">
 
-
-            <router-link to="/paimep" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+            <router-link to="/paimep" class=" font-serif inline-flex  relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
                <paiement class="px-1"/>
               Paiement
             </router-link>
@@ -29,8 +28,7 @@
           </div>
 
           <div class="h-[50px]">
-            <div>
-
+           <div>
               <div @click="signout"  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 cursor-pointer  hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out ">
                 <Decconexion/>
                 Déconnexion
@@ -92,12 +90,13 @@
 import Profile2 from '@/components/Dashboard/Icons/Profile2.vue'
 import { mapGetters ,mapActions} from 'vuex'
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
-import axios from 'axios';
- export default {
+
+export default {
    components:{ Profile2, Decconexion,Bilan,Profile,paiement} ,
   data() {
      return {
-       showSide: true
+       showSide: true,
+       isActive: false
      }
    },
    computed: {

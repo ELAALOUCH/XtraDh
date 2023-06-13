@@ -2,7 +2,7 @@
 
 <section class="container mx-auto p-6 font-mono">
 
-  <h3 class="text-2xl font-serif text-left pb-4">Listes des directeurs d'établissement</h3>
+  <h3 class="text-2xl font-serif text-left pb-4">Consultation des interventions</h3>
 
   <div class="my-4">
       <label for="establishmentFilter" class="block text-gray-700 font-serif  mb-2">
@@ -18,41 +18,41 @@
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-300px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
         <thead>
-          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-            <th class="px-2 py-3">Intitule_intervention</th>
+          <tr class="text-sm  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
             <th class="px-2 py-3">Nom</th>
             <th class="px-2 py-3">Prenom</th>
+            <th class="px-2 py-3">Intitule_intervention</th>
             <th class="px-2 py-3"> Etablissement</th>
             <th class="px-2 py-3"> Annee_univ</th>
             <th class="px-2 py-3"> Semestre </th>
             <th class="px-2 py-3"> Date_debut </th>
             <th class="px-2 py-3"> Date_fin </th>
             <th class="px-2 py-3"> Nbr_heures </th>
-            <th class="px-2 py-3"> Visa_uae </th>
             <th class="px-2 py-3"> Visa_etb </th>
+            <th class="px-2 py-3"> Visa_uae </th>
           </tr>
         </thead>
         <tbody class="bg-white">
           <tr class="text-gray-700" v-for="data in filteredData " :key="data.id">
+            <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
+            <td class="px-2 py-3 text-sm  border">
+              {{ data.prenom }}
+            </td>
             <td class="px-2 py-3 border">
-              <div class="flex items-center text-sm">
+              <div class="flex itesm-center text-sm">
                 <div>
-                  <p class="font-semibold text-black">{{ data.Intitule_Intervention }} </p>
+                  <p class=" text-black">{{ data.Intitule_Intervention }} </p>
                 </div>
               </div>
             </td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.prof_Nom }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">
-              {{ data.prenom }}
-            </td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Nom_etb }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Annee_univ }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Semestre }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border"> {{ data.Date_debut }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border">{{ data.Date_fin }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.Nbr_heures }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.visa_etb }}</td>
-            <td class="px-2 py-3 text-ms font-semibold border text-center">{{ data.visa_uae }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Nom_etb }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Annee_univ }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Semestre }}</td>
+            <td class="px-2 py-3 text-sm  border"> {{ data.Date_debut }}</td>
+            <td class="px-2 py-3 text-sm  border">{{ data.Date_fin }}</td>
+            <td class="px-2 py-3 text-sm  border text-center">{{ data.Nbr_heures }}</td>
+            <td class="px-2 py-3 text-sm  border text-center">{{ data.visa_etb }}</td>
+            <td class="px-2 py-3 text-sm  border text-center">{{ data.visa_uae }}</td>
             </tr>
 
         </tbody>

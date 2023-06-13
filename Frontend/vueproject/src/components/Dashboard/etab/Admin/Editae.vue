@@ -1,6 +1,10 @@
 <template>
   <form @submit.prevent="submitForm" >
 
+    <div class="relative z-0 w-full mb-4 group">
+     <h1 class="font-serif text-2xl">Modifier les données de l'admin</h1>
+    </div>
+    
     <div class="relative z-0 w-full mb-6 group">
   <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
     <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
@@ -25,7 +29,7 @@
           <select id="type" v-model="formData.Etablissement" required class="border rounded w-full py-2 px-3">
             <option v-for ="etb in formData.etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>
             
-           </select>
+   </select>
 </div>
 
 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Soumettre</button>
