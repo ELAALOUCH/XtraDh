@@ -10,6 +10,8 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\EtablissementController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::apiResource('user',UserController::class);
 // Routes publiques
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot', [ForgetController::class, 'forgot']);

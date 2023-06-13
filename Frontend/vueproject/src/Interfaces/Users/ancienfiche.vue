@@ -48,12 +48,46 @@
     async mounted()
     {
       const response = await axios.get('/historiquepdfpaie')
-        this.Data = response.data ; 
+      
+      // Création d'une instance de l'objet Date pour la date actuelle
+      var dateActuelle = new Date();
+
+      // Récupération du mois et du jour actuels
+      var moisActuel = dateActuelle.getMonth() + 1; // Les mois commencent à partir de 0, donc on ajoute 1
+
+      // Vérification si la date est entre le 30 juin et le 30 septembre
+      if (moisActuel >= 7 && moisActuel <= 9 ) {
+          let year = dateActuelle.getFullYear();
+          response.data.forEach(e=>{
+          let yearmax = e.annee.substring(5,9); 
+          if(yearmax <= year){
+            this.Data.push(e)
+          }
+
+        })  
+          
+
+
+          //this.Data = response.data 
+      } else {
+        let year = dateActuelle.getFullYear();
+        response.data.forEach(e=>{
+          let yearmax = e.annee.substring(5,9); 
+          if(yearmax < year){
+            this.Data.push(e)
+          }
+
+        })        
+      }
+        console.log(this.Data)
+        //this.Data = response.data ; 
     },
     data() {
       return {
-        Data : []
+        Data : [],
+        date : 0
       };
     },
+   
   };
   </script>

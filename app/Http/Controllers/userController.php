@@ -74,13 +74,12 @@ class userController extends Controller
     }
     public function storeProfEtb(Request $request)
     {
-        //cette methode pour storer des enseignant dans etablissement de administrateur (automatiquement)
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
        $fields['password']=Str::random(15);
-       //$fields['password'] = "1234";
+       $fields['password'] = "1234";
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -110,14 +109,13 @@ class userController extends Controller
 
     public function storeAdmEtb(Request $request)
     {
-        //cette methode pour storer des administateur etablissement dans etablissement de administrateur (automatiquement)
         
         $fields = $request->validate([
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-             $fields['password']=Str::random(15);
-             //$fields['password'] = '1234'; 
+             //$fields['password']=Str::random(15);
+             $fields['password'] = '1234'; 
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
