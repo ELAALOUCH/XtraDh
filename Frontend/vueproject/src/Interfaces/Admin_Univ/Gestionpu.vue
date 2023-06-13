@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h3 class="text-2xl font-serif text-left py-2">Gestion de président </h3>
+    <h3 class="text-2xl font-serif text-left py-2">Gestion du président </h3>
 
 
     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
@@ -52,12 +52,12 @@
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                 <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
-                    Edit
+                    Modifier
                 </router-link>
 
                <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteAdm(data)">
 
-                 Delete
+                 Supprimer
                </button>
               </div>
             </td>

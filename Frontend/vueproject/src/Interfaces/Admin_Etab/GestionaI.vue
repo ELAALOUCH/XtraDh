@@ -51,7 +51,7 @@
                 <div class="py-4 px-2 text-right">
               <div class="inline-flex">
                 <router-link :to="`GestionaI/Edit/${data.id_intervention}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
-                Editer
+                Modifier
                 </router-link>
                <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteinterv(data)">
                 Supprimer

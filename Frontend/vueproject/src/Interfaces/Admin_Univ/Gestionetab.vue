@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="text-2xl font-serif text-left py-2">Listes des etablissements</h3>
+      <h3 class="text-2xl font-serif text-left py-2">Liste des établissements</h3>
   
       <div class="ow-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
         <table class="w-full text-sm text-left text-gray-500 ">
@@ -54,18 +54,16 @@
               <td class="py-4 px-6" >
                 {{ data.ville }}
               </td>
-              <td class="py-4 px-6" >
+              <td class="py-4 px-6 text-center"  >
                 {{ data.Nbr_enseignants }}
               </td>
               <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                   <router-link :to="`/Gestionetab/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mx-2">
-                      Edit
+                      Modifier
                   </router-link>
-
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteetb(data)">
-
-                   Delete
+                   Supprimer
                  </button>
                 </div>
               </td>
@@ -85,6 +83,7 @@
   data(){
     return {
         Obj:[],
+        error:''
     }
   },
   async mounted() {
@@ -99,7 +98,7 @@
            
           this.showModal = false;
         } catch (error) {
-          console.error(error);
+          this.error=error.response.data.errors;
         }},
   methods:{
     togglemodal(){

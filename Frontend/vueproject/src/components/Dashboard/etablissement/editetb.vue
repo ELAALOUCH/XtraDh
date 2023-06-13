@@ -2,7 +2,7 @@
     <form @submit.prevent="submitForm" >
 
       <div class="relative z-0 w-full mb-2 group">
-  <h1 class="font-serif text-2xl">Modifier l'etablissement</h1>
+  <h1 class="font-serif text-2xl">Modifier l'établissement</h1>
 </div>
 
   <div class="relative z-0 w-full mb-2 group">
@@ -16,7 +16,7 @@
   </div>
 
   <div class="relative z-0 w-full mb-2 group">
-    <label for="Telephone" class="block text-gray-700 font-bold mb-2">Telephone:</label>
+    <label for="Telephone" class="block text-gray-700 font-bold mb-2">Téléphone:</label>
   <input type="text" id="Telephone" v-model="formData.Telephone" required class="border rounded w-full py-2 px-3">
   </div>
 

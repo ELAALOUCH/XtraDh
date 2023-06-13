@@ -14,7 +14,7 @@
 
 
             <router-link to="/Gestionpu" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-serif rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-                <president class="px-1"  /> Gestion de président 
+                <president class="px-1"  /> Gestion du président 
             </router-link>
 
             <router-link to="/Gestionae" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-serif rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
@@ -28,7 +28,7 @@
 
             <router-link to="/Gestionpau" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-serif rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <interventions class="px-1"   />
-            Gestion des profs
+            Gestion des professeurs
             </router-link>
 
             <router-link to="/Gestioninterv" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-serif rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
@@ -39,12 +39,12 @@
             
             <router-link to="/Gestiongrade" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-serif rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <Grade class="px-1"  />
-            Gestion de grade
+            Gestion des grades
             </router-link>
 
             <router-link to="/Gestionetab" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-serif rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
             <Shcool class="px-1"  />
-            Gestion des etablissements
+            Gestion des établissements
             </router-link>
 
 

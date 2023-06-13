@@ -10,7 +10,7 @@
             <th class="px-4 py-3">NOM</th>
             <th class="px-4 py-3">PRENOM</th>
             <th class="px-4 py-3"> EMAIL</th>
-            <th class="px-4 py-3"> ETABLISSEMNT</th>
+            <th class="px-4 py-3"> ETABLISSEMENT</th>
             <th class="px-4 py-3"> TYPE </th>
             <th scope="col" class="py-3 px-2">
               <div class="flex justify-center" >
@@ -38,10 +38,10 @@
             <td class="py-4 px-6 text-right">
                 <div class="inline-flex">
                   <router-link :to="`/Gestionde/Edit/${data.id_user}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mx-2 ">
-                    Edit
+                    Modifier
                 </router-link>
                  <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteAdm(data)">
-                   Delete
+                   Supprimer
                  </button>
                 </div>
               </td>
