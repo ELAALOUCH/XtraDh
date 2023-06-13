@@ -71,7 +71,6 @@ export default {
 
       } catch (error) {
         console.error(error);
-        // Handle error
       }
     },
   },
@@ -79,15 +78,15 @@ export default {
       let id = this.$route.params.id
       this.formData.id_user=id
       console.log(this.$route.params.id)
-     const response = await axios.get('/enseignant/'+this.formData.id_user)
-    console.log(response.data)
-    this.formData.PPR = response.data.PPR ; 
-    this.formData.Nom = response.data.Nom;
-    this.formData.Prenom = response.data.prenom ;
-    this.formData.Date_Naissance = response.data.Date_Naissance ;
-    this.formData.Email = response.data.user.email ;
-    this.prev_email = response.data.user.email ;
-    this.formData.id_user = response.data.user.id_user;
+      const response = await axios.get('/enseignant/'+this.formData.id_user)
+      console.log(response.data)
+      this.formData.PPR = response.data.PPR ; 
+      this.formData.Nom = response.data.Nom;
+      this.formData.Prenom = response.data.prenom ;
+      this.formData.Date_Naissance = response.data.Date_Naissance ;
+      this.formData.Email = response.data.user.email ;
+      this.prev_email = response.data.user.email ;
+      this.formData.id_user = response.data.user.id_user;
   },
     cancelForm() {
     },

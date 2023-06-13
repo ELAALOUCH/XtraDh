@@ -84,9 +84,6 @@ async mounted() {
          const response=await axios.get('/listepresidentuaeforadminuae')
          console.log(response.data)
          this.Obj=response.data
-          /*console.log(res.data[0].user)
-          console.log(res.data[0].prenom)
-          console.log(res.data[0].etablissement.Nom)*/ 
         this.showModal = false;
       } catch (error) {
         //console.error(error);
@@ -104,13 +101,8 @@ async deleteAdm(data)
     });
     console.log(response)
     
-
   } 
-
-
 }}
-
-
 
 </script>
 
