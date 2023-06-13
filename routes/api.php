@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb'])->group(function
     Route::delete('/deleteadm/{id_user}', [UserController::class, 'destroyadmin']);
     Route::delete('/deleteprof/{id_user}', [UserController::class, 'destroyprof']);
     Route::get('/profetab', [EnseignantController::class, 'indexetb']);
-
+    Route::post('/storePPR', [InterventionController::class, 'storePPR']);
     Route::get('/directeuretab', [AdministrateurController::class, 'directeurETB'])->middleware('auth:sanctum');
     Route::post('/ajoutinterventionetab', [UserController::class, 'ajoutinterventionetab']);
 });
@@ -69,7 +69,6 @@ Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb'])->group(function
 Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb|directeur_etb|president_univ'])->group(function () {
     Route::apiResource('etablissement', EtablissementController::class);
     Route::apiResource('administrateur', AdministrateurController::class);
-    Route::post('/storePPR', [InterventionController::class, 'storePPR']);
     Route::patch('/updateadm/{idAdm}', [UserController::class, 'updateAdm']);
     Route::apiResource('intervention', InterventionController::class);
 });
