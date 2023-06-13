@@ -64,8 +64,11 @@
             @click="closeModal">
             Annuler
           </button>
-          {{ errors }}
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded relative mt-4" role="alert" v-show="error">
+        <span class="block sm:inline" >{{errors}}</span>
+      </div>
         </div>
+        
       </div>
     </div>
   </div>
@@ -97,7 +100,8 @@ export default{
                 etabs : [],
                 
               },
-              show : 0
+              show : 0,
+              errors:'',
             }
         },
         async created(){
@@ -129,13 +133,9 @@ export default{
                  //console.log(response)
                  this.showModal = false;
                  window.location.reload();
-              }catch(e){
-                console.log()
+              }catch(e){     
                 this.errors = e.response.data.errors ; 
-              }
-                 
-                
-
+              }             
             },
       closeModal() {
         this.showModal = false;
