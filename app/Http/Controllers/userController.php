@@ -21,10 +21,7 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-    //$this->middleware('auth:sanctum')->except(['store']);
-    }
+   
 
     public function index()
     {
@@ -62,8 +59,7 @@ class userController extends Controller
             'email' => $fields['email'],
             'password'=>bcrypt($fields['password'])
         ]);
-       // 'email' => Crypt::encrypt($fields['email']),
-     //   $email = Crypt::decrypt($fields['email']);
+      
        $email = $fields['email'];
         Mail::send('Mails.password',['password'=>$fields['password']],function(Message $message)use($email){
             $message->to($email);
@@ -83,8 +79,8 @@ class userController extends Controller
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-      //  $fields['password']=Str::random(15);
-       $fields['password'] = "1234";
+       $fields['password']=Str::random(15);
+       //$fields['password'] = "1234";
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -120,8 +116,8 @@ class userController extends Controller
             'email' =>'required|email|unique:users,email',
             'type'=>'required'
         ]);
-           //  $fields['password']=Str::random(15);
-             $fields['password'] = '1234'; 
+             $fields['password']=Str::random(15);
+             //$fields['password'] = '1234'; 
         $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -182,7 +178,6 @@ class userController extends Controller
 
         $user = user::find($id);
         $user->update($fields);
-        //$token = $user->createToken('MyAppToken')->plainTextToken;
         $response= [
             'user'=>$user,
             'token' =>Auth::user()->tokens()
@@ -193,7 +188,6 @@ class userController extends Controller
     public function updateprof(Request $request,$id){
      
         $user = User::where('id_user',$id)->first();
-       //  $user->update(['email'=>$request->email,'password'=>bcrypt($request->password)]);
        if($request->email)
             $user->email = $request->email ;
        if($request->password)
