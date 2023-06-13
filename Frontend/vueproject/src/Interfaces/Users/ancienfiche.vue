@@ -85,7 +85,7 @@
     data() {
       return {
         Data : [],
-        date : 0
+        
       };
     },
    
