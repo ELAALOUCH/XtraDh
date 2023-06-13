@@ -24,6 +24,16 @@ class InterventionController extends Controller
         $interventions =  DB::table('interventions')
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
         ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
+        ->orderBy('id_intervention')
+        ->get();
+        return response()->json($interventions);
+    }
+    public function indexvisa1()
+    {
+        $interventions =  DB::table('interventions')
+        ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
+        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
         ->where('interventions.visa_etb',1) 
         ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
         ->orderBy('id_intervention')
@@ -105,7 +115,7 @@ class InterventionController extends Controller
         return response()->json(
             $intervention->with(['etablissement:id,Nom'])
             ->with(['enseignant:id,PPR,Nom,prenom'])
-            ->get()
+            ->first()
 
     );
 
@@ -117,7 +127,7 @@ class InterventionController extends Controller
         $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         $intervention =  DB::table('interventions')
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
-        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->join('etablissements','etablissements.id','=','interventions.id_Etab')
         ->where('interventions.id_Etab',$etb)      
        // ->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
         ->select('id_intervention','etablissements.Nom as etab','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','enseignants.Nom as prof_nom','enseignants.prenom')
@@ -132,10 +142,10 @@ class InterventionController extends Controller
         $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
         $intervention =  DB::table('interventions')
         ->join('enseignants','interventions.id_Intervenant','=','enseignants.id')
-        ->join('etablissements','etablissements.id','=','enseignants.Etablissement')
+        ->join('etablissements','etablissements.id','=','interventions.id_Etab')
         ->where('etablissements.id',$etb)      
         ->where('visa_etb',1)
-        ->select('id_intervention','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_nom','enseignants.prenom')      
+        ->select('id_intervention', 'etablissements.Nom as etab','Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','Nbr_heures','visa_etb','visa_uae','enseignants.Nom as prof_nom','enseignants.prenom')      
         //->select('Intitule_Intervention','Annee_univ','Semestre','Date_debut','Date_fin','etablissements.Nom as etab','Nbr_heures','enseignants.Nom as prof_nom')
         ->orderBy('id_intervention')
         ->get();
@@ -175,7 +185,6 @@ class InterventionController extends Controller
         $intervention = Intervention::where('id_intervention',$id)->first();
         //@dd($request);
         $fields = $request->validate([
-            'id_Intervenant'=>'required|exists:enseignants,id',
             'id_Etab'=>'required|exists:etablissements,id',
             'Intitule_Intervention'=>'required',
              'Annee_univ'=>'required',
@@ -228,6 +237,7 @@ class InterventionController extends Controller
     public function valideretb($id)
     {
         $intervention = Intervention::where('id_intervention',$id)->first();
+        //return $intervention ; 
         $intervention->visa_etb = 1 ;
         $intervention->update();
         return $intervention ;

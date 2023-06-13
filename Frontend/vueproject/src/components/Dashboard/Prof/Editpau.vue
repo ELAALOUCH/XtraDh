@@ -1,5 +1,10 @@
 <template>
     <form @submit.prevent="submitForm" >
+      
+      <div class="relative z-0 w-full mb-4 group">
+     <h1 class="font-serif text-2xl">Modifier les données de professseur</h1>
+    </div>
+    
   <div class="relative z-0 w-full mb-6 group">
     <label for="PPR" class="block text-gray-700 font-bold mb-2">PPR:</label>
     <input type="text" id="PPR" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
@@ -66,7 +71,6 @@ export default {
 
       } catch (error) {
         console.error(error);
-        // Handle error
       }
     },
   },
@@ -74,15 +78,15 @@ export default {
       let id = this.$route.params.id
       this.formData.id_user=id
       console.log(this.$route.params.id)
-     const response = await axios.get('/enseignant/'+this.formData.id_user)
-    console.log(response.data)
-    this.formData.PPR = response.data.PPR ; 
-    this.formData.Nom = response.data.Nom;
-    this.formData.Prenom = response.data.prenom ;
-    this.formData.Date_Naissance = response.data.Date_Naissance ;
-    this.formData.Email = response.data.user.email ;
-    this.prev_email = response.data.user.email ;
-    this.formData.id_user = response.data.user.id_user;
+      const response = await axios.get('/enseignant/'+this.formData.id_user)
+      console.log(response.data)
+      this.formData.PPR = response.data.PPR ; 
+      this.formData.Nom = response.data.Nom;
+      this.formData.Prenom = response.data.prenom ;
+      this.formData.Date_Naissance = response.data.Date_Naissance ;
+      this.formData.Email = response.data.user.email ;
+      this.prev_email = response.data.user.email ;
+      this.formData.id_user = response.data.user.id_user;
   },
     cancelForm() {
     },

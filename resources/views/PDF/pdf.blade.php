@@ -229,7 +229,7 @@
         <div class="top">
             <div class="top-left">
                 <h1 class="main">Université Abdelmalek ESSAADI</h1>
-                <span class="code">Fiche de Paiement</span>
+                <span class="code">Fiche de Paie</span>
             </div>
             <div class="top-right">
                 <div class="date"><?php
@@ -244,7 +244,7 @@
             <div class="text-m" style="color: #101010">À :</div>
             <div class="title">{{$paiement->enseignant->Nom}} {{$paiement->enseignant->prenom}}</div>
             <div style="font-size: 15px">
-                <i>Status : </i>{{$grade->designation}}<br>
+                <i>Statut : </i>{{$grade->designation}}<br>
                 <i>Établissement d'origine : </i>{{$paiement->etablissement->Nom}}<br>
                 <i>Année universitaire : </i> {{$paiement->Annee_univ}}</div>
         </div>
@@ -255,8 +255,8 @@
                 <thead style="font-size: 13px;" >
                 <th>id</th>
                 <th>Etablissement</th>
-                <th>Volume Horraire</th>
-                <th>Salaire Brute</th>
+                <th>Volume Horaire</th>
+                <th>Salaire Brut</th>
                 <th>Salaire Net</th>
                 </thead>
                 <tbody>
@@ -285,7 +285,7 @@
 
                 <tfoot>
                 <tr class="total" style="font-size:14px;">
-                    <td colspan="3" class="name ">Volume horraire</td>
+                    <td colspan="3" class="name ">Volume horaire</td>
                     <td colspan="3" class="number">@php echo $somme_heures ;@endphp Heures</td>
                 </tr>
 
@@ -294,7 +294,7 @@
                  @endphp
 
                 <tr class="total" style="font-size:14px;color: #d31811;">
-                    <td colspan="4" class="name ">Plafond des heures</td>
+                    <td colspan="4" class="name ">Plafond horaire maximal</td>
                     <td colspan="4" class="number">200 h</td>
                 </tr>
 
@@ -315,7 +315,7 @@
         <br>
         <br>
         <br>
-        <div class="text-m" style="font-size: 20px">Detail des interventions</div>
+        <div class="text-m" style="font-size: 20px">Détails des interventions</div>
         <br>
 
 
@@ -348,7 +348,7 @@
 
 
         <div class="note">
-            <p>Service XtraDH vous souhaite une bonne journee!</p>
+            <p>Le service XtraDH vous souhaite une bonne journée!</p>
             <p>www.uae.ac.ma</p>
         </div>
     </div>

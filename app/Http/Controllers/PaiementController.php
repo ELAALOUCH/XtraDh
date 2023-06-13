@@ -184,7 +184,7 @@ class PaiementController extends Controller
             ];
             
             $pdf = PDF::loadView('PDF.pdf', $data);
-           return  $pdf->download('itsolutionstuff.pdf');
+           return  $pdf->download('Fiche_de_paie.pdf');
     }
 
     public function consultpaiementetabdirecteur()

@@ -31,7 +31,6 @@
               <th scope="col" class="py-3 px-6">
                 <div class="flex justify-center" >
                   <create :test="test"/>
-
                 </div>
              </th>
             </tr>

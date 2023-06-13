@@ -6,9 +6,9 @@
       <table class="w-full">
         <thead>
           <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-4 py-3">PPR</th>
             <th class="px-4 py-3">NOM</th>
             <th class="px-4 py-3">PRENOM</th>
-            <th class="px-4 py-3">PPR</th>
             <th class="px-4 py-3"> EMAIL</th>
             <th class="px-4 py-3"> ETABLISSEMNT</th>
             <th class="px-4 py-3"> TYPE </th>
@@ -21,7 +21,10 @@
         </thead>
         <tbody class="bg-white">
           <tr class="text-gray-700" v-for="data in presi " :key="data.id_user">
-            <td class="px-4 py-3 border">
+            <td class="px-4 py-3 text-ms font-semibold border">
+              {{ data.PPR }}
+            </td>
+            <td class="px-4 py-3 border"> 
               <div class="flex items-center text-sm">
                 <div>
                   <p class="font-semibold text-black">{{ data.Nom }} </p>
@@ -29,9 +32,6 @@
               </div>
             </td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.prenom }}</td>
-            <td class="px-4 py-3 text-ms font-semibold border">
-              {{ data.PPR }}
-            </td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.email }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.etab_Nom }}</td>
             <td class="px-4 py-3 text-ms font-semibold border">{{ data.type }}</td>
