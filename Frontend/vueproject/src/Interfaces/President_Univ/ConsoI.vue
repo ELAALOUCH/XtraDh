@@ -19,9 +19,9 @@
       <table class="w-full">
         <thead>
           <tr class="text-sm  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-            <th class="px-2 py-3">Intitule_intervention</th>
             <th class="px-2 py-3">Nom</th>
             <th class="px-2 py-3">Prenom</th>
+            <th class="px-2 py-3">Intitule_intervention</th>
             <th class="px-2 py-3"> Etablissement</th>
             <th class="px-2 py-3"> Annee_univ</th>
             <th class="px-2 py-3"> Semestre </th>
@@ -34,16 +34,16 @@
         </thead>
         <tbody class="bg-white">
           <tr class="text-gray-700" v-for="data in filteredData " :key="data.id">
+            <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
+            <td class="px-2 py-3 text-sm  border">
+              {{ data.prenom }}
+            </td>
             <td class="px-2 py-3 border">
               <div class="flex itesm-center text-sm">
                 <div>
                   <p class=" text-black">{{ data.Intitule_Intervention }} </p>
                 </div>
               </div>
-            </td>
-            <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
-            <td class="px-2 py-3 text-sm  border">
-              {{ data.prenom }}
             </td>
             <td class="px-2 py-3 text-sm  border">{{ data.Nom_etb }}</td>
             <td class="px-2 py-3 text-sm  border">{{ data.Annee_univ }}</td>

@@ -6,9 +6,9 @@
       <table class="w-full">
         <thead>
           <tr class="text-sm  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-            <th class="px-2 py-3">intervention</th>
             <th class="px-2 py-3">Nom</th>
             <th class="px-2 py-3">Prenom</th>
+            <th class="px-2 py-3">intervention</th>
             <th class="px-2 py-3"> Etab</th>
             <th class="px-2 py-3"> Annee</th>
             <th class="px-2 py-3"> Semestre </th>
@@ -21,16 +21,16 @@
         </thead>
         <tbody class="bg-white">
           <tr class="text-gray-700"  v-for="data in interv " :key="data">
+            <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
+            <td class="px-2 py-3 text-sm  border">
+              {{ data.prenom }}
+            </td>
             <td class="px-2 py-3 border">
               <div class="flex items-center text-sm">
                 <div>
                   <p class=" text-black">{{ data.Intitule_Intervention }} </p>
                 </div>
               </div>
-            </td>
-            <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
-            <td class="px-2 py-3 text-sm  border">
-              {{ data.prenom }}
             </td>
             <td class="px-2 py-3 text-sm  border">{{ data.Nom_etb }}</td>
             <td class="px-2 py-3 text-sm  border">{{ data.Annee_univ }}</td>
