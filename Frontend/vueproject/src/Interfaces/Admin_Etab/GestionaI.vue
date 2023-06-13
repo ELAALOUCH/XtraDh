@@ -15,13 +15,14 @@
              <th class="px-2 py-3"> Nbr_hrs</th>
              <th class="px-2 py-3"> debut </th>
              <th class="px-2 py-3"> fin </th>
-             <th scope="col" class="py-3 px-6">
-
-              <router-link to="/GestionaI/Create">
+             <th scope="col" class="py-3 px-2">
+              <div class="flex justify-center" >
+                <router-link to="/GestionaI/Create">
                <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
                 ajouter
               </button>
               </router-link>
+              </div> 
            </th>
            </tr>
          </thead>
@@ -44,10 +45,10 @@
              <td class="px-2 py-3 text-sm  border text-center">{{ data.Nbr_heures }}</td>
              <td class="px-2 py-3 text-sm  border"> {{ data.Date_debut }}</td>
              <td class="px-2 py-3 text-sm  border">{{ data.Date_fin }}</td>
-             
-             <td class="border-solid border-2 border-gray-100 py-4 px-6 text-right">
+    
+             <td class="border-solid border-2 border-gray-100 py-4 px-2 text-right">
               <div class="inline-flex">
-                <div class="py-4 px-6 text-right">
+                <div class="py-4 px-2 text-right">
               <div class="inline-flex">
                 <router-link :to="`GestionaI/Edit/${data.id_intervention}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
                 Editer
