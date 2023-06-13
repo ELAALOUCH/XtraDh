@@ -23,7 +23,7 @@
 
 
   <div class="w-full mb-8 overflow-hidden rounded-lg mt-7 ">
-    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-300px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
         <thead>
           <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
@@ -59,7 +59,7 @@
              </td>
              <td class="py-4 px-6" >
                {{ data.Nbr_heures }}
-             </td>            
+             </td>
           </tr>
         </tbody>
       </table>
@@ -93,17 +93,17 @@ export default {
         else {
           return this.pfs.filter((intr)=> intr.Annee_univ.toLowerCase().includes(this.selectedYear.toLocaleLowerCase()) )
         }
-      } 
+      }
       else if(this.selectedSemester.length>0){
         return this.pfs.filter((intr)=>intr.Semestre.toLocaleLowerCase().includes(this.selectedSemester.toLocaleLowerCase()))
       }
       else {
         return this.pfs
       }
-      
+
     },
   },
- 
+
   async mounted(){
     const response =await axios.get('/getintervention');
     this.pfs=response.data
