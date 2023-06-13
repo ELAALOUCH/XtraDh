@@ -29,7 +29,8 @@ import editetb from '@/components/Dashboard/etablissement/editetb.vue'
 import editgrd from '@/components/Dashboard/grade/editgrd.vue'
 import Editpau from '@/components/Dashboard/Prof/Editpau.vue'
 import Editdau from '@/components/Dashboard/etab/Directeur/Editdau'
-
+import createint from '@/components/Dashboard/Intervention/createint.vue'
+import editinterv from '@/components/Dashboard/Intervention/editinterv.vue'
 
 
 
@@ -46,7 +47,9 @@ import Gestionp from '@/Interfaces/Admin_Etab/Gestionp.vue'
 import GestionaI from '@/Interfaces/Admin_Etab/GestionaI.vue'
 import Gestionde from '@/Interfaces/Admin_Etab/Gestionde.vue'
 import Profileae from '@/Interfaces/Admin_Etab/Profileae.vue'
-import Editi from '@/components/Dashboard/Intervention/Editi.vue'
+import crintadminet from '@/components/Dashboard/Intervention/crintadminet.vue'
+import edintadminet from '@/components/Dashboard/Intervention/edintadminet.vue'
+
 
 
 
@@ -93,6 +96,9 @@ const routes = [
     component:Resetpassword,
     
   },
+
+
+  
   {
     path:'/Dash_au',
     name:'Dash_au',
@@ -131,8 +137,6 @@ const routes = [
         path:'/Profileau',
         component:Profileau
       },
-      
-      
       {
         path: '/Gestionpau',
         component: Gestionpau
@@ -141,20 +145,30 @@ const routes = [
         path:'/Gestionpau/Edit/:id',
         component:Editpau
       },
-      
       {
         path: '/Gestiondeau',
         component:Gestiondeau
       },
-     {
+      {
         path:'/Gestiondeau/Edit/:id',
         component:Editdau
       },
       
+
       {
         path:'/Gestioninterv',
         component:Gestioninterv
       },
+      {
+        path:'/Gestioninterv/Create',
+        component:createint
+      },
+      {
+        path:'/Gestioninterv/Edit/:id',
+        component:editinterv
+      },
+
+
       {
         path:'/Gestiongrade',
         component:Gestiongrade
@@ -209,7 +223,11 @@ const routes = [
       },
       {
         path:'/GestionaI/Edit/:id',
-        component:Editi
+        component:edintadminet
+      },
+      {
+        path:'/GestionaI/Create',
+        component:crintadminet
       },
       {
         path: '/Gestionde',

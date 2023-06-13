@@ -41,7 +41,6 @@ Route::middleware(['auth:sanctum', 'role:directeur_etb'])->group(function () {
     Route::get('/valideretb/{id}', [InterventionController::class, 'valideretb']);
     Route::get('/invalideretb/{id}', [InterventionController::class, 'invalideretb']);
     Route::get('/consultpaiementetabdirecteur', [PaiementController::class, 'consultpaiementetabdirecteur']);
-    Route::get('/directeuretabintervall', [InterventionController::class, 'directeuretabintervall']);
     Route::get('/directeuretabintervvalid', [InterventionController::class, 'directeuretabintervvalid']);
     Route::get('/profetab', [EnseignantController::class, 'indexetb'])->middleware('auth:sanctum');
 });
@@ -74,6 +73,7 @@ Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb|directeur_etb|pres
     Route::apiResource('etablissement', EtablissementController::class);
     Route::apiResource('administrateur', AdministrateurController::class);
     Route::patch('/updateadm/{idAdm}', [UserController::class, 'updateAdm']);
+    Route::get('/directeuretabintervall', [InterventionController::class, 'directeuretabintervall']);
     Route::apiResource('intervention', InterventionController::class);
 
 });
