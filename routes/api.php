@@ -6,6 +6,8 @@ use App\Http\Controllers\ForgetController;
 use App\Http\Controllers\InterventionController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\EtablissementController;
 use Illuminate\Support\Facades\Route;
 
 // Routes publiques
