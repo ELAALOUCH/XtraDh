@@ -29,6 +29,7 @@ Route::middleware(['auth:sanctum', 'role:admin_univ'])->group(function () {
     Route::get('/listedirecteuretbforadminuae', [AdministrateurController::class, 'listedirecteuretbforadminuae']);
 });
 
+
 // Routes pour le rôle "directeur_etb"
 Route::middleware(['auth:sanctum', 'role:directeur_etb'])->group(function () {
     Route::get('/valideretb/{id}', [InterventionController::class, 'valideretb']);
@@ -38,6 +39,7 @@ Route::middleware(['auth:sanctum', 'role:directeur_etb'])->group(function () {
     Route::get('/directeuretabintervvalid', [InterventionController::class, 'directeuretabintervvalid']);
     Route::get('/profetab', [EnseignantController::class, 'indexetb'])->middleware('auth:sanctum');
 });
+
 
 // Routes pour le rôle "president_univ"
 Route::middleware(['auth:sanctum', 'role:president_univ'])->group(function () {

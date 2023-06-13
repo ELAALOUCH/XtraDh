@@ -30,7 +30,7 @@
             </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex justify-center" >
-                  <create/>
+                  <create :test="test"/>
 
                 </div>
              </th>

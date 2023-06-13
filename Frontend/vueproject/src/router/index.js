@@ -3,6 +3,7 @@ import store from '@/store';
 
 import Login from '../Pages/auth/Login.vue'
 import NotFound from '@/views/NotFound.vue'
+import NotFound2 from '@/views/NotFound2.vue'
 import Forgetpassword from '@/Pages/auth/Forgetpassword.vue'
 import Resetpassword from '@/Pages/auth/Resetpassword.vue'
 import Wait from '@/Pages/auth/Wait.vue'
@@ -101,7 +102,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='admin_univ'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -173,12 +177,6 @@ const routes = [
 
 
 
-
-
-
-
-
-
   {
     path:'/Dash_ae',
     name:'Dash_ae',
@@ -188,7 +186,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='admin_etb'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -235,7 +236,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='directeur_etb'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -273,7 +277,10 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='president_univ'){
+      return next({name:'NotFound2'})
+     }
       next()
 
     },
@@ -309,8 +316,12 @@ const routes = [
       if(!store.getters['auth/authenticated']) {
         return next({ name: 'Login' })
       }
-
+      const user=store.getters['auth/user'];
+     if(user.type!='prof'){
+      return next({name:'NotFound2'})
+     }
       next()
+
     },
     redirect:'Profileprof',
     children :[
@@ -338,6 +349,15 @@ const routes = [
     name:'NotFound',
     component: NotFound
    }  
+   ,
+   {
+    path:'/NotFound2',
+    name:'NotFound2',
+    component: NotFound2
+   }  
+   ,
+   
+   
 ]
 
 
