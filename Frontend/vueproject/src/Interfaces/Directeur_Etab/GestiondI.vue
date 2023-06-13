@@ -6,41 +6,51 @@
       <table class="w-full text-sm text-left text-gray-500 ">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
+                <div class="flex items-center">
+                  Nom
+                </div>
+              </th>
+              <th scope="col" class="py-3 px-3">
+                <div class="flex items-center">
+                  Prenom
+                </div>
+              </th>
+            <th scope="col" class="py-3 px-3">
              Intitule_intervention
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
              Etablissement
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
               <div class="flex items-center">
                 Annee_univ
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
               <div class="flex items-center">
                 Semestre
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
                 Nbr_heures
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
               <div class="flex items-center">
                 Date_debut
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
               <div class="flex items-center">
                 Date_fin
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
               <div class="flex items-center">
                 Etat
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-3 px-3">
               Operation
             </th>
   
@@ -48,34 +58,39 @@
         </thead>
         <tbody>
           <tr class="bg-white border-b  " v-for="data in interv " :key="data">
-            <th class="py-4 px-6 font-medium text-gray-900  ">
+            <td class="py-4 px-6 text-sm">
+                {{ data.prof_nom }}
+              </td><td class="py-4 px-3 text-sm">
+                {{ data.prenom }}
+              </td>
+            <td class="py-4 px-3 font-sm  ">
              {{ data.Intitule_Intervention }}
-            </th>
-            <th class="py-4 px-6 font-medium text-gray-900  ">
+            </td>
+            <td class="py-4 px-3 font-sm  ">
              {{ data.etab }}
-            </th>
-            <td class="py-4 px-6">
+            </td>
+            <td class="py-4 px-3 font-sm ">
               {{ data.Annee_univ }}
             </td>
             
-            <td class="py-4 px-6">
+            <td class="py-4 px-3 font-sm">
               {{ data.Semestre }}
             </td>
-            <td class="py-4 px-6">
+            <td class="py-4 px-3 font-sm">
               {{ data.Nbr_heures }}
             </td>
             
-            <td class="py-4 px-6">
+            <td class="py-4 px-3 font-sm">
               {{ data.Date_debut }}
             </td>
-            <td class="py-4 px-6">
+            <td class="py-4 px-3 font-sm">
               {{ data.Date_fin }}
             </td>
-            <td class="py-4 px-6">
+            <td class="py-4 px-3">
               <span v-if="!data.visa_etb" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">invalide</span>
               <span v-if="data.visa_etb" class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">valide</span>
             </td>
-            <td class="py-4 px-6">
+            <td class="py-4 px-3">
               <div class="inline-flex">
                <button v-if="!data.visa_etb"  class="bg-blue-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="validerinterv(data)">
                  valider
