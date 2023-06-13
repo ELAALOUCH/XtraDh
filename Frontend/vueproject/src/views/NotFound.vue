@@ -8,7 +8,7 @@
     </div>
   </template>
   
-  <script>
+<script>
 import store from '@/store';
   export default {
     data() {
@@ -22,4 +22,4 @@ import store from '@/store';
        }
       }
     }
-  </script>
+</script>
