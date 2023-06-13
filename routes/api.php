@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum', 'role:directeur_etb'])->group(function () {
 Route::middleware(['auth:sanctum', 'role:president_univ'])->group(function () {
     Route::get('/valideruae/{id}', [InterventionController::class, 'valideruae']);
     Route::get('/invalideruae/{id}', [InterventionController::class, 'invalideruae']);
+    Route::get('/interventionuaevalid', [InterventionController::class, 'interventionuaevalid']);
 });
 
 // Routes pour le rôle "prof"
@@ -54,18 +55,19 @@ Route::middleware(['auth:sanctum', 'role:president_univ'])->group(function () {
 
 // Routes pour les rôles "admin_univ" et "admin_etb"
 Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb'])->group(function () {
-    Route::apiResource('etablissement', EtablissementController::class);
+
     Route::apiResource('grade', GradeController::class);
     Route::delete('/deleteadm/{id_user}', [UserController::class, 'destroyadmin']);
     Route::delete('/deleteprof/{id_user}', [UserController::class, 'destroyprof']);
     Route::get('/profetab', [EnseignantController::class, 'indexetb']);
-    Route::get('/interventionuaevalid', [InterventionController::class, 'interventionuaevalid']);
+
     Route::get('/directeuretab', [AdministrateurController::class, 'directeurETB'])->middleware('auth:sanctum');
     Route::post('/ajoutinterventionetab', [UserController::class, 'ajoutinterventionetab']);
 });
 
 // Routes pour les rôles "admin_univ", "admin_etb", "directeur_etb" et "president_univ"
 Route::middleware(['auth:sanctum', 'role:admin_univ|admin_etb|directeur_etb|president_univ'])->group(function () {
+    Route::apiResource('etablissement', EtablissementController::class);
     Route::apiResource('administrateur', AdministrateurController::class);
     Route::post('/storePPR', [InterventionController::class, 'storePPR']);
     Route::patch('/updateadm/{idAdm}', [UserController::class, 'updateAdm']);
