@@ -8,7 +8,7 @@
           </router-link>
       </div>
     <div class="w-full mb-8 overflow-hidden rounded-lg ">
-    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-300px)] scrollbar scrollbar-track-gray-100 ">
       <table class="w-full">
         <thead>
           <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
@@ -46,7 +46,7 @@
     </div>
   </div>
 </section>
-  
+
   </template>
 
   <script>
@@ -55,16 +55,16 @@
     data() {
       return {
         paiements: [
-          
+
         ]
       };
     },
     async mounted()
     {
       const response = await axios.get('/paiementprof')
-      this.paiements = response.data 
+      this.paiements = response.data
       console.log(response.data)
-      
+
     }
   };
   </script>
