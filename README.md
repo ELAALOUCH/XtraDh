@@ -27,7 +27,7 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 ##
 
 ### Cloner le dépôt
-git clone https://github.com/devzakir/laravel-complete-blog-development.git laravel-blog
+git clone https://github.com/ELAALOUCH/XtraDh.git
 
 ### Installer les dépendances de Composer
 composer install
