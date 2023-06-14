@@ -100,7 +100,7 @@
       var moisActuel = dateActuelle.getMonth() + 1; // Les mois commencent à partir de 0, donc on ajoute 1
 
       // Vérification si la date est entre le 30 juin et le 30 septembre
-      if (moisActuel >= 5 && moisActuel <= 9 ) {
+      if (moisActuel >= 7 && moisActuel <= 9 ) {
 
         this.date = 1;
       } else {
