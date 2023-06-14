@@ -90,6 +90,11 @@ class userController extends Controller
         //create enseignant
          $ensctrl =  new EnseignantController();
         $ensctrl = $ensctrl->storeETB($request);
+        if(isset($ensctrl['error']))
+        {
+            $user->delete();
+            return response()->json($ensctrl['error'],400);
+        }
         $response= [
             'user'=>$user,
             'token' =>$token,
@@ -106,6 +111,7 @@ class userController extends Controller
             'type'=>'required'
         ]);
             $fields['password']=Str::random(15);
+           // $fields['password']=1234;
             $user = User::create([
             'type' =>$fields['type'],
             'email' => $fields['email'],
@@ -124,6 +130,11 @@ class userController extends Controller
         //create enseignant
         $admctrl =  new AdministrateurController();
         $admctrl = $admctrl->storeETB($request);
+        if(isset($admctrl['error']))
+        {
+            $user->delete();
+            return response()->json($admctrl['error'],400);
+        }
         $response= [
             'user'=>$user,
             'token' =>$token,

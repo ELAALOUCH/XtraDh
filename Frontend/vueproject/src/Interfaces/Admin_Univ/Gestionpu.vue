@@ -27,7 +27,7 @@
             </th>
 
             <th scope="col" class="py-3 px-6 ">
-             <div class="ml-[380px]   " >
+             <div class="ml-[380px] text-center  " >
                   <create/>
               </div>
            </th>

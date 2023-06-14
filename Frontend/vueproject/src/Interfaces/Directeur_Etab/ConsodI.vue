@@ -56,7 +56,7 @@
           <tbody>
             <tr class="bg-white border-b  " v-for="data in interv " :key="data.id">
              <td class="py-4 px-6 text-sm">
-                {{ data.prof_nom }}
+                {{ data.prof_Nom }}
               </td><td class="py-4 px-6 text-sm">
                 {{ data.prenom }}
               </td>
@@ -64,7 +64,7 @@
                 {{ data.Intitule_Intervention  }}
              </td>
               <td class="py-4 px-6 font-sm  ">
-             {{ data.etab }}
+             {{ data.Nom_etb }}
             </td>
               <td class="py-4 px-6 text-sm">
                  {{ data.Annee_univ  }}
@@ -106,7 +106,7 @@ import axios from 'axios';
     }
   },
   async mounted(){
-  const response = await axios.get('/directeuretabintervvalid');
+  const response = await axios.get('/intervention');
    this.interv=response.data
    console.log(response.data)
 

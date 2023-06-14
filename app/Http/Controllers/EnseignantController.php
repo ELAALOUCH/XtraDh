@@ -68,8 +68,7 @@ class EnseignantController extends Controller
         return response()->json(['errors' => $validator->errors()], 400);
     }
 
-    // Cryptage du champ PPR
-   // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+    
 
     // Création de l'enseignant
     $enseignant = Enseignant::create([
@@ -97,13 +96,12 @@ public function storeETB(Request $request)
         'id_Grade' => 'required',
         'id_user' => 'required',
     ]);
-
+    
     if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 400);
+        $err = array('error'=>$validator->errors());
+        return $err;
     }
-
-    // Cryptage du champ PPR
-   // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+   
 
     // Création de l'enseignant
     $enseignant = Enseignant::create([

@@ -124,7 +124,8 @@ class AdministrateurController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+            $err = array('error'=>$validator->errors());
+            return $err;
         }
     
         
@@ -136,7 +137,7 @@ class AdministrateurController extends Controller
             'Etablissement' => $request["Etablissement"],
             'id_user' => $request["id_user"],
         ]);
-        return response()->json($administrateur, 201);
+        return $administrateur;
     }
     public function show($id)
     {

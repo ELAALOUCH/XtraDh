@@ -31,14 +31,14 @@
     <div class="relative z-0 w-full mb-6 group">
       
       <select  required v-model="Semestre" id="underline_select" class="block py-2.5 px-1.5 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-        <option disabled selected value="">Sélectionnez une semestre</option>
+        <option disabled selected value="">Sélectionnez un semestre</option>
           <option value="Semestre 1" >Semestre 1</option>
           <option value="Semestre 2">Semestre 2</option>
           
       </select>
 
       <select  required v-model="Etablissement" id="underline_select" class="block py-2.5 px-1.5 w-full text-sm text-gray-500 mt-4  bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-          <option selected value="" disabled >Selectionner etablissement </option>
+          <option selected value="" disabled >Sélectionnez établissement </option>
           <option v-for ="etb in etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>
         
     </select>
@@ -113,8 +113,9 @@ export default {
                       this.Semestre= ''
                       this.test = 1 ; 
                     })
-          console.log(response)
+         
           this.$router.push('/Gestioninterv')
+          console.log(response)
 
       }
     }

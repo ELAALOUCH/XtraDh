@@ -37,12 +37,7 @@
           
       </select>
 
-      <select  required v-model="Etablissement" id="underline_select" class="block py-2.5 px-1.5 w-full text-sm text-gray-500 mt-4  bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-          <option selected value="" disabled >Selectionner etablissement </option>
-          <option v-for ="etb in etabs" :key="etb.id" :value="etb.id" >{{ etb.Nom }}</option>
-        
-    </select>
-
+      
 
       
     </div>
@@ -77,21 +72,11 @@ export default {
         Nbr_heures:'',
         Semestre : '',
         test : 0 ,
-        Etablissement : '',
+        //Etablissement : '',
         etabs : []
       }
     },
-    async created(){
-          const etbs = await axios.get('/etablissement'); 
-          console.log(etbs.data)    
-          etbs.data.forEach(e => {
-            if(e.Nom!='UAE'){
-              this.etabs.push(e)
-            }            
-          });
-        
-         //this.etabs = etbs.data ; 
-      },
+    
     methods:{
       async handlesubmit(){
           const response = await axios.post('/storePPR',{
@@ -102,7 +87,7 @@ export default {
             Date_fin:this.Date_fin,
             Nbr_heures:this.Nbr_heures,
             Semestre : this.Semestre,
-            id_etab : this.Etablissement 
+            //id_etab : this.Etablissement 
                     }).then(()=>{
                       this.PPR='',
                       this.Intitule_Intervention='',

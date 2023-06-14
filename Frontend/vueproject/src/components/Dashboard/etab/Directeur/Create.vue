@@ -14,7 +14,7 @@
 
         <div class="mb-4">
           <label for="ppr" class="block text-gray-700 font-bold mb-2">PPR:</label>
-          <input type="text" id="ppr" v-model="formData.PPR" required class="border rounded w-full py-2 px-3">
+          <input type="text" id="ppr" v-model="formData.PPR"  class="border rounded w-full py-2 px-3">
         </div>
         <div class="mb-4">
           <label for="ppr" class="block text-gray-700 font-bold mb-2">email:</label>

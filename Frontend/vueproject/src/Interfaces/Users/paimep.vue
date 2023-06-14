@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="container mx-auto p-6 font-mono" v-if="date">
-    <h3 class="text-2xl font-serif text-left pb-4">Consulter vote procédure de paiement d'année en cours {{ date }}</h3>
+    <h3 class="text-2xl font-serif text-left pb-4">Consulter vote procédure de paiement d'année en cours </h3>
     <div class="flex justify-end ">
           <router-link to="/ancienfiche">
                 <button class="py-2 px-4 my-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Anciennes fiches de paie</button>
@@ -100,7 +100,7 @@
       var moisActuel = dateActuelle.getMonth() + 1; // Les mois commencent à partir de 0, donc on ajoute 1
 
       // Vérification si la date est entre le 30 juin et le 30 septembre
-      if (moisActuel >= 7 && moisActuel <= 9 ) {
+      if (moisActuel >= 5 && moisActuel <= 9 ) {
 
         this.date = 1;
       } else {

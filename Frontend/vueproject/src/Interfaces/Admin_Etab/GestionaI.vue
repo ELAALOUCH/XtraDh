@@ -28,7 +28,7 @@
          </thead>
          <tbody class="bg-white">
            <tr class="text-gray-700"  v-for="data in interv " :key="data">
-             <td class="px-2 py-3 text-sm  border">{{ data.prof_Nom }}</td>
+             <td class="px-2 py-3 text-sm  border">{{ data.prof_nom }}</td>
              <td class="px-2 py-3 text-sm  border">
                {{ data.prenom }}
              </td>
@@ -39,7 +39,7 @@
                  </div>
                </div>
              </td>
-             <td class="px-2 py-3 text-sm  border">{{ data.Nom_etb }}</td>
+             <td class="px-2 py-3 text-sm  border">{{ data.etab }}</td>
              <td class="px-2 py-3 text-sm  border">{{ data.Annee_univ }}</td>
              <td class="px-2 py-3 text-sm  border">{{ data.Semestre }}</td>
              <td class="px-2 py-3 text-sm  border text-center">{{ data.Nbr_heures }}</td>
@@ -84,7 +84,7 @@
 
  async mounted()
  {
-   const response = await axios.get('/intervention')
+   const response = await axios.get('/directeuretabintervall')
    this.interv = response.data 
    console.log(this.interv)
  },
