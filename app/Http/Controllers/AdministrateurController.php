@@ -171,7 +171,6 @@ class AdministrateurController extends Controller
             'Nom'=>'required',
             'prenom'=>'required',
             'PPR'=>'required',
-            'Etablissement'=>'required'
         ]);
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
