@@ -22,7 +22,7 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 - **[ANASS ECHBERAAL](https://github.com/echberaal)** Developpeur LARAVEL 
 - **[ABDERRAHMANE EL HARRACHY ](https://github.com/AbderrahmaneHr)** Administrateur systeme Linux ( POSTFIX, APACHE, NGINX, DNS )
 - **[MOHAMED ACHERNAN ](https://github.com/Accel0World)** Administrateur systeme Linux ( DOCKER, POSTFIX, APACHE, NGINX, DNS )
-- **[MOHAMMED YASSINE EL AALOUCH](https://github.com/ELAALOUCH)** Respnsable Git et Github (Accompagnateur des developpeurs)
+- **[MOHAMMED YASSINE EL AALOUCH](https://github.com/ELAALOUCH)** Responsable Git et Github (Accompagnateur des developpeurs)
 
 ## Setup Projet
 
