@@ -20,7 +20,7 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 - **[HOUDA EL MOUMOUHI ](https://github.com/houaELM02)** Developpeur PL/PGSQL
 - **[YASSINE GLIOUAL](https://github.com/GlioualYassine)** Developpeur LARAVEL 
 - **[ANASS ECHBERAAL](https://github.com/echberaal)** Developpeur LARAVEL 
-- **[ABDERRAGMANE EL HARRACHY ](https://github.com/AbderrahmaneHr)** Administrateur systeme Linux 
+- **[ABDERRAHMANE EL HARRACHY ](https://github.com/AbderrahmaneHr)** Administrateur systeme Linux 
 - **[MOHAMED ACHERNAN ](https://github.com/Accel0World)** Administrateur systeme Linux 
 - **[MOHAMMED YASSINE EL AALOUCH](https://github.com/ELAALOUCH)** Respnsable Git et Github (Accompagnateur des developpeurs )
 
