@@ -167,11 +167,16 @@ class AdministrateurController extends Controller
         if($adm==null){
             return response()->json(['errors'=>'user not found'],404);
         }
+        if(!isset($request->Etablissement)){
+            $request->Etablissement=$adm->Etablissement;
+        }
         $attributs = $request->validate([
             'Nom'=>'required',
             'prenom'=>'required',
-            'PPR'=>'required',
+            'PPR'=>'required'
         ]);
+        $attributs['Etablissement']=$request->Etablissement;
+        
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
         return response()->json($adm,202);
