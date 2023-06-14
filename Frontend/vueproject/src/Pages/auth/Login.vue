@@ -54,7 +54,7 @@
       </button>
    </form>
      <hr class="my-6 border-gray-300 w-full">
-     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - Tous les droits sont réservés</p>
+     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - Tous les droits sont réservés  <span class="ml-32">Version 1.0</span></p>
    </div>
  </div>
  </div>
