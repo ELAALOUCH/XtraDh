@@ -185,7 +185,10 @@ class AdministrateurController extends Controller
      */
     public function destroy($idAdm)
     {
+        if(Administrateur::find($idAdm)!=NULL){
         $user = Administrateur::find($idAdm)->delete();
-        response()->json($user->delete(),202);
+        return $user;
+        }
+        return response()->json(['errors'=>'user not found'],404);;
     }
 }

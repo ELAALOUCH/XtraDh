@@ -202,7 +202,7 @@ class TestInterventioncontroller extends TestCase
         $jsonResponse = $response->json();
         $response->assertStatus(200)
         ->assertJsonStructure([
-            '*' => [
+             
             'id_Intervenant',
             'id_Etab',
             'Intitule_Intervention', 
@@ -210,7 +210,7 @@ class TestInterventioncontroller extends TestCase
             'Semestre',
             'Date_debut', 
             'Date_fin', 
-            'Nbr_heures',]
+            'Nbr_heures',
             
         ]); 
     }
@@ -226,8 +226,7 @@ class TestInterventioncontroller extends TestCase
         $response->assertStatus(200)
         ->assertJsonStructure([
             '*' => [
-            'id_Intervenant',
-            'id_Etab',
+            'id_intervention',
             'Intitule_Intervention', 
             'Annee_univ', 
             'Semestre',

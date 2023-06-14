@@ -255,7 +255,7 @@ public function testStoreAdministrateurEtb(){
     $id_Grade=1;
     $email="testtaha666@mail.com";
     $type="prof";
-    $response->assertStatus(200);
+    $response->assertStatus(201);
     
     $token=$user['token'];
     $response = $this->withHeaders([
@@ -330,7 +330,7 @@ public function testStoreEnseignantEtb(){
     $id_Grade=1;
     $email="testtaha666@mail.com";
     $type="admin";
-    $response->assertStatus(200);
+    $response->assertStatus(201);
     
     $token=$user['token'];
     $response = $this->withHeaders([
@@ -372,7 +372,7 @@ public function testStoreEnseignantEtb(){
             'Etablissement' => 1,
             'id_Grade' => 1,
         ]);
-        $response->assertStatus(200);
+        $response->assertStatus(202);
         $this->assertDatabaseHas('enseignants', [
             'id_user' => $id,
             'PPR' => '666666',
@@ -403,7 +403,7 @@ public function testStoreEnseignantEtb(){
             'Etablissement' => 1,
             'prenom'=>'retestcheck',
         ]);
-        $response->assertStatus(200);
+        $response->assertStatus(202);
         $this->assertDatabaseHas('administrateurs', [
             'id_user' => $id,
             'PPR' => '666666',
@@ -418,7 +418,7 @@ public function testStoreEnseignantEtb(){
     $prof=enseignant::factory()->create();
     $id=$prof['id_user'];
     $response = $this->delete('/api/deleteprof/' . $id);
-    $response->assertStatus(200);
+    $response->assertStatus(202);
     $this->assertDatabaseMissing('enseignants', ['id' => $id]);
 }
 public function testDestroyAdmin()
@@ -426,7 +426,7 @@ public function testDestroyAdmin()
     $admin=Administrateur::factory()->create();
     $id=$admin['id_user'];
     $response = $this->delete('/api/deleteadm/' . $id);
-    $response->assertStatus(200);
+    $response->assertStatus(202);
     $this->assertDatabaseMissing('administrateurs', ['id' => $id]);
 }
 public function testAjoutIntervention()
@@ -532,7 +532,7 @@ echo $token;
         'Nbr_heures' => $Nbr_heures
     ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
 
         $this->assertDatabaseHas('interventions', [
          "id_intervention" => 1,

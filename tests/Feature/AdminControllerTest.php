@@ -31,9 +31,9 @@ class TestAdministrateurcontroller extends TestCase
         $admin = $admin->toArray();
         print_r($admin);
         $response = $this->post('/api/administrateur', $admin);
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $this->assertNotNull($response);
-        $response->assertStatus(200)
+        $response->assertStatus(201)
         ->assertJsonStructure([
             'PPR',
             'Nom',
@@ -110,7 +110,7 @@ class TestAdministrateurcontroller extends TestCase
   
     $response = $this->put("/api/administrateur/{$userid}", $admin1);
 
-    $response->assertStatus(200);
+    $response->assertStatus(202);
     $this->assertNotNull($response);
     $this->assertDatabaseHas('administrateurs',$admin1);
     $this->assertDatabaseMissing('administrateurs', $admin0);
@@ -156,7 +156,7 @@ class TestAdministrateurcontroller extends TestCase
             'Etablissement' => $Etablissement,
             'id_user' => $idUser,
         ]);
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         
         $token=$user['token'];
         $response = $this->withHeaders([
