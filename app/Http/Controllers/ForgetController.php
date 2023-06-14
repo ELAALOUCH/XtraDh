@@ -18,7 +18,7 @@ class ForgetController extends Controller
         $email = $request->input('email');
         if(User::where('email',$email)->doesntExist()){
             return response([
-                'message'=>'User doesn\'t exists'
+                'message'=>'L\'utilisateur n\'existe pas'
             ],400);
         }
         $token = Str::random(30);
@@ -30,13 +30,13 @@ class ForgetController extends Controller
         //send email
         Mail::send('Mails.forgot',['token'=>$token],function(Message $message)use($email){
             $message->to($email);
-            $message->subject('Reset Your Password');
+            $message->subject('Réinitialiser votre mot de passe ');
 
         });
 
         try{
             return response([
-                'message'=>'check your email'
+                'message'=>'Consulter votre boîte mail'
             ]);
         }catch(\Exception $exeption){
             return response([
@@ -44,17 +44,19 @@ class ForgetController extends Controller
             ],400);
         }
     }
+
+    
     /** @var User $user */
     public function reset(ResetRequest $request){
         $token = $request->input('token');
         if(! $passwordResets = DB::table('password_resets')->where('token',$token)->first()){
             return response([
-                'message'=>'Invalid token'
+                'errors'=>'The token is invalid'
             ],400);
         }
         if(! $user = User::where('email',$passwordResets->email)->first()){
             return response([
-                'message'=>'User doesn\'t exists'
+                'message'=>'L\'utilisateur n\'existe pas'
             ],404);
         }
 

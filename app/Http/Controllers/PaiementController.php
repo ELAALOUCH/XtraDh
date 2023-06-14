@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enseignant;
-use App\Models\grade;
-use App\Models\intervention;
-use App\Models\Paiement;
-use Illuminate\Http\Request;
 use PDF;
+use App\Models\grade;
+use App\Models\Paiement;
+use App\Models\Enseignant;
+use App\Models\intervention;
+use Illuminate\Http\Request;
+use App\Models\Administrateur;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PaiementController extends Controller
 {
@@ -18,8 +21,23 @@ class PaiementController extends Controller
      */
     public function index()
     {
-        $paiements = paiement::with(['enseignant:id,Nom,prenom'])
-            ->with(['etablissement:id,Nom'])
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
+        $paiements = $paiement = DB::table('paiements')
+                    ->join('enseignants','paiements.id_Intervenant','=','enseignants.id')
+                    ->join('etablissements','id_Etab','=','etablissements.id')
+                    ->where('Annee_univ',$date)
+                    ->select('VH','Taux_H','Brut','Annee_univ','Semestre','IR','NET','enseignants.Nom as prof_Nom','enseignants.prenom','etablissements.Nom as Nom_etb')      
+                    ->orderByDesc('paiements.id')
             ->get();
         return response()->json($paiements);
     }
@@ -39,7 +57,6 @@ class PaiementController extends Controller
             'Taux_H'=>'required',
             'Annee_univ'=>'required',
             'Semestre'=>'required',
-            'Brut'=>'required',
             'IR'=>'required',
 
         ]);
@@ -80,7 +97,6 @@ class PaiementController extends Controller
             'Taux_H'=>'required',
             'Annee_univ'=>'required',
             'Semestre'=>'required',
-            'Brut'=>'required',
             'IR'=>'required',
 
         ]);
@@ -105,10 +121,20 @@ class PaiementController extends Controller
 
     public function postfix(){    
         //cette methode pour envoye la liste des paiement au developpeur POSTFIX LINUX
-        $postfix = [];   
-        $avant = date("Y")-1;
-        $apres = date("Y");
+        $postfix = []; 
+          
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
         $date = $avant.'/'.$apres ;
+    
         //@dd($date);
         $paiements = Paiement::select('id','id_Intervenant')->where('Annee_univ',$date)->get('id');
         //@dd($paiements = Paiement::select('id','id_Intervenant'));
@@ -138,11 +164,12 @@ class PaiementController extends Controller
             ->with(['etablissement:id,Nom'])
             ->first();
 
-        $grade = grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
+        $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
         //@dd($paiement->enseignant->Nom);
         $intervention = $paiement->enseignant->id ;
 
         $intervention = intervention::where('id_Intervenant',$intervention)
+                                    ->where('Annee_univ',$paiement->Annee_univ)
                                     ->where('visa_uae',1)
                                     ->where('visa_etb',1)
                                     ->with(['etablissement:id,Nom']) 
@@ -157,8 +184,71 @@ class PaiementController extends Controller
             ];
             
             $pdf = PDF::loadView('PDF.pdf', $data);
-           return  $pdf->download('itsolutionstuff.pdf');
+           return  $pdf->download('Fiche_de_paie.pdf');
     }
 
+    public function consultpaiementetabdirecteur()
+    {
+        $user = Auth::user();
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
+        $paiement = DB::table('paiements')
+                    ->join('enseignants','paiements.id_Intervenant','=','enseignants.id')
+                    ->where('id_Etab',$etb)
+                    ->where('Annee_univ',$date)
+                    ->get();
+        return $paiement;
+    }
+    public function paiementprof()
+    {
+        $user = Auth::user();
+        $ens = Enseignant::where('id_user',$user->id_user)->first();
+        $mois = date('n');
+        if($mois > 06){
+            $avant = date("Y");
+            $apres = date("Y")+1; 
+        }
+        else{
+              $avant = date("Y")-1;
+              $apres = date("Y");
+        }
+      
+        $date = $avant.'/'.$apres ;
+        $paiement = DB::table('paiements')
+                    ->join('etablissements','id_Etab','=','etablissements.id')
+                    ->where('id_Intervenant',$ens->id)
+                    ->where('Annee_univ',$date)
+                    ->get();
+       // $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
+        return $paiement;
+    }
+
+    public function historiquepdfpaie()
+    {
+     
+        $user = Auth::user();
+        $ens = Enseignant::where('id_user',$user->id_user)->first();
+        $paiements = DB::table('paiements')
+                    ->where('id_Intervenant',$ens->id)
+                    ->orderByDesc('Annee_univ')
+                    ->get();
+        $urls = [];        
+        foreach($paiements as $paie){
+            
+            $tab = ['url'=>'http://127.0.0.1:8000/api/generate-pdf/'.$paie->id,'annee'=>$paie->Annee_univ] ;
+            array_push($urls,$tab);   
+        }
+        return $urls;
+    }
     
 }

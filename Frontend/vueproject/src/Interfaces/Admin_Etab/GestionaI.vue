@@ -1,37 +1,108 @@
 <template>
-  <div>
-    <div class="max-w-sm mx-auto p-2 bg-white rounded shadow">
-      <div class="mb-2">
-        <label for="PPR" class="block text-gray-700 font-bold mb-1">PPR:</label>
-        <input type="text" id="PPR" v-model="formData.PPR" required class="w-full border border-gray-300 rounded px-2 py-1">
-      </div>
+  <section class="container w-full mx-auto p-6 font-mono">
+   <h3 class="text-2xl font-serif text-left pb-4">Gestion des Interventions</h3>
+   <div class="w-full mb-8 overflow-hidden rounded-lg ">
+     <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-200 ">
+       <table class="w-full">
+         <thead>
+           <tr class="text-sm  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+             <th class="px-2 py-3">Nom</th>
+             <th class="px-2 py-3">Prenom</th>
+             <th class="px-2 py-3">intervention</th>
+             <th class="px-2 py-3"> Etab</th>
+             <th class="px-2 py-3"> Annee</th>
+             <th class="px-2 py-3"> Semestre </th>
+             <th class="px-2 py-3"> Nbr_hrs</th>
+             <th class="px-2 py-3"> debut </th>
+             <th class="px-2 py-3"> fin </th>
+             <th scope="col" class="py-3 px-2">
+              <div class="flex justify-center" >
+                <router-link to="/GestionaI/Create">
+               <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded">
+                ajouter
+              </button>
+              </router-link>
+              </div> 
+           </th>
+           </tr>
+         </thead>
+         <tbody class="bg-white">
+           <tr class="text-gray-700"  v-for="data in interv " :key="data">
+             <td class="px-2 py-3 text-sm  border">{{ data.prof_nom }}</td>
+             <td class="px-2 py-3 text-sm  border">
+               {{ data.prenom }}
+             </td>
+             <td class="px-2 py-3 border">
+               <div class="flex items-center text-sm">
+                 <div>
+                   <p class=" text-black">{{ data.Intitule_Intervention }} </p>
+                 </div>
+               </div>
+             </td>
+             <td class="px-2 py-3 text-sm  border">{{ data.etab }}</td>
+             <td class="px-2 py-3 text-sm  border">{{ data.Annee_univ }}</td>
+             <td class="px-2 py-3 text-sm  border">{{ data.Semestre }}</td>
+             <td class="px-2 py-3 text-sm  border text-center">{{ data.Nbr_heures }}</td>
+             <td class="px-2 py-3 text-sm  border"> {{ data.Date_debut }}</td>
+             <td class="px-2 py-3 text-sm  border">{{ data.Date_fin }}</td>
+    
+             <td class="border-solid border-2 border-gray-100 py-4 px-2 text-right">
+              <div class="inline-flex">
+                <div class="py-4 px-2 text-right">
+              <div class="inline-flex">
+                <router-link :to="`GestionaI/Edit/${data.id_intervention}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mx-2 rounded-full">
+                Modifier
+                </router-link>
+               <button class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full " @click="deleteinterv(data)">
+                Supprimer
+               </button>                  
+              </div>
+            </div>                
+              </div>
+            </td>
 
-      <div v-if="success" class="bg-green-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <span class="block sm:inline">{{ success }}</span>
-      </div>
+            
+             </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+ </section>
+ </template>
+ 
+ 
+ <script>
 
-      <button type="submit" @click="handleSubmit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded">Submit</button>
-      <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Cancel</button>
-    </div>
-  </div>
-</template>
+ import axios from 'axios';
+ export default {
+   components: {},
+ data(){
+   return {
+       interv : []
+   }
+ },
 
-<script>
-export default {
-  data() {
-    return {
-      formData: {
-        PPR: '',
-      },
-      success: ''
-    };
-  },
-  methods: {
-    handleSubmit() {
-      console.log(this.formData);
-      this.success = 'Successfully added';
-      this.formData.PPR = '';
-    }
-  }
-};
-</script>
+ async mounted()
+ {
+   const response = await axios.get('/directeuretabintervall')
+   this.interv = response.data 
+   console.log(this.interv)
+ },
+
+ methods:{
+async deleteinterv(data)
+  {
+   const response = axios.delete('/intervention/'+data.id_intervention).then(()=>{
+      let index = this.interv.indexOf(data);
+      console.log(index)
+      this.interv.splice(index,1);
+    });
+    console.log(response)
+    
+  } 
+ }
+ 
+ }
+ 
+ </script>
+ 

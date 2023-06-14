@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-2xl font-bold text-left py-2">Listes des profs</h3>
- 
+
     <div class="overflow-x-auto relative  sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -16,7 +16,7 @@
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Prenom             
+                Prenom
               </div>
             </th>
             <th scope="col" class="py-3 px-6">
@@ -32,8 +32,8 @@
             <th scope="col" class="py-3 px-6">
               <div class="flex justify-end" >
                 <create/>
-              </div> 
-           </th>             
+              </div>
+           </th>
             <th scope="col" class="py-3 px-6">
               <span class="sr-only">Edit</span>
             </th>
@@ -57,14 +57,14 @@
               <div v-if="item.etab_permanant">
                 {{ item.etab_permanant.Nom}}
               </div>
-              
+
             </td>
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
                <Edit/>
                <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-i" @click="">
                  Delete
-               </button>                  
+               </button>
               </div>
             </td>
           </tr>
@@ -72,8 +72,8 @@
       </table>
     </div>
   </div>
-  
-              
+
+
 </template>
 
 <script>
@@ -84,20 +84,46 @@ export default {
   components: {Create,Edit},
 data(){
   return {
-      profs:null,
+      profs:[],
 
   }
 },
 async created(){
-  const response = await axios.get('/Enseignant');
+  const response = await axios.get('/consultpaiementetabdirecteur');
   console.log(response.data)
   this.profs = response.data
-  console.log(this.profs[0].etab_permanant.Nom)
 },
 methods:{
   togglemodal(){
   this.showmodal=!this.showmodal
-},},
+}, /*getNonce() {
+        axios.get('/api/get-nonce')
+          .then(response => {
+            const nonce = response.data.nonce;
+
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('nonce', nonce);
+            scriptElement.src = 'index.js';
+            document.head.appendChild(scriptElement);
+
+            const styleElement = document.createElement('style');
+            styleElement.setAttribute('nonce', nonce);
+            styleElement.innerHTML = `
+              .my-style {
+                color: red;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération du nonce:', error);
+          });
+      }
+    },
+    created() {
+      this.getNonce();
+    },*/
+  }
 
 }
 

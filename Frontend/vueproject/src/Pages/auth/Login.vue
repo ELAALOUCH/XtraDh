@@ -1,33 +1,35 @@
 <template>
-  <div class="flex flex-col md:flex-row h-screen items-center">
 
+  <div class="flex flex-col md:flex-row h-screen items-center">
+ 
  <div class="bg-blue-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
    <img src="@/assets/images/AF1QipPd4KGT1xMp13QlE4z_5-CuAMb52cNEd-AmuNrcw1600-h1000-k-no.jpeg" alt="" class="w-full h-full object-cover">
  </div>
-
+ 
  <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
    <div class="w-full h-100 ">
 
-     <div class=" ">
-      <img src="@/assets/images/Image1.png" alt="image">
+     <div class="flex justify-center">
+      <img src="@/assets/images/logo.jpg" alt="image" class="logo">
      </div>
  
      <form  @submit.prevent="submitlogin()" class="mt-6" >
        <div>
-         <label for="email" class="block text-gray-700">Email Address</label>
-         <input v-model="user.email" type="email"  id="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
+         <label for="email" class="block text-gray-700">Adresse mail</label>
+         <input v-model="user.email" type="email"  id="email" placeholder="Entrer l'e-mail" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required >
        </div>
-
        <div class="mt-4">
-    <label for="password" class="block text-gray-700">Password</label>
+    <label for="password" class="block text-gray-700">Mot de passe</label>
     <div class="relative">
-      <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Enter Password" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+      <input v-model="user.password" :type="passwordFieldType" id="password" placeholder="Entrer le mot de passe" required class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
       <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+
         <svg class="h-8 w-8 text-dark cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" @click="togglePasswordVisibility">
           <circle cx="12" cy="12" r="2" />
           <path v-if="!showPassword" d="M3 12l2.5 2.5a6.5 6.5 0 0 0 10.95 -3.5a6.5 6.5 0 0 0 -10.95 -3.5l-2.5 2.5" />
           <path v-if="showPassword" d="M2 12l4 4l6 -6" />
         </svg>
+        
       </div>
     </div>
   </div>
@@ -44,19 +46,16 @@
         </div>
 
        <router-link to="/Forgetpassword" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700 mt-2" >
-         Forgot Password ?
+         Mot de passe oublié ?
        </router-link>
 
        <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
-        px-4 py-3 mt-6">Log In
+        px-4 py-3 mt-6">Connexion
       </button>
-
-     </form>
-
+   </form>
      <hr class="my-6 border-gray-300 w-full">
-     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - All Rights Reserved.</p>
+     <p class="text-sm text-gray-500 mt-12">&copy; 2023 UAE - Tous les droits sont réservés</p>
    </div>
-
  </div>
  </div>
  </template>
@@ -64,11 +63,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import axios from 'axios';
-import Header from '@/components/Login/Header.vue';
-import Footer from '@/components/Login/Footer.vue';
-
 export default {
-
   data() {
         return {
             user: {
@@ -79,10 +74,14 @@ export default {
             showPassword: false,
        }
     },
-    computed:{
+    computed: {
       passwordFieldType() {
-      return this.showPassword ? 'text' : 'password';
-    },
+        return this.showPassword ? 'text' : 'password';
+      },
+      ...mapGetters({
+        'authenticated':'auth/authenticated',
+        'user':'auth/authenticated'
+      }),
     },
     methods: {
         ...mapActions({
@@ -108,7 +107,7 @@ export default {
     case 'admin_univ':
       this.$router.push('Dash_au');
       break;
-    case 'président_univ':
+    case 'president_univ':
       this.$router.push('Dash_pu');
       break;
     case 'admin_etb':
@@ -128,51 +127,20 @@ export default {
     this.error = 'An error occurred during login';
   }
 }
-, getNonce() {
-        axios.get('/api/get-nonce')
-          .then(response => {
-            const nonce = response.data.nonce;
+  } }
+ </script>
 
-            const scriptElement = document.createElement('script');
-            scriptElement.setAttribute('nonce', nonce);
-            scriptElement.src = 'index.js';
-            document.head.appendChild(scriptElement);
-
-            const styleElement = document.createElement('style');
-            styleElement.setAttribute('nonce', nonce);
-            styleElement.innerHTML = `
-              .my-style {
-                color: red;
-              }
-            `;
-            document.head.appendChild(styleElement);
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération du nonce:', error);
-          });
-      }
-    },
-    created() {
-      this.getNonce();
-    }
-
-  }
-
-
-
-
-</script>
-
-
-<style>
+  <style>
   .image {
     max-width: 800px;
     height: 450px;
     border-radius: 10px;
   }
-
+  .logo{
+    height: 300px;
+    width: 300px;
+  }
   .w-96 {
     margin-bottom: 3px;
   }
-
-</style>
+  </style>

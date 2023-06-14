@@ -19,8 +19,9 @@
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "autoprefixer": "^10.4.14",
-    "concurrently": "^8.0.1",
+    "concurrently": "^8.2.0",
     "postcss": "^8.4.23",
+    "tailwind-scrollbar": "^3.0.4",
     "tailwindcss": "^3.3.2"
   }
 }

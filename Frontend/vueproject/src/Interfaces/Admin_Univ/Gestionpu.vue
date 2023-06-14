@@ -1,24 +1,17 @@
 <template>
   <div>
-    <h3 class="text-2xl font-bold text-left py-2">Information du président</h3>
 
-    <div class="overflow-x-auto relative sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <h3 class="text-2xl font-serif text-left py-2">Gestion du président </h3>
+
+
+    <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100">
+      <table class="w-full text-sm text-left text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
             <th scope="col" class="py-3 px-6">
-              Email
+              email
             </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Mot de passe
-              </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Type            
-              </div>
-            </th>
+           
             <th scope="col" class="py-3 px-6">
               PPR
             </th>
@@ -29,99 +22,93 @@
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                Prénom            
+                Prenom
               </div>
             </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex items-center">
-                Établissement
+
+            <th scope="col" class="py-3 px-6 ">
+             <div class="ml-[380px] text-center  " >
+                  <create/>
               </div>
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <div class="flex justify-end">
-                <create/>
-              </div>
-            </th>             
+           </th>
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in productObj" :key="data.id">
-            <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <tr v-for="data in Obj" :key="data.id" class="bg-white border-b">
+            <td class="py-4 px-6" >
               {{ data.email }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.password }}
+           
+            <td class="py-4 px-6" >
+              {{ data.PPR }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.type }}
+            <td class="py-4 px-6" >
+              {{ data.Nom }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.ppr }}
-            </td>              
-            <td class="py-4 px-6">
-              {{ data.nom }}
-            </td>              
-            <td class="py-4 px-6">
+            <td class="py-4 px-6" >
               {{ data.prenom }}
             </td>
-            <td class="py-4 px-6">
-              {{ data.etablissement }}
-            </td>
-  
+
             <td class="py-4 px-6 text-right">
               <div class="inline-flex">
-                <Edit/>
-                <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded-i" @click="">
-                  Supprimer
-                </button>                  
+                <router-link :to="`/Gestionpu/Edit/${data.id}`" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mr-2">
+                    Modifier
+                </router-link>
+
+               <button   class="bg-red-500 hoover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" @click="deleteAdm(data)">
+
+                 Supprimer
+               </button>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
-  </div>
+
 </template>
 
 <script>
 import create from '@/components/Dashboard/Président/create.vue'
-import Edit from '@/components/Dashboard/Président/Edit.vue'
-
+import axios from 'axios'
 export default {
-  components: {
-    create,
-    Edit
-  },
-  data() {
-    return {
-      email: '',
-      password: '',
-      type: '',
-      ppr: null,  
-      nom: '',
-      prenom: '',
-      etablissement: '',
-      productObj: [
-        {
-          id: 1,
-          email: 'example@example.com',
-          password: 'password123',
-          type: 'Administrateur',
-          ppr: 123456789,
-          nom: 'Doe',
-          prenom: 'John',
-          etablissement: 'École XYZ',
-        },
-      ],
-    }
-  },
-  methods: {
-    toggleModal() {
-      this.showModal = !this.showModal;
-    },
+  components: {create},
+data(){
+  return {
+      Obj:[],
   }
-}
+},
+async mounted() {
+      try {
+         const response=await axios.get('/listepresidentuaeforadminuae')
+         console.log(response.data)
+         this.Obj=response.data
+        this.showModal = false;
+      } catch (error) {
+        //console.error(error);
+      }},
+methods:{
+  togglemodal(){
+  this.showmodal=!this.showmodal
+},
+async deleteAdm(data)
+  {
+   const response = axios.delete('/deleteadm/'+data.id).then(()=>{
+      let index = this.Obj.indexOf(data);
+      console.log(index)
+      this.Obj.splice(index,1);
+    });
+    console.log(response)
+    
+  } 
+}}
+
 </script>
 
 <style>
+.scrollable {
+  max-width: 100%;
+  overflow-x: scroll;
+}
 </style>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\enseignant;
 use Illuminate\Http\Request;
 use App\Models\Administrateur;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdministrateurController extends Controller
@@ -18,12 +20,70 @@ class AdministrateurController extends Controller
     {
        /*$adm = administrateur::with('etablissement')->get();
         return $adm;*/
-        $adm = administrateur::with('user')
+        $adm = Administrateur::with('user')
                               ->with('Etablissement')
                               ->get();
 
         return $adm;
     }
+
+    public function listeAdminETBforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','admin_etb')
+                  ->orderBy('administrateurs.id')
+                ->get();
+                return response()->json($adm) ;
+    }
+    public function listepresidentuaeforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','president_univ')
+                  ->orderBy('administrateurs.id')
+                ->get();
+                return response()->json($adm) ;
+    }
+    public function listedirecteuretbforadminuae()
+    {
+        $adm = DB::table('administrateurs')
+                  ->join('users','administrateurs.id_user','=','users.id_user')      
+                  ->join('etablissements','etablissements.id','=','Etablissement')
+                  ->select('users.id_user as id','users.email','users.type','PPR','administrateurs.Nom as Nom','etablissements.Nom as etab_Nom','administrateurs.prenom')
+                  ->where('users.type','directeur_etb')
+                  ->orderBy('administrateurs.id')
+                ->get();
+                return response()->json($adm) ;
+             
+    }
+
+
+
+    public function directeurETB(){
+        //cette methode est pour afficher la liste des directeur  qui appartient à etablissement de admistrateur 
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+
+        $users = DB::table('administrateurs')
+            ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+            ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+            ->select('users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+            ->where('administrateurs.Etablissement',$etb)
+            ->where('users.type','directeur_etb')
+            ->orderBy('administrateurs.id')
+            ->get();
+      
+        return  response()->json($users) ;
+    }
+
+
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,9 +100,8 @@ class AdministrateurController extends Controller
             'Etablissement'=>'required',
             'id_user'=>'required'
         ]);
-    //    $attributs['PPR']=Crypt::encrypt($attributs->PPR);
-        $adm = administrateur::Create($attributs);
-        return response()->json($adm);
+        $adm = Administrateur::Create($attributs);
+        return response()->json($adm,201);
     }
 
     /**
@@ -65,12 +124,11 @@ class AdministrateurController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+            $err = array('error'=>$validator->errors());
+            return $err;
         }
     
-        // Cryptage du champ PPR
-       // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
-    
+        
         // Création de l'enseignant
         $administrateur = Administrateur::create([
             'PPR' => $request->input('PPR'),
@@ -80,15 +138,20 @@ class AdministrateurController extends Controller
             'id_user' => $request["id_user"],
         ]);
         return $administrateur;
-        //return response()->json(['message' => 'Enseignant créé avec succès'], 201);
     }
-    public function show($idAdm)
+    public function show($id)
     {
-        $adm = administrateur::with(['user'])
-            ->with(['Etablissement'])
-            ->find($idAdm);
-     //   $adm->PPR=Crypt::decrypt($adm->PPR);
-        return response()->json($adm);
+        $user = DB::table('administrateurs')
+                    ->join('users', 'administrateurs.id_user', '=', 'users.id_user')
+                    ->join('etablissements','administrateurs.Etablissement','=','etablissements.id')
+                    ->select('etablissements.id as id_etab','users.id_user','users.email','users.type', 'administrateurs.Nom','administrateurs.prenom','administrateurs.PPR','etablissements.Nom as etab_Nom')
+                    ->where('users.id_user',$id)
+                    ->orderBy('administrateurs.id')
+                    ->first();
+        if($user==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
+        return response()->json($user);
     }
 
     /**
@@ -100,17 +163,18 @@ class AdministrateurController extends Controller
      */
     public function update(Request $request, $idAdm)
     {
-        $adm = administrateur::find($idAdm);
+        $adm = Administrateur::find($idAdm);
+        if($adm==null){
+            return response()->json(['errors'=>'user not found'],404);
+        }
         $attributs = $request->validate([
-            'PPR'=>'required',
             'Nom'=>'required',
             'prenom'=>'required',
-            'Etablissement'=>'required',
-            'id_user'=>'required'
+            'PPR'=>'required'
         ]);
  //       $attributs['PPR']=Crypt::encrypt($attributs->PPR);
         $adm->update($attributs);
-        return response()->json($adm);
+        return response()->json($adm,202);
     }
 
     /**
@@ -121,6 +185,10 @@ class AdministrateurController extends Controller
      */
     public function destroy($idAdm)
     {
-        return administrateur::find($idAdm)->delete();
+        if(Administrateur::find($idAdm)!=NULL){
+        $user = Administrateur::find($idAdm)->delete();
+        return $user;
+        }
+        return response()->json(['errors'=>'user not found'],404);;
     }
 }

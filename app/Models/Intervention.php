@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class intervention extends Model
+class Intervention extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_intervention';
@@ -23,10 +23,10 @@ class intervention extends Model
     ];
 
     public function enseignant(){
-        return $this->belongsTo(enseignant::class,'id_Intervenant','id');
+        return $this->belongsTo(Enseignant::class,'id_Intervenant','id');
     }
     public function etablissement(){
-        return $this->belongsTo(etablissement::class,'id_Etab','id');
+        return $this->belongsTo(Etablissement::class,'id_Etab','id');
     }
 
 

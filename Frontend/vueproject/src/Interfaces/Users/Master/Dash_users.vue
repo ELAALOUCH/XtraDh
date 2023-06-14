@@ -1,44 +1,38 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="w-screen overflow-y-hidden h-screen flex">
     <!-- Side bar -->
     <div class="w-[400px] h-full bg-blue-200 text-white" v-show="showSide">
       <div class="h-[50px] bg-blue-950 flex justify-start  items-center ">
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Prof</h3>
+          <h3 class="font-serif  text-xl">Professeur</h3>
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-800 py-[20px]">
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
-          <div class=" flex flex-col justify-between space-y-[10px]">
-            
+          <div class=" flex flex-col justify-between space-y-[10px] ">
 
-            <router-link to="/paimep" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <paiement/>
-              Paiment
+            <router-link to="/paimep" class=" font-serif inline-flex  relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+               <paiement class="px-1"/>
+              Paiement
             </router-link>
- 
-            <router-link to="/interp" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <Bilan/>
+
+            <router-link to="/interp" class=" font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+               <Bilan class="px-1" />
               Interventions
             </router-link>
-            
-            <router-link to="/Profileprof" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
-               <Profile2/>
-              Profile
+
+            <router-link to="/Profileprof" class="font-serif inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-blue-200 hover:bg-blue-200 hover:text-blue-800  transition duration-400 ease-in-out">
+               <Profile2 class="px-1"/>
+              Profil
             </router-link>
-
-
-                
-
           </div>
-         
+
           <div class="h-[50px]">
-            <div>             
-              <div @click="signout"  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
+           <div>
+              <div @click="signout"  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 cursor-pointer  hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out ">
                 <Decconexion/>
                 Déconnexion
-                          
-              </div>              
+              </div>
           </div>
           </div>
 
@@ -57,20 +51,28 @@
         <!-- Search bar -->
         <div class="w-[calc(100%-30px)] flex">
           <div class="w-[calc(100%-200px)] flex justify-center ">
-            <!-- Search bar -->    
+            <!-- Search bar -->
           </div>
           <!-- User login -->
-          <div class="mr-16 w-[200px] ">
-            <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
-              <img class="w-10 h-10 rounded-full border-2 border-blue-50" src="@/assets/images/download.jpg">
-              <div class="font-semibold dark:text-white text-left">
-
-                <div v-if="authenticated">{{ user.email }}</div>
-                
-                <div class="text-xs text-blue-500 dark:text-blue-400">Admin</div>
-              </div>
+          <ul role="list" class="max-w-sm divide-y divide-gray-200">
+            <li class="py-3 sm:py-4">
+            <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full" src="@/assets/images/download.jpg" alt="Neil image">
             </div>
+            <div class="flex-1 min-w-0">
+
+                <p class="text-l text-gray-500 font-serif truncate " v-if="authenticated">
+                  {{ user.email }}
+                </p>
+            </div>
+            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                Prof
+            </span>
           </div>
+          </li>
+         </ul> 
         </div>
       </div>
       <div class="h-[calc(100vh-50px)] bg-blue-50 p-[20px]">
@@ -79,7 +81,6 @@
         </div>
       </div>
     </div>
-    <!-- Main  -->
   </div>
 </template>
  <script>
@@ -87,14 +88,15 @@
  import Bilan from '@/components/Dashboard/Icons/Bilan.vue'
  import Decconexion from '@/components/Dashboard/Icons/Decconexion.vue'
 import Profile2 from '@/components/Dashboard/Icons/Profile2.vue'
-import { mapGetters ,mapActions} from 'vuex' 
+import { mapGetters ,mapActions} from 'vuex'
 import Profile from '@/components/Dashboard/Icons/Profile.vue'
 
- export default {
+export default {
    components:{ Profile2, Decconexion,Bilan,Profile,paiement} ,
   data() {
      return {
-       showSide: true
+       showSide: true,
+       isActive: false
      }
    },
    computed: {
@@ -105,16 +107,14 @@ import Profile from '@/components/Dashboard/Icons/Profile.vue'
     },
    methods: {
      toggleSideBar() {
-       this.showSide = !this.showSide    
+       this.showSide = !this.showSide
      },
      ...mapActions({
         'logout':'auth/logout'
      }),
      signout(){
         this.logout().then(()=>this.$router.push('/'))
-     }
-   },
-
- 
+     },
+    }
  }
 </script>

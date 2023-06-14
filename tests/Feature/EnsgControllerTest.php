@@ -24,7 +24,7 @@ class TestEnseignantcontroller extends TestCase
         $ville = "Casanegra";
         $Nbr_enseignants = 50;
 
-        $response = $this->post('/api/Etablissement', [
+        $response = $this->post('/api/etablissement', [
             'code'=> $code,
             'Nom'=> $Nom,
             'Telephone'=> $Telephone,
@@ -37,7 +37,7 @@ class TestEnseignantcontroller extends TestCase
         $charge_statutaire = "50";
         $Taux_horaire_Vocation = "100";
 
-        $response = $this->post('/api/Grade', [
+        $response = $this->post('/api/grade', [
             'designation'=> $designation,
             'charge_statutaire'=> $charge_statutaire,
             'Taux_horaire_Vocation'=> $Taux_horaire_Vocation,
@@ -46,7 +46,7 @@ class TestEnseignantcontroller extends TestCase
         $type = "Enseignant";
         $email = "testtest1@testing.com";
         $password = "test";
-        $response = $this->post('/api/User', [
+        $response = $this->post('/api/user', [
             'type' => $type,
             'email' => $email,
             'password' => $password,
@@ -60,7 +60,7 @@ class TestEnseignantcontroller extends TestCase
         $idGrade = 1; 
         $idUser = 1; 
         
-        $response = $this->post('/api/Enseignant', [
+        $response = $this->post('/api/enseignant', [
             'PPR' => $PPR,
             'Nom' => $Nom,
             'prenom' => $Prenom,
@@ -80,7 +80,7 @@ class TestEnseignantcontroller extends TestCase
         $ville = "Casanegra";
         $Nbr_enseignants = 50;
 
-        $response = $this->post('/api/Etablissement', [
+        $response = $this->post('/api/etablissement', [
             'code'=> $code,
             'Nom'=> $Nom,
             'Telephone'=> $Telephone,
@@ -93,7 +93,7 @@ class TestEnseignantcontroller extends TestCase
         $charge_statutaire = "50";
         $Taux_horaire_Vocation = "100";
 
-        $response = $this->post('/api/Grade', [
+        $response = $this->post('/api/grade', [
             'designation'=> $designation,
             'charge_statutaire'=> $charge_statutaire,
             'Taux_horaire_Vocation'=> $Taux_horaire_Vocation,
@@ -102,7 +102,7 @@ class TestEnseignantcontroller extends TestCase
         $type = "AdminX";
         $email = "testtest2@testing.com";
         $password = "test";
-        $response = $this->post('/api/User', [
+        $response = $this->post('/api/user', [
             'type' => $type,
             'email' => $email,
             'password' => $password,
@@ -116,7 +116,7 @@ class TestEnseignantcontroller extends TestCase
         $idGrade = 2; 
         $idUser = 2; 
         
-        $response = $this->post('/api/Enseignant', [
+        $response = $this->post('/api/enseignant', [
             'PPR' => $PPR,
             'Nom' => $Nom,
             'prenom' => $Prenom,
@@ -150,7 +150,7 @@ class TestEnseignantcontroller extends TestCase
     {
         $id = 1;
 
-        $response = $this->get('api/Enseignant/' . $id);
+        $response = $this->get('api/enseignant/' . $id);
 
         $response->assertStatus(200);
 
@@ -158,7 +158,6 @@ class TestEnseignantcontroller extends TestCase
         print_r($jsonResponse);
         $response->assertStatus(200)
         ->assertJsonStructure([
-            '*'=>[
             'PPR',
             'Nom',
             'prenom',
@@ -166,12 +165,11 @@ class TestEnseignantcontroller extends TestCase
             'Etablissement',
             'id_Grade',
             'id_user', 
-            ]
     ]);
     }
     public function testIndexEnseignant()
     {
-        $response = $this->get('api/Enseignant');
+        $response = $this->get('api/enseignant');
 
         $response->assertStatus(200);
 
@@ -192,7 +190,7 @@ class TestEnseignantcontroller extends TestCase
     public function testDestroyEnseignant()
     {   
         $id=1;
-        $response = $this->delete('/api/Enseignant/' . $id);
+        $response = $this->delete('/api/enseignant/' . $id);
         
         $response->assertStatus(200);
         $this->assertDatabaseMissing('enseignants', ['id' => $id]);
@@ -209,7 +207,7 @@ class TestEnseignantcontroller extends TestCase
         'id_Grade' => 1, 
         'id_user' => 1, 
     ];
-    $response = $this->put("/api/Enseignant/{$id}", $modification);
+    $response = $this->put("/api/enseignant/{$id}", $modification);
 
     $response->assertStatus(200);
 // pour check si la table users de la bd contient une ligne avec les infos qu'on vient de modifier 

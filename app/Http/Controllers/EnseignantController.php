@@ -21,11 +21,10 @@ class EnseignantController extends Controller
      */
     public function index()
     {
-        $enseignant = enseignant::with(['etab_permanant:id,Nom'])
+        $enseignant = Enseignant::with(['etab_permanant:id,Nom'])
                                 ->with(['grade'])
                                 ->with(['intervention'])
                                 ->with(['user'])
-                                ->with(['paiement'])
                                 ->get();
         return response()->json($enseignant);
 
@@ -35,8 +34,12 @@ class EnseignantController extends Controller
 
     public function indexETB(){
         //cette methode est pour afficher la liste de prof qui appartient à etablissement de admistrateur (etab_permanent)
-        $etb = administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
-        $enseignant = enseignant::where('Etablissement',$etb)->with(['etab_permanant:id,Nom'])->get();
+        $etb = Administrateur::where('id_user',Auth::user()->id_user)->select('Etablissement')->first()->Etablissement; 
+        $enseignant = Enseignant::where('Etablissement',$etb)->with(['etab_permanant:id,Nom'])
+                                                                ->with(['grade'])
+                                                                ->with(['intervention'])
+                                                                ->with(['user'])
+                                                            ->get();
         return  response()->json($enseignant) ;
 
     }
@@ -47,20 +50,7 @@ class EnseignantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $form_fields = $request->validate([
-    //         'PPR'=>'required',
-    //         'Nom'=>'required|max:30',
-    //         'prenom'=>'required|max:30',
-    //         'Date_Naissance'=>'date|required'
-    //     ]);
-    //     $form_fields['Etablissement'] = $request->Etablissement;
-    //     $form_fields['id_Grade'] = $request->id_Grade;
-    //     $form_fields['id_user'] = $request->id_user;
-    //     $form_fields['PPR'] = Crypt::encrypt($request->PPR);
-    //     return enseignant::create($form_fields);
-    // }
+    
     public function store(Request $request)
 {
     // Validation des champs
@@ -78,11 +68,10 @@ class EnseignantController extends Controller
         return response()->json(['errors' => $validator->errors()], 400);
     }
 
-    // Cryptage du champ PPR
-   // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+    
 
     // Création de l'enseignant
-    $enseignant = enseignant::create([
+    $enseignant = Enseignant::create([
         'PPR' => $request->input('PPR'),
         'Nom' => $request->input('Nom'),
         'prenom' => $request->input('prenom'),
@@ -98,7 +87,7 @@ public function storeETB(Request $request)
 {
     //cette methode pour storer des enseignant dans etablissement de admin (automatiquement)
     // Validation des champs
-    return $request;
+    
     $validator = Validator::make($request->all(), [
         'PPR' => 'required',
         'Nom' => 'required|max:30',
@@ -107,16 +96,15 @@ public function storeETB(Request $request)
         'id_Grade' => 'required',
         'id_user' => 'required',
     ]);
-
+    
     if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 400);
+        $err = array('error'=>$validator->errors());
+        return $err;
     }
-
-    // Cryptage du champ PPR
-   // $encryptedPPR = Crypt::encrypt($request->input('PPR'));
+   
 
     // Création de l'enseignant
-    $enseignant = enseignant::create([
+    $enseignant = Enseignant::create([
         'PPR' => $request->input('PPR'),
         'Nom' => $request->input('Nom'),
         'prenom' => $request->input('prenom'),
@@ -138,7 +126,7 @@ public function storeETB(Request $request)
      */
     public function show($idens)
     {
-        $ens = enseignant::with(['user'])
+        $ens = Enseignant::with(['user'])
             ->with(['grade'])
             ->find($idens);
         return response()->json($ens);
@@ -154,7 +142,7 @@ public function storeETB(Request $request)
     public function update(Request $request, $id)
     {
 
-        $ens = enseignant::where('id',$id)->first();
+        $ens = Enseignant::where('id',$id)->first();
         $attributs = $request->validate([
             'PPR'=>'',
             'Nom'=>'',
@@ -177,6 +165,6 @@ public function storeETB(Request $request)
      */
     public function destroy($id)
     {
-        return enseignant::find($id)->delete();
+        return Enseignant::find($id)->delete();
     }
 }

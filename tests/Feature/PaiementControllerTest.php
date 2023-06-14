@@ -29,7 +29,7 @@ class TestPaiementcontroller extends TestCase
         $paiement=Paiement::factory()->create();
         $paiement = $paiement->toArray();
         print_r($paiement);
-        $response = $this->post('/api/Paiement', $paiement);
+        $response = $this->post('/api/paiement', $paiement);
         $response->assertStatus(200);
         $this->assertNotNull($response);
         $this->assertDatabaseHas('paiements', $paiement);
@@ -39,7 +39,7 @@ class TestPaiementcontroller extends TestCase
     {
         $id = 1;
         $paiement=Paiement::factory()->count(5)->create();
-        $response = $this->get('api/Paiement/' . $id);
+        $response = $this->get('api/paiement/' . $id);
 
         $response->assertStatus(200);
 
@@ -61,24 +61,25 @@ class TestPaiementcontroller extends TestCase
    public function testIndexPaiement()
     {
         $paiement=Paiement::factory()->count(5)->create();
-        $response = $this->get('api/Paiement/');
+        $response = $this->get('api/paiement/');
 
         $response->assertStatus(200);
 
         $jsonResponse =$response->json();
+        echo"lol";
         print_r($jsonResponse);
         $this->assertNotNull($jsonResponse);
+
         $response->assertStatus(200)
         ->assertJsonStructure([
             '*'=>[
-            'id_Intervenant',
-            'id_Etab',
             'VH',
             'Taux_H', 
             'Annee_univ',
             'Semestre',
             'Brut',
             'IR',
+            'NET',
             ]
         ]);
     }
@@ -86,7 +87,7 @@ class TestPaiementcontroller extends TestCase
     { 
         $id=2;
         $paiement=Paiement::factory()->count(5)->create();
-        $response = $this->delete('api/Paiement/'.$id);
+        $response = $this->delete('api/paiement/'.$id);
 
         $response->assertStatus(200);
 
@@ -104,7 +105,7 @@ class TestPaiementcontroller extends TestCase
     $paiement1 = $paiement1->toArray();
     $paiement0 = $paiement0->toArray();
   
-    $response = $this->put("/api/Paiement/{$userid}", $paiement1);
+    $response = $this->put("/api/paiement/{$userid}", $paiement1);
 
     $response->assertStatus(200);
     $this->assertNotNull($response);
@@ -112,6 +113,32 @@ class TestPaiementcontroller extends TestCase
     $this->assertDatabaseMissing('paiements', $paiement0);
     
 } 
+
+public function testConsultPaiementEtabDirecteur()
+{
+    
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+   
+    $admin = Administrateur::factory()->create([
+        'id_user' => $user->id_user,
+    ]);
+    $etb = $admin->Etablissement;
+    
+    $date='2022/2023';
+    $paiement1 = Paiement::factory()->create([
+        'id_Etab' => $etb,
+        'Annee_univ' => $date,
+    ]);
+    $paiement2 = Paiement::factory()->create([
+        'id_Etab' => $etb,
+        'Annee_univ' => $date,
+    ]);
+    $response = $this->get('api/consultpaiementetabdirecteur');
+    $response->assertStatus(200);
+
+}
   
     public function tearDown(): void
     {

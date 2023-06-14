@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    
+
 
     public function login(Request $request){
         $fields = $request->validate([
@@ -23,7 +23,7 @@ class AuthController extends Controller
         if(!$user || !Hash::check($fields['password'],$user->password)){
             return response([
                 'message' => 'Email or Password are incorrect'
-            ],404);
+            ],401);
         }
                 $token = $user->createToken('MyAppToken')->plainTextToken;
                 $response= [

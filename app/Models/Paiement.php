@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class paiement extends Model
+class Paiement extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -21,13 +21,13 @@ class paiement extends Model
     ];
 
     public function enseignant(){
-        return $this->belongsTo(enseignant::class,'id_Intervenant','id');
+        return $this->belongsTo(Enseignant::class,'id_Intervenant','id');
     }
 
     public function etablissement(){
-        return $this->belongsTo(etablissement::class,'id_Etab','id');
+        return $this->belongsTo(Etablissement::class,'id_Etab','id');
     }
     public function grade(){
-        return $this->belongsTo(grade::class,'id_Grade','id');
+        return $this->belongsTo(Grade::class,'id_Grade','id');
     }
 }

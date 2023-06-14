@@ -1,17 +1,19 @@
 <template>
     <div>
-      <h3 class="text-2xl font-bold text-left py-2">Consulter les etats de paiments</h3>
-  
-      <div class="overflow-x-auto relative sm:rounded-lg">
+      <h3 class="text-2xl font-serif text-left py-2">Consulter les états de paiements de l'année actuelle</h3>
+
+      <div class="w-full overflow-x-auto overflow-y-auto h-[calc(100vh-200px)] scrollbar scrollbar-track-gray-100 ">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" class="py-3 px-6">
-                id_intervenant
+                <div class="flex items-center">
+                  Nom
+                </div>
               </th>
               <th scope="col" class="py-3 px-6">
                 <div class="flex items-center">
-                  id_etab
+                  Prenom
                 </div>
               </th>
               <th scope="col" class="py-3 px-6">
@@ -52,12 +54,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="data in productyObj" :key="data.id">
-              <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ data.id_intervenant }}
-              </th>
+            <tr class="bg-white border-b " v-for="data in ints" :key="data.id">
               <td class="py-4 px-6">
-                {{ data.id_etab }}
+                {{ data.Nom }}
+              </td><td class="py-4 px-6">
+                {{ data.prenom }}
               </td>
               <td class="py-4 px-6">
                 {{ data.VH }}
@@ -72,13 +73,13 @@
                 {{ data.IR }}
               </td>
               <td class="py-4 px-6">
-                {{ data.Net }}
+                {{ data.NET }}
               </td>
               <td class="py-4 px-6">
                 {{ data.Annee_univ }}
               </td>
               <td class="py-4 px-6">
-                {{ data.semestre }}
+                {{ data.Semestre }}
               </td>
             </tr>
           </tbody>
@@ -86,26 +87,21 @@
       </div>
     </div>
   </template>
-  
+
   <script>
+  import axios from 'axios';
   export default {
     data() {
       return {
-        productyObj: [
-          {
-            id: 1,
-            id_intervenant: '12',
-            id_etab: 'azerr',
-            VH: 'ytn',
-            Taux_H: 'aertbsf',
-            Brut: 'dsd',
-            IR: 'sdfsd',
-            Net: 'fsfd',
-            Annee_univ: '2002',
-            semestre: 'Sa'
-          }
-        ]
+        ints:''
       };
-    }
+    },
+    methods:{
+  },
+  async mounted(){
+    const response = await axios.get('/consultpaiementetabdirecteur');
+    this.ints=response.data
+    console.log(response.data)
+  }
   };
   </script>

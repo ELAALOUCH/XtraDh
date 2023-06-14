@@ -9,7 +9,7 @@ use App\Models\User;
 class TestGradecontroller extends TestCase
 {
 
-    use DatabaseMigrations;
+     use DatabaseMigrations;
 
     public function setUp(): void
     {
@@ -20,7 +20,7 @@ class TestGradecontroller extends TestCase
         $charge_statutaire = "50";
         $Taux_horaire_Vocation = "100";
 
-        $response = $this->post('/api/Grade', [
+        $response = $this->post('/api/grade', [
             'designation'=> $designation,
             'charge_statutaire'=> $charge_statutaire,
             'Taux_horaire_Vocation'=> $Taux_horaire_Vocation,
@@ -30,7 +30,7 @@ class TestGradecontroller extends TestCase
         $charge_statutaire = "40";
         $Taux_horaire_Vocation = "120";
 
-        $response = $this->post('/api/Grade', [
+        $response = $this->post('/api/grade', [
             'designation'=> $designation,
             'charge_statutaire'=> $charge_statutaire,
             'Taux_horaire_Vocation'=> $Taux_horaire_Vocation,
@@ -42,7 +42,7 @@ class TestGradecontroller extends TestCase
         $charge_statutaire = "55";
         $Taux_horaire_Vocation = "160";
 
-        $response = $this->post('/api/Grade', [
+        $response = $this->post('/api/grade', [
             'designation'=> $designation,
             'charge_statutaire'=> $charge_statutaire,
             'Taux_horaire_Vocation'=> $Taux_horaire_Vocation,
@@ -66,7 +66,7 @@ class TestGradecontroller extends TestCase
     {
         $id = 1;
 
-        $response = $this->get('api/Grade/' . $id);
+        $response = $this->get('api/grade/' . $id);
 
         $response->assertStatus(200);
 
@@ -80,7 +80,7 @@ class TestGradecontroller extends TestCase
     }
     public function testIndexGrade()
     {
-        $response = $this->get('api/Grade');
+        $response = $this->get('api/grade');
 
         $response->assertStatus(200);
 
@@ -98,7 +98,7 @@ class TestGradecontroller extends TestCase
     public function testDestroyGrade()
     {   
         $id=2;
-        $response = $this->delete('/api/Grade/' . $id);
+        $response = $this->delete('/api/grade/' . $id);
         
         $response->assertStatus(200);
         $this->assertDatabaseMissing('grades', ['id_Grade' => $id]);
@@ -112,7 +112,7 @@ class TestGradecontroller extends TestCase
         'Taux_horaire_Vocation' => 99,
 
     ];
-    $response = $this->put("/api/Grade/{$id}", $modification);
+    $response = $this->put("/api/grade/{$id}", $modification);
 
     $response->assertStatus(200);
 // pour check si la table users de la bd contient une ligne avec les infos qu'on vient de modifier 
