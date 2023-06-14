@@ -11,17 +11,33 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 
 À cet égard, notre équipe de dix étudiants s'est engagée à concevoir et à développer une application web répondant à ce besoin. Pour cela, nous avons opté pour une approche agile, notamment la méthodologie Scrum, afin de garantir une collaboration étroite avec notre client et de nous adapter rapidement aux changements éventuels.
 
-
 ## Equipe
+
 - **[NADA EL BAGHDADI ](https://github.com/NadaElBaghdadi)** Chef de projet 
 - **[MOHAMMED EL HADDAD ](https://github.com/MohamedElHaddad03)** Responsable de la sécurité applicative 
 - **[TAHA AMINE ](https://github.com/Taha-Amine2)** Responsable des tests 
 - **[SOUFIAN BOUKTAIB ](https://github.com/sofexbk)** Developpeur VueJs
 - **[HOUDA EL MOUMOUHI ](https://github.com/houaELM02)** Developpeur PL/PGSQL
-- **[YASSINE GLIOUAL](https://github.com/GlioualYassine)** Developpeur LARAVEL 
+- **[YASSINE GLIOUAL](https://github.com/GlioualYassine)** Developpeur LARAVEL  
 - **[ANASS ECHBERAAL](https://github.com/echberaal)** Developpeur LARAVEL 
 - **[ABDERRAHMANE EL HARRACHY ](https://github.com/AbderrahmaneHr)** Administrateur systeme Linux 
 - **[MOHAMED ACHERNAN ](https://github.com/Accel0World)** Administrateur systeme Linux 
-- **[MOHAMMED YASSINE EL AALOUCH](https://github.com/ELAALOUCH)** Respnsable Git et Github (Accompagnateur des developpeurs )
+- **[MOHAMMED YASSINE EL AALOUCH](https://github.com/ELAALOUCH)** Respnsable Git et Github (Accompagnateur des developpeurs)
 
+##
+
+### Installer Node packages 
+cd Frontend 
+cd vueproject 
+npm install 
+
+### Installer Tailwind CSS avec  Vue.js 
+cd Frontend 
+cd vueproject 
+[TAILWIND CSS](https://flowbite.com/docs/getting-started/vue/)** 
+
+## Lancer le serveur 
+
+npm install concurrently --save-dev
+npm run dev 
 
