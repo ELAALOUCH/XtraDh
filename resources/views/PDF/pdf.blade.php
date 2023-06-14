@@ -245,7 +245,7 @@
             <div class="title">{{$paiement->enseignant->Nom}} {{$paiement->enseignant->prenom}}</div>
             <div style="font-size: 15px">
                 <i>Statut : </i>{{$grade->designation}}<br>
-                <i>Établissement d'origine : </i>{{$paiement->etablissement->Nom}}<br>
+                <i>Établissement d'origine : </i>{{$etb}}<br>
                 <i>Année universitaire : </i> {{$paiement->Annee_univ}}</div>
         </div>
 
