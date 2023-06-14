@@ -24,7 +24,7 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 - **[MOHAMED ACHERNAN ](https://github.com/Accel0World)** Administrateur systeme Linux 
 - **[MOHAMMED YASSINE EL AALOUCH](https://github.com/ELAALOUCH)** Respnsable Git et Github (Accompagnateur des developpeurs)
 
-##
+## Setup Projet
 
 ### Cloner le dépôt
 git clone https://github.com/ELAALOUCH/XtraDh.git
