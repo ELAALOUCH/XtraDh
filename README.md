@@ -40,9 +40,9 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 
  cd vueproject 
  
- [TAILWIND CSS](https://flowbite.com/docs/getting-started/vue/)** 
+ [TAILWIND CSS](https://flowbite.com/docs/getting-started/vue/)
 
-## Lancer le serveur 
+### Lancer le serveur 
 
  npm install concurrently --save-dev
  
