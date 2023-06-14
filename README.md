@@ -27,17 +27,24 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 ##
 
 ### Installer Node packages 
-cd Frontend 
-cd vueproject 
-npm install 
+
+ cd Frontend 
+ 
+ cd vueproject 
+ 
+ npm install 
 
 ### Installer Tailwind CSS avec  Vue.js 
-cd Frontend 
-cd vueproject 
-[TAILWIND CSS](https://flowbite.com/docs/getting-started/vue/)** 
+
+ cd Frontend 
+
+ cd vueproject 
+ 
+ [TAILWIND CSS](https://flowbite.com/docs/getting-started/vue/)** 
 
 ## Lancer le serveur 
 
-npm install concurrently --save-dev
-npm run dev 
+ npm install concurrently --save-dev
+ 
+ npm run dev 
 
