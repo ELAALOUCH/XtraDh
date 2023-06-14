@@ -72,7 +72,7 @@ data(){
 },
 async mounted()
 {
-  const response = await axios.get('/intervention')
+  const response = await axios.get('/indexvisaetb1')
   this.interv = response.data 
 },
 methods:{
