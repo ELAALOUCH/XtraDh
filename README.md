@@ -26,6 +26,18 @@ La gestion des heures supplémentaires et des vacations constitue un défi majeu
 
 ##
 
+### Cloner le dépôt
+git clone https://github.com/devzakir/laravel-complete-blog-development.git laravel-blog
+
+### Installer les dépendances de Composer
+composer install
+
+### Créer un fichier d'environnement
+cp .env.example .env
+
+### Générer la clé d'application
+php artisan key:generate
+
 ### Installer Node packages 
 
  cd Frontend 
