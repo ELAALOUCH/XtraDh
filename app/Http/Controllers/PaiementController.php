@@ -9,6 +9,7 @@ use App\Models\Enseignant;
 use App\Models\intervention;
 use Illuminate\Http\Request;
 use App\Models\Administrateur;
+use App\Models\Etablissement;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -167,7 +168,11 @@ class PaiementController extends Controller
         $grade = Grade::where('id_Grade',$paiement->enseignant->id_Grade)->first();
         //@dd($paiement->enseignant->Nom);
         $intervention = $paiement->enseignant->id ;
-
+        
+        $ens=enseignant::find($paiement->enseignant->id);
+        $idetb=Etablissement::find($ens->Etablissement);
+        $etb=$idetb->Nom;
+        
         $intervention = intervention::where('id_Intervenant',$intervention)
                                     ->where('Annee_univ',$paiement->Annee_univ)
                                     ->where('visa_uae',1)
@@ -180,7 +185,8 @@ class PaiementController extends Controller
        $data = [
             'paiement'=>$paiement,
             'intervention'=>$intervention,
-            'grade'=>$grade
+            'grade'=>$grade,
+            'etb'=>$etb
             ];
             
             $pdf = PDF::loadView('PDF.pdf', $data);

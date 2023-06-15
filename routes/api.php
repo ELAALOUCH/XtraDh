@@ -51,6 +51,7 @@ Route::middleware(['auth:sanctum', 'role:president_univ'])->group(function () {
     Route::get('/valideruae/{id}', [InterventionController::class, 'valideruae']);
     Route::get('/invalideruae/{id}', [InterventionController::class, 'invalideruae']);
     Route::get('/interventionuaevalid', [InterventionController::class, 'interventionuaevalid']);
+    Route::get('/indexvisaetb1', [InterventionController::class, 'indexvisaetb1']);
 });
 
 // Routes pour le rôle "prof"

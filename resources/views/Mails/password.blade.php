@@ -231,7 +231,7 @@
 
 
     <div class="note">
-        <p>Service XtraDH vous souhaite une bonne journee!</p>
+        <p>Le Service XtraDH vous souhaite une bonne journée!</p>
         <p>www.uae.ac.ma</p>
     </div>
 </div>
